@@ -1,0 +1,40 @@
+{
+  "IOSimulatorItemList": [
+    {
+      "SourceCommandName": "GetSensorStatus",
+      "SourceCommand": "#1#SPV#Ch1",
+      "SuccessResponse": "#101#Ch1#SPV#2#0##",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "StartMeasurement",
+      "SourceCommand": "#2#SPV#Ch1",
+      "SuccessResponse": "#102#Ch1#SPV#3#0##RunName#",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "GetEPDRecipeList",
+      "SourceCommand": "#3#SPV#Ch1",
+      "SuccessResponse": "#103#Ch1#SPV#7#0#no description#4#Recipe1#Recipe2#Recipe3#Recipe4#",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RequestRunAction",
+      "SourceCommand": "#4#SPV#Ch1",
+      "SuccessResponse": "#104#Ch1#SPV#2#0#error description#",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "GetSensorStatus2",
+      "SourceCommand": "1234abc",
+      "SuccessResponse": "#101#Ch1#SPV#2#3#Error description#",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "StartMeasurement2",
+      "SourceCommand": "123asdfdsaf4abc",
+      "SuccessResponse": "#102#Ch1#SPV#3#111#Error description#RunName#",
+      "FailedResponse": ""
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Aitex.Core.UI.Control.ReadonlyGauge"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Height="22" Width="40" Name="readonlyGauge">
+    <UserControl.RenderTransform>
+        <RotateTransform x:Name="controlAngle" Angle="0" CenterX="20" CenterY="10"/>
+    </UserControl.RenderTransform>
+
+    <Grid>
+        <Border Background="Transparent" BorderThickness="1">
+            <Rectangle  RadiusX="5" RadiusY="3" Stroke="Gray" Opacity="1" Name="rectBkground"/>
+        </Border>
+
+        <Label Name="controlValue" Content="0.00"
+               Foreground="LightYellow" FontFamily="Arial,SimSun" FontSize="9" 
+               HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,308 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.DataLogs.WaferHistory.WaferHistoryDBView"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:wfi ="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration" 
+             xmlns:wf ="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:s="http://schemas.abtsoftware.co.uk/scichart"
+             xmlns:micro="clr-namespace:Caliburn.Micro"
+             xmlns:waferHistory="clr-namespace:MECF.Framework.UI.Client.CenterViews.DataLogs.WaferHistory"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1800">
+    <Grid x:Name="root">
+        <Grid.Resources>
+            <waferHistory:HideMinTimeConverters x:Key="HideMinTimeConvert"/>
+            <waferHistory:MinTime2BoolConverters x:Key="MinTime2BoolConverter"/>
+            <waferHistory:RecipeStepNull2Empty x:Key="RecipeStepNull2Empty"/>
+            <Grid x:Key="LotLayout">
+                <DataGrid ItemsSource="{Binding Lots}" IsReadOnly="True" AutoGenerateColumns="False" RowHeight="25" 
+                          CanUserAddRows="False" CanUserResizeRows="False" CanUserResizeColumns="True" FontFamily="Arial" FontSize="14">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Lot Name" Width="180*" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Start Time" Width="150*" Binding="{Binding StartTime,Converter={StaticResource HideMinTimeConvert}}" />
+                        <DataGridTextColumn Header="End Time" Width="150*" Binding="{Binding EndTime,Converter={StaticResource HideMinTimeConvert}}" />
+                        <DataGridTextColumn Header="Duration" Width="75*" Binding="{Binding Duration}" />
+                        <DataGridTextColumn Header="Wafer Count" Width="100*" Binding="{Binding WaferCount}" />
+                        <DataGridTextColumn Header="Fault Wafer Count" Width="150*" Binding="{Binding FaultWaferCount}" />
+                        <DataGridTemplateColumn Header="Chart" Width="100*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <!--<Button Content="To Chart" Margin="0" Height="22" VerticalContentAlignment="Center" FontSize="12">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <i:InvokeCommandAction Command="{Binding DataContext.ToChartCommand,ElementName=root}" CommandParameter="{Binding }" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </Button>-->
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+
+            <Grid x:Key="WaferLayout">
+                <StackPanel>
+                    <Button Content="Export" Width="120" Height="25" Margin="-625,0,0,0" Visibility="{Binding WaferVisibility}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <micro:ActionMessage MethodName="Export">
+                                </micro:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <DataGrid ItemsSource="{Binding Wafers}"   IsReadOnly="True"  AutoGenerateColumns="False" RowHeight="25" 
+                          CanUserAddRows="False" CanUserResizeRows="False" CanUserResizeColumns="True" FontFamily="Arial" FontSize="14" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Wafer Name" Width="180*" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Arrive Time" Width="150*" Binding="{Binding StartTime,Converter={StaticResource HideMinTimeConvert}}" />
+                            <DataGridTextColumn Header="Remove Time" Width="150*" Binding="{Binding EndTime,Converter={StaticResource HideMinTimeConvert}}" />
+                            <DataGridTextColumn Header="Duration" Width="75*" Binding="{Binding Duration}" />
+                            <DataGridTextColumn Header="Sequence" Width="200*" Binding="{Binding Sequence}" />
+                            <DataGridTextColumn Header="Status" Width="200*" Binding="{Binding Status}" />
+                            <DataGridTemplateColumn Header="Chart" Width="100*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <!--<Button Content="To Chart" IsEnabled="{Binding EndTime,Converter={StaticResource MinTime2BoolConverter }}" Margin="0" Height="22" VerticalContentAlignment="Center" FontSize="12">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <i:InvokeCommandAction Command="{Binding DataContext.ToChartCommand,ElementName=root}" CommandParameter="{Binding }" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </Button>-->
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
+
+            <Grid x:Key="MovementLayout">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
+                    <DataGrid  ItemsSource="{Binding Recipes}" IsReadOnly="True" AutoGenerateColumns="False"  RowHeight="25" 
+                               CanUserAddRows="False" CanUserResizeRows="False" CanUserResizeColumns="True" FontFamily="Arial" FontSize="14" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name"  Width="200*"  Binding="{Binding Recipe}" />
+                            <DataGridTextColumn Header="StartTime"   Width="150*" Binding="{Binding StartTime,Converter={StaticResource HideMinTimeConvert}}" />
+                            <DataGridTextColumn Header="EndTime"  Width="150*"  Binding="{Binding EndTime,Converter={StaticResource HideMinTimeConvert}}" />
+                            <DataGridTextColumn Header="Chamber"  Width="100*"  Binding="{Binding Chamber}" />
+                            <DataGridTextColumn Header="SettingTime"  Width="150*"  Binding="{Binding SettingTime}" />
+                            <DataGridTextColumn Header="ActualTime"  Width="150*"  Binding="{Binding ActualTime}" />
+                            <DataGridTemplateColumn Header="Chart" Width="100*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                    <Button Content="To Chart" Margin="0" Height="22" VerticalContentAlignment="Center" FontSize="12">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.ToChartCommand,ElementName=root}" CommandParameter="{Binding Recipe}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                <TabControl Grid.Row="1">
+                    <TabItem Header="Movements">
+                        <DataGrid  ItemsSource="{Binding Movements}" IsReadOnly="True" AutoGenerateColumns="False"  RowHeight="25" 
+                                   CanUserAddRows="False" CanUserResizeRows="False" CanUserResizeColumns="True" FontFamily="Arial" FontSize="14">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Source" Width="200*" Binding="{Binding Source}" />
+                                
+                                <DataGridTextColumn Header="Time" Width="200*" Binding="{Binding InTime,Converter={StaticResource HideMinTimeConvert}}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+
+            <Grid x:Key="RecipeLayout">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="80*" />
+                </Grid.RowDefinitions>
+ 
+                    <Border BorderBrush="{DynamicResource Tab_BD}" BorderThickness="1" Background="{DynamicResource Tab_BG}">
+                        <Grid  DataContext="{Binding Recipe}"  Background="{DynamicResource DataGrid_BG_First}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+                            <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Grid.Column="0" Background="{DynamicResource Table_BG_Title}" Grid.Row="0" Padding="5,1">
+                                <TextBlock Text="Name" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                            <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Grid.Column="1" Background="{DynamicResource Table_BG_Title}" Grid.Row="0" Padding="5,1">
+                                <TextBlock Text="StartTime" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                            <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Grid.Column="2" Background="{DynamicResource Table_BG_Title}" Grid.Row="0" Padding="5,1">
+                                <TextBlock Text="EndTime" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                            <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Grid.Column="3" Background="{DynamicResource Table_BG_Title}" Grid.Row="0" Padding="5,1">
+                                <TextBlock Text="Chamber" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                            <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Grid.Column="4" Background="{DynamicResource Table_BG_Title}" Grid.Row="0" Padding="5,1">
+                                <TextBlock Text="SettingTime" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                            <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,0,1" Grid.Column="5" Background="{DynamicResource Table_BG_Title}" Grid.Row="0" Padding="5,1">
+                                <TextBlock Text="ActualTime" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+
+                            <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Column="0" Grid.Row="1" Padding="5,1">
+                                <TextBlock Text="{Binding Recipe}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                            <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Column="1" Grid.Row="1" Padding="5,1">
+                            <TextBlock Text="{Binding StartTime,Converter={StaticResource HideMinTimeConvert}}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                            <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Column="2" Grid.Row="1" Padding="5,1">
+                            <TextBlock Text="{Binding EndTime,Converter={StaticResource HideMinTimeConvert}}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                            <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Column="3" Grid.Row="1" Padding="5,1">
+                                <TextBlock Text="{Binding Chamber}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                            <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Column="4" Grid.Row="1" Padding="5,1">
+                                <TextBlock Text="{Binding SettingTime}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+                            <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,0,1" Background="{DynamicResource Table_BG_Content}" Grid.Column="5" Grid.Row="1" Padding="5,1">
+                                <TextBlock Text="{Binding ActualTime}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+
+                        </Grid>
+                    </Border>
+
+                <TabControl Grid.Row="1"  >
+                    <TabItem Header="Steps">
+                        <DataGrid  ItemsSource="{Binding Recipe.Steps, Converter={StaticResource RecipeStepNull2Empty}}"  IsReadOnly="True"  AutoGenerateColumns="False" 
+                                   CanUserAddRows="False" CanUserResizeRows="False" CanUserResizeColumns="True" FontFamily="Arial" FontSize="14" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="#"  Binding="{Binding No}" />
+                                <DataGridTextColumn Header="Name" Width="200*"  Binding="{Binding Name}" />
+                                <DataGridTextColumn Header="Start Time" Width="200*" Binding="{Binding StartTime,Converter={StaticResource HideMinTimeConvert}}" />
+                                <DataGridTextColumn Header="End Time" Width="200*" Binding="{Binding EndTime,Converter={StaticResource HideMinTimeConvert}}" />
+                                <DataGridTextColumn Header="Actual Time" Width="100*" Binding="{Binding ActualTime}" />
+                                <DataGridTextColumn Header="Setting Time" Width="100*" Binding="{Binding SettingTime}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+
+                    <TabItem Header="FDC">
+                        <DataGrid  ItemsSource="{Binding Recipe.Fdcs}"  IsReadOnly="True"  AutoGenerateColumns="False" 
+                                   CanUserAddRows="False" CanUserResizeRows="False" CanUserResizeColumns="True" FontFamily="Arial" FontSize="14" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="#"  Binding="{Binding StepNumber}" />
+                                <DataGridTextColumn Header="Name" Width="200"  Binding="{Binding Name}" />
+                                <DataGridTextColumn Header="SetPoint" Width="100"  Binding="{Binding SetPoint}" />
+                                <DataGridTextColumn Header="Count" Width="50"  Binding="{Binding SampleCount}" />
+                                <DataGridTextColumn Header="Min" Width="100" Binding="{Binding MinValue}" />
+                                <DataGridTextColumn Header="Max" Width="100" Binding="{Binding MaxValue}" />
+                                <DataGridTextColumn Header="Mean" Width="100" Binding="{Binding MeanValue}" />
+                                <DataGridTextColumn Header="Std" Width="100" Binding="{Binding StdValue}" />
+                                <DataGridTextColumn Header="Actual Time" Width="100" Binding="{Binding ActualTime}" />
+                                <DataGridTextColumn Header="Setting Time" Width="100" Binding="{Binding SettingTime}" />
+                                <DataGridTemplateColumn Header="Chart" Width="100">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="To Chart" Margin="0" Height="22" VerticalContentAlignment="Center" FontSize="12">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                        <i:InvokeCommandAction Command="{Binding DataContext.StepChartCommand,ElementName=root}" CommandParameter="{Binding }" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                </TabControl>
+ 
+            </Grid>
+
+            <waferHistory:HistoryLayoutSelectorConverter x:Key="HistoryLayoutSelectorConverter" WaferLayout="{StaticResource WaferLayout}"
+												  MovementLayout="{StaticResource MovementLayout}"
+												  RecipeLayout="{StaticResource RecipeLayout}"
+												  LotsLayout="{StaticResource LotLayout}"/>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="700"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="2,10,2,2">
+            <Label Content="Start_Time:"/>
+            <wfi:WindowsFormsHost Margin="5,0,0,0" FontSize="14" FontFamily="Arial" Width="170" Height="22" VerticalAlignment="Center">
+                <wf:DateTimePicker x:Name="wfTimeFrom" Value="2011-8-1" CustomFormat="yyyy/MM/dd HH:mm:ss" Format="Custom"></wf:DateTimePicker>
+            </wfi:WindowsFormsHost>
+            <Label Content="End_Time:"/>
+            <wfi:WindowsFormsHost Margin="5,0,0,0" FontSize="14" FontFamily="Arial" Width="170" Height="22" VerticalAlignment="Center">
+                <wf:DateTimePicker x:Name="wfTimeTo" Value="2011-8-1" CustomFormat="yyyy/MM/dd HH:mm:ss" Format="Custom"></wf:DateTimePicker>
+            </wfi:WindowsFormsHost>
+            <Label Content="LotName:" />
+            <TextBox Width="200" Text="{Binding KeyWord}" />
+            <Button Content="Query" Width="120" Margin="4,2,4,2" Command="{Binding QueryCommand}"/>
+        </StackPanel>
+        <Grid Grid.Row="1" Grid.Column="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="350" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+ 
+            <Border Grid.Row="0" Margin="0,5,13,0" BorderBrush="{DynamicResource Tab_BD}" BorderThickness="1" Background="{DynamicResource Tab_BG}">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <TreeView ItemsSource="{Binding HistoryData}" SelectedValuePath="Data">
+                        <TreeView.ItemContainerStyle>
+                            <Style TargetType="{x:Type TreeViewItem}">
+                                <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                                <Setter Property="FontWeight" Value="Normal" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TreeView.ItemContainerStyle>
+
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding SubItems}">
+                                <TextBlock Text="{Binding Data.ItemInfo}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                            <i:InvokeCommandAction Command="{Binding DataContext.SelectionChangedCommand,ElementName=root}" CommandParameter="{Binding Data}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+                    </TreeView>
+                </ScrollViewer>
+            </Border>
+
+            <GridSplitter Grid.Column="0" Width="10" HorizontalAlignment="Right"  Background="Transparent"  VerticalAlignment="Stretch" Style="{DynamicResource VerticalGridSplitterStyle}">
+            </GridSplitter>
+            <Grid Grid.Row="0" Grid.Column="1">
+                <ContentControl  Content="{Binding SelectedItem,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource HistoryLayoutSelectorConverter}}"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
+
+
+

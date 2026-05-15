@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Aitex.Core.UI.Control.CheckValue2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MECF.Framework.UI.Core.Control"
+             mc:Ignorable="d" 
+           Height="10" Width="20"  BorderThickness="0">
+    <Grid>
+        <Canvas>
+            <Path Stroke="White" StrokeThickness="1" Data="M 0,8 L 10,0.5 20,8 M 6,5 A 4,4 0 1 1 6,6 Z" RenderTransformOrigin="0.484,0.474" />
+
+        </Canvas>
+    </Grid>
+</UserControl>

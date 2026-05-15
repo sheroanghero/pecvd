@@ -1,0 +1,264 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.Configs.Accounts.AccountView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:controls="clr-namespace:OpenSEMI.Ctrlib.Controls"
+             xmlns:micro="clr-namespace:Caliburn.Micro"
+             Width="1920">
+    <UserControl.Resources>
+        <Style x:Key="ViewEnabledBtn" TargetType="{x:Type Button}" BasedOn="{StaticResource ResourceKey={x:Type Button}}">
+            <Setter Property="Button.IsEnabled" Value="False" />
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Permission}" Value="3"></Condition>
+                        <Condition Binding="{Binding ControlMode}" Value="VIEW"></Condition>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Button.IsEnabled" Value="True"/>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="EditEnabledBtn" TargetType="{x:Type Button}" BasedOn="{StaticResource ResourceKey={x:Type Button}}">
+            <Setter Property="Button.IsEnabled" Value="False" />
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Permission}" Value="3"></Condition>
+                        <Condition Binding="{Binding ControlMode}" Value="EDIT"></Condition>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Button.IsEnabled" Value="True"/>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid x:Name="MainTable" MinHeight="450" HorizontalAlignment="Left" MinWidth="1900">
+        <Grid x:Name="MainField">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <GridSplitter Width="5" Grid.Column="1" HorizontalAlignment="Left" BorderThickness="0,8">
+                <GridSplitter.Background>
+                    <SolidColorBrush/>
+                </GridSplitter.Background>
+            </GridSplitter>
+            <ListView Name="AccountList" AlternationCount="2" Margin="0,20,0,0" ItemsSource="{Binding AccountList}" SelectedItem="{Binding TreeSelectedAccount}">
+                <ListView.Style>
+                    <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource ResourceKey={x:Type ListView}}">
+                        <Setter Property="ListView.IsEnabled" Value="False"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ControlMode}" Value="VIEW">
+                                <Setter Property="ListView.IsEnabled" Value="True"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.Style>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="200" Header="Account" DisplayMemberBinding="{Binding DisplayAccountName}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Grid Margin="10,0,0,0" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock TextWrapping="Wrap" Text="Account Property" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="{DynamicResource FG_Black}" FontSize="14" FontWeight="Bold" FontFamily="Arial" Margin="5,0"/>
+                <Grid Grid.Row="1" IsEnabled="{Binding IsPermission}" Margin="0,0,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="24"/>
+                        <RowDefinition Height="24"/>
+                        <RowDefinition Height="24"/>
+                        <RowDefinition Height="24"/>
+                        <RowDefinition Height="24"/>
+                        <RowDefinition Height="24"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid x:Name="GdAccountName" Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1" Background="{DynamicResource Table_BG_Title}" Padding="5,1">
+                            <TextBlock Text="Login Name" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,1,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Column="1" Padding="5,1">
+                            <controls:TextBoxEx Text="{Binding TreeSelectedAccount.DisplayAccountName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalContentAlignment="Left"  TextSaved="{Binding Mode=TwoWay, Path=TreeSelectedAccount.AccountTextSaved }"  x:Name="TbAccountName"  
+                                    IsEnabled="{Binding Mode=TwoWay, Path=TreeSelectedAccount.IsEnableChangeAccountName }"
+                        HorizontalAlignment="Left" VerticalAlignment="Top" MaxLength="50" Width="200">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <micro:ActionMessage MethodName="OnAccountChanged">
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </controls:TextBoxEx>
+                        </Border>
+                    </Grid>
+                    <Grid x:Name="GdNewPassword" Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Padding="5,1">
+                            <TextBlock Text="New Password" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Column="1" Padding="5,1">
+                            <PasswordBox Name="pwNewPassword" HorizontalAlignment="Left" MaxLength="50" Width="200">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="PasswordChanged">
+                                        <micro:ActionMessage MethodName="OnAccountChanged">
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </PasswordBox>
+                        </Border>
+                    </Grid>
+                    <Grid x:Name="GdConfirmPassword" Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Padding="5,1">
+                            <TextBlock Text="Confirm Password" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Column="1" Padding="5,1">
+                            <PasswordBox Name="pwConfirmPassword" HorizontalAlignment="Left" MaxLength="50" Width="200">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="PasswordChanged">
+                                        <micro:ActionMessage MethodName="OnAccountChanged">
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </PasswordBox>
+                        </Border>
+                    </Grid>
+                    <Grid x:Name="GdFirstName" Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Padding="5,1">
+                            <TextBlock Text="First Name" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Column="1" Padding="5,1">
+                            <controls:TextBoxEx Text="{Binding TreeSelectedAccount.DisplayFirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalContentAlignment="Stretch" TextSaved="{Binding Mode=TwoWay, Path=TreeSelectedAccount.FirstNameTextSaved }"  x:Name="TbFirstName"  
+                        HorizontalAlignment="Left" VerticalAlignment="Top" MaxLength="50" Width="200">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <micro:ActionMessage MethodName="OnAccountChanged">
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </controls:TextBoxEx>
+                        </Border>
+                    </Grid>
+                    <Grid x:Name="GdLastName" Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Padding="5,1">
+                            <TextBlock Text="Last Name" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Column="1" Padding="5,1">
+                            <controls:TextBoxEx Text="{Binding TreeSelectedAccount.DisplayLastName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalContentAlignment="Stretch"   TextSaved="{Binding Mode=TwoWay, Path=TreeSelectedAccount.LastNameTextSaved }"  x:Name="TbLastName"  
+                        HorizontalAlignment="Left" VerticalAlignment="Top" MaxLength="50" Width="200">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <micro:ActionMessage MethodName="OnAccountChanged">
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </controls:TextBoxEx>
+                        </Border>
+                    </Grid>
+                    <Grid x:Name="GdEmail" Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Padding="5,1">
+                            <TextBlock Text="Email" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Column="1" Padding="5,1">
+                            <controls:TextBoxEx Text="{Binding TreeSelectedAccount.DisplayEmail,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalContentAlignment="Stretch"   TextSaved="{Binding Mode=TwoWay, Path=TreeSelectedAccount.EmailTextSaved }"  x:Name="TbEmail"  
+                        HorizontalAlignment="Left" VerticalAlignment="Top" MaxLength="50" Width="200">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <micro:ActionMessage MethodName="OnAccountChanged">
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </controls:TextBoxEx>
+                        </Border>
+                    </Grid>
+                    <Grid x:Name="GdDescription" Grid.Row="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Padding="5,1">
+                            <TextBlock Text="Description" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Column="1" Padding="5,1">
+                            <controls:TextBoxEx Text="{Binding TreeSelectedAccount.DisplayDescription,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{StaticResource ValidationTemplate}" HorizontalContentAlignment="Stretch"   TextSaved="{Binding Mode=TwoWay, Path=TreeSelectedAccount.DescriptionTextSaved }"  x:Name="TbDescription"  
+                        HorizontalAlignment="Left" VerticalAlignment="Top" MaxLength="50" MinWidth="200">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <micro:ActionMessage MethodName="OnAccountChanged">
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </controls:TextBoxEx>
+                        </Border>
+                    </Grid>
+                </Grid>
+                <TabControl Grid.Row="2" Margin="0,10,10,0">
+                    <TabItem>
+                        <TabItem.Header>
+                            <TextBlock Text="Role Status" FontWeight="Bold"/>
+                        </TabItem.Header>
+                        <ListView Name="RolesStatusList" AlternationCount="2" ItemsSource="{Binding Path=TreeSelectedAccount.RoleColleciton}" VerticalAlignment="Top">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="250" Header="Role" DisplayMemberBinding="{Binding RoleName}" />
+                                    <GridViewColumn Width="300" Header="Status">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate >
+                                                <CheckBox IsChecked="{Binding DisplayRoleStatus}"  >
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="Click">
+                                                            <micro:ActionMessage MethodName="OnAccountChanged">
+                                                            </micro:ActionMessage>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </CheckBox>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Content="Create" Style="{StaticResource ViewEnabledBtn}" Command="{Binding BtnAddAccountCommand}" Height="25" Width="80" />
+                <Button Content="Delete" Style="{StaticResource ViewEnabledBtn}" Command="{Binding BtnDeleteAccountCommand}" Height="25" Width="80" Margin="10,0,0,0"/>
+                <Button Content="Clone" Style="{StaticResource ViewEnabledBtn}" Command="{Binding BtnCloneAccountCommand}" Height="25" Width="80" Margin="10,0,0,0"/>
+                <Button Content="Save" Style="{StaticResource EditEnabledBtn}" Command="{Binding BtnSaveAccountCommand}" Height="25" Width="80" Margin="10,0,0,0"/>
+                <Button Content="Cancel" Style="{StaticResource EditEnabledBtn}" Command="{Binding BtnCancelAccountCommand}" Height="25" Width="80" Margin="10,0,0,0"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

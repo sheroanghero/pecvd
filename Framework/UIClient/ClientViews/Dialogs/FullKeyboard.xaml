@@ -1,0 +1,212 @@
+﻿<Window x:Class="MECF.Framework.UI.Client.ClientViews.Dialogs.FullKeyboard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MECF.Framework.UI.Client.ClientViews.Dialogs"
+             mc:Ignorable="d" 
+             Title="FullKeyboard" x:Name="fullKeyboard" AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize" Background="#7F6F6F6F"  Height="270" Width="630">
+    <Window.Resources>
+        <Style x:Key="btnNum" TargetType="{x:Type Button}">
+            <!--<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>-->
+            <!--<Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#F3F3F3" Offset="0"/>
+                        <GradientStop Color="#EBEBEB" Offset="0.5"/>
+                        <GradientStop Color="#DDDDDD" Offset="0.5"/>
+                        <GradientStop Color="#CDCDCD" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>-->
+            <!--<Setter Property="BorderBrush" Value="#FF707070"/>-->
+            <!--<Setter Property="BorderThickness" Value="1"/>-->
+            <!--<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>-->
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <!--<Setter Property="Height" Value="64" />
+            <Setter Property="Width" Value="104" />-->
+            <!--<Setter Property="Padding" Value="10"/>-->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="#FF474747" BorderThickness="1" CornerRadius="6">
+                            <!--<Border.Effect>
+                                <DropShadowEffect BlurRadius="1" ShadowDepth="1" Opacity="0.27"/>
+                            </Border.Effect>-->
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFCCCCCC"/>
+                                    <GradientStop Color="WhiteSmoke" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.Foreground="#FF565656"  TextElement.FontSize="16" />
+                            <!--<TextBlock TextWrapping="Wrap" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21.333" Foreground="#FF565656"/>-->
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFFF7500"/>
+                                            <GradientStop Color="#FFFFC547" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="btnFunc" TargetType="{x:Type Button}">
+            <!--<Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>-->
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <!--<Setter Property="Padding" Value="1"/>-->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="#FF565656" BorderThickness="1" CornerRadius="6">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFFFC547" Offset="1"/>
+                                    <GradientStop Color="#FFF77202"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.Foreground="White" TextElement.FontSize="16"/>
+                            <!--<TextBlock TextWrapping="Wrap" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="21.333"/>-->
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="Gray" Offset="1"/>
+                                            <GradientStop Color="#FF2D2D2D" Offset="0"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger SourceName="fullKeyboard" RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="fullKeyboard" Storyboard.TargetProperty="Opacity"
+                        From="0" To="1" Duration="0:0:0.2">
+                    </DoubleAnimation>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+
+    </Window.Triggers>
+
+
+    <Border Background="Gray" Width="630" Height="270" CornerRadius="0,0,10,10" BorderThickness="1" BorderBrush="Black">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Fill="DimGray">
+                <Rectangle.Effect>
+                    <DropShadowEffect ShadowDepth="0"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <TextBlock x:Name="FullKeyboardTitle" FontSize="16" Foreground="White" Margin="2"  HorizontalAlignment="Left" VerticalAlignment="Center">
+            </TextBlock>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="tbValue" Margin="3,3,3,0" Tag="None"  FontSize="16" Height="47" Background="Transparent" BorderBrush="Gainsboro" BorderThickness="2"  Foreground="White"
+                     Grid.Row="1" Grid.Column="1"
+                     HorizontalContentAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Top" TextBoxBase.SelectionChanged="tbValue_SelectionChanged" TextBoxBase.TextChanged="tbValue_TextChanged"/>
+                <Grid x:Name="ButtonGrid"  Grid.Row="2" Grid.Column="1" ButtonBase.Click="ButtonGrid_Click" Margin="0,0,3,0" Grid.RowSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="60"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Margin="2" Grid.Column="0" Grid.Row="0" Content="1" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="1" Grid.Row="0" Content="2" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="2" Grid.Row="0" Content="3" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="3" Grid.Row="0" Content="4" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="4" Grid.Row="0" Content="5" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="5" Grid.Row="0" Content="6" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="6" Grid.Row="0" Content="7" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="7" Grid.Row="0" Content="8" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="8" Grid.Row="0" Content="9" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="9" Grid.Row="0" Content="0" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="0" Grid.Row="1" Content="Q" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="1" Grid.Row="1" Content="W" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="2" Grid.Row="1" Content="E" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="3" Grid.Row="1" Content="R" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="4" Grid.Row="1" Content="T" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="5" Grid.Row="1" Content="Y" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="6" Grid.Row="1" Content="U" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="7" Grid.Row="1" Content="I" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="8" Grid.Row="1" Content="O" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="9" Grid.Row="1" Content="P" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="0" Grid.Row="2" Content="A" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="1" Grid.Row="2" Content="S" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="2" Grid.Row="2" Content="D" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="3" Grid.Row="2" Content="F" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="4" Grid.Row="2" Content="G" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="5" Grid.Row="2" Content="H" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="6" Grid.Row="2" Content="J" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="7" Grid.Row="2" Content="K" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="8" Grid.Row="2" Content="L" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="9" Grid.Row="2" Content=":" Style="{StaticResource btnNum}"/>
+
+                    <Button Margin="2" Grid.Column="0" Grid.Row="3" Content="Z" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="1" Grid.Row="3" Content="X" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="2" Grid.Row="3" Content="C" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="3" Grid.Row="3" Content="V" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="4" Grid.Row="3" Content="B" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="5" Grid.Row="3" Content="N" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="6" Grid.Row="3" Content="M" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="7" Grid.Row="3" Content="." Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="8" Grid.Row="3" Content="A/a" Style="{StaticResource btnFunc}"/>
+                    <Button Margin="2" Grid.Column="9" Grid.Row="3" Content="DEL" Style="{StaticResource btnFunc}"/>
+                    <Button Margin="2" Grid.Column="7" Grid.Row="4" Content="Clear" Style="{StaticResource btnFunc}"/>
+                    <Button Margin="2" Grid.Column="8" Grid.Row="4" Content="Cancel" Style="{StaticResource btnFunc}"/>
+                    <Button Margin="2" Grid.Column="9" Grid.Row="4" Content="OK" Style="{StaticResource btnFunc}"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/GrayBlue/TextBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/GrayBlue/TextBlock.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/GrayBlue/Button.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/GrayBlue/ComboBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/GrayBlue/MenuItem.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/GrayBlue/Listview.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/GrayBlue/DataGrid.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/GrayBlue/Tab.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/GrayBlue/ListBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/GrayBlue/TreeView.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/GrayBlue/GroupBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/GrayBlue/Scrollbar.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/GrayBlue/Expander.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/GrayBlue/RadioButton.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/GrayBlue/Skin.xaml"/>
+
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

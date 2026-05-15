@@ -1,0 +1,145 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Label Style -->
+
+    <SolidColorBrush x:Key="Label_BD" Color="#FF1B1B1B"/>
+    <SolidColorBrush x:Key="Label_BG" Color="Transparent"/>
+    <SolidColorBrush x:Key="TitleLabel_BD" Color="White"/>
+    <SolidColorBrush x:Key="TitleLabel_GreenTitle_BD" Color="White"/>
+
+    <Style TargetType="{x:Type Label}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="Background" Value="{DynamicResource Label_BG}" />
+        <Setter Property="Foreground" Value="{DynamicResource Label_BD}" />
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+    </Style>
+
+    <Style x:Key="Label_Title" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="#ff68d2c0" />
+        <Setter Property="Foreground" Value="Black" />
+    </Style>
+
+    <Style x:Key="Label_SubTitle" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="Margin" Value="0,2,2,2"/>
+        <Setter Property="Background" Value="#ff68d2c0" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
+    <Style x:Key="LabelGrid_Title" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Background" Value="#A8C8B0" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="#FF003117" BorderThickness="1" SnapsToDevicePixels="True">
+                        <TextBlock Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<TextBlock.Effect>
+                                <DropShadowEffect BlurRadius="3" ShadowDepth="2" Color="#FF008A40"/>
+                            </TextBlock.Effect>-->
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="LabelContent_Title" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Label}">
+                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="#FF003117" BorderThickness="1" SnapsToDevicePixels="True">
+                        <TextBlock Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Label_GreenTitle" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="Margin" Value="0,2,2,2"/>
+        <Setter Property="Background" Value="#ff00998a" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
+    <Style x:Key="Label_GreenSmallTitle" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="Margin" Value="0,2,2,2"/>
+        <Setter Property="Background" Value="#ff00998a" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
+    <Style x:Key="Label_GridButton" TargetType="{x:Type Label}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="Margin" Value="0,2,2,2"/>
+        <Setter Property="Background" Value="{DynamicResource Label_BG}" />
+        <Setter Property="Foreground" Value="{DynamicResource Label_BD}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+
+    </Style>
+
+    <!-- Label_Top Style -->
+
+    <SolidColorBrush x:Key="Label_Top_BG" Color="#FFC8E8FF"/>
+    <SolidColorBrush x:Key="Label_Top_Shadow" Color="#FF1B1B1B"/>
+    <SolidColorBrush x:Key="Label_Top_Highlight_Right" Color="White"/>
+    <SolidColorBrush x:Key="Label_Top_Highlight_Bottom" Color="#FFD2D2D2"/>
+
+    <Style x:Key="Label_Top" TargetType="{x:Type Label}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Margin" Value="0,2,2,2"/>
+        <Setter Property="Background" Value="{DynamicResource Label_BG}" />
+        <Setter Property="Foreground" Value="{DynamicResource Foreground_Black}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+    </Style>
+
+    <SolidColorBrush x:Key="Grid_Foreground" Color="White"/>
+    <SolidColorBrush x:Key="Grid_BG" Color="#FF1d41d5"/>
+
+    <Style x:Key="Label_Grid" TargetType="{x:Type Label}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="BorderBrush" Value="#ff727996"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="Margin" Value="0,1,2,0"/>
+        <Setter Property="Background" Value="{DynamicResource Grid_BG}" />
+        <Setter Property="Foreground" Value="{DynamicResource Grid_Foreground}" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+    </Style>
+
+</ResourceDictionary>

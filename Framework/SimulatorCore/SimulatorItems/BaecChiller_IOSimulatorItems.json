@@ -1,0 +1,46 @@
+{
+    "IOSimulatorItemList": [
+        {
+            "SourceCommandName": "GetStatus",
+            "SourceCommand": "01,03,00,0C",
+            "SuccessResponse": "01,03,1C",
+            "FailedResponse": "_ERR 9"
+        },
+        {
+            "SourceCommandName": "SetCH1OnOff",
+            "SourceCommand": "01,06,00,00",
+            "SuccessResponse": "01,06,00,00,00,00",
+            "FailedResponse": ""
+        },
+        {
+            "SourceCommandName": "SetCH2OnOff",
+            "SourceCommand": "01,06,00,01",
+            "SuccessResponse": "01,06,00,01,00,00",
+            "FailedResponse": ""
+        },
+        {
+            "SourceCommandName": "SetCH1Temperature",
+            "SourceCommand": "01,06,00,03",
+            "SuccessResponse": "01,06,00,03,00,00",
+            "FailedResponse": ""
+        },
+        {
+            "SourceCommandName": "SetCH2Temperature",
+            "SourceCommand": "01,06,00,04",
+            "SuccessResponse": "01,06,00,03,00,00",
+            "FailedResponse": ""
+        },
+        {
+            "SourceCommandName": "SetCH1TemperatureLimit",
+            "SourceCommand": "01,10,00,06",
+            "SuccessResponse": "01,10,00,06,00,02",
+            "FailedResponse": ""
+        },
+        {
+            "SourceCommandName": "SetCH1TemperatureLimit",
+            "SourceCommand": "01,10,00,08",
+            "SuccessResponse": "01,10,00,08,00,02",
+            "FailedResponse": ""
+        }
+    ]
+}

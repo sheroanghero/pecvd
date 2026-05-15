@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="Aitex.Core.UI.DeviceControl.AITPressureSensor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"  
+             d:DesignHeight="20" d:DesignWidth="20">
+    <Grid MouseEnter="Grid_MouseEnter" >
+        <Ellipse  HorizontalAlignment="Center" VerticalAlignment="Center"  Stroke="Gray" StrokeThickness="2"  Width="15" Height="15"    
+                       Fill="DarkGray" x:Name="sensor"  Style="{x:Null}"/>
+    </Grid>
+</UserControl>

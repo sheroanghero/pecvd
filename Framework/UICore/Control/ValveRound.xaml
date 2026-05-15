@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Aitex.Core.UI.Control.ValveRound"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Height="43" Width="43">
+    <UserControl.RenderTransform>
+        <RotateTransform x:Name="rotateTransform" Angle="0" CenterX="21.5" CenterY="21.5"/>
+    </UserControl.RenderTransform>
+
+    <Canvas>
+        <Image Source="pack://application:,,,/MECF.Framework.Common;component/Resources/Valve/ValveClosed.png" Name="imagePicture">
+            <Image.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="快阀开" Click="SetValve" Tag="0" />
+                    <MenuItem Header="慢阀开" Click="SetValve" Tag="1" />
+                    <MenuItem Header="快阀关" Click="SetValve" Tag="2" />
+                    <MenuItem Header="慢阀关" Click="SetValve" Tag="3" />
+                </ContextMenu>
+            </Image.ContextMenu>
+        </Image>
+    </Canvas>
+</UserControl>

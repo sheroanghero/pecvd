@@ -1,0 +1,299 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.Maitenances.IO2.IO2View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:controls="clr-namespace:OpenSEMI.Ctrlib.Controls"
+             xmlns:micro="clr-namespace:Caliburn.Micro"
+             xmlns:c="clr-namespace:MECF.Framework.UI.Client.Ctrlib.Converter"
+             xmlns:converter="clr-namespace:MECF.Framework.UI.Client.Ctrlib.Converter"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <c:DisplayNameConverter x:Key="DisplayConverter" />
+        <converter:BoolCollapsedConverter x:Key="BoolVisibility" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid HorizontalAlignment="Left" Width="1900" Height="700" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TabControl Grid.Column="0" Margin="20,0,0,0" Visibility="{Binding DIVisibility}">
+                <TabItem Header="DI" >
+                    <ListView ItemsSource="{Binding Path=DIs}" 
+                              Grid.Column="2" IsEnabled="{Binding IsPermission}"
+                              AlternationCount="2"
+                              VerticalAlignment="Top" MaxHeight="730"
+                              Name="DIListView">
+                        <ListView.ItemContainerStyle>
+                            <Style BasedOn="{StaticResource ResourceKey={x:Type ListViewItem}}" TargetType="{x:Type ListViewItem}">
+                                <Setter Property="Visibility" Value="{Binding IsMatch, Mode=TwoWay, Converter={StaticResource ResourceKey=BoolVisibility}}" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="50"
+                                            Header="Index"
+                                            DisplayMemberBinding="{Binding Path=Index}" />
+
+                                <GridViewColumn Width="200" Header="Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding DisplayName, Converter={StaticResource DisplayConverter}}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="70"
+                                            Header="Address"
+                                            DisplayMemberBinding="{Binding Path=Address}"  />
+
+                                <GridViewColumn Width="50" Header="Status">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="35">
+                                                <controls:SwitchButton HorizontalAlignment="Center"
+                                            ON="{Binding Value}"
+                                            Style="{StaticResource Lamp-Button}">
+                                                </controls:SwitchButton>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </TabItem>
+            </TabControl>
+            <TabControl Grid.Column="1" Margin="20,0,0,0" Visibility="{Binding DOVisibility}">
+                <TabItem Header="DO">
+                    <ListView ItemsSource="{Binding Path=DOs}" IsEnabled="{Binding IsPermission}"
+                              Grid.Column="3" MaxHeight="730"
+                              AlternationCount="2"
+                              VerticalAlignment="Top"
+                              Name="DOListView">
+                        <ListView.ItemContainerStyle>
+                            <Style BasedOn="{StaticResource ResourceKey={x:Type ListViewItem}}" TargetType="{x:Type ListViewItem}">
+                                <Setter Property="Visibility" Value="{Binding IsMatch, Mode=TwoWay, Converter={StaticResource ResourceKey=BoolVisibility}}" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="50"
+                                            Header="Index"
+                                            DisplayMemberBinding="{Binding Path=Index}" />
+
+                                <GridViewColumn Width="200" Header="Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding DisplayName, Converter={StaticResource DisplayConverter}}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="70"
+                                            Header="Address"
+                                            DisplayMemberBinding="{Binding Path=Address}"  />
+
+                                <GridViewColumn Width="50" Header="Status">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate >
+                                            <Grid Width="35">
+                                                <controls:SwitchButton HorizontalAlignment="Center"
+                                            ON="{Binding Value}"
+                                            Style="{StaticResource Lamp-Button}">
+                                                </controls:SwitchButton>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="75" Header="Operation">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate >
+                                            <Grid Width="45">
+                                                <controls:SwitchButton ON="{Binding Value}" Style="{StaticResource OperationButton}" HorizontalAlignment="Center">
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="Click">
+                                                            <micro:ActionMessage MethodName="SetDO">
+                                                                <micro:Parameter Value="{Binding }" />
+                                                            </micro:ActionMessage>
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </controls:SwitchButton>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </TabItem>
+            </TabControl>
+
+            <TabControl Grid.Column="2" Margin="20,0,0,0" Visibility="{Binding AIVisibility}">
+                <TabItem Header="AI">
+                    <ListView ItemsSource="{Binding Path=AIs}" IsEnabled="{Binding IsPermission}"
+                              AlternationCount="2" MaxHeight="730"
+                              Name="AIListView"
+                              VerticalAlignment="Top" >
+                        <ListView.ItemContainerStyle>
+                            <Style BasedOn="{StaticResource ResourceKey={x:Type ListViewItem}}" TargetType="{x:Type ListViewItem}">
+                                <Setter Property="Visibility" Value="{Binding IsMatch, Mode=TwoWay, Converter={StaticResource ResourceKey=BoolVisibility}}" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="50"
+                                            Header="Index"
+                                            DisplayMemberBinding="{Binding Path=Index}" />
+
+                                <GridViewColumn Width="200" Header="Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding DisplayName, Converter={StaticResource DisplayConverter}}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="70"
+                                            Header="Address"
+                                            DisplayMemberBinding="{Binding Path=Address}"  />
+
+                                <GridViewColumn Width="50"
+                                            Header="Value"
+                                            DisplayMemberBinding="{Binding Path=Value}"  />
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </TabItem>
+
+            </TabControl>
+            <TabControl Grid.Column="3" Margin="20,0,0,0" Visibility="{Binding AOVisibility}">
+                <TabItem Header="AO">
+                    <ListView ItemsSource="{Binding Path=AOs}" IsEnabled="{Binding IsPermission}"
+                              Grid.Column="1" 
+                              AlternationCount="2" MaxHeight="730"
+                              VerticalAlignment="Top"
+                              Name="AOListView">
+                        <ListView.ItemContainerStyle>
+                            <Style BasedOn="{StaticResource ResourceKey={x:Type ListViewItem}}" TargetType="{x:Type ListViewItem}">
+                                <Setter Property="Visibility" Value="{Binding IsMatch, Mode=TwoWay, Converter={StaticResource ResourceKey=BoolVisibility}}" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="50"
+                                            Header="Index"
+                                            DisplayMemberBinding="{Binding Path=Index}" />
+
+                                <GridViewColumn Width="180" Header="Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding DisplayName, Converter={StaticResource DisplayConverter}}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="70"
+                                            Header="Address"
+                                            DisplayMemberBinding="{Binding Path=Address}"  />
+
+                                <GridViewColumn Width="50"
+                                            Header="Value"
+                                            DisplayMemberBinding="{Binding Path=Value}"  />
+                                <GridViewColumn Width="80" Header="New Value">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate >
+                                            <toolkit:IntegerUpDown Text="{Binding Path=NewValue}" Width="60"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="60" Header="Operation">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate >
+                                            <Button Content="Set" FontSize="12" Height="22" Width="45">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="Click">
+                                                        <micro:ActionMessage MethodName="SetAO">
+                                                            <micro:Parameter Value="{Binding }" />
+                                                        </micro:ActionMessage>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </ScrollViewer>
+            </Grid>
+        </Grid>
+        <Label
+                Grid.Row="1"
+                Margin="15,0,10,0"
+                VerticalAlignment="Center"
+                Content="Filter"
+                FontSize="16" />
+        <controls:TextBoxEx
+                Grid.Row="1"
+                Height="26"
+                Width="280"
+                Margin="65,0,50,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                AllowBackgroundChange="False"
+                Text="{Binding Path=CurrentCriteria, UpdateSourceTrigger=PropertyChanged}" />
+        <Button
+                Grid.Row="1"
+                Width="30"
+                Height="30"
+                Margin="350,0,5,0"
+                Padding="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center">
+            <Button.Content>
+                <Path
+                        Width="15"
+                        Height="15"
+                        Margin="0,3"
+                        Data="M5.5,0 L8.5,0 8.5,5.5 14,5.5 14,8.5 8.5,8.5 8.5,14 5.5,14 5.5,8.5 0,8.5 0,5.5 5.5,5.5 z"
+                        Fill="Black"
+                        RenderTransformOrigin="0.5,0.5"
+                        Stretch="Fill"
+                        StrokeThickness="3">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="45" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Button.Content>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <micro:ActionMessage MethodName="ClearFilter" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+    </Grid>
+</UserControl>

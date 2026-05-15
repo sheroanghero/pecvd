@@ -1,0 +1,335 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.DataLogs.WaferHistory.WaferHistoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:wfi ="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration" 
+             xmlns:wf ="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:interop="clr-namespace:Microsoft.DwayneNeed.Interop;assembly=Microsoft.DwayneNeed"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:s="http://schemas.abtsoftware.co.uk/scichart"
+             xmlns:micro="clr-namespace:Caliburn.Micro"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1800">
+    <Grid IsEnabled="{Binding IsPermission}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Query Condition" Style="{DynamicResource Table_TitleStyle}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="30"/>
+            <Border Grid.Row="1" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                <StackPanel Margin="0,5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Start Time" Width="70" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" VerticalAlignment="Center"/>
+                        <interop:AirspaceDecorator AirspaceMode="Redirect" IsInputRedirectionEnabled="True" IsOutputRedirectionEnabled="True">
+                            <wfi:WindowsFormsHost Margin="0,0,0,0" FontSize="14" FontFamily="Arial" Width="170" Height="22" VerticalAlignment="Center">
+                                <wf:DateTimePicker x:Name="wfTimeFrom" Value="2011-8-1" CustomFormat="yyyy/MM/dd HH:mm:ss" Format="Custom"></wf:DateTimePicker>
+                            </wfi:WindowsFormsHost>
+                        </interop:AirspaceDecorator>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <TextBlock Text="End Time" Width="70" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" VerticalAlignment="Center"/>
+                        <interop:AirspaceDecorator AirspaceMode="Redirect" IsInputRedirectionEnabled="True" IsOutputRedirectionEnabled="True" >
+                            <wfi:WindowsFormsHost Margin="0,0,0,0" FontSize="14" FontFamily="Arial" Width="170" Height="22" VerticalAlignment="Center">
+                                <wf:DateTimePicker x:Name="wfTimeTo" Value="2013-8-1" CustomFormat="yyyy/MM/dd HH:mm:ss" Format="Custom"></wf:DateTimePicker>
+                            </wfi:WindowsFormsHost>
+                        </interop:AirspaceDecorator>
+
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Label Grid.Row="2" Margin="0,5,0,0" Content="Query Option" Style="{DynamicResource Table_TitleStyle}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="30"/>
+            <Border Grid.Row="3" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                <StackPanel Margin="0,5">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Load Port" Width="120" FontFamily="Arial" FontSize="14" VerticalAlignment="Center" TextAlignment="Right"/>
+                        <!--<TextBox x:Name="tbLoadPort" Text="" Width="115" Height="25" Margin="5,0,0,0"/>-->
+                        <toolkit:CheckComboBox x:Name="tbLoadPort" ItemsSource="{Binding SourceLP}" Width="120" FontFamily="Arial" FontSize="14" Height="25" Margin="5,0,0,0"
+                                                HorizontalAlignment="Center" 
+                                                VerticalAlignment="Center" 
+                                                SelectedValue="{Binding SelectedValueLP}" ToolTip="Value">
+
+                        </toolkit:CheckComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <TextBlock Text="Wafer ID" Width="120" FontFamily="Arial" FontSize="14" VerticalAlignment="Center" TextAlignment="Right"/>
+                        <TextBox x:Name="tbWaferID" Text="" Width="115" Height="25" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Lot ID" Width="120" FontFamily="Arial" FontSize="14" VerticalAlignment="Center" TextAlignment="Right"/>
+                        <TextBox x:Name="tbLotID" Text="" Width="115" Height="25" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Carrier ID" Width="120" FontFamily="Arial" FontSize="14" VerticalAlignment="Center" TextAlignment="Right"/>
+                        <TextBox x:Name="tbCarrierID" Text="" Width="115" Height="25" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <!--<StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Sequence Name" Width="120" FontFamily="Arial" FontSize="14" VerticalAlignment="Center" TextAlignment="Right"/>
+                            <TextBox x:Name="tbSequenceName" Text="" Width="115" Height="25" Margin="5,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Process Chamber" Width="120" FontFamily="Arial" FontSize="14" VerticalAlignment="Center" TextAlignment="Right"/>
+                            <TextBox x:Name="tbProcessChamber" Text="" Width="115" Height="25" Margin="5,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Process Recipe" Width="120" FontFamily="Arial" FontSize="14" VerticalAlignment="Center" TextAlignment="Right"/>
+                            <TextBox x:Name="tbProcessRecipe" Text="" Width="115" Height="25" Margin="5,0,0,0"/>
+                        </StackPanel>-->
+                </StackPanel>
+            </Border>
+            <Grid Grid.Row="4">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20">
+                    <Button Content="Query" Width="100" Height="30">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <micro:ActionMessage MethodName="Query">
+                                    <micro:Parameter Value="{Binding ElementName=tbLoadPort, Path=SelectedValue}"/>
+                                    <micro:Parameter Value="{Binding ElementName=tbWaferID, Path=Text}"/>
+                                    <micro:Parameter Value="{Binding ElementName=tbLotID, Path=Text}"/>
+                                    <micro:Parameter Value="{Binding ElementName=tbCarrierID, Path=Text}"/>
+                                    <micro:Parameter Value="{Binding ElementName=tbSequenceName, Path=Text}"/>
+                                    <micro:Parameter Value="{Binding ElementName=tbProcessChamber, Path=Text}"/>
+                                    <micro:Parameter Value="{Binding ElementName=tbProcessRecipe, Path=Text}"/>
+                                </micro:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+
+                    <Button Content="Export" Width="100" Height="30" Margin="0,10,0,0">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <micro:ActionMessage MethodName="Export">
+                                </micro:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+
+                    <Button Content="ExportMove" Width="100" Height="30" Margin="0,10,0,0">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <micro:ActionMessage MethodName="ExportMove">
+                                </micro:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1" Margin="10,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="520"/>
+                <RowDefinition Height="250"/>
+            </Grid.RowDefinitions>
+            <DataGrid AutoGenerateColumns="False" Name="dataGrid_LotList" ItemsSource="{Binding Wafers}" CanUserAddRows="False" CanUserResizeColumns="True" CanUserResizeRows="False"  HorizontalAlignment="Left"
+                  FontFamily="Arial" FontSize="14" DataContextChanged="dataGrid_LotList_DataContextChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="200" Binding="{Binding CreateTime, Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                        <DataGridTextColumn.HeaderTemplate >
+                            <DataTemplate>
+                                <TextBlock Text="Create Time" />
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding CreateTime}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Width="200" Binding="{Binding DeleteTime, Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                        <DataGridTextColumn.HeaderTemplate >
+                            <DataTemplate>
+                                <TextBlock Text="Delete Time" />
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding DeleteTime}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Width="200" CanUserSort="True" Binding="{Binding LoadPort, Mode=OneWay}" CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                        <DataGridTextColumn.HeaderTemplate >
+                            <DataTemplate>
+                                <TextBlock Text="Load Port" />
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding LoadPort}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Width="160" CanUserSort="True" Binding="{Binding Slot, Mode=OneWay}"  CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                        <DataGridTextColumn.HeaderTemplate >
+                            <DataTemplate>
+                                <TextBlock Text="Slot" />
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding Slot}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Width="200" CanUserSort="True" Binding="{Binding CarrierID, Mode=OneWay}" CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                        <DataGridTextColumn.HeaderTemplate >
+                            <DataTemplate>
+                                <TextBlock Text="Carrier ID" />
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding CarrierID}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Width="200" CanUserSort="True" Binding="{Binding LotID, Mode=OneWay}"  CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                        <DataGridTextColumn.HeaderTemplate >
+                            <DataTemplate>
+                                <TextBlock Text="Lot ID" />
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding LotID}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Width="200" CanUserSort="True" Binding="{Binding WaferID, Mode=OneWay}"  CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                        <DataGridTextColumn.HeaderTemplate >
+                            <DataTemplate>
+                                <TextBlock Text="Wafer ID" />
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding WaferID}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Width="200" CanUserSort="True" Binding="{Binding Status, Mode=OneWay}"  CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                        <DataGridTextColumn.HeaderTemplate >
+                            <DataTemplate>
+                                <TextBlock Text="Status" />
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding Status}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <micro:ActionMessage MethodName="WaferHistoryChanged">
+                            <micro:Parameter Value="{Binding ElementName=dataGrid_LotList, Path=SelectedItem}"/>
+                        </micro:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </DataGrid>
+            <Grid Grid.Row="1" Margin="0,5,0,0" HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1585"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False" CanUserResizeColumns="True" ItemsSource="{Binding Movements}"
+                  FontFamily="Arial" FontSize="14">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="200"  Binding="{Binding Time, Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="Time" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Time}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="200"  Binding="{Binding Station, Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="Station" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Station}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="200"  Binding="{Binding Slot, Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="Slot" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Slot}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="200" Binding="{Binding Status, Mode=OneWay}"  CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="Status" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Status}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="200"  Binding="{Binding WaferID, Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="Wafer ID" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding WaferID}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+
+                <!--<s:SciChartSurface x:Name="sciChart" BorderBrush="Gray" Grid.Column="1" Width="500"
+                               s:ThemeManager.Theme="ExpressionLight" 
+                               RenderableSeries="{Binding RenderableSeries}" Annotations="{Binding Annotations}">
+                        <s:SciChartSurface.XAxis>
+                            <s:NumericAxis AxisTitle="Number of Samples (per Series)" AutoRange="Always"/>
+                        </s:SciChartSurface.XAxis>
+                        <s:SciChartSurface.YAxis>
+                            <s:NumericAxis AxisTitle="Value" AutoRange="Never" AxisAlignment="Left" VisibleRange="0,8" LabelProvider="{Binding YLabelProvider}"  />
+                        </s:SciChartSurface.YAxis>
+
+                        <s:SciChartSurface.ChartModifier>
+
+                            <s:ModifierGroup ExecuteOn="MouseDoubleClick">
+                                <s:CursorModifier IsEnabled="True"  ShowTooltipOn="MouseOver"  ShowAxisLabels="True"  SourceMode="AllSeries" ShowTooltip="False" />
+                            </s:ModifierGroup>
+                        </s:SciChartSurface.ChartModifier>
+
+                    </s:SciChartSurface>-->
+            </Grid>
+
+        </Grid>
+    </Grid>
+</UserControl>

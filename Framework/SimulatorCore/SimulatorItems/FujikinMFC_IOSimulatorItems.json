@@ -1,0 +1,260 @@
+{
+  "IOSimulatorItemList": [
+    {
+      "SourceCommandName": "Reset",
+      "SourceCommand": "01,01,C7",
+      "SourceCommandType": "81",
+      "SuccessResponse": "06|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadExceptionStatus",
+      "SourceCommand": "65,01,A0",
+      "SourceCommandType": "80",
+      "SuccessResponse": "22|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadAlarmDetail",
+      "SourceCommand": "65,01,A1",
+      "SourceCommandType": "80",
+      "SuccessResponse": "40,3E|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadWarningDetail",
+      "SourceCommand": "65,01,A2",
+      "SourceCommandType": "80",
+      "SuccessResponse": "40,3E|16",
+      "FailedResponse": "16"
+    },
+
+    {
+      "SourceCommandName": "SetFlowTotalizerAlarmEnable",
+      "SourceCommand": "65,01,B5",
+      "SourceCommandType": "81",
+      "SuccessResponse": "06|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadFlowTotalizerAlarmEnable",
+      "SourceCommand": "65,01,B5",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "SetFlowTotalizerAlarmLevel",
+      "SourceCommand": "65,01,B6",
+      "SourceCommandType": "81",
+      "SuccessResponse": "06|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadFlowTotalizerAlarmLevel",
+      "SourceCommand": "65,01,B6",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01,01,01,01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadFlowMeterStatus",
+      "SourceCommand": "68,01,07",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "SetFlowMeterAlarmEnable",
+      "SourceCommand": "68,01,08",
+      "SourceCommandType": "81",
+      "SuccessResponse": "06|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadFlowMeterAlarmEnable",
+      "SourceCommand": "68,01,08",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "SetFlowMeterAlarmTripPointHigh",
+      "SourceCommand": "68,01,11",
+      "SourceCommandType": "81",
+      "SuccessResponse": "06|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadFlowMeterAlarmTripPointHigh",
+      "SourceCommand": "68,01,11",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01,01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "SetFlowMeterZeroEnable",
+      "SourceCommand": "68,01,A5",
+      "SourceCommandType": "81",
+      "SuccessResponse": "06|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadFlowMeterZeroEnable",
+      "SourceCommand": "68,01,A5",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadFlowMeterTotalizerData",
+      "SourceCommand": "68,01,B2",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01,01,01,01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "SetFlowMeterRequestedZero",
+      "SourceCommand": "68,01,BA",
+      "SourceCommandType": "81",
+      "SuccessResponse": "06|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadFlowMeterRequestedZero",
+      "SourceCommand": "68,01,BA",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01|16",
+      "FailedResponse": "16"
+    },
+
+    {
+      "SourceCommandName": "SetFlowControllerControlModeSelection",
+      "SourceCommand": "69,01,03",
+      "SourceCommandType": "81",
+      "SuccessResponse": "06|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadFlowControllerControlModeSelection",
+      "SourceCommand": "69,01,03",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "SetFlowControllerDefaultControlMode",
+      "SourceCommand": "69,01,04",
+      "SourceCommandType": "81",
+      "SuccessResponse": "06|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadFlowControllerDefaultControlMode",
+      "SourceCommand": "69,01,04",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "SetFlowControllerFreezeFollow",
+      "SourceCommand": "69,01,05",
+      "SourceCommandType": "81",
+      "SuccessResponse": "06|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadFlowControllerFreezeFollow",
+      "SourceCommand": "69,01,05",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadFlowControllerStatus",
+      "SourceCommand": "69,01,0A",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "SetFlowControllerSetPoint",
+      "SourceCommand": "69,01,A4",
+      "SourceCommandType": "81",
+      "SuccessResponse": "06|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadFlowControllerSetPoint",
+      "SourceCommand": "69,01,A4",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01,01|16",
+      "FailedResponse": "16"
+    },
+
+    {
+      "SourceCommandName": "SetValveDriverValveOverride",
+      "SourceCommand": "6A,01,01",
+      "SourceCommandType": "81",
+      "SuccessResponse": "06|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadValveDriverValveOverride",
+      "SourceCommand": "6A,01,01",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadValveDriverStatus",
+      "SourceCommand": "6A,01,07",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadValveDriverValveType",
+      "SourceCommand": "6A,01,A0",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadValveDriverFilteredSetpoint",
+      "SourceCommand": "6A,01,A6",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01,01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadValveDriverIndicatedFlow ",
+      "SourceCommand": "6A,01,A9",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01,01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadValveDriverValveVoltage ",
+      "SourceCommand": "6A,01,B6",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01,01|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "SetValveDriverRampTime",
+      "SourceCommand": "6A,01,A4",
+      "SourceCommandType": "81",
+      "SuccessResponse": "06|16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ReadValveDriverRampTime",
+      "SourceCommand": "6A,01,A4",
+      "SourceCommandType": "80",
+      "SuccessResponse": "01,01,01,01|16",
+      "FailedResponse": "16"
+    }
+
+  ]
+}

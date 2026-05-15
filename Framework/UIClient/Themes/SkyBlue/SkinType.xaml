@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SkyBlue/TextBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SkyBlue/TextBlock.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SkyBlue/Button.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SkyBlue/ComboBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SkyBlue/MenuItem.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SkyBlue/Listview.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SkyBlue/DataGrid.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SkyBlue/Tab.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SkyBlue/ListBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SkyBlue/TreeView.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SkyBlue/GroupBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SkyBlue/Scrollbar.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SkyBlue/Expander.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SkyBlue/RadioButton.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SkyBlue/Skin.xaml"/>
+
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

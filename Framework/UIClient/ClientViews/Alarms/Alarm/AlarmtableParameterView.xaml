@@ -1,0 +1,219 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.Alarms.Alarm.AlarmtableParameterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:cal="clr-namespace:Caliburn.Micro"
+             xmlns:converter="clr-namespace:MECF.Framework.UI.Client.Ctrlib.Converter"
+             mc:Ignorable="d" 
+            d:DesignHeight="325" d:DesignWidth="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="600"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--<Button Grid.Column="0" Content="Edit Alarm Table"  Style="{StaticResource PageTitleButton}" Margin="10"/>-->
+            <Border  Grid.Column="0" Margin="5">
+                <WrapPanel >
+                    <TextBlock Text="AlarmId:" Margin="0,10,0,0"/>
+                    <TextBox x:Name="TxtAlarmId"  Width="150" Height="35" Margin="3,0,0,0"/>
+                    <TextBlock Text="Alarm Text:" Margin="20,10,0,0"/>
+                    <TextBox x:Name="TxtAlarmText" Width="150" Margin="3,0,0,0"/>
+                    <Button  Margin="4,0,4,0" Content="Find">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="AlarmValueFind">
+                                    <cal:Parameter Value="{Binding ElementName=TxtAlarmId,Path=Text}"/>
+                                    <cal:Parameter Value="{Binding ElementName=TxtAlarmText,Path=Text}"/>
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </WrapPanel>
+
+
+            </Border>
+
+            <Border Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10" HorizontalAlignment="Right" BorderThickness="2,2,1,1" BorderBrush="Gray"   Visibility="{Binding AlarmTableVisibility}" >
+                <ListBox x:Name="LstTempStabilize" ItemsSource="{Binding TableList}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="1" BorderBrush="Black"  Padding="2">
+                                <RadioButton Content="{Binding TabName}" GroupName="TempStabilize" Margin="4,2,4,2"  FontSize="40" Width="47" Height="35" IsChecked="{Binding IsCheck}" >
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <cal:ActionMessage MethodName="AlarmTableSelected">
+                                                <cal:Parameter Value="{Binding TabName}"/>
+                                            </cal:ActionMessage>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </RadioButton>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="5" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition   Width="{Binding AlarmGroupsWidth}"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Visibility="{Binding AlarmGroupsVisibility}" >
+                <ListBox ItemsSource="{Binding AlarmGroups}" >
+                    <ListBox.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding AlarmGroups}">
+                            <RadioButton Content="{Binding}" Width="150" Height="35" Margin="0,0,0,4" FontSize="10" GroupName="AlarmType" IsChecked="{Binding AlarmBoolValue}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="AlarmTypeSelected">
+                                            <cal:Parameter Value="{Binding}"/>
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </RadioButton>
+                        </HierarchicalDataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </Border>
+
+            <Border Grid.Column="1" BorderBrush="{DynamicResource Table_BD}"  BorderThickness="1" Background="{DynamicResource MainArea_BG}" Grid.Row="1" Padding="2" >
+                <DataGrid  FontSize="16" AutoGenerateColumns="False" SelectedIndex="{Binding AlarmGridSelectIndex}" CanUserAddRows="False" CanUserResizeRows="False" CanUserSortColumns="False" ItemsSource="{Binding AlarmParameterOperations}" 
+                      ScrollViewer.CanContentScroll="True" 
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"  VerticalAlignment="Top" Name="AlarmDataGrid">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name"  Width="200" IsReadOnly="True" Binding="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="ID" Width="40" IsReadOnly="True" Binding="{Binding ID, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="Description"  Width="100"  Binding="{Binding Description, UpdateSourceTrigger=PropertyChanged}">
+                        </DataGridTextColumn>
+                        <!--<DataGridTextColumn Header="Solution"  Width="100" IsReadOnly="True" Binding="{Binding Solution, UpdateSourceTrigger=PropertyChanged}"/>-->
+                        <DataGridTextColumn Header="Explaination"  Width="100" IsReadOnly="True" Binding="{Binding Explaination, UpdateSourceTrigger=PropertyChanged}"/>
+                        <!--<DataGridTemplateColumn Header="Explaination" IsReadOnly="True" Width="120"  >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Explaination}" Margin="5,0" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" TextWrapping="Wrap" >
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>-->
+                        <DataGridTemplateColumn Header="Bypass" Width="80" IsReadOnly="True" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ToggleButton   IsChecked="{Binding Bypass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsEnabled="{Binding IsEdit}">
+                                        <ToggleButton.Style>
+                                            <Style TargetType="{x:Type ToggleButton}">
+                                                <Setter Property="Content" Value="NO"></Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter Property="Content" Value="YES"></Setter>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ToggleButton.Style>
+                                    </ToggleButton>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Group" Width="165" IsReadOnly="True"  >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox Text="{Binding Group ,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                              ItemsSource="{Binding Path= DataContext.GroupNames,RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type  UserControl}}}"  
+                                              SelectedIndex="{Binding SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                              Margin="5,0" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" 
+                                               IsEnabled="{Binding IsEdit}"
+                                              HorizontalAlignment="Left" VerticalAlignment="Center" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"  
+                                              Width="150">
+                                    </ComboBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Edit" Width="100" IsReadOnly="True"  >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ToggleButton   IsChecked="{Binding IsEdit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <ToggleButton.Style>
+                                            <Style TargetType="{x:Type ToggleButton}">
+                                                <Setter Property="Content" Value="LOCK"></Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsChecked" Value="True">
+                                                        <Setter Property="Content" Value="FREE"></Setter>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ToggleButton.Style>
+                                    </ToggleButton>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Border>
+        </Grid>
+        <Border Grid.Row="2">
+            <Grid>
+                <Canvas>
+                    <Button Content="All Alarm Entry On" Canvas.Left="133" Canvas.Top="11" FontSize="30" Width="280" Height="45" Visibility="Hidden">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="AlarmTableAllOn">
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Content="All Alarm Entry Off" Canvas.Left="418" Canvas.Top="11"  FontSize="30" Width="280" Height="45" Visibility="Hidden">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="AlarmTableAllOff">
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Content="Edit" Canvas.Left="730" Canvas.Top="10" FontSize="30" Width="120" Height="45">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="AlarmTableEdit">
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Content="Save" Canvas.Left="860" Canvas.Top="10" FontSize="30" Width="120" Height="45">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="AlarmTableSave">
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Content="Cancel" Canvas.Left="990" Canvas.Top="10" FontSize="30" Width="120" Height="45">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="AlarmTableCancel">
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </Canvas>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Aitex.Core.UI.Control.GasFlowButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cv="clr-namespace:Aitex.Core.UI.Converters"
+              Height="28" Width="235">
+    <UserControl.Resources>
+        <cv:bool2VisibilityConverter x:Key="bool2VisibilityConvert"/>
+    </UserControl.Resources>
+
+    <Canvas>
+
+        <Rectangle Canvas.Left="155" Canvas.Top="9" Fill="{Binding PipeGasColor}" Height="10" OverridesDefaultStyle="False" Stroke="Black" Visibility="{Binding Path=IsFlow2NH3E,Converter= {StaticResource bool2VisibilityConvert}}" Width="17.532" />
+        <Rectangle Canvas.Left="155" Canvas.Top="9" Fill="{Binding PipeGasColor}" Height="10" OverridesDefaultStyle="False" Stroke="Black" Visibility="{Binding  Path=IsFlow2NH3C,Converter= {StaticResource bool2VisibilityConvert}}" Width="55" />
+        <Rectangle Canvas.Left="155" Canvas.Top="9" Fill="{Binding PipeGasColor}" Height="10" OverridesDefaultStyle="False" Stroke="Black" Visibility="{Binding  Path=IsFlow2NH3,Converter= {StaticResource bool2VisibilityConvert}}" Width="55" />
+
+        <Rectangle Canvas.Left="1" Canvas.Top="9" Fill="{Binding PipeGasColor}" Height="10" OverridesDefaultStyle="False" Stroke="Black" Visibility="{Binding  Path=IsFlow2Run,Converter= {StaticResource bool2VisibilityConvert}}" Width="55" />
+        <Rectangle Canvas.Left="40" Canvas.Top="9" Fill="{Binding PipeGasColor}" Height="10" OverridesDefaultStyle="False" Stroke="Black" Visibility="{Binding Path=IsFlow2Vent,Converter= {StaticResource bool2VisibilityConvert}}" Width="17" />
+
+        <Rectangle Canvas.Left="33" Canvas.Top="9" Fill="Gray" Height="15" Stroke="Black" Width="9" StrokeThickness="0"  Visibility="{Binding Path=IsFlow2Vent,Converter= {StaticResource bool2VisibilityConvert}}"/>
+
+        <Button Name="btnCarrierGas" Background="{Binding CarrierGasBackgroundColor}"  Content="{Binding CarrierGasName}" Canvas.Left="-6" Canvas.Top="0" Height="26" Width="35" FontFamily="Arial,SimSun" FontSize="11" Focusable="False" BorderThickness="1" ClipToBounds="False" />
+
+        <Button Name="btnGas" Background="{Binding GasBackgroundColor}"  Content="{Binding DisplayName}" Canvas.Left="27" Canvas.Top="0" Height="26" Width="80" FontFamily="Arial,SimSun" FontSize="11" IsEnabled="True" Focusable="False" BorderThickness="1" ClipToBounds="False" />
+
+        <Button Name="btnFlow" Background="Gainsboro"  Canvas.Left="106" Canvas.Top="0" Height="26" Width="50"  Content="{Binding TotalFlow}"  FontFamily="Arial,SimSun" FontSize="11" Focusable="False" BorderThickness="1" ClipToBounds="False" />
+
+
+    </Canvas>
+</UserControl>

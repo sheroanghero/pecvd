@@ -1,0 +1,169 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:system="clr-namespace:System;assembly=mscorlib">
+ 
+    <!-- core 多语言资源  -->
+
+    <system:String x:Key="GlobalLableButtonOk">OK</system:String>
+    <system:String x:Key="GlobalLableMsgboxTitle">Notification</system:String>
+    <system:String x:Key="GlobalLableButtonExit">Exit</system:String>
+    <system:String x:Key="GlobalLableRecipeAlarmedTitle">Process Alarm</system:String>
+    <system:String x:Key="GlobalLableButtonContinue">Continue</system:String>
+    <system:String x:Key="GlobalLableButtonAbort">Abort</system:String>
+
+    <system:String x:Key="GlobalLableSelectRecipe">Select Recipe</system:String>
+    <system:String x:Key="GlobalLableButtonSelect">Select</system:String>
+    <system:String x:Key="GlobalLableButtonClose">Close</system:String>
+
+    <!-- PocketProcessDataChart -->
+    <system:String x:Key="GlobalLableButtonSelectAll">Select All</system:String>
+    <system:String x:Key="GlobalLableButtonUnselect">Unselect</system:String>
+    <system:String x:Key="GlobalLableButtonDefault">Default</system:String>
+    <system:String x:Key="GlobalLableData">Data</system:String>
+    <system:String x:Key="GlobalLableColor">Color</system:String>
+    <system:String x:Key="GlobalLableWidth">Width</system:String>
+
+    <system:String x:Key="GlobalLableDisplayDataItemsPanel">Display Data Items Panel&#160;&#160;&#160;&#160;&#160;</system:String>
+    <system:String x:Key="GlobalLableAutoZoom">Auto Zoom</system:String>
+
+    <!-- MonitorView -->
+    <system:String x:Key="GlobalLableMonitorViewEventList">Event List</system:String>
+    <system:String x:Key="GlobalLableMonitorViewDetail">Detail</system:String>
+
+    <system:String x:Key="GlobalLableMonitorViewType">Type</system:String>
+    <system:String x:Key="GlobalLableMonitorViewTime">Time</system:String>
+    <system:String x:Key="GlobalLableMonitorViewDescription">Description</system:String>
+    
+    <!-- EventView -->
+    <system:String x:Key="GlobalLableEventViewQueryCondition">Query Condition</system:String>
+    <system:String x:Key="GlobalLableEventViewStartTime">Start Time</system:String>
+    <system:String x:Key="GlobalLableEventViewEndTime">End Time</system:String>
+    <system:String x:Key="GlobalLableEventViewQueryOption">Query Option</system:String>
+    <system:String x:Key="GlobalLableEventViewAlarm">Alarm</system:String>
+    <system:String x:Key="GlobalLableEventViewWarning">Warning</system:String>
+    <system:String x:Key="GlobalLableEventViewInformation">Information</system:String>
+    <system:String x:Key="GlobalLableEventViewExtraCondition">Extra Condition</system:String>
+    <system:String x:Key="GlobalLableEventViewKeyWords">Key Words</system:String>
+    <system:String x:Key="GlobalLableEventViewButtonQuery">Query</system:String>
+    <system:String x:Key="GlobalLableEventViewButtonExport">Export</system:String>
+    <system:String x:Key="GlobalLableEventViewType">Type</system:String>
+    <system:String x:Key="GlobalLableEventViewTime">Time</system:String>
+    <system:String x:Key="GlobalLableEventViewSystem">System</system:String>
+    <system:String x:Key="GlobalLableEventViewContent">Content</system:String>
+    <system:String x:Key="GlobalLableEventViewResult">Result：</system:String>
+    <system:String x:Key="GlobalLableEventViewRecords">Records</system:String>
+    
+    
+    <!-- AITGasValve -->
+    <system:String x:Key="GlobalLableDeviceName">Device Name:</system:String>
+    <system:String x:Key="GlobalLableUnit">Unit:</system:String>
+    <system:String x:Key="GlobalLableMax">Max:</system:String>
+    <system:String x:Key="GlobalLableDefault">Default:</system:String>
+    <system:String x:Key="GlobalLableFeedback">Feedback:</system:String>
+    <system:String x:Key="GlobalLableSetPoint">Setpoint:</system:String>
+
+    <system:String x:Key="GlobalLableButtonSet">Set</system:String>
+    <system:String x:Key="GlobalLableButtonCancel">Cancel</system:String>
+
+    <system:String x:Key="GlobalLableSetPointTitle">Device Set Point</system:String>
+
+    <system:String x:Key="GlobalLableValveToolTip" xml:space="preserve">Valve Name：{0} &#x0d;&#x0a; Device ID：{1} &#x0d;&#x0a; Default：{2} &#x0d;&#x0a; SetPoint：{3} &#x0d;&#x0a; Status：{4}</system:String>
+
+    <system:String x:Key="GlobalLableFlowMeterToolTip" xml:space="preserve">{0}：{1}&#x0d;&#x0a;&#x0d;&#x0a;ID：{2}&#x0d;&#x0a;Feedback：{3} {4}</system:String>
+
+    <system:String x:Key="GlobalLableHeaterControlToolTip" xml:space="preserve">{0}：{1}&#x0d;&#x0a;&#x0d;&#x0a;ID：{2}&#x0d;&#x0a;Scale：{3} {4}&#x0d;&#x0a;SetPoint：{5} {4} &#x0d;&#x0a;Feedback：{6} {4}&#x0d;&#x0a;Tolerance：{7}%&#x0d;&#x0a;Status：{8}</system:String>
+
+    <system:String x:Key="GlobalLablePressureMeterToolTip" xml:space="preserve">{0}：{1}&#x0d;&#x0a;&#x0d;&#x0a;ID：{2}&#x0d;&#x0a;Feedback：{3} {4}</system:String>
+
+    <system:String x:Key="GlobalLableWaterFlowSensorToolTip" xml:space="preserve">{0}：{1}&#x0d;&#x0a;&#x0d;&#x0a;ID：{2}&#x0d;&#x0a;Feedback：{3} {4}&#x0d;&#x0a;Tolerance：{5}  </system:String>
+
+    <system:String x:Key="GlobalLablePressureSensorToolTip" xml:space="preserve">{0}：{1}&#x0d;&#x0a;&#x0d;&#x0a;ID：{2}&#x0d;&#x0a;Feedback：{3} {4}&#x0d;&#x0a;Tolerance：{5}</system:String>
+   
+    <system:String x:Key="GlobalLableSensorToolTip" xml:space="preserve">{0}：{1}&#x0d;&#x0a;&#x0d;&#x0a;ID：{2}&#x0d;&#x0a;Feedback：{3}</system:String>
+
+    <system:String x:Key="GlobalLableRfGeneratorToolTipReflect" xml:space="preserve">{0}：{1}&#x0d;&#x0a;&#x0d;&#x0a;ID：{2}&#x0d;&#x0a;Forward Power：{3} w&#x0d;&#x0a;Reflect Power：{4} w &#x0d;&#x0a;SetPoint：{5}  w</system:String>
+    <system:String x:Key="GlobalLableRfGeneratorToolTipVoltage" xml:space="preserve">{0}：{1}&#x0d;&#x0a;&#x0d;&#x0a;ID：{2}&#x0d;&#x0a;Forward Power：{3} w&#x0d;&#x0a;Voltage：{4} &#x0d;&#x0a;Current：{5} &#x0d;&#x0a;SetPoint：{6}  w</system:String>
+
+    <system:String x:Key="GlobalLableThermoMeterToolTip" xml:space="preserve">{0}：{1}&#x0d;&#x0a;&#x0d;&#x0a;ID：{2}&#x0d;&#x0a;Feedback：{3} {4}&#x0d;&#x0a;Tolerance：{5} &#x0d;&#x0a;Broken：{6} </system:String>
+
+    <system:String x:Key="GlobalLableThrottleValveToolTip" xml:space="preserve">{0}：{1}&#x0d;&#x0a;&#x0d;&#x0a;ID：{2}&#x0d;&#x0a;Work Mode：{3} &#x0d;&#x0a;Position：{4}  &#x0d;&#x0a;Pressure：{5} mTorr</system:String>
+
+    <system:String x:Key="GlobalLableMfcControlToolTip" xml:space="preserve">{0}：{1}&#x0d;&#x0a;&#x0d;&#x0a;ID：{2}&#x0d;&#x0a;Scale：{3} {4}&#x0d;&#x0a;SetPoint：{5} {4} &#x0d;&#x0a;Feedback：{6} {4}&#x0d;&#x0a;Tolerance：{7}%&#x0d;&#x0a;Status：{8}</system:String>
+
+    <system:String x:Key="GlobalLableValveOpenValve">Open Valve</system:String>
+    <system:String x:Key="GlobalLableValveCloseValve">Close Valve</system:String>
+
+    <!-- AITPump -->
+    <system:String x:Key="GlobalLablePumpN2Pressure">Pump N2 Purge</system:String>
+    <system:String x:Key="GlobalLablePumpWaterFlow">Cooling Water</system:String>
+
+    <!-- 登录页面 -->
+    <system:String x:Key="GlobalLableSystemStatus">System:</system:String>
+    <system:String x:Key="GlobalLableContactor">Contactor:</system:String>
+    <system:String x:Key="GlobalLableEmo">EMO:</system:String>
+
+    <system:String x:Key="GlobalLableUserLogin">User Login</system:String>
+    <system:String x:Key="GlobalLableUserName">User Name：</system:String>
+    <system:String x:Key="GlobalLableUserPassword">Password：</system:String>
+    <system:String x:Key="GlobalLableButtonLogin">Login</system:String>
+    <system:String x:Key="GlobalLableEvent">Event：</system:String>
+    <system:String x:Key="GlobalLableButtonReset">Reset</system:String>
+    <system:String x:Key="GlobalLableButtonCloseBuzzer">Buzzer Off</system:String>
+
+
+    <!-- Account Manage View 页面 -->
+    <system:String x:Key="GlobalLableAccountViewAccountManagement">Account Management</system:String>
+    <system:String x:Key="GlobalLableAccountViewButtonAdd">Add</system:String>
+    <system:String x:Key="GlobalLableAccountViewButtonProperty">Edit</system:String>
+    <system:String x:Key="GlobalLableAccountViewButtonPassword">Password</system:String>
+    <system:String x:Key="GlobalLableAccountViewButtonRole">Role</system:String>
+    <system:String x:Key="GlobalLableAccountViewButtonDelete">Delete</system:String>
+    <system:String x:Key="GlobalLableAccountViewButtonInformation">Current User</system:String>
+    <system:String x:Key="GlobalLableAccountViewOnlyDisplay">Only display enabled user</system:String>
+    <system:String x:Key="GlobalLableAccountViewNo">No.</system:String>
+    <system:String x:Key="GlobalLableAccountViewLoginName">Login Name</system:String>
+    <system:String x:Key="GlobalLableAccountViewEnabled">Enabled</system:String>
+    <system:String x:Key="GlobalLableAccountViewName">Name</system:String>
+    <system:String x:Key="GlobalLableAccountViewRole">Role</system:String>
+    <system:String x:Key="GlobalLableAccountViewDepartment">Department</system:String>
+    <system:String x:Key="GlobalLableAccountViewLastLogin">Last Login</system:String>
+    <system:String x:Key="GlobalLableAccountViewTelephone">Telephone</system:String>
+    <system:String x:Key="GlobalLableAccountViewMailbox">Mailbox</system:String>
+    <system:String x:Key="GlobalLableAccountViewDescription">Description</system:String>
+
+    <system:String x:Key="GlobalLableAccountViewTitle">Title</system:String>
+    <system:String x:Key="GlobalLableAccountViewCompany">Company</system:String>
+    <system:String x:Key="GlobalLableAccountViewButtonCreate">Create</system:String>
+    <system:String x:Key="GlobalLableAccountViewButtonSave">Save</system:String>
+
+    <system:String x:Key="GlobalLableAccountViewRoleBeSelected">Role must be selected</system:String>
+    <system:String x:Key="GlobalLableAccountViewMsgTitle">Account</system:String>
+    <system:String x:Key="GlobalLableAccountViewMsgUpdateOk">"{0}" update succeeded！</system:String>
+    <system:String x:Key="GlobalLableAccountViewMsgUpdateFailed" xml:space="preserve">"{0}" update failed，&#x0d;&#x0a;{1}</system:String>
+
+    <system:String x:Key="GlobalLableAccountViewResetPasswordTitle">ResetPassword</system:String>
+    <system:String x:Key="GlobalLableAccountViewResetPasswordInfo">Account "{0}" reset password：</system:String>
+    <system:String x:Key="GlobalLableAccountViewResetPasswordOk">reset password succeeded</system:String>
+    <system:String x:Key="GlobalLableAccountViewResetPasswordFailed" >reset password failed，</system:String>
+    <system:String x:Key="GlobalLableAccountViewResetPasswordInput">Input New：</system:String>
+    <system:String x:Key="GlobalLableAccountViewResetPasswordReinput" >Reinput：</system:String>
+
+    <system:String x:Key="GlobalLableAccountViewCurrentTitle" >Current Login User Account Management</system:String>
+
+    <system:String x:Key="GlobalLableAccountViewDeleteInfo" >Delete user "{0}"?</system:String>
+    <system:String x:Key="GlobalLableAccountViewDeleteOk" >Delete user "{0}" succeeded.</system:String>
+    <system:String x:Key="GlobalLableAccountViewDeleteFailed"  xml:space="preserve">Delete "{0}" failed！&#x0d;&#x0a;{1}</system:String>
+
+    <system:String x:Key="GlobalLableAccountViewTotalAccountNum" >registered user count:</system:String>
+    <system:String x:Key="GlobalLableAccountViewEnabledAccountNum" >enabled user count:</system:String>
+
+    <system:String x:Key="GlobalLableAccountViewDeleteRoleInfo" >Are you sure to delete "{0}" role?</system:String>
+    <system:String x:Key="GlobalLableAccountViewSaveRoleOk" >Save succeeded！</system:String>
+    <system:String x:Key="GlobalLableAccountViewSaveRoleFailed" >Failed！</system:String>
+
+
+
+
+
+
+</ResourceDictionary>

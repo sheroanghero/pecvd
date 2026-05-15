@@ -1,0 +1,64 @@
+{
+    "IOSimulatorItemList": [
+        {
+            "SourceCommandName": "TriggerFullRefRun",
+            "SourceCommand": "10,00",
+            "SuccessResponse": "50",
+            "FailedResponse": "93"
+        },
+        {
+            "SourceCommandName": "CheckFullRefRun",
+            "SourceCommand": "10,01",
+            "SuccessResponse": "50",
+            "FailedResponse": ""
+        },
+        {
+            "SourceCommandName": "TriggerGotoCap",
+            "SourceCommand": "20,00",
+            "SuccessResponse": "50",
+            "FailedResponse": "93"
+        },
+        {
+            "SourceCommandName": "CheckGotoCap",
+            "SourceCommand": "20,01",
+            "SuccessResponse": "50",
+            "FailedResponse": ""
+        },
+        {
+            "SourceCommandName": "SetAccelerationSpeedIndex",
+            "SourceCommand": "43,00",
+            "SuccessResponse": "43,00",
+            "FailedResponse": "94"
+        },
+        {
+            "SourceCommandName": "GetActualCap",
+            "SourceCommand": "40,01",
+            "SuccessResponse": "41,01",
+            "FailedResponse": ""
+        },
+        {
+            "SourceCommandName": "GetStatus",
+            "SourceCommand": "40,22",
+            "SuccessResponse": "41,22,00,00",
+            "FailedResponse": ""
+        },
+        {
+            "SourceCommandName": "GetMinCap",
+            "SourceCommand": "40,10",
+            "SuccessResponse": "41,10,00,B4",
+            "FailedResponse": ""
+        },
+        {
+            "SourceCommandName": "GetMaxCap",
+            "SourceCommand": "40,11",
+            "SuccessResponse": "41,11,0A,10",
+            "FailedResponse": ""
+        },
+        {
+            "SourceCommandName": "ExecuteAnyCommand",
+            "SourceCommand": "",
+            "SuccessResponse": "",
+            "FailedResponse": ""
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.Ctrlib.UnitControls.UPCControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"  Height="50" Width="45" BorderThickness="1" x:Name="self">
+    <Grid  MouseLeftButtonUp="Grid_MouseLeftButtonUp" Cursor="Hand"  Opacity="1" MouseEnter="Grid_MouseEnter">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+
+        <Grid  Grid.Row="0" Grid.RowSpan="2">
+            <Rectangle Style="{x:Null}"  RadiusX="2" RadiusY="2" Name="rectBkground1" Stroke="Gray" Margin="0" Opacity="1" Fill="Green" StrokeThickness="2"/>
+            <Label Content="{Binding ElementName=self, Path=DeviceData.PressureFeedBack}" VerticalContentAlignment="Center"  ContentStringFormat="{Binding ElementName=self, Path=DeviceData.FormatString}" Grid.Row="0"  FontFamily="Verdana" FontSize="14" HorizontalContentAlignment="Center" x:Name="labelPressureValue" Margin="0,-15,0,0"  Foreground="LightYellow" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Rectangle Name="rectSetPoint" RadiusX="2" RadiusY="2" Stroke="Gray" Margin="0"  Opacity="1" Fill="CadetBlue" StrokeThickness="2"/>
+            <Label Content="{Binding ElementName=self, Path=DeviceData.FlowFeedBack}" VerticalContentAlignment="Center"  ContentStringFormat="{Binding ElementName=self, Path=DeviceData.FormatString}" Grid.Row="1"  FontFamily="Verdana" FontSize="14" HorizontalContentAlignment="Center" x:Name="labelFlowValue" Margin="0,-6,-2,-2" Foreground="LightYellow" />
+        </Grid>
+    </Grid>
+</UserControl>

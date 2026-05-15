@@ -1,0 +1,760 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.Operations.RealTime.HasVOxControlView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:s="http://schemas.abtsoftware.co.uk/scichart"
+             xmlns:visuals="http://schemas.abtsoftware.co.uk/scichart"
+             xmlns:control="clr-namespace:Aitex.Core.UI.Control;assembly=MECF.Framework.UI.Core"
+             xmlns:converters="clr-namespace:Aitex.Core.UI.Converters;assembly=MECF.Framework.UI.Core"
+             xmlns:micro="clr-namespace:Caliburn.Micro"
+             xmlns:controls="clr-namespace:OpenSEMI.Ctrlib.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1900">
+    <UserControl.Resources>
+        <converters:LineColorConverter x:Key="colorConverter"/>
+    </UserControl.Resources>
+    <Grid IsEnabled="{Binding IsPermission}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="633" ></ColumnDefinition>
+            <ColumnDefinition Width="633" />
+            <ColumnDefinition  Width="633"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="260"></RowDefinition>
+            <RowDefinition Height="260" ></RowDefinition>
+            <RowDefinition Height="260" ></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!--data chart1-->
+        <Grid Grid.Column="0" Grid.Row="0" Margin="0,0,0,0">
+            <s:SciChartSurface Name="sciChartHasVOx1" RenderableSeries="{Binding SelectedData1}" 
+                                      s:ThemeManager.Theme="ExpressionLight"
+                                      Padding="2" 
+                                      DebugWhyDoesntSciChartRender="False" BorderBrush="Gray" Focusable="False" IsTabStop="False">
+
+                <!-- Create an X Axis -->
+                <s:SciChartSurface.XAxis>
+                    <s:DateTimeAxis DrawMinorTicks="False" 
+                                           DrawMinorGridLines="False" 
+                                           Margin="0,0,0,0" 
+                                           SubDayTextFormatting="HH:mm:ss" 
+                                           TitleFontSize="9"
+                                           FontSize="9"  
+                                            AutoRange="{Binding ChartAutoRange}"
+                                           TextFormatting="HH:mm:ss" 
+                                           Id="DefaultAxisId" TitleFontWeight="Normal" />
+
+                </s:SciChartSurface.XAxis>
+
+                <!-- Create a Y Axis -->
+                <s:SciChartSurface.YAxis>
+                    <s:NumericAxis DrawMinorTicks="False"  
+                                          DrawMinorGridLines="False" 
+                                          AxisAlignment="Right"
+                                    
+                                   HorizontalAlignment="Center"
+                                   CursorTextFormatting="0.######"
+                                          Id="DefaultAxisId" MajorDelta="0.001" 
+                                   MinorDelta="0.001" DrawMajorBands="False" Focusable="False" 
+                                   BorderThickness="0" AutoRange="{Binding ChartAutoRange}" 
+                                   DrawLabels="True" DrawMajorGridLines="True" DrawMajorTicks="False">
+                        <s:NumericAxis.GrowBy>
+                            <s:DoubleRange Min="0.001" Max="0.001"/>
+                        </s:NumericAxis.GrowBy>
+                    </s:NumericAxis>
+                </s:SciChartSurface.YAxis>
+
+                <s:SciChartSurface.ChartModifier>
+
+                    <s:ModifierGroup  >
+
+                        <s:RubberBandXyZoomModifier x:Name="rubberBandZoomModifierHasVOx1" IsEnabled="True" 
+                                                           IsXAxisOnly="False" 
+                                                           ZoomExtentsY="True" 
+                                                           IsAnimated="True" ExecuteOn="MouseLeftButton" ReceiveHandledEvents="True" />
+
+                        <s:CursorModifier IsEnabled="True"  ShowTooltipOn="Never"  ShowAxisLabels="True"  
+                                          SourceMode="AllSeries" ShowTooltip="False" />
+
+                        <s:LegendModifier ShowLegend="False" GetLegendDataFor="AllSeries" x:Name="legendModifierHasVOx1"/>
+
+                        <s:ZoomExtentsModifier x:Name="zoomExtentsModifierHasVOx1"  XyDirection="XYDirection" ExecuteOn="MouseDoubleClick"/>
+
+                        <s:ZoomPanModifier x:Name="zoomPanModifierHasVOx1" IsEnabled="True"  ClipModeX="None" XyDirection="XYDirection" ExecuteOn="MouseRightButton" ZoomExtentsY="False" />
+
+                        <s:RolloverModifier x:Name="rolloverModifierHasVOx1" 
+                                                   UseInterpolation="False" FontSize="9" IsEnabled="True" 
+                                                   DrawVerticalLine="False" FontFamily="Arial,SimSun" 
+                                                   SnapsToDevicePixels="False"                                             
+                                                  ShowAxisLabels="False" />
+
+                        <s:MouseWheelZoomModifier x:Name="mouseWheelZoomModifierHasVOx1" XyDirection="XYDirection"/>
+
+                        <s:SeriesValueModifier/>
+                    </s:ModifierGroup>
+                </s:SciChartSurface.ChartModifier>
+
+            </s:SciChartSurface>
+
+            <!--<CheckBox IsChecked="{Binding EnableAutoZoom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,294,0" VerticalAlignment="Top" Content="Auto Zoom" HorizontalAlignment="Right"></CheckBox>-->
+
+            <Label Background="AliceBlue" Margin="0,0,400,233" Content="{Binding SelectedData1Display}" FontSize="15" ></Label>
+        </Grid>
+
+        <!--data chart2-->
+        <Grid Grid.Column="1" Grid.Row="0" Margin="0,0,0,0">
+            <s:SciChartSurface Name="sciChartHasVOx2" RenderableSeries="{Binding SelectedData2}" 
+                                      s:ThemeManager.Theme="ExpressionLight"
+                                      Padding="2" 
+                                      DebugWhyDoesntSciChartRender="False" BorderBrush="Gray" Focusable="False" IsTabStop="False">
+
+                <!-- Create an X Axis -->
+                <s:SciChartSurface.XAxis>
+                    <s:DateTimeAxis DrawMinorTicks="False" 
+                                           DrawMinorGridLines="False" 
+                                           Margin="0,0,0,0" 
+                                           SubDayTextFormatting="HH:mm:ss" 
+                                           TitleFontSize="9"
+                                           FontSize="9"  
+                                            AutoRange="{Binding ChartAutoRange}"
+                                           TextFormatting="HH:mm:ss" 
+                                           Id="DefaultAxisId" TitleFontWeight="Normal" />
+
+                </s:SciChartSurface.XAxis>
+
+                <!-- Create a Y Axis -->
+                <s:SciChartSurface.YAxis>
+                    <s:NumericAxis DrawMinorTicks="False"  
+                                          DrawMinorGridLines="False" 
+                                          AxisAlignment="Right"
+                                    
+                                   HorizontalAlignment="Center"
+                                   CursorTextFormatting="0.######"
+                                          Id="DefaultAxisId" MajorDelta="0.001" 
+                                   MinorDelta="0.001" DrawMajorBands="False" Focusable="False" 
+                                   BorderThickness="0" AutoRange="{Binding ChartAutoRange}" 
+                                   DrawLabels="True" DrawMajorGridLines="True" DrawMajorTicks="False">
+                        <s:NumericAxis.GrowBy>
+                            <s:DoubleRange Min="0.001" Max="0.001"/>
+                        </s:NumericAxis.GrowBy>
+                    </s:NumericAxis>
+                </s:SciChartSurface.YAxis>
+
+                <s:SciChartSurface.ChartModifier>
+
+                    <s:ModifierGroup  >
+
+                        <s:RubberBandXyZoomModifier x:Name="rubberBandZoomModifierHasVOx2" IsEnabled="True" 
+                                                           IsXAxisOnly="False" 
+                                                           ZoomExtentsY="True" 
+                                                           IsAnimated="True" ExecuteOn="MouseLeftButton" ReceiveHandledEvents="True" />
+
+                        <s:CursorModifier IsEnabled="True"  ShowTooltipOn="Never"  ShowAxisLabels="True"  
+                                          SourceMode="AllSeries" ShowTooltip="False" />
+
+                        <s:LegendModifier ShowLegend="False" GetLegendDataFor="AllSeries" x:Name="legendModifierHasVOx2"/>
+
+                        <s:ZoomExtentsModifier x:Name="zoomExtentsModifierHasVOx2"  XyDirection="XYDirection" ExecuteOn="MouseDoubleClick"/>
+
+                        <s:ZoomPanModifier x:Name="zoomPanModifierHasVOx2" IsEnabled="True"  ClipModeX="None" XyDirection="XYDirection" ExecuteOn="MouseRightButton" ZoomExtentsY="False" />
+
+                        <s:RolloverModifier x:Name="rolloverModifierHasVOx2" 
+                                                   UseInterpolation="False" FontSize="9" IsEnabled="True" 
+                                                   DrawVerticalLine="False" FontFamily="Arial,SimSun" 
+                                                   SnapsToDevicePixels="False"                                             
+                                                  ShowAxisLabels="False" />
+
+                        <s:MouseWheelZoomModifier x:Name="mouseWheelZoomModifierHasVOx2" XyDirection="XYDirection"/>
+
+                        <s:SeriesValueModifier/>
+                    </s:ModifierGroup>
+                </s:SciChartSurface.ChartModifier>
+
+            </s:SciChartSurface>
+
+
+            <Label Background="AliceBlue" Margin="0,0,400,233" Content="{Binding SelectedData2Display}" FontSize="15"></Label>
+
+            <CheckBox IsChecked="{Binding EnableAutoZoom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,280,0" VerticalAlignment="Top" Content="Auto Zoom" HorizontalAlignment="Right"></CheckBox>
+
+        </Grid>
+
+        <Grid Margin="10,0,5,10" Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="26"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="49"/>
+                <ColumnDefinition Width="61"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+
+            <Border BorderBrush="{DynamicResource Table_BD}"  Grid.Row="1" >
+                <TextBlock Text="Interval (ms)" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+            </Border>
+            <Border BorderBrush="{DynamicResource Table_BD}"   Grid.Row="1"  Grid.ColumnSpan="3" Margin="68,0,33,0">
+                <controls:TextBoxEx EditBoxMode="UnSignInteger"  TextSaved="{Binding IntervalSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" MinValue="100" MaxValue="60000" Text="{Binding TrendInterval, Mode=TwoWay}" Validation.ErrorTemplate="{x:Null}"  Width="100" Height="25"/>
+            </Border>
+            <Border BorderBrush="{DynamicResource Table_BD}"   Grid.Row="1"  Grid.Column="2" Grid.ColumnSpan="2" Margin="0,0,62,0"   >
+                <Button Content="Set" Width="70" Height="25" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <micro:ActionMessage MethodName="SetInterval">
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Border>
+
+
+            <Border BorderBrush="{DynamicResource Table_BD}"   Grid.Row="2" >
+                <TextBlock Text="Time Span (s)" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+            </Border>
+            <Border BorderBrush="{DynamicResource Table_BD}"   Grid.Row="2"  Grid.ColumnSpan="3" Margin="68,0,33,0">
+                <controls:TextBoxEx EditBoxMode="UnSignInteger"  TextSaved="{Binding TimeSpanSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinValue="1" MaxValue="3600" Text="{Binding TrendTimeSpan, Mode=TwoWay}" Validation.ErrorTemplate="{x:Null}"  Width="100" Height="25"/>
+            </Border>
+            <Border BorderBrush="{DynamicResource Table_BD}"   Grid.Row="1"  Grid.Column="2" Grid.ColumnSpan="2" Margin="0,35,62,1" Grid.RowSpan="2"   >
+                <Button Content="Set" Width="70" Height="25" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <micro:ActionMessage MethodName="SetTimeSpan">
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Border>
+        </Grid>
+
+
+        <!--data chart3-->
+        <Grid Grid.Column="2" Grid.Row="0" Margin="0,0,0,0">
+            <s:SciChartSurface Name="sciChartHasVOx3" RenderableSeries="{Binding SelectedData3}" 
+                                      s:ThemeManager.Theme="ExpressionLight"
+                                      Padding="2" 
+                                      DebugWhyDoesntSciChartRender="False" BorderBrush="Gray" Focusable="False" IsTabStop="False">
+
+                <!-- Create an X Axis -->
+                <s:SciChartSurface.XAxis>
+                    <s:DateTimeAxis DrawMinorTicks="False" 
+                                           DrawMinorGridLines="False" 
+                                           Margin="0,0,0,0" 
+                                           SubDayTextFormatting="HH:mm:ss" 
+                                           TitleFontSize="9"
+                                           FontSize="9"  
+                                            AutoRange="{Binding ChartAutoRange}"
+                                           TextFormatting="HH:mm:ss" 
+                                           Id="DefaultAxisId" TitleFontWeight="Normal" />
+
+                </s:SciChartSurface.XAxis>
+
+                <!-- Create a Y Axis -->
+                <s:SciChartSurface.YAxis>
+                    <s:NumericAxis DrawMinorTicks="False"  
+                                          DrawMinorGridLines="False" 
+                                          AxisAlignment="Right"
+                                    
+                                   HorizontalAlignment="Center"
+                                   CursorTextFormatting="0.######"
+                                          Id="DefaultAxisId" MajorDelta="0.001" 
+                                   MinorDelta="0.001" DrawMajorBands="False" Focusable="False" 
+                                   BorderThickness="0" AutoRange="{Binding ChartAutoRange}" 
+                                   DrawLabels="True" DrawMajorGridLines="True" DrawMajorTicks="False">
+                        <s:NumericAxis.GrowBy>
+                            <s:DoubleRange Min="0.001" Max="0.001"/>
+                        </s:NumericAxis.GrowBy>
+                    </s:NumericAxis>
+                </s:SciChartSurface.YAxis>
+
+                <s:SciChartSurface.ChartModifier>
+
+                    <s:ModifierGroup  >
+
+                        <s:RubberBandXyZoomModifier x:Name="rubberBandZoomModifierHasVOx3" IsEnabled="True" 
+                                                           IsXAxisOnly="False" 
+                                                           ZoomExtentsY="True" 
+                                                           IsAnimated="True" ExecuteOn="MouseLeftButton" ReceiveHandledEvents="True" />
+
+                        <s:CursorModifier IsEnabled="True"  ShowTooltipOn="Never"  ShowAxisLabels="True"  
+                                          SourceMode="AllSeries" ShowTooltip="False" />
+
+                        <s:LegendModifier ShowLegend="False" GetLegendDataFor="AllSeries" x:Name="legendModifierHasVOx3"/>
+
+                        <s:ZoomExtentsModifier x:Name="zoomExtentsModifierHasVOx3"  XyDirection="XYDirection" ExecuteOn="MouseDoubleClick"/>
+
+                        <s:ZoomPanModifier x:Name="zoomPanModifierHasVOx3" IsEnabled="True"  ClipModeX="None" XyDirection="XYDirection" ExecuteOn="MouseRightButton" ZoomExtentsY="False" />
+
+                        <s:RolloverModifier x:Name="rolloverModifierHasVOx3" 
+                                                   UseInterpolation="False" FontSize="9" IsEnabled="True" 
+                                                   DrawVerticalLine="False" FontFamily="Arial,SimSun" 
+                                                   SnapsToDevicePixels="False"                                             
+                                                  ShowAxisLabels="False" />
+
+                        <s:MouseWheelZoomModifier x:Name="mouseWheelZoomModifierHasVOx3" XyDirection="XYDirection"/>
+
+                        <s:SeriesValueModifier/>
+                    </s:ModifierGroup>
+                </s:SciChartSurface.ChartModifier>
+
+            </s:SciChartSurface>
+
+            <!--<CheckBox IsChecked="{Binding EnableAutoZoom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,0" VerticalAlignment="Top" Content="Auto Zoom" HorizontalAlignment="Right"></CheckBox>-->
+            <Label Background="AliceBlue" Margin="0,0,400,233" Content="{Binding SelectedData3Display}" FontSize="15"></Label>
+        </Grid>
+
+        <!--data chart4-->
+        <Grid Grid.Column="0" Grid.Row="1" Margin="0,0,0,0">
+            <s:SciChartSurface Name="sciChartHasVOx4" RenderableSeries="{Binding SelectedData4}" 
+                                      s:ThemeManager.Theme="ExpressionLight"
+                                      Padding="2" 
+                                      DebugWhyDoesntSciChartRender="False" BorderBrush="Gray" Focusable="False" IsTabStop="False">
+
+                <!-- Create an X Axis -->
+                <s:SciChartSurface.XAxis>
+                    <s:DateTimeAxis DrawMinorTicks="False" 
+                                           DrawMinorGridLines="False" 
+                                           Margin="0,0,0,0" 
+                                           SubDayTextFormatting="HH:mm:ss" 
+                                           TitleFontSize="9"
+                                           FontSize="9"  
+                                            AutoRange="{Binding ChartAutoRange}"
+                                           TextFormatting="HH:mm:ss" 
+                                           Id="DefaultAxisId" TitleFontWeight="Normal" />
+
+                </s:SciChartSurface.XAxis>
+
+                <!-- Create a Y Axis -->
+                <s:SciChartSurface.YAxis>
+                    <s:NumericAxis DrawMinorTicks="False"  
+                                          DrawMinorGridLines="False" 
+                                          AxisAlignment="Right"
+                                    
+                                   HorizontalAlignment="Center"
+                                   CursorTextFormatting="0.######"
+                                          Id="DefaultAxisId" MajorDelta="0.001" 
+                                   MinorDelta="0.001" DrawMajorBands="False" Focusable="False" 
+                                   BorderThickness="0" AutoRange="{Binding ChartAutoRange}" 
+                                   DrawLabels="True" DrawMajorGridLines="True" DrawMajorTicks="False">
+                        <s:NumericAxis.GrowBy>
+                            <s:DoubleRange Min="0.001" Max="0.001"/>
+                        </s:NumericAxis.GrowBy>
+                    </s:NumericAxis>
+                </s:SciChartSurface.YAxis>
+
+                <s:SciChartSurface.ChartModifier>
+
+                    <s:ModifierGroup  >
+
+                        <s:RubberBandXyZoomModifier x:Name="rubberBandZoomModifierHasVOx4" IsEnabled="True" 
+                                                           IsXAxisOnly="False" 
+                                                           ZoomExtentsY="True" 
+                                                           IsAnimated="True" ExecuteOn="MouseLeftButton" ReceiveHandledEvents="True" />
+
+                        <s:CursorModifier IsEnabled="True"  ShowTooltipOn="Never"  ShowAxisLabels="True"  
+                                          SourceMode="AllSeries" ShowTooltip="False" />
+
+                        <s:LegendModifier ShowLegend="False" GetLegendDataFor="AllSeries" x:Name="legendModifierHasVOx4"/>
+
+                        <s:ZoomExtentsModifier x:Name="zoomExtentsModifierHasVOx4"  XyDirection="XYDirection" ExecuteOn="MouseDoubleClick"/>
+
+                        <s:ZoomPanModifier x:Name="zoomPanModifierHasVOx4" IsEnabled="True"  ClipModeX="None" XyDirection="XYDirection" ExecuteOn="MouseRightButton" ZoomExtentsY="False" />
+
+                        <s:RolloverModifier x:Name="rolloverModifierHasVOx4" 
+                                                   UseInterpolation="False" FontSize="9" IsEnabled="True" 
+                                                   DrawVerticalLine="False" FontFamily="Arial,SimSun" 
+                                                   SnapsToDevicePixels="False"                                             
+                                                  ShowAxisLabels="False" />
+
+                        <s:MouseWheelZoomModifier x:Name="mouseWheelZoomModifierHasVOx4" XyDirection="XYDirection"/>
+
+                        <s:SeriesValueModifier/>
+                    </s:ModifierGroup>
+                </s:SciChartSurface.ChartModifier>
+
+            </s:SciChartSurface>
+
+            <Label Background="AliceBlue" Margin="0,0,400,233" Content="{Binding SelectedData4Display}" FontSize="15"></Label>
+        </Grid>
+
+        <!--data chart5-->
+        <Grid Grid.Column="1" Grid.Row="1" Margin="0,0,0,0">
+            <s:SciChartSurface Name="sciChartHasVOx5" RenderableSeries="{Binding SelectedData5}" 
+                                      s:ThemeManager.Theme="ExpressionLight"
+                                      Padding="2" 
+                                      DebugWhyDoesntSciChartRender="False" BorderBrush="Gray" Focusable="False" IsTabStop="False">
+
+                <!-- Create an X Axis -->
+                <s:SciChartSurface.XAxis>
+                    <s:DateTimeAxis DrawMinorTicks="False" 
+                                           DrawMinorGridLines="False" 
+                                           Margin="0,0,0,0" 
+                                           SubDayTextFormatting="HH:mm:ss" 
+                                           TitleFontSize="9"
+                                           FontSize="9"  
+                                            AutoRange="{Binding ChartAutoRange}"
+                                           TextFormatting="HH:mm:ss" 
+                                           Id="DefaultAxisId" TitleFontWeight="Normal" />
+
+                </s:SciChartSurface.XAxis>
+
+                <!-- Create a Y Axis -->
+                <s:SciChartSurface.YAxis>
+                    <s:NumericAxis DrawMinorTicks="False"  
+                                          DrawMinorGridLines="False" 
+                                          AxisAlignment="Right"
+                                    
+                                   HorizontalAlignment="Center"
+                                   CursorTextFormatting="0.######"
+                                          Id="DefaultAxisId" MajorDelta="0.001" 
+                                   MinorDelta="0.001" DrawMajorBands="False" Focusable="False" 
+                                   BorderThickness="0" AutoRange="{Binding ChartAutoRange}" 
+                                   DrawLabels="True" DrawMajorGridLines="True" DrawMajorTicks="False">
+                        <s:NumericAxis.GrowBy>
+                            <s:DoubleRange Min="0.001" Max="0.001"/>
+                        </s:NumericAxis.GrowBy>
+                    </s:NumericAxis>
+                </s:SciChartSurface.YAxis>
+
+                <s:SciChartSurface.ChartModifier>
+
+                    <s:ModifierGroup  >
+
+                        <s:RubberBandXyZoomModifier x:Name="rubberBandZoomModifierHasVOx5" IsEnabled="True" 
+                                                           IsXAxisOnly="False" 
+                                                           ZoomExtentsY="True" 
+                                                           IsAnimated="True" ExecuteOn="MouseLeftButton" ReceiveHandledEvents="True" />
+
+                        <s:CursorModifier IsEnabled="True"  ShowTooltipOn="Never"  ShowAxisLabels="True"  
+                                          SourceMode="AllSeries" ShowTooltip="False" />
+
+                        <s:LegendModifier ShowLegend="False" GetLegendDataFor="AllSeries" x:Name="legendModifierHasVOx5"/>
+
+                        <s:ZoomExtentsModifier x:Name="zoomExtentsModifierHasVOx5"  XyDirection="XYDirection" ExecuteOn="MouseDoubleClick"/>
+
+                        <s:ZoomPanModifier x:Name="zoomPanModifierHasVOx5" IsEnabled="True"  ClipModeX="None" XyDirection="XYDirection" ExecuteOn="MouseRightButton" ZoomExtentsY="False" />
+
+                        <s:RolloverModifier x:Name="rolloverModifierHasVOx5" 
+                                                   UseInterpolation="False" FontSize="9" IsEnabled="True" 
+                                                   DrawVerticalLine="False" FontFamily="Arial,SimSun" 
+                                                   SnapsToDevicePixels="False"                                             
+                                                  ShowAxisLabels="False" />
+
+                        <s:MouseWheelZoomModifier x:Name="mouseWheelZoomModifierHasVOx5" XyDirection="XYDirection"/>
+
+                        <s:SeriesValueModifier/>
+                    </s:ModifierGroup>
+                </s:SciChartSurface.ChartModifier>
+
+            </s:SciChartSurface>
+
+
+            <Label Background="AliceBlue" Margin="0,0,400,233" Content="{Binding SelectedData5Display}" FontSize="15"></Label>
+        </Grid>
+
+        <!--data chart6-->
+        <Grid Grid.Column="2" Grid.Row="1" Margin="0,0,0,0">
+            <s:SciChartSurface Name="sciChartHasVOx6" RenderableSeries="{Binding SelectedData6}" 
+                                      s:ThemeManager.Theme="ExpressionLight"
+                                      Padding="2" 
+                                      DebugWhyDoesntSciChartRender="False" BorderBrush="Gray" Focusable="False" IsTabStop="False">
+
+                <!-- Create an X Axis -->
+                <s:SciChartSurface.XAxis>
+                    <s:DateTimeAxis DrawMinorTicks="False" 
+                                           DrawMinorGridLines="False" 
+                                           Margin="0,0,0,0" 
+                                           SubDayTextFormatting="HH:mm:ss" 
+                                           TitleFontSize="9"
+                                           FontSize="9"  
+                                            AutoRange="{Binding ChartAutoRange}"
+                                           TextFormatting="HH:mm:ss" 
+                                           Id="DefaultAxisId" TitleFontWeight="Normal" />
+
+                </s:SciChartSurface.XAxis>
+
+                <!-- Create a Y Axis -->
+                <s:SciChartSurface.YAxis>
+                    <s:NumericAxis DrawMinorTicks="False"  
+                                          DrawMinorGridLines="False" 
+                                          AxisAlignment="Right"
+                                    
+                                   HorizontalAlignment="Center"
+                                   CursorTextFormatting="0.######"
+                                          Id="DefaultAxisId" MajorDelta="0.001" 
+                                   MinorDelta="0.001" DrawMajorBands="False" Focusable="False" 
+                                   BorderThickness="0" AutoRange="{Binding ChartAutoRange}" 
+                                   DrawLabels="True" DrawMajorGridLines="True" DrawMajorTicks="False">
+                        <s:NumericAxis.GrowBy>
+                            <s:DoubleRange Min="0.001" Max="0.001"/>
+                        </s:NumericAxis.GrowBy>
+                    </s:NumericAxis>
+                </s:SciChartSurface.YAxis>
+
+                <s:SciChartSurface.ChartModifier>
+
+                    <s:ModifierGroup  >
+
+                        <s:RubberBandXyZoomModifier x:Name="rubberBandZoomModifierHasVOx6" IsEnabled="True" 
+                                                           IsXAxisOnly="False" 
+                                                           ZoomExtentsY="True" 
+                                                           IsAnimated="True" ExecuteOn="MouseLeftButton" ReceiveHandledEvents="True" />
+
+                        <s:CursorModifier IsEnabled="True"  ShowTooltipOn="Never"  ShowAxisLabels="True"  
+                                          SourceMode="AllSeries" ShowTooltip="False" />
+
+                        <s:LegendModifier ShowLegend="False" GetLegendDataFor="AllSeries" x:Name="legendModifierHasVOx6"/>
+
+                        <s:ZoomExtentsModifier x:Name="zoomExtentsModifierHasVOx6"  XyDirection="XYDirection" ExecuteOn="MouseDoubleClick"/>
+
+                        <s:ZoomPanModifier x:Name="zoomPanModifierHasVOx6" IsEnabled="True"  ClipModeX="None" XyDirection="XYDirection" ExecuteOn="MouseRightButton" ZoomExtentsY="False" />
+
+                        <s:RolloverModifier x:Name="rolloverModifierHasVOx6" 
+                                                   UseInterpolation="False" FontSize="9" IsEnabled="True" 
+                                                   DrawVerticalLine="False" FontFamily="Arial,SimSun" 
+                                                   SnapsToDevicePixels="False"                                             
+                                                  ShowAxisLabels="False" />
+
+                        <s:MouseWheelZoomModifier x:Name="mouseWheelZoomModifierHasVOx6" XyDirection="XYDirection"/>
+
+                        <s:SeriesValueModifier/>
+                    </s:ModifierGroup>
+                </s:SciChartSurface.ChartModifier>
+
+            </s:SciChartSurface>
+
+            <Label Background="AliceBlue" Margin="0,0,400,233" Content="{Binding SelectedData6Display}" FontSize="15"></Label>
+        </Grid>
+
+        <!--data chart7-->
+        <Grid Grid.Column="0" Grid.Row="2" Margin="0,0,0,0">
+            <s:SciChartSurface Name="sciChartHasVOx7" RenderableSeries="{Binding SelectedData7}" 
+                                      s:ThemeManager.Theme="ExpressionLight"
+                                      Padding="2" 
+                                      DebugWhyDoesntSciChartRender="False" BorderBrush="Gray" Focusable="False" IsTabStop="False">
+
+                <!-- Create an X Axis -->
+                <s:SciChartSurface.XAxis>
+                    <s:DateTimeAxis DrawMinorTicks="False" 
+                                           DrawMinorGridLines="False" 
+                                           Margin="0,0,0,0" 
+                                           SubDayTextFormatting="HH:mm:ss" 
+                                           TitleFontSize="9"
+                                           FontSize="9"  
+                                            AutoRange="{Binding ChartAutoRange}"
+                                           TextFormatting="HH:mm:ss" 
+                                           Id="DefaultAxisId" TitleFontWeight="Normal" />
+
+                </s:SciChartSurface.XAxis>
+
+                <!-- Create a Y Axis -->
+                <s:SciChartSurface.YAxis>
+                    <s:NumericAxis DrawMinorTicks="False"  
+                                          DrawMinorGridLines="False" 
+                                          AxisAlignment="Right"
+                                    
+                                   HorizontalAlignment="Center"
+                                   CursorTextFormatting="0.######"
+                                          Id="DefaultAxisId" MajorDelta="0.001" 
+                                   MinorDelta="0.001" DrawMajorBands="False" Focusable="False" 
+                                   BorderThickness="0" AutoRange="{Binding ChartAutoRange}" 
+                                   DrawLabels="True" DrawMajorGridLines="True" DrawMajorTicks="False">
+                        <s:NumericAxis.GrowBy>
+                            <s:DoubleRange Min="0.001" Max="0.001"/>
+                        </s:NumericAxis.GrowBy>
+                    </s:NumericAxis>
+                </s:SciChartSurface.YAxis>
+
+                <s:SciChartSurface.ChartModifier>
+
+                    <s:ModifierGroup  >
+
+                        <s:RubberBandXyZoomModifier x:Name="rubberBandZoomModifierHasVOx7" IsEnabled="True" 
+                                                           IsXAxisOnly="False" 
+                                                           ZoomExtentsY="True" 
+                                                           IsAnimated="True" ExecuteOn="MouseLeftButton" ReceiveHandledEvents="True" />
+
+                        <s:CursorModifier IsEnabled="True"  ShowTooltipOn="Never"  ShowAxisLabels="True"  
+                                          SourceMode="AllSeries" ShowTooltip="False" />
+
+                        <s:LegendModifier ShowLegend="False" GetLegendDataFor="AllSeries" x:Name="legendModifierHasVOx7"/>
+
+                        <s:ZoomExtentsModifier x:Name="zoomExtentsModifierHasVOx7"  XyDirection="XYDirection" ExecuteOn="MouseDoubleClick"/>
+
+                        <s:ZoomPanModifier x:Name="zoomPanModifierHasVOx7" IsEnabled="True"  ClipModeX="None" XyDirection="XYDirection" ExecuteOn="MouseRightButton" ZoomExtentsY="False" />
+
+                        <s:RolloverModifier x:Name="rolloverModifierHasVOx7" 
+                                                   UseInterpolation="False" FontSize="9" IsEnabled="True" 
+                                                   DrawVerticalLine="False" FontFamily="Arial,SimSun" 
+                                                   SnapsToDevicePixels="False"                                             
+                                                  ShowAxisLabels="False" />
+
+                        <s:MouseWheelZoomModifier x:Name="mouseWheelZoomModifierHasVOx7" XyDirection="XYDirection"/>
+
+                        <s:SeriesValueModifier/>
+                    </s:ModifierGroup>
+                </s:SciChartSurface.ChartModifier>
+
+            </s:SciChartSurface>
+
+            <Label Background="AliceBlue" Margin="0,0,400,233" Content="{Binding SelectedData7Display}" FontSize="15"></Label>
+        </Grid>
+
+        <!--data chart8-->
+        <Grid Grid.Column="1" Grid.Row="2" Margin="0,0,0,0">
+            <s:SciChartSurface Name="sciChartHasVOx8" RenderableSeries="{Binding SelectedData8}" 
+                                      s:ThemeManager.Theme="ExpressionLight"
+                                      Padding="2" 
+                                      DebugWhyDoesntSciChartRender="False" BorderBrush="Gray" Focusable="False" IsTabStop="False">
+
+                <!-- Create an X Axis -->
+                <s:SciChartSurface.XAxis>
+                    <s:DateTimeAxis DrawMinorTicks="False" 
+                                           DrawMinorGridLines="False" 
+                                           Margin="0,0,0,0" 
+                                           SubDayTextFormatting="HH:mm:ss" 
+                                           TitleFontSize="9"
+                                           FontSize="9"  
+                                            AutoRange="{Binding ChartAutoRange}"
+                                           TextFormatting="HH:mm:ss" 
+                                           Id="DefaultAxisId" TitleFontWeight="Normal" />
+
+                </s:SciChartSurface.XAxis>
+
+                <!-- Create a Y Axis -->
+                <s:SciChartSurface.YAxis>
+                    <s:NumericAxis DrawMinorTicks="False"  
+                                          DrawMinorGridLines="False" 
+                                          AxisAlignment="Right"
+                                    
+                                   HorizontalAlignment="Center"
+                                   CursorTextFormatting="0.######"
+                                          Id="DefaultAxisId" MajorDelta="0.001" 
+                                   MinorDelta="0.001" DrawMajorBands="False" Focusable="False" 
+                                   BorderThickness="0" AutoRange="{Binding ChartAutoRange}" 
+                                   DrawLabels="True" DrawMajorGridLines="True" DrawMajorTicks="False">
+                        <s:NumericAxis.GrowBy>
+                            <s:DoubleRange Min="0.001" Max="0.001"/>
+                        </s:NumericAxis.GrowBy>
+                    </s:NumericAxis>
+                </s:SciChartSurface.YAxis>
+
+                <s:SciChartSurface.ChartModifier>
+
+                    <s:ModifierGroup  >
+
+                        <s:RubberBandXyZoomModifier x:Name="rubberBandZoomModifierHasVOx8" IsEnabled="True" 
+                                                           IsXAxisOnly="False" 
+                                                           ZoomExtentsY="True" 
+                                                           IsAnimated="True" ExecuteOn="MouseLeftButton" ReceiveHandledEvents="True" />
+
+                        <s:CursorModifier IsEnabled="True"  ShowTooltipOn="Never"  ShowAxisLabels="True"  
+                                          SourceMode="AllSeries" ShowTooltip="False" />
+
+                        <s:LegendModifier ShowLegend="False" GetLegendDataFor="AllSeries" x:Name="legendModifierHasVOx8"/>
+
+                        <s:ZoomExtentsModifier x:Name="zoomExtentsModifierHasVOx8"  XyDirection="XYDirection" ExecuteOn="MouseDoubleClick"/>
+
+                        <s:ZoomPanModifier x:Name="zoomPanModifierHasVOx8" IsEnabled="True"  ClipModeX="None" XyDirection="XYDirection" ExecuteOn="MouseRightButton" ZoomExtentsY="False" />
+
+                        <s:RolloverModifier x:Name="rolloverModifierHasVOx8" 
+                                                   UseInterpolation="False" FontSize="9" IsEnabled="True" 
+                                                   DrawVerticalLine="False" FontFamily="Arial,SimSun" 
+                                                   SnapsToDevicePixels="False"                                             
+                                                  ShowAxisLabels="False" />
+
+                        <s:MouseWheelZoomModifier x:Name="mouseWheelZoomModifierHasVOx8" XyDirection="XYDirection"/>
+
+                        <s:SeriesValueModifier/>
+                    </s:ModifierGroup>
+                </s:SciChartSurface.ChartModifier>
+
+            </s:SciChartSurface>
+
+            <Label Background="AliceBlue" Margin="0,0,400,233" Content="{Binding SelectedData8Display}" FontSize="15"></Label>
+        </Grid>
+
+
+        <!--data chart9-->
+        <Grid Grid.Column="2" Grid.Row="2" Margin="0,0,0,0">
+            <s:SciChartSurface Name="sciChartHasVOx9" RenderableSeries="{Binding SelectedData9}" 
+                                      s:ThemeManager.Theme="ExpressionLight"
+                                      Padding="2" 
+                                      DebugWhyDoesntSciChartRender="False" BorderBrush="Gray" Focusable="False" IsTabStop="False">
+
+                <!-- Create an X Axis -->
+                <s:SciChartSurface.XAxis>
+                    <s:DateTimeAxis DrawMinorTicks="False" 
+                                           DrawMinorGridLines="False" 
+                                           Margin="0,0,0,0" 
+                                           SubDayTextFormatting="HH:mm:ss" 
+                                           TitleFontSize="9"
+                                           FontSize="9"  
+                                            AutoRange="{Binding ChartAutoRange}"
+                                           TextFormatting="HH:mm:ss" 
+                                           Id="DefaultAxisId" TitleFontWeight="Normal" />
+
+                </s:SciChartSurface.XAxis>
+
+                <!-- Create a Y Axis -->
+                <s:SciChartSurface.YAxis>
+                    <s:NumericAxis DrawMinorTicks="False"  
+                                          DrawMinorGridLines="False" 
+                                          AxisAlignment="Right"
+                                    
+                                   HorizontalAlignment="Center"
+                                   CursorTextFormatting="0.######"
+                                          Id="DefaultAxisId" MajorDelta="0.001" 
+                                   MinorDelta="0.001" DrawMajorBands="False" Focusable="False" 
+                                   BorderThickness="0" AutoRange="{Binding ChartAutoRange}" 
+                                   DrawLabels="True" DrawMajorGridLines="True" DrawMajorTicks="False">
+                        <s:NumericAxis.GrowBy>
+                            <s:DoubleRange Min="0.001" Max="0.001"/>
+                        </s:NumericAxis.GrowBy>
+                    </s:NumericAxis>
+                </s:SciChartSurface.YAxis>
+
+                <s:SciChartSurface.ChartModifier>
+
+                    <s:ModifierGroup  >
+
+                        <s:RubberBandXyZoomModifier x:Name="rubberBandZoomModifierHasVOx9" IsEnabled="True" 
+                                                           IsXAxisOnly="False" 
+                                                           ZoomExtentsY="True" 
+                                                           IsAnimated="True" ExecuteOn="MouseLeftButton" ReceiveHandledEvents="True" />
+
+                        <s:CursorModifier IsEnabled="True"  ShowTooltipOn="Never"  ShowAxisLabels="True"  
+                                          SourceMode="AllSeries" ShowTooltip="False" />
+
+                        <s:LegendModifier ShowLegend="False" GetLegendDataFor="AllSeries" x:Name="legendModifierHasVOx9"/>
+
+                        <s:ZoomExtentsModifier x:Name="zoomExtentsModifierHasVOx9"  XyDirection="XYDirection" ExecuteOn="MouseDoubleClick"/>
+
+                        <s:ZoomPanModifier x:Name="zoomPanModifierHasVOx9" IsEnabled="True"  ClipModeX="None" XyDirection="XYDirection" ExecuteOn="MouseRightButton" ZoomExtentsY="False" />
+
+                        <s:RolloverModifier x:Name="rolloverModifierHasVOx9" 
+                                                   UseInterpolation="False" FontSize="9" IsEnabled="True" 
+                                                   DrawVerticalLine="False" FontFamily="Arial,SimSun" 
+                                                   SnapsToDevicePixels="False"                                             
+                                                  ShowAxisLabels="False" />
+
+                        <s:MouseWheelZoomModifier x:Name="mouseWheelZoomModifierHasVOx9" XyDirection="XYDirection"/>
+
+                        <s:SeriesValueModifier/>
+                    </s:ModifierGroup>
+                </s:SciChartSurface.ChartModifier>
+
+            </s:SciChartSurface>
+
+            <Label Background="AliceBlue" Margin="0,0,400,233" Content="{Binding SelectedData9Display}" FontSize="15"></Label>
+        </Grid>
+
+
+
+    </Grid>
+
+
+</UserControl>

@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="Aitex.Core.UI.Control.PcControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     Height="42" Width="74">
+    <UserControl.RenderTransform>
+        <RotateTransform x:Name="rotateTransform" Angle="0" CenterX="35" CenterY="21"/>
+    </UserControl.RenderTransform>
+    <Canvas MouseLeftButtonUp="Canvas_MouseLeftButtonUp" Background="Transparent">
+        <Rectangle Width="74" Height="42" Fill="White" RadiusX="5" RadiusY="5" StrokeThickness="2" Stroke="Black"/>
+        <Label Content="{Binding ElementName=self, Path=DeviceData.FeedBack}"  ContentStringFormat="F1"   FontFamily="Arial,SimSun" FontSize="16" HorizontalContentAlignment="Right" x:Name="labelValue" Margin="-6.2,-2,-2.3,0" Foreground="Black" Canvas.Left="11" Width="64" Height="29" Canvas.Top="8"></Label>
+    </Canvas>
+</UserControl>

@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.ClientControls.EfemControls.VceClusterControlEFEM"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:MECF.Framework.UI.Client.ClientControls.EfemControls"
+             xmlns:unitControls="clr-namespace:MECF.Framework.UI.Client.Ctrlib.UnitControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="900">
+    <!--<UserControl.Resources>
+        <ResourceDictionary>
+            <Geometry x:Key="BorderPath">M119.16703,670.83324 L119.04174,751.29198 C120.33865,753.49656 121.82638,755.17714 124.00555,756.49997 125.77249,757.62085 127.60957,758.332 129.51109,758.66666 134.71088,759.52441 140.06636,759.87009 145.20502,759.66599 L167.88307,760.16598 C173.61076,759.96563 180.19985,759.16699 187.90371,757.83232 190.15915,757.26323 192.53179,756.22097 195.07801,754.6657 196.59102,753.80864 197.54917,752.55586 198.08106,750.99909 L197.62944,670.56591 200.0575,670.50049 200.81467,748.99946 C200.59664,750.31684 200.41775,754.39439 198.79556,755.24938 196.81745,756.92469 193.18405,759.21601 192.23345,759.49932 190.6154,760.4425 186.05773,761.74208 184.66179,761.99929 177.78563,763.07199 178.50255,762.65357 171.0328,763.24917 163.3667,763.34132 154.99194,763.94936 147.30826,763.49886 141.741,763.43912 136.18219,762.87233 130.39821,762.24888 128.43987,761.74098 125.32099,760.60511 123.07894,758.99893 119.41529,757.06721 117.75871,755.06309&#xD;&#xA;116.26444,751.24943 L116.01206,670.75024 z</Geometry>
+            <SolidColorBrush x:Key="OnlineColor">#32CD32</SolidColorBrush>
+            <SolidColorBrush x:Key="AlarmColor">#FF4500</SolidColorBrush>
+        </ResourceDictionary>
+    </UserControl.Resources>-->
+
+    <Canvas>
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/efembg.png" Canvas.Left="282" Canvas.Top="546"/>
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/efembg2.png" Canvas.Left="306" Canvas.Top="596"/>
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/efembg3.png"  Canvas.Left="492" Canvas.Top="578"/>
+
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/lpback.png" Canvas.Left="306" Canvas.Top="662"/>
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/lpback.png" Canvas.Left="396" Canvas.Top="662"/>
+       
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/foup.png"  Canvas.Left="321" Canvas.Top="668" Width="74"  />
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/foup.png" Canvas.Left="411" Canvas.Top="668" Width="74" />
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/doorclose.png" Canvas.Left="317" Canvas.Top="660"  Width="82" Height="8"/>
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/doorclose.png" Canvas.Left="407" Canvas.Top="660"  Width="82" Height="8"/>
+
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/arm1.png"  Canvas.Left="360" Canvas.Top="543" Height="142" Width="40" />
+        
+        <!--<controls:WaferCtrl Width="66" Height="66" Canvas.Left="490" Canvas.Top="578"  WaferData="{Binding AlignerWafer}" />-->
+        <!--<Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/arm1.png"  Height="66" Canvas.Left="490" Canvas.Top="578" />-->
+    </Canvas>
+</UserControl>

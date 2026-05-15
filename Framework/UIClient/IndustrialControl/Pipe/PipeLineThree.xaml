@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.IndustrialControl.PipeLineThree"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MECF.Framework.UI.Client.IndustrialControl" xmlns:converters="clr-namespace:MECF.Framework.UI.Client.IndustrialControl.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:VisibilityConverter x:Key="visibilityConverter"></converters:VisibilityConverter>
+    </UserControl.Resources>
+    <Canvas x:Name="canvas1">
+        <Rectangle 
+            Width="{Binding ElementName=canvas1,Path=ActualWidth}" 
+            Height="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=PipeWidth}"
+            Stretch="Fill">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=EdgeColor}" Offset="0"></GradientStop>
+                    <GradientStop Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=CenterColor}" Offset="0.5"></GradientStop>
+                    <GradientStop Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=EdgeColor}" Offset="1"></GradientStop>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Polygon x:Name="polygon1" Points="130,40 150,20 170,40 170,200 130,200 130, 40">
+            <Polygon.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=EdgeColor}" Offset="0"></GradientStop>
+                    <GradientStop Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=CenterColor}" Offset="0.5"></GradientStop>
+                    <GradientStop Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=EdgeColor}" Offset="1"></GradientStop>
+                </LinearGradientBrush>
+            </Polygon.Fill>
+        </Polygon>
+
+        <Path x:Name="path1" 
+              Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=PipeLineActive1,Converter={StaticResource visibilityConverter}}"
+              StrokeThickness="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=PipeLineWidth}" 
+              StrokeDashOffset="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=LineOffect1}" StrokeDashArray="5,5">
+            <Path.Stroke>
+                <SolidColorBrush Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=ActiveLineCenterColor}"></SolidColorBrush>
+            </Path.Stroke>
+        </Path>
+        <Path x:Name="path2" 
+              Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=PipeLineActive2,Converter={StaticResource visibilityConverter}}"
+              StrokeThickness="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=PipeLineWidth}" 
+              StrokeDashOffset="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=LineOffect2}" StrokeDashArray="5,5">
+            <Path.Stroke>
+                <SolidColorBrush Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=ActiveLineCenterColor}"></SolidColorBrush>
+            </Path.Stroke>
+        </Path>
+        <Path x:Name="path3" 
+              Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=PipeLineActive3,Converter={StaticResource visibilityConverter}}"
+              StrokeThickness="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=PipeLineWidth}" 
+              StrokeDashOffset="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=LineOffect3}" StrokeDashArray="5,5">
+            <Path.Stroke>
+                <SolidColorBrush Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLineThree}},Path=ActiveLineCenterColor}"></SolidColorBrush>
+            </Path.Stroke>
+        </Path>
+    </Canvas>
+</UserControl>

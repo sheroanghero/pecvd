@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.ClientViews.Operations.Overviews.VceClusterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MECF.Framework.UI.Client.ClientControls.PMControls"
+             xmlns:mainframeControls="clr-namespace:MECF.Framework.UI.Client.ClientControls.MainframeControls"
+             xmlns:vceControls="clr-namespace:MECF.Framework.UI.Client.ClientControls.VceControls" xmlns:robotcontrols="clr-namespace:MECF.Framework.UI.Client.ClientControls.RobotControls"
+             xmlns:efemControls="clr-namespace:MECF.Framework.UI.Client.ClientControls.EfemControls"
+             xmlns:singleArmRobot1="clr-namespace:MECF.Framework.UI.Client.ClientControls.RobotControls.SingleArmRobot1"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600"  >
+
+    <Canvas >
+        <local:PMT1Control Width="200" Height="200"  WaferData="{Binding PM2WaferData}"  RenderTransformOrigin="0.5,0.5" Canvas.Left="116" Canvas.Top="-7">
+            <local:PMT1Control.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-42.041"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </local:PMT1Control.RenderTransform>
+        </local:PMT1Control>
+        <local:PMT1Control Width="200" Height="200"  WaferData="{Binding PM3WaferData}"  RenderTransformOrigin="0.5,0.5" Canvas.Left="255" Canvas.Top="-40">
+            <local:PMT1Control.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </local:PMT1Control.RenderTransform>
+        </local:PMT1Control>
+
+        <local:PMT1Control Width="200" Height="200"  WaferData="{Binding PM4WaferData}"  RenderTransformOrigin="0.5,0.5" Canvas.Left="376" Canvas.Top="40">
+            <local:PMT1Control.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="44.749"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </local:PMT1Control.RenderTransform>
+        </local:PMT1Control>
+
+        <local:PMT1Control Width="200" Height="200"  WaferData="{Binding PM5WaferData}"  RenderTransformOrigin="0.5,0.5" Canvas.Left="406" Canvas.Top="174">
+            <local:PMT1Control.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </local:PMT1Control.RenderTransform>
+        </local:PMT1Control>
+
+        <local:PMT1Control Width="200" Height="200" WaferData="{Binding PM1WaferData}"  RenderTransformOrigin="0.5,0.5" Canvas.Left="36" Canvas.Top="104">
+            <local:PMT1Control.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </local:PMT1Control.RenderTransform>
+        </local:PMT1Control>
+
+        <mainframeControls:MainframeT1Control WaferData1="{Binding AlignerAWaferData}" WaferData2="{Binding AlignerBWaferData}"  Width="400" Height="400" Canvas.Left="157" Canvas.Top="85"></mainframeControls:MainframeT1Control>
+
+        <vceControls:VceT1Control IsFoupOn="{Binding IsVCEAFoupOn}" Width="150" Height="150" Canvas.Left="119" Canvas.Top="395"></vceControls:VceT1Control>
+        <vceControls:VceT2Control IsFoupOn="{Binding IsVCEBFoupOn}" Width="150" Height="150" Canvas.Left="363" Canvas.Top="395"></vceControls:VceT2Control>
+        <robotcontrols:VTMDualArmRobot StationPosition="{Binding StationPosition}" RobotMoveInfo="{Binding TMRobotMoveInfo}"  Wafer1="{Binding TMRobotUpWaferData}"  Wafer2="{Binding TMRobotLowWaferData}" MoveWaferCommand="{Binding MoveWaferCommand}" CreateDeleteWaferCommand="{Binding CreateDeleteWaferCommand}" Canvas.Left="289" Canvas.Top="211"/>
+        <!--<Image Source="/MECF.Framework.UI.Client;component/Resources/Mainframes/MainframeT1/bg02top.png" Canvas.Left="157" Canvas.Top="85"/>-->
+
+        <TextBlock Text="VCE A" Canvas.Left="172" Canvas.Top="526"></TextBlock>
+        <TextBlock Text="VCE B" Canvas.Left="428" Canvas.Top="522"></TextBlock>
+        <TextBlock Text="Aligner" Canvas.Left="297" Canvas.Top="404"></TextBlock>
+        <TextBlock Text="PM1" Canvas.Left="11" Canvas.Top="233"></TextBlock>
+        <TextBlock Text="PM2" Canvas.Left="100" Canvas.Top="32"></TextBlock>
+        <TextBlock Text="PM3" Canvas.Left="306" Canvas.Top="-58"></TextBlock>
+        <TextBlock Text="PM4" Canvas.Left="526" Canvas.Top="38"></TextBlock>
+        <TextBlock Text="PM5" Canvas.Left="608" Canvas.Top="240"></TextBlock>
+    </Canvas>
+</UserControl>

@@ -1,0 +1,245 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.Configs.DataConfig.DataConfigView"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:micro="clr-namespace:Caliburn.Micro"
+             xmlns:controls="clr-namespace:OpenSEMI.Ctrlib.Controls"
+             xmlns:converter="clr-namespace:MECF.Framework.UI.Client.Ctrlib.Converter"
+             mc:Ignorable="d" 
+             d:DesignHeight="1024" d:DesignWidth="1900">
+    <UserControl.Resources>
+        <converter:Bool2Not x:Key="Bool2Not"/>
+        <converter:BoolCollapsedConverter x:Key="BoolVisibility"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="405"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="*"/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+
+                <controls:TextBoxEx AllowBackgroundChange="False"  Text="{Binding Path=NewGroupName, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" ></controls:TextBoxEx>
+                <Button Content="New" Grid.Column="1" Width="70" Height="30"  Margin="0" Padding="0" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <micro:ActionMessage MethodName="NewGroup">
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+            </Grid>
+
+            <DataGrid Grid.Row="1"   HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                      VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
+                      SelectedItem="{Binding CurrentSelection}"
+                      ItemsSource="{Binding GroupData}" Margin="0,5,0,0" >
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Name" Width="200">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" Margin="5,0" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Rename" IsEnabled="{Binding IsFix, Converter={StaticResource Bool2Not}}" Width="100" Height="25" FontSize="14">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <micro:ActionMessage MethodName="RenameGroup">
+                                                <micro:Parameter Value="{Binding }" />
+                                            </micro:ActionMessage>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+
+
+                    <DataGridTemplateColumn Width="100"  >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" IsEnabled="{Binding IsFix, Converter={StaticResource Bool2Not}}"    Width="100" Height="25" FontSize="14">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <micro:ActionMessage MethodName="DeleteGroup">
+                                                <micro:Parameter Value="{Binding }" />
+                                            </micro:ActionMessage>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="150"/>
+                    <ColumnDefinition  Width="100"/>
+                    <ColumnDefinition  Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1" Background="{DynamicResource Table_BG_Title}" Padding="5,1">
+                    <TextBlock Text="{Binding CurrentSelection.Name}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Button Content="Save" Grid.Column="1" Width="90" Height="30"  Margin="0" Padding="0" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <micro:ActionMessage MethodName="SaveSelection">
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+                <Button Content="Cancel" Grid.Column="2" Width="90" Height="30"  Margin="0" Padding="0" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <micro:ActionMessage MethodName="CancelSelection">
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="460"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition  Width="460"/>
+                </Grid.ColumnDefinitions>
+
+                <ListView Grid.Column="0" Width="450"    HorizontalAlignment="Left"  Style="{x:Null}"
+                          ItemsSource="{Binding Unselections}" Margin="0,5,0,0"  >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource ResourceKey={x:Type ListViewItem}}">
+                            <Setter Property="Visibility" Value="{Binding Path=IsSelected, Mode=OneWay, Converter={StaticResource ResourceKey=BoolVisibility}}"></Setter>
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="30">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox x:Name="ckHold" VerticalContentAlignment="Center"  IsChecked="{Binding Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="20" Height="25" ></CheckBox>
+
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="390" Header="Name">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock VerticalAlignment="Center"  TextWrapping="Wrap"  Text="{Binding Name}"  Width="390" Height="30" ></TextBlock>
+
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+
+
+                        </GridView>
+                    </ListView.View>
+
+
+                </ListView>
+
+                <Grid Grid.Column="1"  >
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,120,0,0">
+                        <Button Content="Select" Grid.Column="0" Width="90" Height="30"  Margin="0" Padding="0" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <micro:ActionMessage MethodName="Select">
+                                    </micro:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+
+                        <Button Content="Unselect" Grid.Column="1" Width="90" Height="30"  Margin="0,30,0,0" Padding="0" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <micro:ActionMessage MethodName="Unselect">
+                                    </micro:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <ListView Grid.Column="2" Width="460"    HorizontalAlignment="Left"  
+                          VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
+                          ItemsSource="{Binding Selections}" Margin="0,5,0,0"  >
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource ResourceKey={x:Type ListViewItem}}">
+                            <Setter Property="Visibility" Value="{Binding Path=IsSelected, Mode=OneWay, Converter={StaticResource ResourceKey=BoolVisibility}}"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="30">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox x:Name="ckHold" VerticalContentAlignment="Center"  IsChecked="{Binding Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="20" Height="25" ></CheckBox>
+
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="390" Header="Name">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock VerticalAlignment="Center"  TextWrapping="Wrap"  Text="{Binding Name}"  Width="390" Height="30" ></TextBlock>
+
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+
+
+                        </GridView>
+                    </ListView.View>
+
+                </ListView>
+            </Grid>
+
+        </Grid>
+
+
+    </Grid>
+
+</UserControl>

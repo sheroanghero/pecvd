@@ -1,0 +1,144 @@
+{
+    "IOSimulatorItemList": [
+        {
+            "SourceCommandName": "SwitchControl",
+            "SourceCommand": "!C",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "SwitchGasBallast",
+            "SourceCommand": "!D",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "SetEquipmentControl",
+            "SourceCommand": "!E",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "SetFormatMode",
+            "SourceCommand": "!F",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "SwitchGateValve",
+            "SourceCommand": "!G",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "SwitchSimulationMode",
+            "SourceCommand": "!M",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "SwitchNitrogenSupply",
+            "SourceCommand": "!N",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "SwitchOnProcessFlag",
+            "SourceCommand": "!O",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "SwitchPump",
+            "SourceCommand": "!P",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "SwitchRunTilCrash",
+            "SourceCommand": "!R",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "SwitchInletPurge",
+            "SourceCommand": "!U",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+
+        {
+            "SourceCommandName": "ReadAlarmStatus",
+            "SourceCommand": "?A",
+            "SuccessResponse": "1,2,3",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "ReadBitfieldStatus",
+            "SourceCommand": "?B",
+            "SuccessResponse": "1,2,3",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "ReadParameterValue",
+            "SourceCommand": "?V",
+            "SuccessResponse": "on",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "ReadControlStatus",
+            "SourceCommand": "?C",
+            "SuccessResponse": "on",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "ReadGasBallastStatus",
+            "SourceCommand": "?D",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "ReadGateValveStatus",
+            "SourceCommand": "?G",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "ReadInformation",
+            "SourceCommand": "?I",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "ReadNitrogenSupplyStatus",
+            "SourceCommand": "?N",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "ReadOnProcessStatus",
+            "SourceCommand": "?O",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "ReadPumpStatus",
+            "SourceCommand": "?P",
+            "SuccessResponse": "0,0,0,0,0,0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "ReadRunTilCrashStatus",
+            "SourceCommand": "?R",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        },
+        {
+            "SourceCommandName": "ReadInletPurgeStatus",
+            "SourceCommand": "?U",
+            "SuccessResponse": "ERR 0",
+            "FailedResponse": "ERR 2"
+        }
+
+    ]
+}

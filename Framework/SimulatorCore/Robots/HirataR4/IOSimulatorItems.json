@@ -1,0 +1,157 @@
+{
+  "IOSimulatorItemList": [
+    {
+      "SourceCommandName": "WritePosition",
+      "SourceCommand": "SD",
+      "SuccessResponse": "0601",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "MoveStart",
+      "SourceCommand": "GP",
+      "SuccessResponse": "4401",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "MoveStartWithIMotion",
+      "SourceCommand": "GPI",
+      "SuccessResponse": "4401",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "MoveStartWithUMotion",
+      "SourceCommand": "GPU",
+      "SuccessResponse": "4401",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "MoveStartWithAMotion",
+      "SourceCommand": "GPA",
+      "SuccessResponse": "4401",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "MoveStop",
+      "SourceCommand": "GD",
+      "SuccessResponse": "0621",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "MoveReset",
+      "SourceCommand": "GE",
+      "SuccessResponse": "0621",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "ErrorClear",
+      "SourceCommand": "CL",
+      "SuccessResponse": "0621",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "ReadStatus",
+      "SourceCommand": "LS",
+      "SuccessResponse": "0601",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "ReadPosition",
+      "SourceCommand": "LD",
+      "SuccessResponse": "123.45-123.45 123.45 123.45 R 0 50 90 45",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "RobotConnected",
+      "SourceCommand": "CO",
+      "SuccessResponse": "OK",
+      "FailedResponse": "00"
+    },
+    {
+      "SourceCommandName": "SetMappingLaser",
+      "SourceCommand": "SM",
+      "SuccessResponse": "0601",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "ReadExtendParameter",
+      "SourceCommand": "LE 100",
+      "SuccessResponse": "7",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "ReadExtendParameter",
+      "SourceCommand": "LE 101",
+      "SuccessResponse": "1",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "ReadExtendParameter",
+      "SourceCommand": "LE",
+      "SuccessResponse": "123",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "ReadExtendParameter",
+      "SourceCommand": "SE",
+      "SuccessResponse": "0601",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "ArmVacuumOP",
+      "SourceCommand": "SOB",
+      "SuccessResponse": "4401",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "ReadDIByte",
+      "SourceCommand": "LID",
+      "SuccessResponse": "0",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "SetAccSpeed",
+      "SourceCommand": "SX",
+      "SuccessResponse": "0601",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "SetSpeed",
+      "SourceCommand": "SP",
+      "SuccessResponse": "0601",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "ReadCurrentPosition",
+      "SourceCommand": "LR",
+      "SuccessResponse": "123.20-12.03 30.0 40.30 L 0",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "SetInsertMotion",
+      "SourceCommand": "SI",
+      "SuccessResponse": "0601",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "SetSlowUpMotion",
+      "SourceCommand": "SJ",
+      "SuccessResponse": "0601",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "JelHome",
+      "SourceCommand": "$11",
+      "SuccessResponse": ">",
+      "FailedResponse": "E062161010101"
+    },
+    {
+      "SourceCommandName": "JelReset",
+      "SourceCommand": "$1RD",
+      "SuccessResponse": ">",
+      "FailedResponse": "E062161010101"
+    }
+
+
+
+  ]
+}

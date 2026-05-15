@@ -1,0 +1,126 @@
+{
+  "IOSimulatorItemList": [
+    {
+      "SourceCommandName": "Align",
+      "SourceCommand": "ALIGN",
+      "SuccessResponse": "_RDY",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "Rotate",
+      "SourceCommand": "ROTATE",
+      "Argument": "25.2",
+      "SuccessResponse": "_RDY",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "SevoOn",
+      "SourceCommand": "SVON",
+      "SuccessResponse": "_RDY",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "SevoOff",
+      "SourceCommand": "SVOFF",
+      "SuccessResponse": "_RDY",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "SetAlignAngle",
+      "SourceCommand": "SWAA",
+      "Argument": "60",
+      "SuccessResponse": "_RDY",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "SetWaferSize",
+      "SourceCommand": "SWS",
+      "Argument": "200",
+      "SuccessResponse": "_RDY",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "Transfer",
+      "SourceCommand": "XFER",
+      "Argument": "ARM A 1 SLOT 1 2 SLOT 1 ALGN",
+      "SuccessResponse": "_RDY",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "Pick",
+      "SourceCommand": "PICK",
+      "Argument": "3 PALGN",
+      "SuccessResponse": "_RDY",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "Place",
+      "SourceCommand": "PLACE",
+      "Argument": "3 ALGN",
+      "SuccessResponse": "_RDY",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "Home",
+      "SourceCommand": "ALIGNER HOME/SCAN/ALGN",
+      "SuccessResponse": "_RDY",
+      "FailedResponse": "_ERR 9"
+    },
+
+    {
+      "SourceCommandName": "RequestAlignAngle",
+      "SourceCommand": "RWAA",
+      "SuccessResponse": "RWAA 90.000",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "RequestWaferSize",
+      "SourceCommand": "RWS",
+      "SuccessResponse": "RWS 300",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "RequestBiasXY",
+      "SourceCommand": "RBIASXY",
+      "SuccessResponse": "RBIASXY 6.018 1.285",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "RequestBiasRT",
+      "SourceCommand": "RBIASRT",
+      "SuccessResponse": "RBIASRT 1.285 0.105",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "RequestNotchAngle",
+      "SourceCommand": "RNOTCH",
+      "SuccessResponse": "RNOTCH 90.105",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "RequestErrorCode",
+      "SourceCommand": "REER",
+      "SuccessResponse": "_ERR 15",
+      "FailedResponse": "_ERR 15"
+    },
+    {
+      "SourceCommandName": "Hello",
+      "SourceCommand": "HLLO",
+      "SuccessResponse": "Hello AG",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RequestWaferOnOff",
+      "SourceCommand": "RWK",
+      "SuccessResponse": "RWK 0",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "RequestReady",
+      "SourceCommand": "RAR",
+      "SuccessResponse": "RAR 1",
+      "FailedResponse": "_ERR 9"
+    }
+
+  ]
+}

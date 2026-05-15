@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Aitex.Core.UI.Control.PolygonAngle90"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Height="3" Width="12" >
+    <Canvas>
+        <Border BorderBrush="Aqua" Height="16" Width="10" Canvas.Top="-2">
+            <Border.RenderTransform>
+                <RotateTransform x:Name="rotateTransform2" Angle="90" CenterX="7.5" CenterY="7.5"/>
+            </Border.RenderTransform>
+                <Polygon Name="nopass2" Opacity="1" Points="2,0 2,14 14,14 14,0" Cursor="Hand"  Fill="Black" Height="13.026" Width="7.181" Canvas.Top="0" />
+        </Border>
+    </Canvas>
+</UserControl>

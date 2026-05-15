@@ -1,0 +1,11 @@
+﻿<UserControl x:Class="Aitex.Core.UI.Control.PressureSwitchBig"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Height="20" Width="20" MaxHeight="20" MaxWidth="20" MinHeight="20" Opacity="1" MinWidth="20">
+    <UserControl.RenderTransform>
+        <RotateTransform CenterX="10"  x:Name="rotateTransform" CenterY="10"></RotateTransform>
+    </UserControl.RenderTransform>
+    <Canvas> 
+        <Ellipse Stroke="Black" Fill="Green" x:Name="psEllipse" Panel.ZIndex="1000"  Height="20" Width="20" Opacity="1" />
+     </Canvas>
+</UserControl>

@@ -1,0 +1,324 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.Configs.SystemConfig.SystemConfigView"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"           
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:systemConfig="clr-namespace:MECF.Framework.UI.Client.CenterViews.Configs.SystemConfig"
+             xmlns:controls="clr-namespace:OpenSEMI.Ctrlib.Controls"
+             xmlns:micro="clr-namespace:Caliburn.Micro"
+             xmlns:converter="clr-namespace:MECF.Framework.UI.Client.Ctrlib.Converter"
+             mc:Ignorable="d" 
+             d:DesignHeight="1024" d:DesignWidth="1900">
+    <UserControl.Resources>
+        <converter:Null2Bool x:Key="Null2Bool"/>
+        <converter:Bool2Not x:Key="Bool2Not"/>
+        <converter:Float2String x:Key="Float2String"/>
+        <converter:String2Double x:Key="String2Double"/>
+        <converter:BoolCollapsedConverter x:Key="BoolVisibility"/>
+
+        <HierarchicalDataTemplate x:Key="ConfigNodeTemplate" DataType="{x:Type systemConfig:ConfigNode}" ItemsSource="{Binding SubNodes}">
+            <TextBlock Text="{Binding Display}" VerticalAlignment="Center">
+            </TextBlock>
+        </HierarchicalDataTemplate>
+
+        <systemConfig:ConfigValueTemplateSelector x:Key="ConfigValueTemplateSelector">
+            <systemConfig:ConfigValueTemplateSelector.BoolTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="10,0">
+                        <RadioButton Content="Yes" VerticalAlignment="Center"  IsEnabled="{Binding Enable}" IsChecked="{Binding BoolValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <RadioButton Content="No" VerticalAlignment="Center" IsEnabled="{Binding Enable}" Margin="10,0,0,0" IsChecked="{Binding BoolValue, Mode=TwoWay, Converter={StaticResource Bool2Not}, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </systemConfig:ConfigValueTemplateSelector.BoolTemplate>
+
+            <systemConfig:ConfigValueTemplateSelector.StringTemplate>
+                <DataTemplate>
+                    <Grid Width="120">
+                        <controls:TextBoxEx Width="120" HorizontalAlignment="Stretch" IsEnabled="{Binding Enable}" Text="{Binding StringValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextSaved="{Binding TextSaved, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                </DataTemplate>
+            </systemConfig:ConfigValueTemplateSelector.StringTemplate>
+
+            <systemConfig:ConfigValueTemplateSelector.NumbericTemplate>
+                <DataTemplate>
+                    <Grid Width="120">
+                        <TextBox Width="120" HorizontalAlignment="Stretch" IsEnabled="{Binding Enable}" Text="{Binding CurValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                            <TextBox.Style>
+                                <Style TargetType="TextBox" >
+                                    <Setter Property="ToolTip" Value="{x:Null}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RangeFrom, Converter={StaticResource Null2Bool}}" Value="False">
+                                            <Setter Property="ToolTip">
+                                                <Setter.Value>
+                                                    <TextBlock>
+                                                    <Run Text="Range: "/>
+                                                    <Run Text="{Binding Max}"/>
+                                                    <Run Text="~"/>
+                                                    <Run Text="{Binding Min}"/>
+                                                    <Run Text="{Binding Double}"/>
+                                                    </TextBlock>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <!--<Setter Property="MinValue" Value="{Binding RangeFrom, Converter={StaticResource String2Double}}"/>
+                                            <Setter Property="MaxValue" Value="{Binding RangeTo, Converter={StaticResource String2Double}}"/>-->
+                                        </DataTrigger>
+
+                                        <!--<DataTrigger Binding="{Binding Type}" Value="Int">
+                                            <Setter Property="EditBoxMode" Value="SignInteger"/>
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding Type}" Value="Float">
+                                            <Setter Property="EditBoxMode" Value="Decimal"/>
+                                        </DataTrigger>-->
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </Grid>
+                </DataTemplate>
+            </systemConfig:ConfigValueTemplateSelector.NumbericTemplate>
+
+            <systemConfig:ConfigValueTemplateSelector.SelectionTemplate>
+                <DataTemplate>
+                    <Grid Width="120">
+                        <ComboBox ItemsSource="{Binding Options}" SelectedValuePath="Name" SelectedValue="{Binding StringValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"     Width="120" HorizontalAlignment="Center">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </Grid>
+                </DataTemplate>
+            </systemConfig:ConfigValueTemplateSelector.SelectionTemplate>
+        </systemConfig:ConfigValueTemplateSelector>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="320"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+                <Button Content="-- Collapse All"  Width="120" Height="25" Click="BtnCollapseAll">
+                    <!--<i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <micro:ActionMessage MethodName="CollapseAll">
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>-->
+                </Button>
+
+                <Button Content="++ Expand All"  Width="120" Height="25" Margin="5,0,0,0" Click="BtnExpandAll">
+                    <!--<i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <micro:ActionMessage MethodName="ExpandAll">
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>-->
+                </Button>
+            </StackPanel>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="*"/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+
+                <controls:TextBoxEx AllowBackgroundChange="False"  Text="{Binding Path=CurrentCriteria, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" ></controls:TextBoxEx>
+                <Button Grid.Column="1" Width="30" Height="30"  Margin="0" Padding="0" >
+                    <Button.Content>
+                        <Path Data="M5.5,0 L8.5,0 8.5,5.5 14,5.5 14,8.5 8.5,8.5 8.5,14 5.5,14 5.5,8.5 0,8.5 0,5.5 5.5,5.5 z" Fill="Black" Margin="0,3" RenderTransformOrigin="0.5,0.5" Stretch="Fill" StrokeThickness="3" Width="15" Height="15" >
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="45"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Button.Content>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <micro:ActionMessage MethodName="ClearFilter">
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+            </Grid>
+
+            <Border Grid.Row="2" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                <TreeView x:Name="PART_TREE" Margin="5" ItemsSource="{Binding ConfigNodes}" ItemTemplate="{StaticResource ConfigNodeTemplate}"
+                          VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
+                          Height="{Binding Path=ActualHeight,ElementName=PART_BORDER, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <!--Height should add for VirtualizingPanel, otherwise the App will be slow-->
+                    <TreeView.ItemContainerStyle>
+                        <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource ResourceKey={x:Type TreeViewItem}}">
+                            <Setter Property="IsExpanded" Value="{Binding IsExpanded}"></Setter>
+                            <Setter Property="Visibility" Value="{Binding Path=IsMatch, Mode=OneWay, Converter={StaticResource ResourceKey=BoolVisibility}}"></Setter>
+                        </Style>
+                    </TreeView.ItemContainerStyle>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectedItemChanged">
+                            <i:InvokeCommandAction Command="{Binding TreeViewSelectedItemChangedCmd}" CommandParameter="{Binding Path=SelectedItem, ElementName=PART_TREE}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TreeView>
+
+            </Border>
+
+        </Grid>
+
+
+        <GridSplitter Width="5" Grid.Column="1" HorizontalAlignment="Left" Background="Transparent">
+
+        </GridSplitter>
+
+        <Grid Grid.Column="1" Margin="10,0,0,0" IsEnabled="{Binding IsPermission}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Reload" Width="80" Height="25">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <micro:ActionMessage MethodName="Reload">
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+                <Button Content="Save All"  Width="80" Height="25" Margin="5,0,0,0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <micro:ActionMessage MethodName="SaveAll">
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </StackPanel>
+
+            <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" >
+                <DataGrid Grid.Row="1"   HorizontalAlignment="Left" 
+                      RowHeight="30" HorizontalScrollBarVisibility="Auto"
+                      CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
+                  ItemsSource="{Binding ConfigItems}" Margin="0,5,0,0" >
+
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Name" Width="Auto"  MinWidth="120">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" Margin="5,0" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" >
+                                        <TextBlock.ToolTip>
+                                            <ToolTip>
+                                                <ToolTip.Content>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="25"/>
+                                                            <RowDefinition Height="25"/>
+                                                            <RowDefinition Height="25"/>
+                                                            <RowDefinition Height="25"/>
+                                                        </Grid.RowDefinitions>
+                                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Name" VerticalAlignment="Center"></TextBlock>
+                                                        <TextBlock Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Center"></TextBlock>
+                                                        <TextBlock Grid.Column="0" Grid.Row="1" Text="Type" VerticalAlignment="Center"></TextBlock>
+                                                        <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Type}" VerticalAlignment="Center"></TextBlock>
+                                                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Default Value" VerticalAlignment="Center"></TextBlock>
+                                                        <TextBlock Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" Text="{Binding DefaultValue}" VerticalAlignment="Center"></TextBlock>
+                                                        <TextBlock Grid.Column="0" Grid.Row="3" Text="Description" VerticalAlignment="Center"></TextBlock>
+                                                        <TextBlock Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Center"></TextBlock>
+                                                    </Grid>
+                                                </ToolTip.Content>
+                                            </ToolTip>
+                                        </TextBlock.ToolTip>
+                                </TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Description"  Width="Auto" MinWidth="160">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Display}" Margin="5,0" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}" TextWrapping="Wrap"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Unit" MinWidth="120">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Unit}" Margin="5,0" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Min" MinWidth="120">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Min, Converter={StaticResource Float2String}}" Margin="5,0" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Max" MinWidth="120">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Max, Converter={StaticResource Float2String}}" Margin="5,0" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Value" MinWidth="120">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding CurrentValue}" Margin="5,0" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Setpoint" CellTemplateSelector="{StaticResource ConfigValueTemplateSelector}" MinWidth="100"/>
+
+                        <DataGridTemplateColumn MinWidth="120">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Set" Width="60" Height="25" FontSize="12" IsEnabled="{Binding Enable}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <micro:ActionMessage MethodName="SetValue">
+                                                    <micro:Parameter Value="{Binding }" />
+                                                </micro:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,317 @@
+{
+  "IOSimulatorItemList": [
+    {
+      "SourceCommandName": "Abort",
+      "SourceCommandType": "E",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "CloseDoor",
+      "SourceCommand": "DC",
+      "SourceCommandType": "A",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "OpenDoor",
+      "SourceCommand": "DO",
+      "SourceCommandType": "A",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "FindWaferUp",
+      "SourceCommand": "FU",
+      "SourceCommandType": "A",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "FindWaferDown",
+      "SourceCommand": "FD",
+      "SourceCommandType": "A",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "GoCheck",
+      "SourceCommand": "GC",
+      "SourceCommandType": "A",
+      "Argument": "3",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "RandomAccess",
+      "SourceCommand": "GO",
+      "SourceCommandType": "A",
+      "Argument": "3,U",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "GotoZ",
+      "SourceCommand": "GOTO",
+      "SourceCommandType": "A",
+      "Argument": "ARM,Z,UP",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "Home",
+      "SourceCommand": "HM",
+      "SourceCommandType": "A",
+      "Argument": "Z",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "JogDown",
+      "SourceCommand": "JD",
+      "SourceCommandType": "A",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "JogUp",
+      "SourceCommand": "JU",
+      "SourceCommandType": "A",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "Load",
+      "SourceCommand": "LOAD",
+      "SourceCommandType": "A",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "MoveToLoadPos",
+      "SourceCommand": "LP",
+      "SourceCommandType": "A",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "MapCassette",
+      "SourceCommand": "MP",
+      "SourceCommandType": "A",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "Move",
+      "SourceCommand": "MOVE",
+      "SourceCommandType": "A",
+      "Argument": "Z,ABS,70000",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "PlatformIn",
+      "SourceCommand": "PI",
+      "SourceCommandType": "A",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "Pick",
+      "SourceCommand": "PICK",
+      "SourceCommandType": "A",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "Place",
+      "SourceCommand": "PLACE",
+      "SourceCommandType": "A",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "PlatformOut",
+      "SourceCommand": "PO",
+      "SourceCommandType": "A",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "Unload",
+      "SourceCommand": "UNLOAD",
+      "SourceCommandType": "A",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+
+    {
+      "SourceCommandName": "SetArmAction",
+      "SourceCommand": "AA",
+      "SourceCommandType": "S",
+      "Argument": "Y",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "SetArmExtension",
+      "SourceCommand": "ARM",
+      "SourceCommandType": "S",
+      "Argument": "EXT,200000",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "SetArmRPosition",
+      "SourceCommand": "ARM",
+      "SourceCommandType": "S",
+      "Argument": "R,EX,2100000",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "SetArmRPosition",
+      "SourceCommand": "ARM",
+      "SourceCommandType": "S",
+      "Argument": "Z,DN,91000",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "SetCommunicationMode",
+      "SourceCommand": "COMM",
+      "SourceCommandType": "S",
+      "Argument": "FLOW,BKG+",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+
+    {
+      "SourceCommandName": "RequestArmAction",
+      "SourceCommand": "AA",
+      "SourceCommandType": "R",
+      "SuccessResponse": "_RDY,_BKGRDY",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "RequestArmRPosition",
+      "SourceCommand": "ARM",
+      "SourceCommandType": "R",
+      "Argument": "R,EX",
+      "SuccessResponse": "{X,ARM,R,EX,0169500}",
+      "FailedResponse": "_RDY,_BKGERR A9"
+    },
+    {
+      "SourceCommandName": "RequestArmZPosition",
+      "SourceCommand": "ARM",
+      "SourceCommandType": "R",
+      "Argument": "Z,UP",
+      "SuccessResponse": "{X,ARM,Z,UP,0169500}",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "RequestCommunicationMode",
+      "SourceCommand": "COMM",
+      "SourceCommandType": "R",
+      "Argument": "FLOW",
+      "SuccessResponse": "{COMM,FLOW,BKG+}",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "RequestClampStatus",
+      "SourceCommand": "CS",
+      "SourceCommandType": "R",
+      "SuccessResponse": "{CSC}",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "RequestDoorActionMode",
+      "SourceCommand": "DA",
+      "SourceCommandType": "R",
+      "SuccessResponse": "{DAY}",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "RequestDoorInterlock",
+      "SourceCommand": "DI",
+      "SourceCommandType": "R",
+      "SuccessResponse": "{DIY}",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "RequestDevice",
+      "SourceCommand": "DV",
+      "SourceCommandType": "R",
+      "SuccessResponse": "{DV00}",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "RequestErrorStatus",
+      "SourceCommand": "ER",
+      "SourceCommandType": "R",
+      "SuccessResponse": "{ER,OK}",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "RequestInterlock",
+      "SourceCommand": "INTLCK",
+      "SourceCommandType": "R",
+      "Argument": "ALL",
+      "SuccessResponse": "{INTLCK,CASS,PRESENT,ENB}{INTLCK,BRKPNT,R,EX,ENB}",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "RequestLoadPosition",
+      "SourceCommand": "LP",
+      "SourceCommandType": "R",
+      "SuccessResponse": "{LPY}",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "RequestMappingInformation",
+      "SourceCommand": "MI",
+      "SourceCommandType": "R",
+      "Argument": "B",
+      "SuccessResponse": "{MI,1,0,A,3,0,0,0,0,0,0}",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "RequestPlatform",
+      "SourceCommand": "PL",
+      "SourceCommandType": "R",
+      "SuccessResponse": "{PLI}",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "RequestPlatformPositon",
+      "SourceCommand": "POS",
+      "SourceCommandType": "R",
+      "Argument": "ABS,Z",
+      "SuccessResponse": "{POS,ABS,1000000,1000000",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "RequestVCEStatus",
+      "SourceCommand": "STAT",
+      "SourceCommandType": "R",
+      "Argument": "ALL",
+      "SuccessResponse": "{STAT,CASS,PRESENT,N}{STAT,DOOR,C}",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "RequestCassettePresent",
+      "SourceCommand": "W2",
+      "SourceCommandType": "R",
+      "SuccessResponse": "{W2Y}",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    },
+    {
+      "SourceCommandName": "RequestWaferPresence",
+      "SourceCommand": "WP",
+      "SourceCommandType": "R",
+      "SuccessResponse": "{WPY}",
+      "FailedResponse": "_RDY,_BKGERR A6"
+    }
+
+  ]
+}

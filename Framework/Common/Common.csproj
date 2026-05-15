@@ -1,0 +1,749 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9CD2A6BE-1971-4E74-B49E-547982F64034}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MECF.Framework.Common</RootNamespace>
+    <AssemblyName>MECF.Framework.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Output\MECF.Framework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>..\..\ThirdParty\dlls\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetZip">
+      <HintPath>..\..\ThirdParty\dlls\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="FabConnect, Version=1.0.7546.22871, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\FabConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\ThirdParty\dlls\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\..\ThirdParty\dlls\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="SciChart.Charting">
+      <HintPath>..\..\ThirdParty\dlls\SciCart\SciChart.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Core">
+      <HintPath>..\..\ThirdParty\dlls\SciCart\SciChart.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Data">
+      <HintPath>..\..\ThirdParty\dlls\SciCart\SciChart.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Drawing">
+      <HintPath>..\..\ThirdParty\dlls\SciCart\SciChart.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\Account.cs" />
+    <Compile Include="Account\AccountClient.cs" />
+    <Compile Include="Account\AccountExManager.cs" />
+    <Compile Include="Account\AccountManager.cs" />
+    <Compile Include="Account\AccountService.cs" />
+    <Compile Include="Account\Authorization.cs" />
+    <Compile Include="Account\Extends\AccountEx.cs" />
+    <Compile Include="Account\Extends\Menu.cs" />
+    <Compile Include="Account\Extends\MenuLoader.cs" />
+    <Compile Include="Account\Extends\Role.cs" />
+    <Compile Include="Account\Extends\RoleLoader.cs" />
+    <Compile Include="Account\Extends\UserContext.cs" />
+    <Compile Include="Account\IAccountService.cs" />
+    <Compile Include="Account\NotificationService.cs" />
+    <Compile Include="Account\Extends\XmlLoader.cs" />
+    <Compile Include="Alarms\AlarmAction.cs" />
+    <Compile Include="Alarms\AlarmDefine.cs" />
+    <Compile Include="Alarms\AlarmDefineFileContext.cs" />
+    <Compile Include="Alarms\AlarmDefineService.cs" />
+    <Compile Include="Alarms\AlarmGroup.cs" />
+    <Compile Include="Alarms\AlarmDefineFileManager.cs" />
+    <Compile Include="Alarms\AlarmServiceClient.cs" />
+    <Compile Include="Alarms\IAlarmDefineService.cs" />
+    <Compile Include="Backend\AboutView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Backend\AboutView.Designer.cs">
+      <DependentUpon>AboutView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Backend\Controls\AICtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Backend\Controls\AICtrl.Designer.cs">
+      <DependentUpon>AICtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Backend\Controls\AOCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Backend\Controls\AOCtrl.Designer.cs">
+      <DependentUpon>AOCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Backend\Controls\DICtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Backend\Controls\DICtrl.Designer.cs">
+      <DependentUpon>DICtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Backend\IBackendIoSimulator.cs" />
+    <Compile Include="Backend\IO\AI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Backend\IO\AI.Designer.cs">
+      <DependentUpon>AI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Backend\IO\AO.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Backend\IO\AO.Designer.cs">
+      <DependentUpon>AO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Backend\IO\DI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Backend\IO\DI.Designer.cs">
+      <DependentUpon>DI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Backend\IO\DO.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Backend\IO\DO.Designer.cs">
+      <DependentUpon>DO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Backend\IO\IIOView.cs" />
+    <Compile Include="Backend\IO\IoDataView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Backend\IO\IoDataView.Designer.cs">
+      <DependentUpon>IoDataView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Backend\MainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Backend\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Backend\SimulatorView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Backend\SimulatorView.Designer.cs">
+      <DependentUpon>SimulatorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Backend\SystemConfigView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Backend\SystemConfigView.Designer.cs">
+      <DependentUpon>SystemConfigView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Backend\UserLoginView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Backend\UserLoginView.Designer.cs">
+      <DependentUpon>UserLoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonData\CalibrationDataItem.cs" />
+    <Compile Include="CommonData\DeviceData\AITChillerData.cs" />
+    <Compile Include="CommonData\DeviceData\AITAlignerData.cs" />
+    <Compile Include="CommonData\DeviceData\AITBoostPumpData.cs" />
+    <Compile Include="CommonData\DeviceData\AITChillerData1.cs" />
+    <Compile Include="CommonData\DeviceData\AITConfigData.cs" />
+    <Compile Include="CommonData\DeviceData\AITCoolingControlData.cs" />
+    <Compile Include="CommonData\DeviceData\AITCylinderData.cs" />
+    <Compile Include="CommonData\DeviceData\AITGasSplitterData.cs" />
+    <Compile Include="CommonData\DeviceData\AITEmoData.cs" />
+    <Compile Include="CommonData\DeviceData\AITDeviceData.cs" />
+    <Compile Include="CommonData\DeviceData\AITHeaterData.cs" />
+    <Compile Include="CommonData\DeviceData\AITLidData.cs" />
+    <Compile Include="CommonData\DeviceData\AITMagnetData.cs" />
+    <Compile Include="CommonData\DeviceData\AITMfcData.cs" />
+    <Compile Include="CommonData\DeviceData\AITPressureControlData.cs" />
+    <Compile Include="CommonData\DeviceData\AITPressureMeterData.cs" />
+    <Compile Include="CommonData\DeviceData\AITPressureSensorData.cs" />
+    <Compile Include="CommonData\DeviceData\AITPumpData.cs" />
+    <Compile Include="CommonData\DeviceData\AITRfMatchData.cs" />
+    <Compile Include="CommonData\DeviceData\AITRfPowerData.cs" />
+    <Compile Include="CommonData\DeviceData\AITRfData.cs" />
+    <Compile Include="CommonData\DeviceData\AITRfidReaderData.cs" />
+    <Compile Include="CommonData\DeviceData\AITSensorData.cs" />
+    <Compile Include="CommonData\DeviceData\AITServoMotorData.cs" />
+    <Compile Include="CommonData\DeviceData\AITSignalTowerData.cs" />
+    <Compile Include="CommonData\DeviceData\AITStatisticsData.cs" />
+    <Compile Include="CommonData\DeviceData\AITThermalCoupleData.cs" />
+    <Compile Include="CommonData\DeviceData\AITThrottleValveData.cs" />
+    <Compile Include="CommonData\DeviceData\AITUPCData.cs" />
+    <Compile Include="CommonData\DeviceData\AITValveData.cs" />
+    <Compile Include="CommonData\DeviceData\AITVaporLineData.cs" />
+    <Compile Include="CommonData\DeviceData\AITWaferIdReaderData.cs" />
+    <Compile Include="CommonData\DeviceData\AITWaterFlowMeterData.cs" />
+    <Compile Include="CommonData\DeviceData\AITWaterFlowSensorData.cs" />
+    <Compile Include="CommonData\DeviceData\IDeviceData.cs" />
+    <Compile Include="CommonData\FdcDataItem.cs" />
+    <Compile Include="CommonData\HistoryDataItem.cs" />
+    <Compile Include="CommonData\NotifiableData.cs" />
+    <Compile Include="CommonData\RobotMoveInfo.cs" />
+    <Compile Include="CommonData\SorterDefines\CarrierConfigurationItem.cs" />
+    <Compile Include="CommonData\SorterDefines\DeviceState.cs" />
+    <Compile Include="CommonData\SorterDefines\FoupDockState.cs" />
+    <Compile Include="CommonData\SorterDefines\FoupClampState.cs" />
+    <Compile Include="CommonData\SorterDefines\FoupDoorState.cs" />
+    <Compile Include="CommonData\SorterDefines\IndicatorState.cs" />
+    <Compile Include="CommonData\SorterDefines\LoadPortCarrierMode.cs" />
+    <Compile Include="CommonData\SorterDefines\LoadportCassetteState.cs" />
+    <Compile Include="CommonData\SorterDefines\SlotTransferInfo.cs" />
+    <Compile Include="CommonData\SorterDefines\SorterHostUsageRecipeTableItem.cs" />
+    <Compile Include="CommonData\SorterDefines\SorterReadWaferIDRecipeXml.cs" />
+    <Compile Include="CommonData\SorterDefines\SorterRecipeOrderByMode.cs" />
+    <Compile Include="CommonData\SorterDefines\SorterRecipePlaceModeOrder.cs" />
+    <Compile Include="CommonData\SorterDefines\SorterRecipePlaceModePack.cs" />
+    <Compile Include="CommonData\SorterDefines\SorterRecipePlaceModeTransfer1To1.cs" />
+    <Compile Include="CommonData\SorterDefines\SorterRecipeTransferTableItem.cs" />
+    <Compile Include="CommonData\SorterDefines\SorterRecipeType.cs" />
+    <Compile Include="CommonData\SorterDefines\SorterHostUsageRecipeXml.cs" />
+    <Compile Include="CommonData\SorterDefines\SorterRecipeXml.cs" />
+    <Compile Include="CommonData\SorterDefines\TransferInfo.cs" />
+    <Compile Include="Communications\AsynSocketClient.cs" />
+    <Compile Include="Communications\AsynSocketServer.cs" />
+    <Compile Include="Communications\ConnectionBase.cs" />
+    <Compile Include="Communications\ConnectionManager.cs" />
+    <Compile Include="Communications\FsmConnection.cs" />
+    <Compile Include="Communications\HandlerBase.cs" />
+    <Compile Include="Communications\IConnectConfig.cs" />
+    <Compile Include="Communications\IConnectable.cs" />
+    <Compile Include="Communications\IConnection.cs" />
+    <Compile Include="Communications\Message.cs" />
+    <Compile Include="Communications\NotifiableConnectionItem.cs" />
+    <Compile Include="ControlDataContext\ChartDataLine.cs" />
+    <Compile Include="DataCenter\DiskManager.cs" />
+    <Compile Include="DataCenter\StatsDataManager.cs" />
+    <Compile Include="DBCore\CarrierDataRecorder.cs" />
+    <Compile Include="DBCore\DatabaseCleaner.cs" />
+    <Compile Include="DBCore\DatabaseTable.cs" />
+    <Compile Include="DBCore\DataQuery.cs" />
+    <Compile Include="DBCore\FfuDiffPressureDataRecorder.cs" />
+    <Compile Include="DBCore\FAJobDataRecorder.cs" />
+    <Compile Include="DBCore\LotDataRecorder.cs" />
+    <Compile Include="DBCore\JobMoveHistoryRecorder.cs" />
+    <Compile Include="DBCore\LinearProcessDataRecorder.cs" />
+    <Compile Include="DBCore\LeakCheckDataRecorder.cs" />
+    <Compile Include="DBCore\MFCVerificationDataRecorder.cs" />
+    <Compile Include="DBCore\OCRDataRecorder.cs.cs" />
+    <Compile Include="DBCore\ProcessDataRecorder.cs" />
+    <Compile Include="DBCore\JobDataRecorder.cs" />
+    <Compile Include="DBCore\RecipeDataRecorder.cs" />
+    <Compile Include="DBCore\StatsDataRecorder.cs" />
+    <Compile Include="DBCore\WaferDataRecorder.cs" />
+    <Compile Include="DBCore\WaferMoveHistoryRecorder.cs" />
+    <Compile Include="Device\Bases\ChillerBase.cs" />
+    <Compile Include="Device\Bases\GasSplitterBase.cs" />
+    <Compile Include="Device\Bases\LidBase.cs" />
+    <Compile Include="Device\Bases\PressureGaugeBase.cs" />
+    <Compile Include="Device\Bases\MfcBase.cs" />
+    <Compile Include="Device\Bases\MotorBase.cs" />
+    <Compile Include="Device\Bases\VCEBase.cs" />
+    <Compile Include="Device\Bases\SMIFBase.cs" />
+    <Compile Include="Device\Bases\SlitValveBase.cs" />
+    <Compile Include="Device\Bases\ThrottleValveBase.cs" />
+    <Compile Include="Device\Bases\PumpBase.cs" />
+    <Compile Include="Device\Bases\RfMatchBase.cs" />
+    <Compile Include="Device\Bases\HeaterBase.cs" />
+    <Compile Include="Device\Bases\RfPowerBase.cs" />
+    <Compile Include="Device\Bases\SignalLightBase.cs" />
+    <Compile Include="Device\Bases\SignalTowerBase.cs" />
+    <Compile Include="Device\Common\BaseDevice.cs" />
+    <Compile Include="Device\Common\DeviceDefineManager.cs" />
+    <Compile Include="Event\AlarmEventItem.cs" />
+    <Compile Include="Extension\SystemExtension.cs" />
+    <Compile Include="FAServices\DataVariables.cs" />
+    <Compile Include="FAServices\E40s\FAProcessJob.cs" />
+    <Compile Include="FAServices\E40s\ProcessJobState.cs" />
+    <Compile Include="FAServices\E94s\FAControlJob.cs" />
+    <Compile Include="FAServices\Gem300Events.cs" />
+    <Compile Include="FAServices\Gem300Service.cs" />
+    <Compile Include="FAServices\GemService.cs" />
+    <Compile Include="FAServices\IGemCallback.cs" />
+    <Compile Include="FAServices\SecsDataAttribute\SecsDataElementAttribute.cs" />
+    <Compile Include="FAServices\SecsDataAttribute\SecsDataRootAttribute.cs" />
+    <Compile Include="FAServices\UniversalEvents.cs" />
+    <Compile Include="FAServices\VIDItem.cs" />
+    <Compile Include="FAServices\VIDManager.cs" />
+    <Compile Include="FAServices\VIDManager2.cs" />
+    <Compile Include="Fsm\ActiveFsm.cs" />
+    <Compile Include="Fsm\ModuleEntity.cs" />
+    <Compile Include="PLC\IAdsPlc.cs" />
+    <Compile Include="PLC\IPlc.cs" />
+    <Compile Include="PLC\IWcfPlcService.cs" />
+    <Compile Include="PLC\WcfPlc.cs" />
+    <Compile Include="PLC\WcfPlcServiceClient.cs" />
+    <Compile Include="Jobs\ControlJob.cs" />
+    <Compile Include="Jobs\EnumControlJobState.cs" />
+    <Compile Include="Jobs\EnumProcessJobState.cs" />
+    <Compile Include="Jobs\LotInfo.cs" />
+    <Compile Include="Jobs\ProcessJobInfo.cs" />
+    <Compile Include="Jobs\ProcessJobManager.cs" />
+    <Compile Include="Jobs\SequenceInfo.cs" />
+    <Compile Include="Jobs\SequenceStepInfo.cs" />
+    <Compile Include="Jobs\SequenceStepModuleInfo.cs" />
+    <Compile Include="Log\LogCleaner.cs" />
+    <Compile Include="OperationCenter\IInterlockChecker.cs" />
+    <Compile Include="RecipeCenter\DefaultRecipeFileContext.cs" />
+    <Compile Include="RecipeCenter\DefaultSequenceFileContext.cs" />
+    <Compile Include="RecipeCenter\ISequenceFileContext.cs" />
+    <Compile Include="CommonData\MoveItem.cs" />
+    <Compile Include="CommonData\SlotItem.cs" />
+    <Compile Include="CommonData\EnumTransferType.cs" />
+    <Compile Include="RecipeCenter\RecipeTemplateColumnBase.cs" />
+    <Compile Include="Routine\ModuleRoutine.cs" />
+    <Compile Include="Routine\QueueRoutine.cs" />
+    <Compile Include="Routine\SeqenecRoutine2.cs" />
+    <Compile Include="SubstrateTrackings\CarrierConfigurationManager.cs" />
+    <Compile Include="SubstrateTrackings\MaterialInfo.cs" />
+    <Compile Include="SubstrateTrackings\WaferInfo.cs" />
+    <Compile Include="ControlDataContext\AnalogDataItem.cs" />
+    <Compile Include="ControlDataContext\BathDataItem.cs" />
+    <Compile Include="ControlDataContext\ControlDataItemBase.cs" />
+    <Compile Include="ControlDataContext\GasFlowButtonDataItem.cs" />
+    <Compile Include="ControlDataContext\GasFlowChartDataItem.cs" />
+    <Compile Include="ControlDataContext\GasValveDataItem.cs" />
+    <Compile Include="ControlDataContext\GateValveDataItem.cs" />
+    <Compile Include="ControlDataContext\GaugeItem.cs" />
+    <Compile Include="ControlDataContext\MfcItem.cs" />
+    <Compile Include="ControlDataContext\PcItem.cs" />
+    <Compile Include="ControlDataContext\PressureTransducerDataItem.cs" />
+    <Compile Include="ControlDataContext\ProcessDataChartDataItem.cs" />
+    <Compile Include="ControlDataContext\PumpDataItem.cs" />
+    <Compile Include="ControlDataContext\RawDataChartDataItem.cs" />
+    <Compile Include="ControlDataContext\ReadonlyGaugeDataItem.cs" />
+    <Compile Include="ControlDataContext\RfItem.cs" />
+    <Compile Include="ControlDataContext\SignalTowerDataItem.cs" />
+    <Compile Include="ControlDataContext\SmartDataLine.cs" />
+    <Compile Include="ControlDataContext\TcItem.cs" />
+    <Compile Include="DataCenter\IQueryDataService.cs" />
+    <Compile Include="Device\ModuleName.cs" />
+    <Compile Include="IOCore\IIoBuffer.cs" />
+    <Compile Include="IOCore\IIoProvider.cs" />
+    <Compile Include="IOCore\InterlockAction.cs" />
+    <Compile Include="IOCore\InterlockLimit.cs" />
+    <Compile Include="IOCore\InterlockManager.cs" />
+    <Compile Include="IOCore\IO.cs" />
+    <Compile Include="IOCore\IOAccessor.cs" />
+    <Compile Include="IOCore\IODefine.cs" />
+    <Compile Include="IOCore\IOManager.cs" />
+    <Compile Include="IOCore\IoProvider.cs" />
+    <Compile Include="IOCore\IoProviderManager.cs" />
+    <Compile Include="IOCore\NotifiableIoItem.cs" />
+    <Compile Include="MVVM\ChartViewModelBase.cs" />
+    <Compile Include="MVVM\DelegateCommand.cs" />
+    <Compile Include="MVVM\IViewModelControl.cs" />
+    <Compile Include="MVVM\SubscriptionCommand.cs" />
+    <Compile Include="MVVM\SubscriptionViewModelBase.cs" />
+    <Compile Include="MVVM\TimerViewModelBase.cs" />
+    <Compile Include="MVVM\ViewModelBase.cs" />
+    <Compile Include="NotifyTrayIcons\Hardcodet\BalloonIcon.cs" />
+    <Compile Include="NotifyTrayIcons\Hardcodet\PopupActivationMode.cs" />
+    <Compile Include="NotifyTrayIcons\Hardcodet\RoutedEventHelper.cs" />
+    <Compile Include="NotifyTrayIcons\Hardcodet\TaskbarIcon.cs" />
+    <Compile Include="NotifyTrayIcons\Hardcodet\TaskbarIcon.Declarations.cs" />
+    <Compile Include="NotifyTrayIcons\Hardcodet\Util.cs" />
+    <Compile Include="NotifyTrayIcons\Interop\AppBarInfo.cs" />
+    <Compile Include="NotifyTrayIcons\Interop\BalloonFlags.cs" />
+    <Compile Include="NotifyTrayIcons\Interop\IconDataMembers.cs" />
+    <Compile Include="NotifyTrayIcons\Interop\IconState.cs" />
+    <Compile Include="NotifyTrayIcons\Interop\MouseEvent.cs" />
+    <Compile Include="NotifyTrayIcons\Interop\NotifyCommand.cs" />
+    <Compile Include="NotifyTrayIcons\Interop\NotifyIconData.cs" />
+    <Compile Include="NotifyTrayIcons\Interop\NotifyIconVersion.cs" />
+    <Compile Include="NotifyTrayIcons\Interop\Point.cs" />
+    <Compile Include="NotifyTrayIcons\Interop\SystemInfo.cs" />
+    <Compile Include="NotifyTrayIcons\Interop\TrayInfo.cs" />
+    <Compile Include="NotifyTrayIcons\Interop\WinApi.cs" />
+    <Compile Include="NotifyTrayIcons\Interop\WindowClass.cs" />
+    <Compile Include="NotifyTrayIcons\Interop\WindowMessageSink.cs" />
+    <Compile Include="NotifyTrayIcons\Interop\WindowsMessages.cs" />
+    <Compile Include="NotifyTrayIcons\ShowWindowNotifyIcon.cs" />
+    <Compile Include="OperationCenter\InvokeService.cs" />
+    <Compile Include="OperationCenter\IInvokeService.cs" />
+    <Compile Include="OperationCenter\InvokeServiceClient.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Communications\AsyncSerialPort.cs" />
+    <Compile Include="Communications\Tcp\Buffer\BufferValidator.cs" />
+    <Compile Include="Communications\Tcp\Buffer\ISegmentBufferManager.cs" />
+    <Compile Include="Communications\Tcp\Buffer\SegmentBufferDeflector.cs" />
+    <Compile Include="Communications\Tcp\Buffer\SegmentBufferManager.cs" />
+    <Compile Include="Communications\Tcp\Buffer\UnableToAllocateBufferException.cs" />
+    <Compile Include="Communications\Tcp\Buffer\UnableToCreateMemoryException .cs" />
+    <Compile Include="Communications\Tcp\Socket\Client\APM\EventArgs\TcpServerConnectedEventArgs.cs" />
+    <Compile Include="Communications\Tcp\Socket\Client\APM\EventArgs\TcpServerDataReceivedEventArgs.cs" />
+    <Compile Include="Communications\Tcp\Socket\Client\APM\EventArgs\TcpServerDisconnectedEventArgs.cs" />
+    <Compile Include="Communications\Tcp\Socket\Client\APM\TcpSocketClient.cs" />
+    <Compile Include="Communications\Tcp\Socket\Client\APM\TcpSocketClientConfiguration.cs" />
+    <Compile Include="Communications\Tcp\Socket\Framing\Base\FrameBuilder.cs" />
+    <Compile Include="Communications\Tcp\Socket\Framing\Base\IFrameBuilder.cs" />
+    <Compile Include="Communications\Tcp\Socket\Framing\Base\IFrameDecoder.cs" />
+    <Compile Include="Communications\Tcp\Socket\Framing\Base\IFrameEncoder.cs" />
+    <Compile Include="Communications\Tcp\Socket\Framing\FixedLengthFrameBuilder.cs" />
+    <Compile Include="Communications\Tcp\Socket\Framing\LengthFieldBasedFrameBuilder.cs" />
+    <Compile Include="Communications\Tcp\Socket\Framing\LengthPrefixedFrameBuilder.cs" />
+    <Compile Include="Communications\Tcp\Socket\Framing\LineBasedFrameBuilder.cs" />
+    <Compile Include="Communications\Tcp\Socket\Framing\RawBufferFrameBuilder.cs" />
+    <Compile Include="Communications\Tcp\Socket\Server\APM\EventArgs\TcpClientConnectedEventArgs.cs" />
+    <Compile Include="Communications\Tcp\Socket\Server\APM\EventArgs\TcpClientDataReceivedEventArgs.cs" />
+    <Compile Include="Communications\Tcp\Socket\Server\APM\EventArgs\TcpClientDisconnectedEventArgs.cs" />
+    <Compile Include="Communications\Tcp\Socket\Server\APM\TcpSocketServer.cs" />
+    <Compile Include="Communications\Tcp\Socket\Server\APM\TcpSocketServerConfiguration.cs" />
+    <Compile Include="Communications\Tcp\Socket\Server\APM\TcpSocketSession.cs" />
+    <Compile Include="Communications\Tcp\Socket\TcpSocketConnectionState.cs" />
+    <Compile Include="SCCore\CONFIG.cs" />
+    <Compile Include="SCCore\ConfigEntry.cs" />
+    <Compile Include="SCCore\ConfigManager.cs" />
+    <Compile Include="SCCore\TypedConfigManager.cs" />
+    <Compile Include="SCCore\ICommonConfig.cs" />
+    <Compile Include="DataCenter\DATA.cs" />
+    <Compile Include="DataCenter\DataItem.cs" />
+    <Compile Include="DataCenter\DataManager.cs" />
+    <Compile Include="DataCenter\DataModule.cs" />
+    <Compile Include="DataCenter\ICommonData.cs" />
+    <Compile Include="DataCollection\DataCollectionManager.cs" />
+    <Compile Include="DataCollection\DefaultDataCollectionCallback.cs" />
+    <Compile Include="DataCollection\IDataCollectionCallback.cs" />
+    <Compile Include="DBCore\DatabaseManager.cs" />
+    <Compile Include="DBCore\DB.cs" />
+    <Compile Include="DBCore\ICommonDB.cs" />
+    <Compile Include="DBCore\PostgresqlDB.cs" />
+    <Compile Include="DBCore\PostgresqlHelper.cs" />
+    <Compile Include="Device\Common\DEVICE.cs" />
+    <Compile Include="Device\Common\DeviceEntityT.cs" />
+    <Compile Include="Device\Common\DeviceManagerBase.cs" />
+    <Compile Include="Device\Common\DeviceOperation.cs" />
+    <Compile Include="Device\Common\DeviceType.cs" />
+    <Compile Include="Device\Common\IDevice.cs" />
+    <Compile Include="Device\Common\IDeviceFactory.cs" />
+    <Compile Include="Device\Common\IDeviceManager.cs" />
+    <Compile Include="Event\EV.cs" />
+    <Compile Include="Event\EventDB.cs" />
+    <Compile Include="Event\EventDBWriter.cs" />
+    <Compile Include="Event\EventDefine.cs" />
+    <Compile Include="Event\EventEnum.cs" />
+    <Compile Include="Event\EventItem.cs" />
+    <Compile Include="Event\EventLogWriter.cs" />
+    <Compile Include="Event\EventMailWriter.cs" />
+    <Compile Include="Event\EventManager.cs" />
+    <Compile Include="Event\ICommonEvent.cs" />
+    <Compile Include="Fsm\DemoEntity.cs" />
+    <Compile Include="Fsm\Entity.cs" />
+    <Compile Include="Fsm\IEntity.cs" />
+    <Compile Include="Fsm\IStateMachine.cs" />
+    <Compile Include="Fsm\StateMachine.cs" />
+    <Compile Include="Key\KeyManager.cs" />
+    <Compile Include="Key\MachineCoder.cs" />
+    <Compile Include="Key\RsaCryption.cs" />
+    <Compile Include="Log\CounterLogger.cs" />
+    <Compile Include="Log\ICommonLog.cs" />
+    <Compile Include="Log\LOG.cs" />
+    <Compile Include="Log\LogItem.cs" />
+    <Compile Include="Log\LogManager.cs" />
+    <Compile Include="Log\LogWriter.cs" />
+    <Compile Include="OperationCenter\ICommonOperation.cs" />
+    <Compile Include="OperationCenter\OP.cs" />
+    <Compile Include="OperationCenter\OperationManager.cs" />
+    <Compile Include="PLC\IDataBuffer.cs" />
+    <Compile Include="PLC\IDataDevice.cs" />
+    <Compile Include="RecipeCenter\IRecipeFileContext.cs" />
+    <Compile Include="RecipeCenter\RecipeService.cs" />
+    <Compile Include="RecipeCenter\IRecipeService.cs" />
+    <Compile Include="RecipeCenter\RecipeFileManager.cs" />
+    <Compile Include="RecipeCenter\RecipeServiceClient.cs" />
+    <Compile Include="Routine\IRoutine.cs" />
+    <Compile Include="Routine\RoutineDefine.cs" />
+    <Compile Include="Routine\SeqenecRoutine.cs" />
+    <Compile Include="SCCore\ISCManager.cs" />
+    <Compile Include="SCCore\SC.cs" />
+    <Compile Include="SCCore\SCItem.cs" />
+    <Compile Include="SCCore\SystemConfigManager.cs" />
+    <Compile Include="Simulator\AiForce.cs" />
+    <Compile Include="Simulator\DiForce.cs" />
+    <Compile Include="Simulator\ExceptionCase.cs" />
+    <Compile Include="Simulator\SimulatorCaseManager.cs" />
+    <Compile Include="SubstrateTrackings\CarrierInfo.cs" />
+    <Compile Include="SubstrateTrackings\CarrierManager.cs" />
+    <Compile Include="SubstrateTrackings\WaferManager.cs" />
+    <Compile Include="Tolerance\ToleranceChecker.cs" />
+    <Compile Include="StylableWindow\ControlDoubleClickBehavior.cs" />
+    <Compile Include="StylableWindow\ShowSystemMenuBehavior.cs" />
+    <Compile Include="StylableWindow\SystemMenuManager.cs" />
+    <Compile Include="StylableWindow\WindowCloseCommand.cs" />
+    <Compile Include="StylableWindow\WindowDragBehavior.cs" />
+    <Compile Include="StylableWindow\WindowMaximizeCommand.cs" />
+    <Compile Include="StylableWindow\WindowMinimizeCommand.cs" />
+    <Compile Include="StylableWindow\WindowResizeBehavior.cs" />
+    <Compile Include="Utilities\AdminRelauncher.cs" />
+    <Compile Include="Utilities\ArrayUtil.cs" />
+    <Compile Include="Utilities\BinarySerializer.cs" />
+    <Compile Include="Utilities\CommonData.cs" />
+    <Compile Include="Utilities\Converter.cs" />
+    <Compile Include="Utilities\Crc16.cs" />
+    <Compile Include="Utilities\CultureSupported.cs" />
+    <Compile Include="Utilities\CustomXmlSerializer.cs" />
+    <Compile Include="Utilities\DeviceTimer.cs" />
+    <Compile Include="Utilities\DictionaryExpand.cs" />
+    <Compile Include="Utilities\EnumUtil.cs" />
+    <Compile Include="Utilities\ExcelHelper.cs" />
+    <Compile Include="Utilities\FileAssociation.cs" />
+    <Compile Include="Utilities\FileSigner.cs" />
+    <Compile Include="Utilities\FixSizeQueue.cs" />
+    <Compile Include="Utilities\IgnorePropertyChangeAttribute.cs" />
+    <Compile Include="Utilities\Md5Helper.cs" />
+    <Compile Include="Utilities\ObjectSerializer.cs" />
+    <Compile Include="Utilities\OperationAttribute.cs" />
+    <Compile Include="Utilities\ParameterManager.cs" />
+    <Compile Include="Utilities\PathManager.cs" />
+    <Compile Include="Utilities\PerformanceMonitor.cs" />
+    <Compile Include="Utilities\PeriodicJob.cs" />
+    <Compile Include="Utilities\ReasonedResult.cs" />
+    <Compile Include="Utilities\Retry.cs" />
+    <Compile Include="Utilities\SerializableDictionary.cs" />
+    <Compile Include="Utilities\Singleton.cs" />
+    <Compile Include="Utilities\SubscriptionAttribute.cs" />
+    <Compile Include="Utilities\SubscriptionModuleAttribute.cs" />
+    <Compile Include="Utilities\TagAttribute.cs" />
+    <Compile Include="Utilities\Trigger.cs" />
+    <Compile Include="Utilities\Utils.cs" />
+    <Compile Include="WCF\DuplexChannelServiceClientWrapper.cs" />
+    <Compile Include="Event\EventService.cs" />
+    <Compile Include="Event\EventServiceCallback.cs" />
+    <Compile Include="Event\EventServiceClient.cs" />
+    <Compile Include="Event\IEventService.cs" />
+    <Compile Include="Event\IEventServiceCallback.cs" />
+    <Compile Include="DataCenter\QueryDataService.cs" />
+    <Compile Include="DataCenter\QueryDataServiceClient.cs" />
+    <Compile Include="WCF\ServiceClientWrapper.cs" />
+    <Compile Include="WCF\WcfServiceManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\EventDefine.Core.xml" />
+    <Content Include="Resources\Logos\MyLogoNormal.ico" />
+    <Content Include="Resources\Logos\MyLogoPurple.ico" />
+    <Resource Include="Resources\Pump\ColdPump\pump_error.png" />
+    <Resource Include="Resources\Pump\ColdPump\pump_off.png" />
+    <Resource Include="Resources\Pump\ColdPump\pump_on.png" />
+    <Resource Include="Resources\Pump\ColdPump\pump_warning.png" />
+    <Resource Include="Resources\Pump\DryPump\pump_error.png" />
+    <Resource Include="Resources\Pump\DryPump\pump_off.png" />
+    <Resource Include="Resources\Pump\DryPump\pump_on.png" />
+    <Resource Include="Resources\Pump\DryPump\pump_warning.png" />
+    <Resource Include="Resources\Pump\TurboPump\pump_error.png" />
+    <Resource Include="Resources\Pump\TurboPump\pump_off.png" />
+    <Resource Include="Resources\Pump\TurboPump\pump_on.png" />
+    <Resource Include="Resources\Pump\TurboPump\pump_warning.png" />
+    <Resource Include="Resources\Logos\MyLogoTray.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\barcode.png" />
+    <Resource Include="Resources\Blue.png" />
+    <Resource Include="Resources\cb.png" />
+    <Resource Include="Resources\closed.png" />
+    <Resource Include="Resources\CustomDialogInformation.png" />
+    <Resource Include="Resources\Exit.png" />
+    <Resource Include="Resources\Gasbox.png" />
+    <Resource Include="Resources\Heater.png" />
+    <Resource Include="Resources\HeaterShining.png" />
+    <Resource Include="Resources\lights.png" />
+    <Resource Include="Resources\Lime.png" />
+    <Resource Include="Resources\LL\LBBracket.png" />
+    <Resource Include="Resources\LL\LBWheel_Color.png" />
+    <Resource Include="Resources\LL\LoadLockDoor.png" />
+    <Resource Include="Resources\LL\LoadLockMain.png" />
+    <Resource Include="Resources\LL\LTBracket.png" />
+    <Resource Include="Resources\LL\LTWheel_Color.png" />
+    <Resource Include="Resources\LL\RBBracket.png" />
+    <Resource Include="Resources\LL\RBWheel_Color.png" />
+    <Resource Include="Resources\LL\RTBracket.png" />
+    <Resource Include="Resources\LL\RTWheel_Color.png" />
+    <Resource Include="Resources\Loading1.gif" />
+    <Resource Include="Resources\Login\按钮.png" />
+    <Resource Include="Resources\Login\按钮_悬停.png" />
+    <Resource Include="Resources\Login\按钮_点击.png" />
+    <Resource Include="Resources\Login\输入框.png" />
+    <Resource Include="Resources\Login\输入框_选择.png" />
+    <Resource Include="Resources\Main\login.png" />
+    <Resource Include="Resources\Main\LogoEmpty.png" />
+    <Resource Include="Resources\Main\LogoJETP.png" />
+    <Resource Include="Resources\Main\tab.png" />
+    <Resource Include="Resources\Main\tab_悬停.png" />
+    <Resource Include="Resources\Main\tab次级.png" />
+    <Resource Include="Resources\Main\tab次级_悬停.png" />
+    <Resource Include="Resources\Main\上一个.png" />
+    <Resource Include="Resources\Main\上一个_悬停.png" />
+    <Resource Include="Resources\Main\上一个_点击.png" />
+    <Resource Include="Resources\Main\下一个.png" />
+    <Resource Include="Resources\Main\下一个_悬停.png" />
+    <Resource Include="Resources\Main\下一个_点击.png" />
+    <Resource Include="Resources\Main\下拉框_底板.png" />
+    <Resource Include="Resources\Main\下拉框_底板150.png" />
+    <Resource Include="Resources\Main\下拉框_底板JETP.png" />
+    <Resource Include="Resources\Main\主界面_切片.png" />
+    <Resource Include="Resources\Main\主界面_切片SORTER.png" />
+    <Resource Include="Resources\Main\主菜单按钮.png" />
+    <Resource Include="Resources\Main\主菜单按钮150.png" />
+    <Resource Include="Resources\Main\主菜单按钮_悬停.png" />
+    <Resource Include="Resources\Main\主菜单按钮_悬停150.png" />
+    <Resource Include="Resources\Main\主菜单按钮_点击.png" />
+    <Resource Include="Resources\Main\主菜单按钮_点击150.png" />
+    <Resource Include="Resources\Main\主菜单按钮_选中.png" />
+    <Resource Include="Resources\Main\主菜单按钮_选中150.png" />
+    <Resource Include="Resources\Main\事件按钮.png" />
+    <Resource Include="Resources\Main\事件按钮_悬停.png" />
+    <Resource Include="Resources\Main\事件按钮_点击.png" />
+    <Resource Include="Resources\Main\拖动组件.png" />
+    <Resource Include="Resources\opened.png" />
+    <Resource Include="Resources\Pump\boost_pump_enabled.png" />
+    <Resource Include="Resources\Pump\boost_pump_error.png" />
+    <Resource Include="Resources\Pump\boost_pump_off.png" />
+    <Resource Include="Resources\Pump\boost_pump_on.png" />
+    <Resource Include="Resources\Pump\boost_pump_warning.png" />
+    <Resource Include="Resources\Pump\pump_error.png" />
+    <Resource Include="Resources\Pump\pump_off.png" />
+    <Resource Include="Resources\Pump\pump_on.png" />
+    <Resource Include="Resources\Pump\pump_warning.png" />
+    <Resource Include="Resources\RecipeFile.png" />
+    <Resource Include="Resources\RecipeFolder.png" />
+    <Resource Include="Resources\red.png" />
+    <Resource Include="Resources\Robot.png" />
+    <Resource Include="Resources\SystemLog\Alarm.png" />
+    <Resource Include="Resources\SystemLog\EquipLog.png" />
+    <Resource Include="Resources\SystemLog\Information.png" />
+    <Resource Include="Resources\SystemLog\UserOperation.png" />
+    <Resource Include="Resources\SystemLog\Warning.png" />
+    <Resource Include="Resources\unknown.png" />
+    <Resource Include="Resources\Valve\FastPumpValve.png" />
+    <Resource Include="Resources\Valve\PumpBlack.png" />
+    <Resource Include="Resources\Valve\PumpGray.png" />
+    <Resource Include="Resources\Valve\PumpGreen.png" />
+    <Resource Include="Resources\Valve\PumpRed.png" />
+    <Resource Include="Resources\Valve\SlowPumpValve.png" />
+    <Resource Include="Resources\Valve\ValveClosed.png" />
+    <Resource Include="Resources\Valve\valveCloseHorizontal.png" />
+    <Resource Include="Resources\Valve\valveCloseVertical.png" />
+    <Resource Include="Resources\Valve\valveOpenHorizontal.png" />
+    <Resource Include="Resources\Valve\valveOpenVertical.png" />
+    <Resource Include="Resources\Yellow.png" />
+    <Resource Include="Resources\zoom_all.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Backend\AboutView.resx">
+      <DependentUpon>AboutView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Backend\Controls\AICtrl.resx">
+      <DependentUpon>AICtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Backend\Controls\AOCtrl.resx">
+      <DependentUpon>AOCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Backend\Controls\DICtrl.resx">
+      <DependentUpon>DICtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Backend\IO\AI.resx">
+      <DependentUpon>AI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Backend\IO\AO.resx">
+      <DependentUpon>AO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Backend\IO\DI.resx">
+      <DependentUpon>DI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Backend\IO\DO.resx">
+      <DependentUpon>DO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Backend\IO\IoDataView.resx">
+      <DependentUpon>IoDataView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Backend\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Backend\SimulatorView.resx">
+      <DependentUpon>SimulatorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Backend\SystemConfigView.resx">
+      <DependentUpon>SystemConfigView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Backend\UserLoginView.resx">
+      <DependentUpon>UserLoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.en-US.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-CN.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Resources\Language\StringResources.en-US.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Language\StringResources.zh-CN.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Resource Include="StylableWindow\TitleBarWindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FAServices\E90s\" />
+    <Folder Include="Schedulers\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

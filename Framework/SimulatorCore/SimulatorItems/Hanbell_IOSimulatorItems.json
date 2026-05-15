@@ -1,0 +1,16 @@
+{
+  "IOSimulatorItemList": [
+    {
+      "SourceCommandName": "OperatePump",
+      "SourceCommand": "5",
+      "SuccessResponse": "9E,05,00,0A,FF,00",
+      "FailedResponse": ""
+    },
+    {
+        "SourceCommandName": "RequestRegisters",
+        "SourceCommand": "3",
+        "SuccessResponse": "00,00,00,00,00,5D,9E,03,5A",
+        "FailedResponse": "9E,03,5A,01,02,03,04,05,06,07,08,09,0A,01,02,03,04,05,06,07,08,09,0A,01,02,03,04,05,06,07,08,09,0A,01,02,03,04,05,06,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,06,07,08,09,0A,01,02,03,04,05,06,07,08,09,0A,01,02,03,04,05,06,07,08,09,0A"
+    }
+  ]
+}

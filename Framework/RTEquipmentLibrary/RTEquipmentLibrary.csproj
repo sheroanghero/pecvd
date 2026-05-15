@@ -1,0 +1,545 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{090A1E9C-1087-4C8A-B4E0-FF074459E071}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MECF.Framework.RT.EquipmentLibrary</RootNamespace>
+    <AssemblyName>MECF.Framework.RT.EquipmentLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\output\MECF.Framework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.2</LangVersion>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>67,168,169,414</NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.2</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HslCommunication">
+      <HintPath>..\..\ThirdParty\dlls\HslCommunication.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WinSECS">
+      <HintPath>..\..\ThirdParty\dlls\WinSECS.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HardwareUnits\Aligners\AlignerBase.cs" />
+    <Compile Include="HardwareUnits\Aligners\AlignersBase\AlignerBaseDevice.cs" />
+    <Compile Include="HardwareUnits\Aligners\AlignersBase\AlignerStateEnum.cs" />
+    <Compile Include="HardwareUnits\Aligners\HonghuAligners\FuQiAligner.cs" />
+    <Compile Include="HardwareUnits\Aligners\HonghuAligners\FuqiAlignerConnection.cs" />
+    <Compile Include="HardwareUnits\Aligners\HonghuAligners\FuqiAlignerHandler.cs" />
+    <Compile Include="HardwareUnits\Aligners\HonghuAligners\Old\HonghuAligner.cs" />
+    <Compile Include="HardwareUnits\Aligners\HonghuAligners\Old\HonghuAlignerConnection.cs" />
+    <Compile Include="HardwareUnits\Aligners\HonghuAligners\Old\HonghuAlignerHandler.cs" />
+    <Compile Include="HardwareUnits\Aligners\JelAligner\JelAligner.cs" />
+    <Compile Include="HardwareUnits\Aligners\JelAligner\JelAlignerConnection.cs" />
+    <Compile Include="HardwareUnits\Aligners\JelAligner\JelAlignerHandler.cs" />
+    <Compile Include="HardwareUnits\Aligners\JelAligner\JelAlignerEG.cs" />
+    <Compile Include="HardwareUnits\Aligners\JelAligner\JelAlignerWithLiftNcd.cs" />
+    <Compile Include="HardwareUnits\Aligners\SiasunAligner\SiasunAligner.cs" />
+    <Compile Include="HardwareUnits\Aligners\SiasunAligner\SiasunAlignerConnection.cs" />
+    <Compile Include="HardwareUnits\Aligners\SiasunAligner\SiasunAlignerHandler.cs" />
+    <Compile Include="HardwareUnits\Aligners\TazmoAlignerII\TazmoAlignerII.cs" />
+    <Compile Include="HardwareUnits\Aligners\TazmoAlignerII\TazmoAlignerIIConnection.cs" />
+    <Compile Include="HardwareUnits\Aligners\TazmoAlignerII\TazmoAlignerIIHandler.cs" />
+    <Compile Include="HardwareUnits\Aligners\TazmoAlignerII\TazmoAlignerWithOcrCylinder.cs" />
+    <Compile Include="HardwareUnits\Aligners\YaskawaNXC100Aligner\YaskawaNxcAligner.cs" />
+    <Compile Include="HardwareUnits\Aligners\YaskawaNXC100Aligner\YaskawaNxcAlignerConnection.cs" />
+    <Compile Include="HardwareUnits\Aligners\YaskawaNXC100Aligner\YaskawaNxcAlignerHandler.cs" />
+    <Compile Include="HardwareUnits\Aligners\YaskawaSR100Aligner\YaskawaAligner.cs" />
+    <Compile Include="HardwareUnits\Aligners\YaskawaSR100Aligner\YaskawaAlignerConnection.cs" />
+    <Compile Include="HardwareUnits\Aligners\YaskawaSR100Aligner\YaskawaAlignerHandler.cs" />
+    <Compile Include="HardwareUnits\Aligners\YaskawaSR100Aligner\YaskawaSrAlignerWithPositioner.cs" />
+    <Compile Include="HardwareUnits\Buffer\BufferBaseDevice.cs" />
+    <Compile Include="HardwareUnits\CarrierIdReaders\CarrierIDReaderBase\CIDReaderBaseDevice.cs" />
+    <Compile Include="HardwareUnits\CarrierIdReaders\CarrierIDReaderBase\ICarrierIDReader.cs" />
+    <Compile Include="HardwareUnits\CarrierIdReaders\GeneralBarcodeReader\KeyenceBarcodeReader.cs" />
+    <Compile Include="HardwareUnits\CarrierIdReaders\GeneralBarcodeReader\GeneralBarcodeReader.cs" />
+    <Compile Include="HardwareUnits\CarrierIdReaders\Honeywell\Hf800BarcodeReader.cs" />
+    <Compile Include="HardwareUnits\CarrierIdReaders\MyModbus\MyRfidReaderModbusTcp.cs" />
+    <Compile Include="HardwareUnits\CarrierIdReaders\OmronBarcodeReader\OmronBarcodeReaderII.cs" />
+    <Compile Include="HardwareUnits\CarrierIdReaders\OmronV640\OmronV640Serial.cs" />
+    <Compile Include="HardwareUnits\CarrierIdReaders\OmronV640\OmronV640Tcp.cs" />
+    <Compile Include="HardwareUnits\Chillers\SmcChillers\SmcHRZChiller.cs" />
+    <Compile Include="HardwareUnits\Chillers\SmcChillers\SmcHRZChillerConnection.cs" />
+    <Compile Include="HardwareUnits\Chillers\SmcChillers\SmcHRZChillerHandler.cs" />
+    <Compile Include="HardwareUnits\Chillers\SmcChillers\SmcHRSChiller.cs" />
+    <Compile Include="HardwareUnits\Chillers\SmcChillers\SmcHRSChillerConnection.cs" />
+    <Compile Include="HardwareUnits\Chillers\SmcChillers\SmcHRSChillerHandler.cs" />
+    <Compile Include="HardwareUnits\Chillers\BaecChiller\BaecChiller.cs" />
+    <Compile Include="HardwareUnits\Chillers\BaecChiller\BaecChillerConnection.cs" />
+    <Compile Include="HardwareUnits\Chillers\BaecChiller\BaecChillerHandler.cs" />
+    <Compile Include="HardwareUnits\Chillers\IChiller.cs" />
+    <Compile Include="HardwareUnits\Chillers\RisshiChiller\RisshiChiller.cs" />
+    <Compile Include="HardwareUnits\Chillers\RisshiChiller\RisshiChillerConnection.cs" />
+    <Compile Include="HardwareUnits\Chillers\RisshiChiller\RisshiChillerHandler.cs" />
+    <Compile Include="HardwareUnits\Common\CommandStringBuilder.cs" />
+    <Compile Include="HardwareUnits\Common\IOCommandReader.cs" />
+    <Compile Include="HardwareUnits\Common\IOCommandModel.cs" />
+    <Compile Include="HardwareUnits\Common\IOResponse.cs" />
+    <Compile Include="HardwareUnits\Common\SerialPortDevice.cs" />
+    <Compile Include="HardwareUnits\Common\TCPSocketDevice.cs" />
+    <Compile Include="HardwareUnits\DCPowers\DXKDP\DxkdpDcPower.cs" />
+    <Compile Include="HardwareUnits\DCPowers\DXKDP\DxkdpDcPowerConnection.cs" />
+    <Compile Include="HardwareUnits\DCPowers\DXKDP\DxkdpDcPowerHandler.cs" />
+    <Compile Include="HardwareUnits\DCPowers\AE\AeDcPower.cs" />
+    <Compile Include="HardwareUnits\DCPowers\AE\AeDcPowerConnection.cs" />
+    <Compile Include="HardwareUnits\DCPowers\AE\AeDcPowerHandler.cs" />
+    <Compile Include="HardwareUnits\Efems\Rorzes\RorzeEfemCommand.cs" />
+    <Compile Include="HardwareUnits\Efems\Rorzes\RorzeEfemAbsError.cs" />
+    <Compile Include="HardwareUnits\Efems\Rorzes\RorzeEfemStateType.cs" />
+    <Compile Include="HardwareUnits\Efems\Rorzes\SocketClient.cs" />
+    <Compile Include="HardwareUnits\Efems\Rorzes\IEfemCallback.cs" />
+    <Compile Include="HardwareUnits\Efems\Rorzes\RorzeEfem.cs" />
+    <Compile Include="HardwareUnits\Efems\Rorzes\RorzeEfemConnection.cs" />
+    <Compile Include="HardwareUnits\Efems\Rorzes\RorzeEfemHandler.cs" />
+    <Compile Include="HardwareUnits\Efems\Rorzes\RorzeEfemMessageType.cs" />
+    <Compile Include="HardwareUnits\Efems\Siasuns\SiasunsEfemHandler.cs" />
+    <Compile Include="HardwareUnits\Efems\Siasuns\SiasunsEfem.cs" />
+    <Compile Include="HardwareUnits\Efems\Siasuns\SiasunsEfemConnection.cs" />
+    <Compile Include="HardwareUnits\FFUs\AAF2\FfuAAF.cs" />
+    <Compile Include="HardwareUnits\FFUs\AAF2\FfuAAFConnection.cs" />
+    <Compile Include="HardwareUnits\FFUs\AAF2\FfuAAFHandler.cs" />
+    <Compile Include="HardwareUnits\FFUs\AAFNew\FfuAAFNew.cs" />
+    <Compile Include="HardwareUnits\FFUs\AAFNew\FfuAAFNewConnection.cs" />
+    <Compile Include="HardwareUnits\FFUs\AAFNew\FfuAAFNewHandler.cs" />
+    <Compile Include="HardwareUnits\FFUs\Aire\FfuAAF.cs" />
+    <Compile Include="HardwareUnits\FFUs\Aire\FfuAAFConnection.cs" />
+    <Compile Include="HardwareUnits\FFUs\Aire\FfuAAFHandler.cs" />
+    <Compile Include="HardwareUnits\FFUs\AAF\FfuAAF.cs" />
+    <Compile Include="HardwareUnits\FFUs\AAF\FfuAAFConnection.cs" />
+    <Compile Include="HardwareUnits\FFUs\AAF\FfuAAFHandler.cs" />
+    <Compile Include="HardwareUnits\FFUs\DW254Pressure\DWConnection.cs" />
+    <Compile Include="HardwareUnits\FFUs\DW254Pressure\DWPressure.cs" />
+    <Compile Include="HardwareUnits\Flipper\FlipperBase\FlipperBaseDevice.cs" />
+    <Compile Include="HardwareUnits\Flipper\FlipperBase\IFlipper.cs" />
+    <Compile Include="HardwareUnits\MFSs\FY8300\FY8300Connection.cs" />
+    <Compile Include="HardwareUnits\MFSs\FY8300\FY8300Handler.cs" />
+    <Compile Include="HardwareUnits\LoadLock\LoadLockBaseDevice.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\Fortrend\FortrendSMIFEventEnum.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\Fortrend\FortrendSMIFHostAgent.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\Fortrend\FortrendSmifPort.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\Fortrend\FortrendSMIFRCMDEnum.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\Fortrend\SECSTransactionBuilder.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\HirataII\HirataIILoadPort.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\HirataII\HirataIILoadPortConnection.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\HirataII\HirataIILoadPortHandler.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\Hirata\HirataLoadPort.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\Hirata\HirataLoadPortConnection.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\Hirata\HirataLoadPortHandler.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\LoadPortBase\ILoadPort.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\LoadPortBase\LoadPortBaseDevice.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\NCD\NcdIoLoadPort.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageBoffottoMetro.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageGcl200.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageGonaZingSemi.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageHHGcl200.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageHHFn.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageHHZsw.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageNCDSmec.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageSanYouDemo.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageHHTuoding01.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageHHFulian01.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageHHGyy.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageLoadPort3.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageLoadPort2.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageLoadPortSuper1.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageLoadPortZJPolish.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageNCDUnisim.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageWithWaferSizeLoadPort.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageXssCcmc.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\SG\SELP8LoadPort.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\SG\SELP8LoadPortConnection.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\SG\SELP8LoadPortHandler.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\SMIF\BrooksSMIFEventEnum.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\SMIF\BrooksSMIFHostAgent.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\SMIF\BrooksSmifPort.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\SMIF\BrooksSMIFRCMDEnum.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\SMIF\SECSTransactionBuilder.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\SMIF\SmifStageHhSmec.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDKB200\TDKB200LoadPort.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDKB200\TDKB200LoadPortConnection.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDKB200\TDKB200LoadPortHandler.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDKB\TDKBLoadPort.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDKB\TDKBLoadPortConnection.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDKB\TDKBLoadPortHandler.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDKB\TDKBLoadPortHhYx.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDKB\TDKBLoadPortXss.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDKII\TDKIILoadPort.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDKII\TDKLoadPortConnection.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDKII\TDKLoadPortHandler.cs" />
+    <Compile Include="HardwareUnits\MFCs\FujikinMFC\FujikinMFC.cs" />
+    <Compile Include="HardwareUnits\MFCs\FujikinMFC\FujikinMFCConnection.cs" />
+    <Compile Include="HardwareUnits\MFCs\FujikinMFC\FujikinMFCHandler.cs" />
+    <Compile Include="HardwareUnits\MFCs\IMfc.cs" />
+    <Compile Include="HardwareUnits\MFSs\FY8300\FY8300.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\Cognex\CognexAsyncSocket.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\Cognex\CognexConnection.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\Cognex\CognexHandler.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\Cognex\CognexWaferIDReader.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\HST\HstConnection.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\HST\HstConnectionBase.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\HST\HstHandler.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\HST\HstOcrReader.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\IOSS\110\Ioss110WidReader.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\IOSS\110\Wid110Lib.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\IOSS\110\Wid110LibConst.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\IOSS\110\Wid110LibConstDevel.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\IOSS\120\IossWidReader.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\IOSS\120\Wid110Lib.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\IOSS\120\Wid110LibConst.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\OCRReaderBase\OCRReaderBase.cs" />
+    <Compile Include="HardwareUnits\Pumps\EdwardsPump2205\EdwardsPump2205.cs" />
+    <Compile Include="HardwareUnits\Pumps\EdwardsPump2205\EdwardsPump2205MessageType.cs" />
+    <Compile Include="HardwareUnits\Pumps\EdwardsPump2205\EdwardsPump2205Connection.cs" />
+    <Compile Include="HardwareUnits\Pumps\EdwardsPump2205\EdwardsPump2205Handler.cs" />
+    <Compile Include="HardwareUnits\Pumps\EdwardsPump\EdwardsPump.cs" />
+    <Compile Include="HardwareUnits\Pumps\EdwardsPump\EdwardsPumpConnection.cs" />
+    <Compile Include="HardwareUnits\Pumps\EdwardsPump\EdwardsPumpHandler.cs" />
+    <Compile Include="HardwareUnits\Pumps\Hanbells\HanbellPump.cs" />
+    <Compile Include="HardwareUnits\Pumps\Hanbells\HanbellPumpConnection.cs" />
+    <Compile Include="HardwareUnits\Pumps\Hanbells\HanbellPumpHandler.cs" />
+    <Compile Include="HardwareUnits\MFCs\HoribaMFC\HoribaConnection.cs" />
+    <Compile Include="HardwareUnits\MFCs\HoribaMFC\HoribaHandler.cs" />
+    <Compile Include="HardwareUnits\Pumps\IPump.cs" />
+    <Compile Include="HardwareUnits\Pumps\PfeifferPumpA100\PfeifferPumpA100.cs" />
+    <Compile Include="HardwareUnits\Pumps\PfeifferPumpA100\PfeifferPumpA100Connection.cs" />
+    <Compile Include="HardwareUnits\Pumps\PfeifferPumpA100\PfeifferPumpA100Handler.cs" />
+    <Compile Include="HardwareUnits\RemoteControl\RemoteControl.cs" />
+    <Compile Include="HardwareUnits\RemoteControl\RemoteControlConnection.cs" />
+    <Compile Include="HardwareUnits\RemoteControl\RemoteControlHandler.cs" />
+    <Compile Include="HardwareUnits\RFs\AdTecTxHigh\TxHighFrequencyRF.cs" />
+    <Compile Include="HardwareUnits\RFs\AdTecTxHigh\TxHighFrequencyRFConnection.cs" />
+    <Compile Include="HardwareUnits\RFs\AdTecTxHigh\TxHighFrequencyRFHandler.cs" />
+    <Compile Include="HardwareUnits\RFs\AdTecTxLow\TxLowFrequencyRF.cs" />
+    <Compile Include="HardwareUnits\RFs\AdTecTxLow\TxLowFrequencyRFConnection.cs" />
+    <Compile Include="HardwareUnits\RFs\AdTecTxLow\TxLowFrequencyRFHandler.cs" />
+    <Compile Include="HardwareUnits\RFs\MKSs\MksRfPlasmaGenerator.cs" />
+    <Compile Include="HardwareUnits\RFs\MKSs\MksRfPlasmaGeneratorConnection.cs" />
+    <Compile Include="HardwareUnits\RFs\MKSs\MksRfPlasmaGeneratorHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\AsyncSerialPort.cs" />
+    <Compile Include="HardwareUnits\ThrottleValves\VAT\VATS650.cs" />
+    <Compile Include="HardwareUnits\TurboPumps\OsakaPumpTGkine\OsakaPumpTGkine.cs" />
+    <Compile Include="HardwareUnits\TurboPumps\OsakaPumpTGkine\OsakaPumpTGkineConnection.cs" />
+    <Compile Include="HardwareUnits\TurboPumps\OsakaPumpTGkine\OsakaPumpTGkineHandler.cs" />
+    <Compile Include="HardwareUnits\Pumps\PfeifferPumpA603\PfeifferPumpA603.cs" />
+    <Compile Include="HardwareUnits\Pumps\PfeifferPumpA603\PfeifferPumpA603Connection.cs" />
+    <Compile Include="HardwareUnits\Pumps\PfeifferPumpA603\PfeifferPumpA603Handler.cs" />
+    <Compile Include="HardwareUnits\Pumps\SkySGMPump\SkySGMPump.cs" />
+    <Compile Include="HardwareUnits\Pumps\SkySGMPump\SkySGMPumpConnection.cs" />
+    <Compile Include="HardwareUnits\Pumps\SkySGMPump\SkySGMPumpHandler.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\AE\AeRfMatch.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\AE\AeRfMatchConnection.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\AE\AeRfMatchHandler.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\AE\AeRfMatchState.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\Kaimei\KaimeiRFMatch.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\Kaimei\KaimeiRFMatchConnection.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\Kaimei\KaimeiRFMatchHandler.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\MKSs\MksRfMatch.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\MKSs\MksRfMatchConnection.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\MKSs\MksRfMatchHandler.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\MKSs\MksRfMatchState.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\Serens\SerenRfMatch.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\Serens\SerenRfMatchConnection.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\Serens\SerenRfMatchHandler.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\Serens\SerenRfMatchState.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\STeam\STeamRFMatch.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\STeam\STeamRFMatchConnection.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\STeam\STeamRFMatchHanlder.cs" />
+    <Compile Include="HardwareUnits\RFs\AE\AeRfPower.cs" />
+    <Compile Include="HardwareUnits\RFs\AE\AeRfPowerConnection.cs" />
+    <Compile Include="HardwareUnits\RFs\AE\AeRfPowerHandler.cs" />
+    <Compile Include="HardwareUnits\RFs\MKSs\MksRfPower.cs" />
+    <Compile Include="HardwareUnits\RFs\MKSs\MksRfPowerConnection.cs" />
+    <Compile Include="HardwareUnits\RFs\MKSs\MksRfPowerHandler.cs" />
+    <Compile Include="HardwareUnits\RFs\Serens\SerenRfPower.cs" />
+    <Compile Include="HardwareUnits\RFs\Serens\SerenRfPowerConnection.cs" />
+    <Compile Include="HardwareUnits\RFs\Serens\SerenRfPowerHandler.cs" />
+    <Compile Include="HardwareUnits\RFs\TruPlasmaRF1000\TruPlasmaRF1000.cs" />
+    <Compile Include="HardwareUnits\RFs\TruPlasmaRF1000\TruPlasmaRF1000Connection.cs" />
+    <Compile Include="HardwareUnits\RFs\TruPlasmaRF1000\TruPlasmaRF1000Handler.cs" />
+    <Compile Include="HardwareUnits\RFs\TruPlasmaRF1001\TruPlasmaRF1001.cs" />
+    <Compile Include="HardwareUnits\RFs\TruPlasmaRF1001\TruPlasmaRF1001Connection.cs" />
+    <Compile Include="HardwareUnits\RFs\TruPlasmaRF1001\TruPlasmaRF1001Handler.cs" />
+    <Compile Include="HardwareUnits\RFs\Wattsine\WattsineRF.cs" />
+    <Compile Include="HardwareUnits\RFs\Wattsine\WattsineRFConnection.cs" />
+    <Compile Include="HardwareUnits\RFs\Wattsine\WattsineRFHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\GuanAng\GAPlcRobot.cs" />
+    <Compile Include="HardwareUnits\Robots\HirataRobotII\HirataRobotII.cs" />
+    <Compile Include="HardwareUnits\Robots\HirataRobotII\HirataRobotIIConnection.cs" />
+    <Compile Include="HardwareUnits\Robots\HirataRobotII\HirataRobotIIHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\JEL\JELC4400\JelBoffottEfem.cs" />
+    <Compile Include="HardwareUnits\Robots\JEL\JELC4400\JelRobotWithX.cs" />
+    <Compile Include="HardwareUnits\Robots\JEL\JELC5000\JelC5000Robot.cs" />
+    <Compile Include="HardwareUnits\Robots\JEL\JELC5000\JelC5000RobotConnection.cs" />
+    <Compile Include="HardwareUnits\Robots\JEL\JELC5000\JelC5000RobotHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\JEL\JELC500Flippe\JelC5000RobotFlippe.cs" />
+    <Compile Include="HardwareUnits\Robots\JEL\JELC500Flippe\JelC5000RobotFlippeConnection.cs" />
+    <Compile Include="HardwareUnits\Robots\JEL\JELC500Flippe\JelC5000RobotFlippeHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\Rorze751\RorzeRobot751.cs" />
+    <Compile Include="HardwareUnits\Robots\Rorze751\RorzeRobot751Connection.cs" />
+    <Compile Include="HardwareUnits\Robots\Rorze751\RorzeRobot751Handler.cs" />
+    <Compile Include="HardwareUnits\Robots\Siasun1500C800C\RobotSiasun1500C800C.cs" />
+    <Compile Include="HardwareUnits\Robots\Siasun1500C800C\RobotSiasun1500C800CConnection.cs" />
+    <Compile Include="HardwareUnits\Robots\Siasun1500C800C\RobotSiasun1500C800CHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\YaskakwaNXC\YaskawaNXCRobot.cs" />
+    <Compile Include="HardwareUnits\Robots\YaskakwaNXC\YaskawaNXCRobotConnection.cs" />
+    <Compile Include="HardwareUnits\Robots\YaskakwaNXC\YaskawaNXCRobotHandler.cs" />
+    <Compile Include="HardwareUnits\SMIFs\Reje\RejeSMIF.cs" />
+    <Compile Include="HardwareUnits\SMIFs\Reje\RejeSMIFConnection.cs" />
+    <Compile Include="HardwareUnits\SMIFs\Reje\RejeSMIFHandler.cs" />
+    <Compile Include="HardwareUnits\Temperatures\AEs\AEOR4000T.cs" />
+    <Compile Include="HardwareUnits\Temperatures\AEs\AEOR4000TConnection.cs" />
+    <Compile Include="HardwareUnits\Temperatures\AEs\AEOR4000THandler.cs" />
+    <Compile Include="HardwareUnits\Temperatures\Eurotherms\EurothermP116.cs" />
+    <Compile Include="HardwareUnits\Temperatures\Eurotherms\EurothermP116Connection.cs" />
+    <Compile Include="HardwareUnits\Temperatures\Eurotherms\EurothermP116Handler.cs" />
+    <Compile Include="HardwareUnits\Temperatures\Omrons\OmronEJ1.cs" />
+    <Compile Include="HardwareUnits\Temperatures\Omrons\OmronEJ1Connection.cs" />
+    <Compile Include="HardwareUnits\Temperatures\Omrons\OmronEJ1Handler.cs" />
+    <Compile Include="HardwareUnits\TurboPumps\PfeifferHipace\HipaceConnection.cs" />
+    <Compile Include="HardwareUnits\TurboPumps\PfeifferHipace\HipaceHandler.cs" />
+    <Compile Include="HardwareUnits\TurboPumps\PfeifferHipace\HipaceTurboPump.cs" />
+    <Compile Include="HardwareUnits\Pumps\SkyPump\SkyPump.cs" />
+    <Compile Include="HardwareUnits\Pumps\SkyPump\SkyPumpConnection.cs" />
+    <Compile Include="HardwareUnits\Pumps\SkyPump\SkyPumpHandler.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\Comet\CometRFMatch.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\Comet\CometRFMatchConnection.cs" />
+    <Compile Include="HardwareUnits\RFMatchs\Comet\CometRFMatchHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\HineAutomation\ConnectionBase.cs" />
+    <Compile Include="HardwareUnits\Robots\HineAutomation\HAtmConnection.cs" />
+    <Compile Include="HardwareUnits\Robots\HineAutomation\HAtmHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\HineAutomation\HAtmRobot.cs" />
+    <Compile Include="HardwareUnits\Robots\HineAutomation\RobotConvertor.cs" />
+    <Compile Include="HardwareUnits\Aligners\TazmoAligners\TazmoAligner.cs" />
+    <Compile Include="HardwareUnits\Aligners\TazmoAligners\TazmoAlignerConnection.cs" />
+    <Compile Include="HardwareUnits\Aligners\TazmoAligners\TazmoAlignerHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\HirataRobot\HirataR4Robot.cs" />
+    <Compile Include="HardwareUnits\Robots\HirataRobot\HirataR4RobotConnection.cs" />
+    <Compile Include="HardwareUnits\Robots\HirataRobot\HirataR4RobotHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\JEL\JELC4400\JelRobot.cs" />
+    <Compile Include="HardwareUnits\Robots\JEL\JELC4400\JelRobotConnection.cs" />
+    <Compile Include="HardwareUnits\Robots\JEL\JELC4400\JelRobotHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\RobotBase\RobotBase.cs" />
+    <Compile Include="HardwareUnits\Robots\SiasunPhoenixB\RobotSiasunPhoenixB.cs" />
+    <Compile Include="HardwareUnits\Robots\SiasunPhoenixB\RobotSiasunPhoenixBConnection.cs" />
+    <Compile Include="HardwareUnits\Robots\SiasunPhoenixB\RobotSiasunPhoenixBHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\TazmoRobot\TazmoRobot.cs" />
+    <Compile Include="HardwareUnits\Robots\TazmoRobot\TazmoRobotConnection.cs" />
+    <Compile Include="HardwareUnits\Robots\TazmoRobot\TazmoRobotHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\YaskawaRobots\YaskawaRobot.cs" />
+    <Compile Include="HardwareUnits\Robots\YaskawaRobots\YaskawaRobotConnection.cs" />
+    <Compile Include="HardwareUnits\Robots\YaskawaRobots\YaskawaRobotHandler.cs" />
+    <Compile Include="HardwareUnits\SMIFs\Brooks\BrooksSMIF.cs" />
+    <Compile Include="HardwareUnits\SMIFs\Brooks\BrooksSMIFConnection.cs" />
+    <Compile Include="HardwareUnits\SMIFs\Brooks\BrooksSMIFHandler.cs" />
+    <Compile Include="HardwareUnits\ThrottleValves\KITZ\KITZTConnection.cs" />
+    <Compile Include="HardwareUnits\ThrottleValves\KITZ\KITZTHandler.cs" />
+    <Compile Include="HardwareUnits\ThrottleValves\KITZ\KITZCTTThrottleValve.cs" />
+    <Compile Include="HardwareUnits\ThrottleValves\VAT\VATS651.cs" />
+    <Compile Include="HardwareUnits\ThrottleValves\VAT\VATS651Connection.cs" />
+    <Compile Include="HardwareUnits\ThrottleValves\VAT\VATS651Handler.cs" />
+    <Compile Include="HardwareUnits\VCE\BrooksVCE\BrooksVCE.cs" />
+    <Compile Include="HardwareUnits\VCE\BrooksVCE\BrooksVCEConnection.cs" />
+    <Compile Include="HardwareUnits\VCE\BrooksVCE\BrooksVCEHandler.cs" />
+    <Compile Include="HardwareUnits\VCE\SiasunVCEII\SiasunVCE.cs" />
+    <Compile Include="HardwareUnits\VCE\SiasunVCEII\SiasunVCEConnection.cs" />
+    <Compile Include="HardwareUnits\VCE\SiasunVCEII\SiasunVCEHandler.cs" />
+    <Compile Include="HardwareUnits\VCE\SiasunVCE\SiasunVCE.cs" />
+    <Compile Include="HardwareUnits\VCE\SiasunVCE\SiasunVCEConnection.cs" />
+    <Compile Include="HardwareUnits\VCE\SiasunVCE\SiasunVCEHandler.cs" />
+    <Compile Include="HardwareUnits\OHT\Vehicle\IVehicle.cs" />
+    <Compile Include="HardwareUnits\OHT\Vehicle\Ncd\NcdVehicle.cs" />
+    <Compile Include="HardwareUnits\OHT\Vehicle\VehicleBaseDevice.cs" />
+    <Compile Include="HardwareUnits\OHT\Vehicle\VehicleStateEnum.cs" />
+    <Compile Include="HardwareUnits\WalkingAixs\IOWalkingAxisNcd01.cs" />
+    <Compile Include="HardwareUnits\WalkingAixs\IOWalkingAxisHH.cs" />
+    <Compile Include="HardwareUnits\WalkingAixs\WalkingAxisBaseDevice.cs" />
+    <Compile Include="LogicUnits\Coolers\Cooler.cs" />
+    <Compile Include="LogicUnits\Coolers\ICooler.cs" />
+    <Compile Include="LogicUnits\BufferStations\BufferStation.cs" />
+    <Compile Include="HardwareUnits\CarrierIdReaders\Old\CarrierIdReader.cs" />
+    <Compile Include="HardwareUnits\CarrierIdReaders\Old\OmronBarcode\OmronBarcodeReader.cs" />
+    <Compile Include="HardwareUnits\CarrierIdReaders\Old\OmronBarcode\OmronRFID\Handler.cs" />
+    <Compile Include="HardwareUnits\CarrierIdReaders\Old\OmronBarcode\OmronRFID\OmronRfidReader.cs" />
+    <Compile Include="HardwareUnits\AsyncSerial.cs" />
+    <Compile Include="HardwareUnits\AsyncSocket.cs" />
+    <Compile Include="HardwareUnits\Efems\DummyEfem.cs" />
+    <Compile Include="HardwareUnits\Efems\EfemBase.cs" />
+    <Compile Include="HardwareUnits\Efems\IEfemBase.cs" />
+    <Compile Include="HardwareUnits\FFUs\MayAir\FfuMayAir.cs" />
+    <Compile Include="HardwareUnits\FFUs\MayAir\FfuMayAirConnection.cs" />
+    <Compile Include="HardwareUnits\FFUs\MayAir\FfuMayAirHandler.cs" />
+    <Compile Include="LogicUnits\ITransferTarget.cs" />
+    <Compile Include="LogicUnits\Degas\IDegas.cs" />
+    <Compile Include="LogicUnits\Degas\Degas.cs" />
+    <Compile Include="LogicUnits\LoadLocks\ILoadLock.cs" />
+    <Compile Include="LogicUnits\LoadLocks\LoadLock.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\CasstleType.cs" />
+    <Compile Include="HardwareUnits\ICommunication.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\DummyLoadPort.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\LoadPort.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\LoadPortType.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageWithDoorLoadPort.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\OpenStages\OpenStageLoadPort.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDK\constant.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDK\EvtHandler.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDK\GetHandler.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDK\Handler.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDK\TDKLoadPort.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDK\ModHandler.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDK\MovHandler.cs" />
+    <Compile Include="HardwareUnits\LoadPorts\TDK\SetHandler.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\CognexOld\CognexHandler.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\CognexOld\CognexOcrReader.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\Handler.cs" />
+    <Compile Include="HardwareUnits\OcrReaders\OcrReader.cs" />
+    <Compile Include="LogicUnits\PMs\IPM.cs" />
+    <Compile Include="LogicUnits\PMs\PM.cs" />
+    <Compile Include="HardwareUnits\TurboPumps\Pfeiffer\PumpMagpower.cs" />
+    <Compile Include="HardwareUnits\TurboPumps\Pfeiffer\PumpMagpowerConnection.cs" />
+    <Compile Include="HardwareUnits\TurboPumps\Pfeiffer\PumpMagpowerHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\RobotBase\IRobot.cs" />
+    <Compile Include="HardwareUnits\Robots\RobotBase\RobotArmEnum.cs" />
+    <Compile Include="HardwareUnits\Robots\RobotBase\RobotArmWaferStateEnum.cs" />
+    <Compile Include="HardwareUnits\Robots\RobotBase\RobotStateEnum.cs" />
+    <Compile Include="HardwareUnits\Robots\Aligner.cs" />
+    <Compile Include="HardwareUnits\Robots\AsyncSocket.cs" />
+    <Compile Include="HardwareUnits\Robots\constant.cs" />
+    <Compile Include="HardwareUnits\Robots\IAlignerHandlerFactory.cs" />
+    <Compile Include="HardwareUnits\Robots\IRobotHandlerFactory.cs" />
+    <Compile Include="HardwareUnits\Robots\ICommunication.cs" />
+    <Compile Include="HardwareUnits\Robots\MAG7\Mag7Robot.cs" />
+    <Compile Include="HardwareUnits\Robots\MAG7\Mag7RobotHandlerBase.cs" />
+    <Compile Include="HardwareUnits\Robots\MAG7\Mag7RobotHandlerFactory.cs" />
+    <Compile Include="HardwareUnits\Robots\MAG7\Mag7RobotHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\MAG7\Mag7RobotConvertor.cs" />
+    <Compile Include="HardwareUnits\Robots\NX100\NX100AlignerHandlerFactory.cs" />
+    <Compile Include="HardwareUnits\Robots\NX100\AlignerHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\NX100\NX100RobotHandlerFactory.cs" />
+    <Compile Include="HardwareUnits\Robots\NX100\Handler.cs" />
+    <Compile Include="HardwareUnits\Robots\NX100\Utils.cs" />
+    <Compile Include="HardwareUnits\Robots\Robot.cs" />
+    <Compile Include="HardwareUnits\Robots\SR100\SR100AlignerHandlerFactory.cs" />
+    <Compile Include="HardwareUnits\Robots\SR100\AlignerHandler.cs" />
+    <Compile Include="HardwareUnits\Robots\SR100\SR100RobotHandlerFactory.cs" />
+    <Compile Include="HardwareUnits\Robots\SR100\Handler.cs" />
+    <Compile Include="HardwareUnits\Robots\SR100\Utils.cs" />
+    <Compile Include="HardwareUnits\Sensors\DISensor.cs" />
+    <Compile Include="HardwareUnits\Sensors\Sensor.cs" />
+    <Compile Include="LogicUnits\TMs\ITM.cs" />
+    <Compile Include="LogicUnits\TMs\TM.cs" />
+    <Compile Include="LogicUnits\Aligners\IAligner.cs" />
+    <Compile Include="LogicUnits\Aligners\Aligner.cs" />
+    <Compile Include="LogicUnits\VCEs\IVCE.cs" />
+    <Compile Include="LogicUnits\VCEs\VCE.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="HardwareUnits\Sensors\ISensor.cs" />
+    <Compile Include="Unit\IoCylinder.cs" />
+    <Compile Include="Unit\IoDCPower.cs" />
+    <Compile Include="Unit\IoDoor.cs" />
+    <Compile Include="Unit\IoDoor2.cs" />
+    <Compile Include="Unit\IoDxkdpDCPower.cs" />
+    <Compile Include="Unit\IoE84.cs" />
+    <Compile Include="Unit\IoEfemE84.cs" />
+    <Compile Include="Unit\IoEmo.cs" />
+    <Compile Include="Unit\IoFlowMeter.cs" />
+    <Compile Include="Unit\IoGasStick2.cs" />
+    <Compile Include="Unit\IoGasStick.cs" />
+    <Compile Include="Unit\IoAlarmSignal.cs" />
+    <Compile Include="Unit\IoHeater2.cs" />
+    <Compile Include="Unit\IoMksRfPlasmaGenerator.cs" />
+    <Compile Include="Unit\IoPowerBase.cs" />
+    <Compile Include="Unit\IoPressureMeterTM.cs" />
+    <Compile Include="Unit\IoRFPower.cs" />
+    <Compile Include="Unit\IoColdPump.cs" />
+    <Compile Include="Unit\IoWaterFlow.cs" />
+    <Compile Include="Unit\IoPressureMeter4.cs" />
+    <Compile Include="Unit\IoPump.cs" />
+    <Compile Include="Unit\IoPump2.cs" />
+    <Compile Include="Unit\IoMicrowave.cs" />
+    <Compile Include="Unit\IoTurnOverGonaV1.cs" />
+    <Compile Include="Unit\IoTurnOverHHV1.cs" />
+    <Compile Include="Unit\IoTurnOverGona.cs" />
+    <Compile Include="Unit\IoTurnOverHH.cs" />
+    <Compile Include="Unit\IoValve.cs" />
+    <Compile Include="Unit\IoHeartbeat.cs" />
+    <Compile Include="Unit\IoChiller.cs" />
+    <Compile Include="Unit\IoHeater.cs" />
+    <Compile Include="Unit\IoLid.cs" />
+    <Compile Include="Unit\IoCoolBuffer.cs" />
+    <Compile Include="Unit\IoLift.cs" />
+    <Compile Include="Unit\IoLift2.cs" />
+    <Compile Include="Unit\IoMfc3.cs" />
+    <Compile Include="Unit\IoMfc2.cs" />
+    <Compile Include="Unit\IoPressureMeter3.cs" />
+    <Compile Include="Unit\IoRf2.cs" />
+    <Compile Include="Unit\IoThrottleValve2.cs" />
+    <Compile Include="Unit\IoThrottleValve.cs" />
+    <Compile Include="Unit\IoPump3.cs" />
+    <Compile Include="Unit\IoLoopPump.cs" />
+    <Compile Include="Unit\IoMfc.cs" />
+    <Compile Include="Unit\IoPlcDateTime.cs" />
+    <Compile Include="Unit\IoPressureMeter.cs" />
+    <Compile Include="Unit\IoPressureMeter2.cs" />
+    <Compile Include="Unit\IoReset.cs" />
+    <Compile Include="Unit\IoSensor.cs" />
+    <Compile Include="Unit\IoServoMotor.cs" />
+    <Compile Include="Unit\IoSignalLight.cs" />
+    <Compile Include="Unit\IoSignalTower.cs" />
+    <Compile Include="Unit\IoSlitValve.cs" />
+    <Compile Include="Unit\IoTrigger.cs" />
+    <Compile Include="Unit\IoTurnOver.cs" />
+    <Compile Include="Unit\IoWaferSizeDetector.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="HardwareUnits\OcrReaders\IOSS\110\wid110Lib.dll" />
+    <Content Include="HardwareUnits\OcrReaders\IOSS\120\wid110Lib.dll" />
+    <Content Include="ReleaseNotes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{9CD2A6BE-1971-4E74-B49E-547982F64034}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

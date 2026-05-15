@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.Ctrlib.UnitControls.ChillerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/
+             expression/blend/2008"
+             xmlns:converters="clr-namespace:Aitex.Core.UI.Converters;assembly=MECF.Framework.UI.Core"
+             mc:Ignorable="d" x:Name="Self" >
+    <UserControl.Resources>
+        <converters:bool2VisibilityConverter x:Key="Bool2VisibilityConvert"/>
+    </UserControl.Resources>
+    <Viewbox>
+        <Image x:Name="imagePicture" Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/Images/units/chiller_right_off.png" >
+            <Image.ContextMenu>
+                <ContextMenu Visibility="{Binding ElementName=Self, Path=EnableControl,Converter= {StaticResource Bool2VisibilityConvert}, Mode=OneWay}">
+                    <MenuItem Header="Chiller On" IsEnabled="{Binding ElementName=Self, Path=EnableControl,Mode=OneWay}" Click="ChillerOn"/>
+                    <MenuItem Header="Chiller Off" IsEnabled="{Binding ElementName=Self, Path=EnableControl,Mode=OneWay}" Click="ChillerOff" />
+                </ContextMenu>
+            </Image.ContextMenu>
+        </Image>
+    </Viewbox>
+</UserControl>

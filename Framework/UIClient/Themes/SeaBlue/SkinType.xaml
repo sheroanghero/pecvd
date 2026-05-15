@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SeaBlue/TextBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SeaBlue/TextBlock.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SeaBlue/Button.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SeaBlue/ComboBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SeaBlue/MenuItem.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SeaBlue/Listview.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SeaBlue/DataGrid.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SeaBlue/Tab.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SeaBlue/ListBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SeaBlue/TreeView.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SeaBlue/GroupBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SeaBlue/Scrollbar.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SeaBlue/Expander.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SeaBlue/RadioButton.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/SeaBlue/Skin.xaml"/>
+
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

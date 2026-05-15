@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/OceanBlue/TextBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/OceanBlue/TextBlock.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/OceanBlue/Button.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/OceanBlue/ComboBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/OceanBlue/MenuItem.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/OceanBlue/Listview.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/OceanBlue/DataGrid.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/OceanBlue/Tab.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/OceanBlue/ListBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/OceanBlue/TreeView.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/OceanBlue/GroupBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/OceanBlue/Scrollbar.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/OceanBlue/Expander.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/OceanBlue/RadioButton.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/MECF.Framework.UI.Client;component/Themes/OceanBlue/Skin.xaml"/>
+
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

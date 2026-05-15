@@ -1,0 +1,767 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EBE55E3F-6DCE-47B9-AC61-54A8B9B3482A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MECF.Framework.Simulator.Core</RootNamespace>
+    <AssemblyName>MECF.Framework.Simulator.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\output\MECF.Framework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\ThirdParty\dlls\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="SuperSocket.Common">
+      <HintPath>..\..\ThirdParty\dlls\SuperSocket.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.SocketBase">
+      <HintPath>..\..\ThirdParty\dlls\SuperSocket.SocketBase.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.SocketEngine">
+      <HintPath>..\..\ThirdParty\dlls\SuperSocket.SocketEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WinSECS, Version=2.7.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\WinSECS.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit.Extended, Version=1.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock">
+      <HintPath>..\..\ThirdParty\dlls\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CarrierIDReader\HoneywellHf800\HoneywellBarcodeSimulator.cs" />
+    <Compile Include="CarrierIDReader\HoneywellHf800\HoneywellBarcodeView.xaml.cs">
+      <DependentUpon>HoneywellBarcodeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chillers\SimChillerSmcHRS.cs" />
+    <Compile Include="Chillers\SimChillerSmcHRZ.cs" />
+    <Compile Include="Chillers\SimChillerSmcHRSView.xaml.cs">
+      <DependentUpon>SimChillerSmcHRSView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chillers\SimChillerSmcHRZView.xaml.cs">
+      <DependentUpon>SimChillerSmcHRZView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commons\SocketClientSimulator.cs" />
+    <Compile Include="Commons\SocketClientViewModel.cs" />
+    <Compile Include="LoadPorts\FortrendSmif\SecsTransactionBuilder.cs" />
+    <Compile Include="LoadPorts\FortrendSmif\SmifAgent.cs" />
+    <Compile Include="LoadPorts\FortrendSmif\SmifPort1View.xaml.cs">
+      <DependentUpon>SmifPort1View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadPorts\FortrendSmif\SmifPortSimulator.cs" />
+    <Compile Include="LoadPorts\FortrendSmif\SmifPortView.xaml.cs">
+      <DependentUpon>SmifPortView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadPorts\SG\SGLoadPortSimulator.cs" />
+    <Compile Include="LoadPorts\SG\SGLoadPortView.xaml.cs">
+      <DependentUpon>SGLoadPortView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Light\SimLightPdc.cs" />
+    <Compile Include="Light\SimLightPdcView.xaml.cs">
+      <DependentUpon>SimLightPdcView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RemoteControls\RemoteControlSimulatorView.xaml.cs">
+      <DependentUpon>RemoteControlSimulatorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MISC\FAClient\FAClientSimulator.cs" />
+    <Compile Include="MISC\FAClient\FAClientView.xaml.cs">
+      <DependentUpon>FAClientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ocrs\Cognex\CognexOcrReaderSimulator.cs" />
+    <Compile Include="Ocrs\Cognex\CognexOcrReaderView.xaml.cs">
+      <DependentUpon>CognexOcrReaderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ocrs\HST\HstOcrReaderSimulator.cs" />
+    <Compile Include="Ocrs\HST\HstOcrReaderView.xaml.cs">
+      <DependentUpon>HstOcrReaderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Aligners\YaskawaNXAlignerView.xaml.cs">
+      <DependentUpon>YaskawaNXAlignerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commons\CommonSocketDeviceSimulatorView.xaml.cs">
+      <DependentUpon>CommonSocketDeviceSimulatorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commons\CommonSocketDeviceSimulator.cs" />
+    <Compile Include="Commons\IOSimulatorItemReader.cs" />
+    <Compile Include="Commons\IOSimulatorItemViewModel.cs" />
+    <Compile Include="FFUs\Ffu.cs" />
+    <Compile Include="FFUs\FfuView.xaml.cs">
+      <DependentUpon>FfuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FFUs\FfuViewModel.cs" />
+    <Compile Include="FFUs\MayAir\SimFfuMayAir.cs" />
+    <Compile Include="FFUs\MayAir\SimFfuMayAirView.xaml.cs">
+      <DependentUpon>SimFfuMayAirView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IoProviders\E84SimilatorUnitView.xaml.cs">
+      <DependentUpon>E84SimulatorUnitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IoProviders\IOViewModel.cs" />
+    <Compile Include="IoProviders\MCProtocolPlcSimulator.cs" />
+    <Compile Include="IoProviders\SimulatorE84.cs" />
+    <Compile Include="IoProviders\SimulatorIO.cs" />
+    <Compile Include="IoProviders\SimulatorIO1View.xaml.cs">
+      <DependentUpon>SimulatorIO1View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IoProviders\SimulatorIO2View.xaml.cs">
+      <DependentUpon>SimulatorIO2View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IoProviders\SimulatorIO3View.xaml.cs">
+      <DependentUpon>SimulatorIO3View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IoProviders\SimulatorIO4View.xaml.cs">
+      <DependentUpon>SimulatorIO4View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadPorts\HirataTCP\HirataLoadPortSimulator.cs" />
+    <Compile Include="LoadPorts\HirataTCP\HirataLoadPortView.xaml.cs">
+      <DependentUpon>HirataLoadPortView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadPorts\Hirata\HirataLoadPortSimulator.cs" />
+    <Compile Include="LoadPorts\Hirata\HirataLoadPortView.xaml.cs">
+      <DependentUpon>HirataLoadPortView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CarrierIDReader\OmronBarcodeReader\OmronBarcodeReaderSimulator.cs" />
+    <Compile Include="CarrierIDReader\OmronBarcodeReader\OmronBarcodeReaderView.xaml.cs">
+      <DependentUpon>OmronBarcodeReaderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CarrierIDReader\OmronV640Serial\OmronV640SerialSimulator.cs" />
+    <Compile Include="CarrierIDReader\OmronV640Serial\OmronV640SerialView.xaml.cs">
+      <DependentUpon>OmronV640SerialView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadPorts\PrsEfem\PrsEfemSimulatorSimulator.cs" />
+    <Compile Include="LoadPorts\PrsEfem\PrsEfemSimulatorView.xaml.cs">
+      <DependentUpon>PrsEfemSimulatorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Aligners\TazmoAligner\TazmoAlignerSimulator.cs" />
+    <Compile Include="Aligners\TazmoAligner\TazmoAlignerView.xaml.cs">
+      <DependentUpon>TazmoAlignerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MFCs\Horiba\SimMFC.cs" />
+    <Compile Include="MFCs\Horiba\SimMFCView.xaml.cs">
+      <DependentUpon>SimMFCView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PM\Dage4300\Dage4300Simulator.cs" />
+    <Compile Include="PM\Dage4300\Dage4300View.xaml.cs">
+      <DependentUpon>Dage4300View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PM\SCIPM\SciPMSimulator.cs" />
+    <Compile Include="PM\SCIPM\SciPMView.xaml.cs">
+      <DependentUpon>SciPMView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PM\TKPM\TKPMSimulator.cs" />
+    <Compile Include="PM\TKPM\TKPMView.xaml.cs">
+      <DependentUpon>TKPMView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PM\XRF\XRFPMSimulator.cs" />
+    <Compile Include="PM\XRF\XRFPMView.xaml.cs">
+      <DependentUpon>XRFPMView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PM\XyzPM\XyzPMSimulator.cs" />
+    <Compile Include="PM\XyzPM\XyzPMView.xaml.cs">
+      <DependentUpon>XyzPMView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pumps\Magpower\MagpowerPumpSimulatorView.xaml.cs">
+      <DependentUpon>MagpowerPumpSimulatorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pumps\Magpower\MagpowerSimulator.cs" />
+    <Compile Include="Pumps\PfeifferHipace\SimHipaceTurboPump.cs" />
+    <Compile Include="Pumps\PfeifferHipace\SimHipaceTurboPumpView.xaml.cs">
+      <DependentUpon>SimHipaceTurboPumpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pumps\SimPumpOsakaTGkineView.xaml.cs">
+      <DependentUpon>SimPumpOsakaTGkineView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pumps\SkySGM\SkySGMPumpSimulator.cs" />
+    <Compile Include="Pumps\SkySGM\SkySGMPumpView.xaml.cs">
+      <DependentUpon>SkySGMPumpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pendulums\SimVatPendulumView.xaml.cs">
+      <DependentUpon>SimVatPendulumView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pendulums\SimVatPendulum.cs" />
+    <Compile Include="RFMatchs\AE\SimAeMatchView.xaml.cs">
+      <DependentUpon>SimAeMatchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RFMatchs\AE\SimAeMatch.cs" />
+    <Compile Include="RFMatchs\Steam\STeamRFMatch.cs" />
+    <Compile Include="RFMatchs\Steam\STeamRFMatchView.xaml.cs">
+      <DependentUpon>STeamRFMatchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RFMatchs\SimSerenMatchView.xaml.cs">
+      <DependentUpon>SimSerenMatchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RFMatchs\SimSerenRfMatch.cs" />
+    <Compile Include="RFs\SimDxkdpPowerView.xaml.cs">
+      <DependentUpon>SimDxkdpPowerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RFs\SimAePowerView.xaml.cs">
+      <DependentUpon>SimAePowerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RFs\SimDxkdpPower.cs" />
+    <Compile Include="RFs\SimAeRfPower.cs" />
+    <Compile Include="RFs\SimMksPlasmaGeneratorView.xaml.cs">
+      <DependentUpon>SimMksPlasmaGeneratorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RFs\SimMksPowerView.xaml.cs">
+      <DependentUpon>SimMksPowerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RFs\SimMksRfPlasmaGenerator.cs" />
+    <Compile Include="RFs\SimSerenPowerView.xaml.cs">
+      <DependentUpon>SimSerenPowerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RFs\SimMksRfPower.cs" />
+    <Compile Include="RFs\SimSerenRfPower.cs" />
+    <Compile Include="RFs\Wattsine\WattsineRfPower.cs" />
+    <Compile Include="RFs\Wattsine\WattsineRFView.xaml.cs">
+      <DependentUpon>WattsineRFView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Robots\HAtm\HAtmControllerSimulator.cs" />
+    <Compile Include="Robots\HAtm\HAtmRobotView.xaml.cs">
+      <DependentUpon>HAtmRobotView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Robots\HirataRobotSimulatorView.xaml.cs">
+      <DependentUpon>HirataRobotSimulatorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commons\CommonSerialPortDeviceSimulator.cs" />
+    <Compile Include="Commons\CommonSerialPortDeviceSimulatorView.xaml.cs">
+      <DependentUpon>CommonSerialPortDeviceSimulatorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Robots\JelAligner\JelAlignerSimulator.cs" />
+    <Compile Include="Robots\JelAligner\JelAlignerView.xaml.cs">
+      <DependentUpon>JelAlignerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Robots\JelRobot\JELC4400\JelRobotSimulator.cs" />
+    <Compile Include="Robots\JelRobot\JELC4400\JelRobotView.xaml.cs">
+      <DependentUpon>JelRobotView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Robots\JelRobot\JELC500\JelRobotSimulator.cs" />
+    <Compile Include="Robots\JelRobot\JELC500\JelRobotView.xaml.cs">
+      <DependentUpon>JelRobotView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Robots\JelRobot\JELC500_2\JelRobot5000_2View.xaml.cs">
+      <DependentUpon>JelRobot5000_2View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Robots\Rorze\RorzeRobot751ControllerSimulator.cs" />
+    <Compile Include="Robots\Rorze\RorzeRobot751Simulator.cs" />
+    <Compile Include="Robots\Rorze\RorzeRobot751View.xaml.cs">
+      <DependentUpon>RorzeRobot751View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Robots\TazmoSerial\TazmoRobotSerialControllerSimulator.cs" />
+    <Compile Include="Robots\TazmoSerial\TazmoRobotSerialSimulator.cs" />
+    <Compile Include="Robots\TazmoSerial\TazmoRobotSerialView.xaml.cs">
+      <DependentUpon>TazmoRobotSerialView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Robots\Tazmo\TazmoRobotControllerSimulator.cs" />
+    <Compile Include="Robots\Tazmo\TazmoRobotSimulator.cs" />
+    <Compile Include="Robots\Tazmo\TazmoRobotView.xaml.cs">
+      <DependentUpon>TazmoRobotView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Robots\YaskawaNX100ControllerSimulator.cs" />
+    <Compile Include="Robots\YaskawaNX100RobotSimulator.cs" />
+    <Compile Include="Robots\BrooksMag7RobotView.xaml.cs">
+      <DependentUpon>BrooksMag7RobotView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Robots\YaskawaNX100RobotView.xaml.cs">
+      <DependentUpon>YaskawaNX100RobotView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Robots\YaskawaSR100ControllerSimulator.cs" />
+    <Compile Include="Aligners\YaskawaAlignerSimulator.cs" />
+    <Compile Include="Aligners\YaskawaAlignerView.xaml.cs">
+      <DependentUpon>YaskawaAlignerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commons\DeviceSimulator.cs" />
+    <Compile Include="Commons\SerialPortDeviceSimulator.cs" />
+    <Compile Include="Commons\SerialPortDeviceViewModel.cs" />
+    <Compile Include="Commons\SerialPortTitleView.xaml.cs">
+      <DependentUpon>SerialPortTitleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commons\SocketDeviceSimulator.cs" />
+    <Compile Include="Commons\SocketDeviceViewModel.cs" />
+    <Compile Include="Commons\SocketTitleView.xaml.cs">
+      <DependentUpon>SocketTitleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commons\TransactionLogItem.cs" />
+    <Compile Include="Commons\UIConverters.cs" />
+    <Compile Include="CarrierIDReader\OmronV640Tcp\OmronCIDRWSimulator.cs" />
+    <Compile Include="CarrierIDReader\OmronV640Tcp\OmronCIDRWView.xaml.cs">
+      <DependentUpon>OmronCIDRWView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadPorts\TDKB\TDKLoadPortView.xaml.cs">
+      <DependentUpon>TDKLoadPortView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadPorts\TDKB\TDKLoadPortSimulator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Robots\BrooksMag7RobotSimulator.cs" />
+    <Compile Include="Robots\BrooksMag7RobotTesterView.xaml.cs">
+      <DependentUpon>BrooksMag7RobotTesterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Robots\RobotSimulator.cs" />
+    <Compile Include="Robots\YaskawaSR100RobotSimulator.cs" />
+    <Compile Include="Robots\YaskawaSR100RobotView.xaml.cs">
+      <DependentUpon>YaskawaSR100RobotView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commons\SimpleSocketDeviceSimulator.cs" />
+    <Compile Include="SiasunEfem\SiasunEfemSimulator.cs" />
+    <Compile Include="SiasunEfem\SiasunEfemView.xaml.cs">
+      <DependentUpon>SiasunEfemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SMIFs\RejeSMIF\RejeSMIF.cs" />
+    <Compile Include="SMIFs\RejeSMIF\RejeSMIFSimulatorView.xaml.cs">
+      <DependentUpon>RejeSMIFSimulatorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubstrateTrackings\WaferTrack.cs" />
+    <Compile Include="Temperatures\SimOmronEJ1.cs" />
+    <Compile Include="Temperatures\SimOmronEJ1View.xaml.cs">
+      <DependentUpon>SimOmronEJ1View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThrottleValves\KITZ\SimThrottleValve.cs" />
+    <Compile Include="ThrottleValves\KITZ\SimThrottleValveView.xaml.cs">
+      <DependentUpon>SimThrottleValveView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VCE\SiasunVCE\SimSiasunVCEView.xaml.cs">
+      <DependentUpon>SimSiasunVCEView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="CarrierIDReader\HoneywellHf800\HoneywellBarcodeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Chillers\SimChillerSmcHRSView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Chillers\SimChillerSmcHRZView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LoadPorts\FortrendSmif\SmifPort1View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LoadPorts\FortrendSmif\SmifPortView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LoadPorts\SG\SGLoadPortView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Light\SimLightPdcView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RemoteControls\RemoteControlSimulatorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MISC\FAClient\FAClientView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ocrs\Cognex\CognexOcrReaderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ocrs\HST\HstOcrReaderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Aligners\YaskawaAlignerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Aligners\YaskawaNXAlignerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Commons\CommonSocketDeviceSimulatorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Commons\SerialPortTitleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Commons\SocketTitleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FFUs\FfuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FFUs\MayAir\SimFfuMayAirView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="IoProviders\E84SimulatorUnitView.xaml" />
+    <Page Include="IoProviders\SimulatorIO1View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="IoProviders\SimulatorIO2View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="IoProviders\SimulatorIO3View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="IoProviders\SimulatorIO4View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LoadPorts\HirataTCP\HirataLoadPortView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LoadPorts\Hirata\HirataLoadPortView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CarrierIDReader\OmronBarcodeReader\OmronBarcodeReaderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CarrierIDReader\OmronV640Tcp\OmronCIDRWView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CarrierIDReader\OmronV640Serial\OmronV640SerialView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LoadPorts\PrsEfem\PrsEfemSimulatorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Aligners\TazmoAligner\TazmoAlignerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LoadPorts\TDKB\TDKLoadPortView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MFCs\Horiba\SimMFCView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PM\Dage4300\Dage4300View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PM\SCIPM\SciPMView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PM\TKPM\TKPMView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PM\XRF\XRFPMView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PM\XyzPM\XyzPMView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pumps\Magpower\MagpowerPumpSimulatorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pumps\PfeifferHipace\SimHipaceTurboPumpView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pumps\SimPumpOsakaTGkineView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pumps\SkySGM\SkySGMPumpView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pendulums\SimVatPendulumView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RFMatchs\AE\SimAeMatchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RFMatchs\Steam\STeamRFMatchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RFMatchs\SimSerenMatchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RFs\SimDxkdpPowerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RFs\SimAePowerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RFs\SimMksPlasmaGeneratorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RFs\SimMksPowerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RFs\SimSerenPowerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RFs\Wattsine\WattsineRFView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Robots\BrooksMag7RobotTesterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Robots\BrooksMag7RobotView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Robots\HAtm\HAtmRobotView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Robots\HirataRobotSimulatorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Commons\CommonSerialPortDeviceSimulatorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Robots\JelAligner\JelAlignerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Robots\JelRobot\JELC4400\JelRobotView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Robots\JelRobot\JELC500\JelRobotView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Robots\JelRobot\JELC500_2\JelRobot5000_2View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Robots\Rorze\RorzeRobot751View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Robots\TazmoSerial\TazmoRobotSerialView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Robots\Tazmo\TazmoRobotView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Robots\YaskawaNX100RobotView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Robots\YaskawaSR100RobotView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SiasunEfem\SiasunEfemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SMIFs\RejeSMIF\RejeSMIFSimulatorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Temperatures\SimOmronEJ1View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ThrottleValves\KITZ\SimThrottleValveView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="VCE\SiasunVCE\SimSiasunVCEView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{9cd2a6be-1971-4e74-b49e-547982f64034}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RTCore\RTCore.csproj">
+      <Project>{bcbd839a-c9a0-4be7-98ca-b0a88ad38e5a}</Project>
+      <Name>RTCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UICore\UICore.csproj">
+      <Project>{2c9e1df3-1aba-4972-be60-41dd9b3c47a7}</Project>
+      <Name>UICore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Robots\HirataR4\IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Robots\TazmoRobot\IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\AeRfPower_IOSimulatorItems.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\BaecChiller_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\BrooksAligner_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\HighPower_IOSimulatorItems.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\EdwardsPump2205_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\KaimeiRFMatch_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\CommetRFMatch_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\EdwardsPump_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\FujikinMFC_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\Hanbell_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\LowPower_IOSimulatorItems.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\PfeifferPumpA100_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\PfeifferPumpA603_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\FY8300_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\RisshiChiller_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\SiasunAligner_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\SiasunPhoenixB_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\SkyPump_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\TruPlasmaRF1000_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\TruPlasmaRF1001_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\RemoteControl_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SimulatorItems\VATS651_IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SMIFs\BrooksSMIF\IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VCE\BrooksVCE\IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="VCE\SiasunVCE\IOSimulatorItems.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Aligners\HonghuAligner\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties robots_4hiratar4_4iosimulatoritems_1json__JsonSchema="https://jenkins-x.io/schemas/jx-schema.json" vce_4brooksvce_4iosimulatoritems_1json__JsonSchema="http://json.schemastore.org/apibuilder.json" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

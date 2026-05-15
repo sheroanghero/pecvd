@@ -1,0 +1,470 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.ClientViews.Operations.Overviews.VceClusterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:MECF.Framework.UI.Client.ClientControls.PMControls"
+             xmlns:overviews="clr-namespace:MECF.Framework.UI.Client.ClientViews.Operations.Overviews"
+             xmlns:unitControls="clr-namespace:MECF.Framework.UI.Client.Ctrlib.UnitControls"
+             xmlns:micro="clr-namespace:Caliburn.Micro"
+             xmlns:waferAssociation="clr-namespace:MECF.Framework.UI.Client.CenterViews.Operations.WaferAssociation"
+             xmlns:deviceControl="clr-namespace:Aitex.Core.UI.DeviceControl;assembly=MECF.Framework.UI.Core"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1900">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="450" />
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+
+        <Canvas Grid.Column="0" Width="1000" Height="800" HorizontalAlignment="Center"  >
+            <!--<overviews:VceClusterControlThree Canvas.Left="146" Canvas.Top="30"  ></overviews:VceClusterControlThree>-->
+            <overviews:VceClusterControl Canvas.Left="184" Canvas.Top="60"></overviews:VceClusterControl>
+
+            <!--<TextBlock Text="VCE A" Canvas.Left="344" Canvas.Top="669"></TextBlock>
+            <TextBlock Text="VCE B" Canvas.Left="601" Canvas.Top="667"></TextBlock>
+            <TextBlock Text="Aligner" Canvas.Left="486" Canvas.Top="533"></TextBlock>
+            <TextBlock Text="PM1" Canvas.Left="273" Canvas.Top="190"></TextBlock>
+            <TextBlock Text="PM2" Canvas.Left="402" Canvas.Top="39"></TextBlock>
+            <TextBlock Text="PM3" Canvas.Left="697" Canvas.Top="174"></TextBlock>
+            <TextBlock Text="PM4" Canvas.Left="818" Canvas.Top="293"></TextBlock>
+            <TextBlock Text="DGas" Canvas.Left="152" Canvas.Top="286"></TextBlock>-->
+
+        </Canvas>
+
+
+        <Canvas>
+            <Grid x:Name="PM1_Info" Canvas.Left="43" Canvas.Top="57"   >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                </Grid.RowDefinitions>
+                <Label Content="PM1 Information" Style="{DynamicResource Table_TitleStyle}" Grid.Row="0" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1" Background="{DynamicResource Table_BG_Title}" Grid.Row="1" Padding="5,1">
+                    <TextBlock Text="Status" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="16" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,1,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="1" Grid.Column="1" Padding="5,1">
+                    <TextBlock Text="{Binding PM1Status}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Grid.Row="2" Padding="5,1">
+                    <TextBlock Text="Recipe Name" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="2" Grid.Column="1" Padding="5,1">
+                    <TextBlock Text="{Binding PM1RecipeName}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Grid.Row="3" Padding="5,1">
+                    <TextBlock Text="Step No." TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="3" Grid.Column="1" Padding="5,1">
+                    <TextBlock Text="{Binding PM1RecipeStepNo}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Grid.Row="4" Padding="5,1">
+                    <TextBlock Text="Step Name" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="4" Grid.Column="1" Padding="5,1">
+                    <TextBlock Text="{Binding PM1RecipeStepName}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Grid.Row="5" Padding="5,1">
+                    <TextBlock Text="Remain Time(s)" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="5" Grid.Column="1" Padding="5,1">
+                    <TextBlock Text="{Binding PM1StepLeftTime}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border Style="{DynamicResource OverviewTable_LeftBottomBorder}" Grid.Row="6" Padding="5,1">
+                    <TextBlock Text="Pressure(mbar)" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border Style="{DynamicResource OverviewTable_RightBottomBorder}" Grid.Row="6" Grid.Column="1" Padding="5,1">
+                    <TextBlock Text="{Binding PM1ChamberPressure}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Grid.Row="7" Padding="5,1">
+                    <TextBlock Text="Temperature(­°C)" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="7" Grid.Column="1" Padding="5,1">
+                    <TextBlock Text="{Binding PM1Temperature}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+            </Grid>
+
+
+
+            <Grid x:Name="PM2_Info" Canvas.Left="918" Canvas.Top="57"   >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="24"/>
+                </Grid.RowDefinitions>
+                <Label Content="PM2 Information" Style="{DynamicResource Table_TitleStyle}" Grid.Row="0" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1" Background="{DynamicResource Table_BG_Title}" Grid.Row="1" Padding="5,1">
+                    <TextBlock Text="Status" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="16" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,1,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="1" Grid.Column="1" Padding="5,1">
+                    <TextBlock Text="{Binding PM1Status}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Grid.Row="2" Padding="5,1">
+                    <TextBlock Text="Recipe Name" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="2" Grid.Column="1" Padding="5,1">
+                    <TextBlock Text="{Binding PM1RecipeName}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Grid.Row="3" Padding="5,1">
+                    <TextBlock Text="Step No." TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="3" Grid.Column="1" Padding="5,1">
+                    <TextBlock Text="{Binding PM1RecipeStepNo}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Grid.Row="4" Padding="5,1">
+                    <TextBlock Text="Step Name" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="4" Grid.Column="1" Padding="5,1">
+                    <TextBlock Text="{Binding PM1RecipeStepName}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Grid.Row="5" Padding="5,1">
+                    <TextBlock Text="Remain Time(s)" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="5" Grid.Column="1" Padding="5,1">
+                    <TextBlock Text="{Binding PM1StepLeftTime}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border Style="{DynamicResource OverviewTable_LeftBottomBorder}" Grid.Row="6" Padding="5,1">
+                    <TextBlock Text="Pressure(mbar)" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border Style="{DynamicResource OverviewTable_RightBottomBorder}" Grid.Row="6" Grid.Column="1" Padding="5,1">
+                    <TextBlock Text="{Binding PM1ChamberPressure}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Grid.Row="7" Padding="5,1">
+                    <TextBlock Text="Temperature(­°C)" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="7" Grid.Column="1" Padding="5,1">
+                    <TextBlock Text="{Binding PM1Temperature}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+            </Grid>
+
+
+        </Canvas>
+
+
+
+        <TabControl Grid.Column="1" Margin="0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="12">
+            <TabControl.Style>
+                <Style TargetType="TabControl">
+                    <Setter Property="ItemsControl.ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Rows="1"></UniformGrid>
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Style>
+            <TabItem Header="Carrier">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,5">
+                    <StackPanel Visibility="{Binding IsVCEAVisibility}">
+                        <unitControls:FOUPFrontView UnitData="{Binding VceAModuleInfo}" VerticalAlignment="Top"></unitControls:FOUPFrontView>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="ReadID" IsEnabled="false" Width="68" Height="25" FontSize="13" Margin="0,0,0,0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <micro:ActionMessage MethodName="ReadCarrierId">
+                                            <micro:Parameter Value="VCEA"></micro:Parameter>
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                            <Border BorderBrush="{DynamicResource Table_BD}" Height="25" BorderThickness="1" Background="{DynamicResource Table_BG_Content}" Grid.Row="1" Padding="5,1">
+                                <TextBlock Text="{Binding LP1CarrierId}" Width="60" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Load" Width="68" IsEnabled="{Binding VCEALoadEnabled}"  Height="25" Margin="0,5,0,0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <micro:ActionMessage MethodName="Load">
+                                            <micro:Parameter Value="VCEA"></micro:Parameter>
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                            <Button Content="Unload" Width="68" IsEnabled="{Binding VCEAUnloadEnabled}" Height="25" Margin="5,5,0,0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <micro:ActionMessage MethodName="Unload">
+                                            <micro:Parameter Value="VCEA"></micro:Parameter>
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                        </StackPanel>
+
+                    </StackPanel>
+                    <StackPanel Margin="10,0,0,0" Visibility="{Binding IsVCEBVisibility}">
+                        <unitControls:FOUPFrontView UnitData="{Binding VceBModuleInfo}" VerticalAlignment="Top"></unitControls:FOUPFrontView>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="ReadID" IsEnabled="false" Width="68" Height="25" FontSize="13" Margin="0,0,0,0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <micro:ActionMessage MethodName="ReadCarrierId">
+                                            <micro:Parameter Value="VCEB"></micro:Parameter>
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                            <Border BorderBrush="{DynamicResource Table_BD}" Height="25" BorderThickness="1" Background="{DynamicResource Table_BG_Content}" Grid.Row="1" Padding="5,1">
+                                <TextBlock Text="{Binding LP2CarrierId}" Width="60" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="Load" Width="68" IsEnabled="{Binding VCEBLoadEnabled}" Height="25" Margin="0,5,0,0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <micro:ActionMessage MethodName="Load">
+                                            <micro:Parameter Value="VCEB"></micro:Parameter>
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                            <Button Content="Unload" IsEnabled="{Binding VCEBUnloadEnabled}" Width="68" Height="25" Margin="5,5,0,0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <micro:ActionMessage MethodName="Unload">
+                                            <micro:Parameter Value="VCEB"></micro:Parameter>
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="{Binding VCEAWaferAssociation.ModuleData.ModuleID}" Height="22" Visibility="{Binding IsVCEAVisibility}">
+                <waferAssociation:WaferAssociationUnit  WAInfo="{Binding VCEAWaferAssociation}" IsEnabled="{Binding IsEnableJobVCEA}" HorizontalAlignment="Center" Margin="10,2"></waferAssociation:WaferAssociationUnit>
+            </TabItem>
+            <TabItem Header="{Binding VCEBWaferAssociation.ModuleData.ModuleID}" Visibility="{Binding IsVCEBVisibility}">
+                <waferAssociation:WaferAssociationUnit  WAInfo="{Binding VCEBWaferAssociation}" IsEnabled="{Binding IsEnableJobVCEB}" HorizontalAlignment="Center" Margin="10,2"></waferAssociation:WaferAssociationUnit>
+            </TabItem>
+        </TabControl>
+        <Grid Grid.Column="2" Width="200" Style="{DynamicResource WaferStatus_GridStyle}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="30"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Style="{DynamicResource WaferStatus_TitleBorder}" Padding="5,1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Path Data="M0,0 L5,0 5,5 z" Fill="Black" HorizontalAlignment="Left" Grid.Row="1" RenderTransformOrigin="0.5,0.5" Stretch="Fill" Width="5" Height="5">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                    <TextBlock Margin="5,0,0,0" Text="Wafer Status" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="1" BorderBrush="{DynamicResource MainFrame_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource MainFrame_BG}" Padding="5,1">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5">
+                    <Grid Width="180" Height="20" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="Gold" Stroke="Black" StrokeThickness="1" RadiusX="2" RadiusY="2"/>
+                        <TextBlock Text="Idle / No Process Job" Grid.Column="1" Margin="10,0,0,0" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid Width="180" Height="20" Margin="0,5,0,0" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="Blue" Stroke="Black" StrokeThickness="1" RadiusX="2" RadiusY="2"/>
+                        <TextBlock Text="Idle / Has Process Job" Grid.Column="1" Margin="10,0,0,0" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid Width="180" Height="20" Margin="0,5,0,0" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="Cyan" Stroke="Black" StrokeThickness="1" RadiusX="2" RadiusY="2"/>
+                        <TextBlock Text="In Process" Grid.Column="1" Margin="10,0,0,0" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid Width="180" Height="20" Margin="0,5,0,0" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="LimeGreen" Stroke="Black" StrokeThickness="1" RadiusX="2" RadiusY="2"/>
+                        <TextBlock Text="Process Complete" Grid.Column="1" Margin="10,0,0,0" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid Width="180" Height="20" Margin="0,5,0,0" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="Red" Stroke="Black" StrokeThickness="1" RadiusX="2" RadiusY="2"/>
+                        <TextBlock Text="Error" Grid.Column="1" Margin="10,0,0,0" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid Width="180" Height="20" Margin="0,5,0,0" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="Yellow" Stroke="Black" StrokeThickness="1" RadiusX="2" RadiusY="2"/>
+                        <TextBlock Text="Warning" Grid.Column="1" Margin="10,0,0,0" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="2" BorderBrush="{DynamicResource MainFrame_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource MainFrame_BG_Title}" Padding="5,1">
+
+            </Border>
+            <Border Grid.Row="3" BorderBrush="{DynamicResource MainFrame_BD}" BorderThickness="1,0,1,0" Background="{DynamicResource MainFrame_BG}" Padding="5,1">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <deviceControl:AITSensor Margin="-30,0,5,0" GreenColor="True" LightOnValue="{Binding SystemIsInitialized}" EnableToolTip="False"></deviceControl:AITSensor>
+
+                        <Button Grid.Column="1" Content="Initialize"  IsEnabled="{Binding IsEnableInitialize}"  Width="110" Height="25">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <micro:ActionMessage MethodName="HomeAll">
+                                    </micro:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </Grid>
+                    <Grid Margin="0,5,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Button IsEnabled="{Binding IsEnableAbort}" Grid.Column="1" Content="Abort" Width="110" Height="25">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <micro:ActionMessage MethodName="Abort">
+                                    </micro:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </Grid>
+
+                    <Grid Margin="0,25,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="1" Content="Return Wafer" Width="110" Height="25" IsEnabled="{Binding IsEnableAuto}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <micro:ActionMessage MethodName="ReturnWafer">
+                                    </micro:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="4" BorderBrush="{DynamicResource MainFrame_BD}" BorderThickness="1,0,1,0" Background="{DynamicResource MainFrame_BG_Title}" Padding="5,1">
+
+            </Border>
+            <Border Grid.Row="5" Style="{DynamicResource WaferStatus_BottomBorder}" Padding="5,1">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5">
+
+                    <Button IsEnabled="{Binding IsEnableAuto}" Margin ="5" Content="Auto"  Width="110" Height="25">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <micro:ActionMessage MethodName="Auto">
+                                </micro:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+
+                    <Button IsEnabled="{Binding IsEnableManual}" Margin ="5" Content="Manual" Width="110" Height="25">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <micro:ActionMessage MethodName="Manual">
+                                </micro:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+
+                    <Grid x:Name="Cycle_Info" Visibility="{Binding IsCycleMode, Converter={StaticResource bool2VisibilityConverter}}"  Margin="0,50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24"/>
+                            <RowDefinition Height="24"/>
+                            <RowDefinition Height="24"/>
+                        </Grid.RowDefinitions>
+                        <Label Content="Cycle Information" Style="{DynamicResource Table_TitleStyle}" Grid.Row="0" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1" Background="{DynamicResource Table_BG_Title}" Grid.Row="1" Padding="5,1">
+                            <TextBlock Text="Count" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,1,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="1" Grid.Column="1" Padding="5,1" >
+                            <TextBlock Text="{Binding CycleWaferCountDisplay}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1" Background="{DynamicResource Table_BG_Title}" Grid.Row="2" Padding="5,1">
+                            <TextBlock Text="Time" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                        </Border>
+                        <!--<Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,1,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="2" Grid.Column="1" Padding="5,1">
+                            <TextBlock Text="{Binding CycleEscapeTime, Converter={StaticResource TimeSpanConverter}}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                        </Border>-->
+                    </Grid>
+
+                    <Grid x:Name="throughput" Margin="0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="70"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24"/>
+                            <RowDefinition Height="24"/>
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1" Background="{DynamicResource Table_BG_Title}" Grid.Row="0" Padding="5,1">
+                            <TextBlock Text="Throughput" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,1,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="0" Grid.Column="1" Padding="5,1">
+                            <TextBlock Text="{Binding Throughput, StringFormat=\{0:F1\}}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1" Background="{DynamicResource Table_BG_Title}" Grid.Row="1" Padding="5,1">
+                            <TextBlock Text="Live Throughput" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,1,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="1" Grid.Column="1" Padding="5,1">
+                            <TextBlock Text="{Binding LiveThroughput, StringFormat=\{0:F1\}}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,10 @@
+﻿<Window x:Class="MECF.Framework.UI.Client.CenterViews.LogOnOff.ShutdownView"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Title="ShutdownView" Height="480" Width="600">
+    <Grid Height="480" Width="600">
+        <TextBlock  Text="The system is in the process of shutting down."></TextBlock>
+    </Grid>
+</Window>

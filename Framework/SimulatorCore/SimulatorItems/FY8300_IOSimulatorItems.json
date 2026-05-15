@@ -1,0 +1,172 @@
+{
+  "IOSimulatorItemList": [
+    {
+      "SourceCommandName": "WMW",
+      "SourceCommand": "WMW",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "WMF",
+      "SourceCommand": "WMF",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "WMA",
+      "SourceCommand": "WMA",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "WMO",
+      "SourceCommand": "WMO",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "WMD",
+      "SourceCommand": "WMD",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "WMP",
+      "SourceCommand": "WMP",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "WMN",
+      "SourceCommand": "WMN",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "WFW",
+      "SourceCommand": "WFW",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "WFF",
+      "SourceCommand": "WFF",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "WFA",
+      "SourceCommand": "WFA",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "WFO",
+      "SourceCommand": "WFO",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "WFD",
+      "SourceCommand": "WFD",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "WFP",
+      "SourceCommand": "WFP",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "WFN",
+      "SourceCommand": "WFN",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RMW",
+      "SourceCommand": "RMW",
+      "SuccessResponse": "10",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RMF",
+      "SourceCommand": "RMF",
+      "SuccessResponse": "10",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RMA",
+      "SourceCommand": "RMA",
+      "SuccessResponse": "10",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RMO",
+      "SourceCommand": "RMO",
+      "SuccessResponse": "10",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RMD",
+      "SourceCommand": "RMD",
+      "SuccessResponse": "10",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RMP",
+      "SourceCommand": "RMP",
+      "SuccessResponse": "10",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RMN",
+      "SourceCommand": "RMN",
+      "SuccessResponse": "10",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RFW",
+      "SourceCommand": "RFW",
+      "SuccessResponse": "10",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RFF",
+      "SourceCommand": "RFF",
+      "SuccessResponse": "10",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RFA",
+      "SourceCommand": "RFA",
+      "SuccessResponse": "10",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RFO",
+      "SourceCommand": "RFO",
+      "SuccessResponse": "10",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RFD",
+      "SourceCommand": "RFD",
+      "SuccessResponse": "10",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RFP",
+      "SourceCommand": "RFP",
+      "SuccessResponse": "10",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RFN",
+      "SourceCommand": "RFN",
+      "SuccessResponse": "10",
+      "FailedResponse": ""
+    }
+  ]
+}

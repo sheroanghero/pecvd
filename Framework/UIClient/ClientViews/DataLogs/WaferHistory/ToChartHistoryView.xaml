@@ -1,0 +1,342 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.DataLogs.WaferHistory.ToChartHistoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:sciChart="http://schemas.abtsoftware.co.uk/scichart" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:control="clr-namespace:Aitex.Core.UI.Control;assembly=MECF.Framework.UI.Core"
+             xmlns:converters="clr-namespace:Aitex.Core.UI.Converters;assembly=MECF.Framework.UI.Core"
+             xmlns:micro="clr-namespace:Caliburn.Micro"
+             xmlns:controls="clr-namespace:OpenSEMI.Ctrlib.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1800">
+    <UserControl.Resources>
+        <converters:LineColorConverter x:Key="colorConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition ></RowDefinition>
+            <RowDefinition Height="5" ></RowDefinition>
+            <RowDefinition Height="200" ></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition ></RowDefinition>
+                <RowDefinition Height="Auto" ></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid>
+                <sciChart:SciChartSurface Name="sciChart" RenderableSeries="{Binding SelectedData}" 
+                                      sciChart:ThemeManager.Theme="ExpressionLight"
+                                      Padding="0,0,0,0" 
+                                      DebugWhyDoesntSciChartRender="False" BorderBrush="Gray" Focusable="False" IsTabStop="False">
+                    <sciChart:SciChartSurface.Resources>
+                        <!-- This is the style for the control that hosts the Axis Label -->
+                        <Style x:Key="CursorModAxisLabelStyle" TargetType="sciChart:AxisLabelControl">
+                            <Setter Property="Background" Value="#AAFF6600" />
+                            <Setter Property="BorderBrush" Value="#FFFF6600" />
+                            <Setter Property="BorderThickness" Value="1" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontSize" Value="25" />
+                        </Style>
+
+                        <Style x:Key="CursorTooltipStyle" TargetType="sciChart:CursorLabelControl">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="sciChart:CursorLabelControl">
+                                        <Border Background="#AAFF6600"
+                                            BorderBrush="#FFFF6600"
+                                            BorderThickness="2"
+                                            Opacity="0.7"
+                                            Padding="2.5">
+                                            <!--<ItemsControl ItemsSource="{Binding DataContext.SeriesData.SeriesInfo, RelativeSource={RelativeSource TemplatedParent}}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate DataType="s:SeriesInfo">
+                                                    <ContentControl Content="{Binding}" ContentTemplate="{Binding Path=RenderableSeries.(s:CursorModifier.TooltipTemplate)}" />
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>-->
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </sciChart:SciChartSurface.Resources>
+
+                    <sciChart:SciChartSurface.XAxis>
+                        <sciChart:DateTimeAxis DrawMinorTicks="True" 
+                                           DrawMinorGridLines="True" 
+                                           sciChart:CursorModifier.AxisLabelContainerStyle="{StaticResource CursorModAxisLabelStyle}" 
+                                           Margin="0,0,0,0" 
+                                           SubDayTextFormatting="MM/dd HH:mm:ss" 
+                                           TitleFontSize="10" 
+                                               AutoRange="{Binding AutoRangeX}"
+                                               VisibleRange="{Binding TimeRange, Mode=TwoWay}"
+                                           TextFormatting="yyyy/MM/dd HH:mm:ss" 
+                                           Id="DefaultAxisId"/>
+                    </sciChart:SciChartSurface.XAxis>
+
+                    <!-- Create a Y Axis -->
+                    <sciChart:SciChartSurface.YAxis>
+                        <sciChart:NumericAxis DrawMinorTicks="True" 
+                                          DrawMinorGridLines="True" 
+                                          AxisAlignment="Right"
+                                              AutoRange="{Binding AutoRangeY}"
+                                              VisibleRange="{Binding ValueRange, Mode=TwoWay}"
+                                          Id="DefaultAxisId">
+                            <sciChart:NumericAxis.GrowBy>
+                                <sciChart:DoubleRange Min="0.1" Max="0.1"/>
+                            </sciChart:NumericAxis.GrowBy>
+                        </sciChart:NumericAxis>
+                    </sciChart:SciChartSurface.YAxis>
+
+                    <sciChart:SciChartSurface.ChartModifier>
+                        <sciChart:ModifierGroup ExecuteOn="MouseDoubleClick">
+                            <sciChart:RubberBandXyZoomModifier x:Name="rubberBandZoomModifier" IsEnabled="True" 
+                                                           IsXAxisOnly="False" 
+                                                           ZoomExtentsY="False" 
+                                                           IsAnimated="True" ExecuteOn="MouseLeftButton" ReceiveHandledEvents="True" />
+                            <sciChart:SeriesSelectionModifier ExecuteOn="MouseLeftButton" ReceiveHandledEvents="True">
+                                <sciChart:SeriesSelectionModifier.SelectedSeriesStyle>
+                                    <Style TargetType="sciChart:BaseRenderableSeries">
+                                        <Setter Property="Stroke" Value="Red"/>
+                                        <Setter Property="StrokeThickness" Value="3"/>
+                                        <Setter Property="PointMarkerTemplate">
+                                            <Setter.Value>
+                                                <ControlTemplate>
+                                                    <sciChart:EllipsePointMarker Width="7" Height="7" Fill="#FF00DC" Stroke="White"/>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+
+                                </sciChart:SeriesSelectionModifier.SelectedSeriesStyle>
+                            </sciChart:SeriesSelectionModifier>
+
+                            <sciChart:ZoomExtentsModifier x:Name="zoomExtentsModifier"  XyDirection="XYDirection" ReceiveHandledEvents="True" ExecuteOn="MouseDoubleClick"/>
+
+                            <sciChart:CursorModifier IsEnabled="True"  ShowTooltipOn="MouseOver"  
+                                                 ShowAxisLabels="True"  SourceMode="AllSeries"
+                                                 ShowTooltip="False" />
+
+                            <!--自由平移-->
+                            <sciChart:ZoomPanModifier x:Name="zoomPanModifier" ReceiveHandledEvents="True" IsEnabled="True"  ClipModeX="None" XyDirection="XYDirection" ExecuteOn="MouseRightButton" ZoomExtentsY="False" />
+
+                            <sciChart:LegendModifier ShowLegend="False" Orientation="Horizontal" Margin="10" HorizontalAlignment="Right" 
+                                      LegendPlacement="Inside"  GetLegendDataFor="AllSeries"
+                                      ShowVisibilityCheckboxes="False"/>
+
+                            <sciChart:RolloverModifier x:Name="rolloverModifier" 
+                                                   UseInterpolation="False" FontSize="9" IsEnabled="True" 
+                                                   DrawVerticalLine="False" FontFamily="Arial,SimSun" 
+                                                   SnapsToDevicePixels="False"                                             
+                                                  ShowAxisLabels="False" />
+
+                            <sciChart:MouseWheelZoomModifier x:Name="mouseWheelZoomModifier" XyDirection="XDirection"/>
+
+                        </sciChart:ModifierGroup>
+
+                    </sciChart:SciChartSurface.ChartModifier>
+                </sciChart:SciChartSurface>
+
+            </Grid>
+
+            <Button Visibility="Hidden" Content="Select Data" Grid.Row="1" Width="100" Height="30" HorizontalAlignment="Left" Margin="0,5" IsEnabled="{Binding IsPermission}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <micro:ActionMessage MethodName="SelectData">
+                        </micro:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+
+        </Grid>
+
+        <GridSplitter Grid.Row="1"  Background="LightBlue" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="5" Margin="0">
+        </GridSplitter>
+        <DataGrid  Grid.Row="2" Margin="5,0,0,0" 
+                  AlternationCount="2" ColumnHeaderHeight="30" IsEnabled="{Binding IsPermission}"
+                  ItemsSource="{Binding SelectedData}" AutoGenerateColumns="False" 
+                  CanUserAddRows="False" CanUserResizeRows="False" CanUserResizeColumns="True" FontFamily="Arial" FontSize="14">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate >
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <!--<CheckBox Foreground="{DynamicResource FG_White}" VerticalAlignment="Center">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <cal:ActionMessage MethodName="VisibleCheckAll">
+                                            </cal:ActionMessage>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </CheckBox>-->
+                                <TextBlock Text="Visible" VerticalAlignment="Bottom" Margin="3,0,0,0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsVisible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                <!--<i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="VisibleCheck">
+                                            <cal:Parameter Value="{Binding }"/>
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>-->
+                            </CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Source" MinWidth="200">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DataSource}" Margin="5,0" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Name" MinWidth="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DataName}" Margin="5,0" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Color" MinWidth="100" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{DynamicResource Color_Button}" HorizontalAlignment="Stretch" Background="{Binding Stroke, Converter={StaticResource colorConverter}}" Width="50">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <micro:ActionMessage MethodName="SelectColor">
+                                            <micro:Parameter Value="{Binding}" ></micro:Parameter>
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Factor" MinWidth="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <controls:TextBoxEx AllowBackgroundChange="False" Text="{Binding DataFactor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="80" Margin="5,0" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            <!--<i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="LostFocus">
+                                        <cal:ActionMessage MethodName="FactorLostFocus">
+                                            <cal:Parameter Value="{Binding}" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                    <i:EventTrigger EventName="KeyDown">
+                                        <cal:ActionMessage MethodName="FactorKeyDown">
+                                            <cal:Parameter Value="$eventargs" />
+                                            <cal:Parameter Value="{Binding}" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>-->
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Offset" MinWidth="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <controls:TextBoxEx AllowBackgroundChange="False" Text="{Binding DataOffset, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="80" Margin="5,0" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                                <!--<i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="LostFocus">
+                                        <cal:ActionMessage MethodName="OffsetLostFocus">
+                                            <cal:Parameter Value="{Binding}" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                    <i:EventTrigger EventName="KeyDown">
+                                        <cal:ActionMessage MethodName="OffsetKeyDown">
+                                            <cal:Parameter Value="$eventargs" />
+                                            <cal:Parameter Value="{Binding}" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>-->
+                            </controls:TextBoxEx>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Width" MinWidth="60">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <controls:TextBoxEx AllowBackgroundChange="False" Text="{Binding LineThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="80" Margin="5,0" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                                <!--<i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="LostFocus">
+                                        <cal:ActionMessage MethodName="WidthLostFocus">
+                                            <cal:Parameter Value="{Binding}" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                    <i:EventTrigger EventName="KeyDown">
+                                        <cal:ActionMessage MethodName="WidthKeyDown">
+                                            <cal:Parameter Value="$eventargs" />
+                                            <cal:Parameter Value="{Binding}" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>-->
+                            </controls:TextBoxEx>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="120">
+                    <DataGridTemplateColumn.HeaderTemplate >
+                        <DataTemplate>
+                            <Button Content="Export All" Width="85" Height="25">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <micro:ActionMessage MethodName="ExportAll">
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Export" Width="65" Height="25">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <micro:ActionMessage MethodName="Export">
+                                            <micro:Parameter Value="{Binding }"/>
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="120">
+                    <DataGridTemplateColumn.HeaderTemplate >
+                        <DataTemplate>
+                            <Button Content="Delete All" Width="85" Height="25">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <micro:ActionMessage MethodName="DeleteAll">
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Width="65" Height="25">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <micro:ActionMessage MethodName="Delete">
+                                            <micro:Parameter Value="{Binding }"/>
+                                        </micro:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

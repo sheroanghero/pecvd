@@ -1,0 +1,151 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- TextBox Style -->
+
+    <SolidColorBrush x:Key="TextBlock_BD" Color="#FF1B1B1B"/>
+    <SolidColorBrush x:Key="TextBlock_BG" Color="Transparent"/>
+
+    <SolidColorBrush x:Key="TextBlock_SubBD" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="TextBlock_SubBG" Color="#ff402b94"/>
+
+    <SolidColorBrush x:Key="TextBlockLeftGrid_BD" Color="#FF728585"/>
+    <SolidColorBrush x:Key="TextBlockLeftGrid_BG" Color="#ffcbdeda"/>
+
+
+    <SolidColorBrush x:Key="TextBlockRightGrid_BD" Color="#FF728585"/>
+    <SolidColorBrush x:Key="TextBlockRightGrid_BG" Color="#ffe7efed"/>
+
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="Background" Value="{DynamicResource TextBlock_BG}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBlock_BD}" />
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+    </Style>
+
+
+    <Style x:Key="TextBlock_Title" TargetType="{x:Type TextBlock}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Margin" Value="0,2,2,2"/>
+        <Setter Property="Background" Value="{DynamicResource TextBlock_BG}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBlock_BD}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+    </Style>
+
+    <Style x:Key="TextBlock_Grid" TargetType="{x:Type TextBlock}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Margin" Value="0,2,2,2"/>
+        <Setter Property="Background" Value="{DynamicResource TextBlock_BG}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBlock_BD}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+    </Style>
+
+    <Style x:Key="TextBlock_GridLeft" TargetType="{x:Type TextBlock}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Margin" Value="0,2,2,2"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Background" Value="{DynamicResource TextBlockLeftGrid_BG}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBlockLeftGrid_BD}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+    </Style>
+
+    <Style x:Key="TextBlock_GridRight" TargetType="{x:Type TextBlock}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontFamily" Value="Segoe" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Margin" Value="0,2,2,2"/>
+        <Setter Property="Padding" Value="4"/>
+        <Setter Property="Background" Value="{DynamicResource TextBlockRightGrid_BG}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBlockRightGrid_BD}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+    </Style>
+
+    <!-- TextBlock_Top Style -->
+
+    <SolidColorBrush x:Key="TextBlock_Top_BG" Color="#FFC8E8FF"/>
+    <SolidColorBrush x:Key="TextBlock_Top_Shadow" Color="#FF1B1B1B"/>
+    <SolidColorBrush x:Key="TextBlock_Top_Highlight_Right" Color="White"/>
+    <SolidColorBrush x:Key="TextBlock_Top_Highlight_Bottom" Color="#FFD2D2D2"/>
+
+    <Style x:Key="TextBlock_Top" TargetType="{x:Type TextBlock}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Margin" Value="0,2,2,2"/>
+        <Setter Property="Background" Value="{DynamicResource TextBlock_BG}" />
+        <Setter Property="Foreground" Value="{DynamicResource Foreground_Black}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+    </Style>
+
+    <Style x:Key="TextBlock_SubTitle" TargetType="{x:Type TextBlock}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Margin" Value="0,2,2,2"/>
+        <Setter Property="Background" Value="{DynamicResource TextBlock_SubBG}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBlock_SubBD}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Padding" Value="5,15,0,15"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="TextBlock_YellowGrid" TargetType="{x:Type TextBlock}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="Margin" Value="0,1,2,1"/>
+        <Setter Property="Background" Value="#ffe3c37e" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Block.TextAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="0,20,0,0"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+    </Style>
+
+    <Style x:Key="TextBlock_GreenGrid" TargetType="{x:Type TextBlock}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="Margin" Value="0,1,2,1"/>
+        <Setter Property="Background" Value="#ff68d2c0" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Block.TextAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="0,20,0,0"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+    </Style>
+
+    <Style x:Key="TextBlock_TransparentGrid" TargetType="{x:Type TextBlock}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="Margin" Value="0,1,2,1"/>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Block.TextAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="0,20,0,0"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+    </Style>
+
+
+</ResourceDictionary>

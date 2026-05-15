@@ -1,0 +1,260 @@
+{
+  "IOSimulatorItemList": [
+    {
+      "SourceCommandName": "ManualEvent",
+      "SourceCommand": "ManualEvent",
+      "SourceCommandType": "AERS",
+      "SuccessResponse": "BEGIN_FETCH",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "ManualAlarm",
+      "SourceCommand": "ManualAlarm",
+      "SourceCommandType": "ARS",
+      "SuccessResponse": "4128 Cassette not present",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "Auto",
+      "SourceCommand": "AUTO",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Calibrate",
+      "SourceCommand": "CALIB",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Close",
+      "SourceCommand": "CLOSE",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "CloseGrip",
+      "SourceCommand": "CLOSE_GRIP",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Disable",
+      "SourceCommand": "DISABLE",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "Argument": "ALL",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Enable",
+      "SourceCommand": "ENABLE",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "Argument": "ALL",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Error",
+      "SourceCommand": "ENABLE",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "Argument": "ALL",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Fetch",
+      "SourceCommand": "FETCH",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Goto",
+      "SourceCommand": "GOTO",
+      "SourceCommandType": "HCS",
+      "Argument": "4000",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Home",
+      "SourceCommand": "HOME",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+	{
+      "SourceCommandName": "Recovery",
+      "SourceCommand": "RECOVERY",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+	{
+      "SourceCommandName": "Stop",
+      "SourceCommand": "STOP",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": ""
+    },
+	{
+      "SourceCommandName": "Reset",
+      "SourceCommand": "RESET",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "Load",
+      "SourceCommand": "LOAD",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Lock",
+      "SourceCommand": "LOCK",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "LockLatch",
+      "SourceCommand": "LK LATCH",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Manual",
+      "SourceCommand": "MANUAL",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "ManualGoto",
+      "SourceCommand": "MAN GOTO",
+      "SourceCommandType": "HCS",
+      "Argument": "4000",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "ManualUnlock",
+      "SourceCommand": "MAN UNLK",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Move",
+      "SourceCommand": "MOVE",
+      "SourceCommandType": "HCS",
+      "Argument": "DN 500",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "ManualUnlock",
+      "SourceCommand": "MAN UNLOCK",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Open",
+      "SourceCommand": "OPEN",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "OpenGrip",
+      "SourceCommand": "OPEN GRIP",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Recocvery",
+      "SourceCommand": "RECOVERY",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Reseat",
+      "SourceCommand": "RESEAT",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Reset",
+      "SourceCommand": "RESET",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "SelfTest",
+      "SourceCommand": "SELF-TEST",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Stage",
+      "SourceCommand": "STAGE",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Stop",
+      "SourceCommand": "STOP",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Unlock",
+      "SourceCommand": "UNLK",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "Unload",
+      "SourceCommand": "UNLOAD",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "UnlockLatch",
+      "SourceCommand": "UNLK LATCH",
+      "SourceCommandType": "HCS",
+      "SuccessResponse": "OK",
+      "FailedResponse": "BUSY|ALARM|NO_POD|NOT_READY|INVALID_ARG|CANNOT_PERFORM|DENIED"
+    },
+    {
+      "SourceCommandName": "RequestConstant",
+      "SourceCommandType": "ECR",
+      "SuccessResponse": "P13=OFF",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RequestStatus",
+      "SourceCommandType": "FSR",
+      "SuccessResponse": "FSD0 PIO=OFFPRTST=UNLK ELDN=FALSE ELSTAGE=FALSE ELUP=TRUE SEATER=HOME MODE=AUTO GRPST=OPEN ALMID=0000 ARM_RETR=TRUE HOME=TRUE",
+      "FailedResponse": ""
+    }
+  ]
+}

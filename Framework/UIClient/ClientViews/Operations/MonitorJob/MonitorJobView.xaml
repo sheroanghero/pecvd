@@ -1,0 +1,185 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.Operations.MonitorJob.MonitorJobView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1920"  >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Background="Transparent" Padding="0" BorderThickness="0">
+            <TabItem Header="Control Jobs" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="60"/>
+                        </Grid.RowDefinitions>
+
+                    <DataGrid Grid.Row="0" AutoGenerateColumns="False"  Name="GridControlJobsList"   
+                   ItemsSource="{Binding ControlJobsData,Mode=OneWay}" SelectionUnit="FullRow"
+                  VerticalAlignment="Stretch"  VerticalContentAlignment="Stretch"
+                          HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="#A0808080"
+                          AlternatingRowBackground="#74C7F7FF" BorderThickness="1" SelectionMode="Single" 
+                          CanUserReorderColumns="False" CanUserAddRows="False" BorderBrush="#5C000000" 
+                          ColumnHeaderHeight="25" ClipboardCopyMode="IncludeHeader" CanUserSortColumns="False" 
+                          IsReadOnly="True" RowBackground="#FFAFD5D5"   SelectedItem="{Binding SelectedControlJob}"
+                          >
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="110" Binding="{Binding Num,Mode=OneWay}" Header="#" CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding Num}" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="200" Binding="{Binding ObjtID,Mode=OneWay}" Header="ID" CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding ObjtID}" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="220" Binding="{Binding State,Mode=OneWay}" Header="State" CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding State}" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="120" Binding="{Binding Auto,Mode=OneWay}" Header="Is Auto Start" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding Auto}" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="220" Binding="{Binding CreateTime,Mode=OneWay}" Header="Create Time" CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding CreateTime}" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="220" Binding="{Binding CompleteTime,Mode=OneWay}" Header="Complete Time" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding CompleteTime}" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="1" VerticalAlignment="Top" Orientation="Horizontal"  Height="55">
+                        <!--<Button Content="Resume" Height="30"    VerticalAlignment="Center" Width="119"  Command="{Binding ControlJobsCommand}"  CommandParameter="Resume"       IsDefault="True" Canvas.Left="382" Margin="20,0,0,0" Canvas.Top="15" IsEnabled="{Binding IsPermission}"/>
+                        <Button Content="Pause" Height="30"    VerticalAlignment="Center" Width="119"  Command="{Binding ControlJobsCommand}"   CommandParameter="Pause"        IsDefault="True" Canvas.Left="382" Margin="20,0,0,0" Canvas.Top="15" IsEnabled="{Binding IsPermission}"/>
+                        <Button Content="Start" Height="30"    VerticalAlignment="Center" Width="119"  Command="{Binding ControlJobsCommand}"   CommandParameter="Start"        IsDefault="True" Canvas.Left="382" Margin="20,0,0,0" Canvas.Top="15" IsEnabled="{Binding IsPermission}"/>
+                        <Button Content="Stop" Height="30"    VerticalAlignment="Center" Width="119"   Command="{Binding ControlJobsCommand}"   CommandParameter="Stop"         IsDefault="True" Canvas.Left="382" Margin="20,0,0,0" Canvas.Top="15" IsEnabled="{Binding IsPermission}"/>-->
+                        <Button Content="Abort" Height="30"    VerticalAlignment="Center" Width="119"   Command="{Binding ControlJobsCommand}"  CommandParameter="Abort"        IsDefault="True" Canvas.Left="382" Margin="20,0,0,0" Canvas.Top="15" IsEnabled="{Binding IsPermission}"/>
+                        <Button Content="Cancel" Height="30"    VerticalAlignment="Center" Width="119"   Command="{Binding ControlJobsCommand}" CommandParameter="Cancel"       IsDefault="True" Canvas.Left="382" Margin="20,0,0,0" Canvas.Top="15" IsEnabled="{Binding IsPermission}"/>
+                        <!--<Button Content="DeSelect" Height="30"    VerticalAlignment="Center" Width="119"   Command="{Binding ControlJobsCommand}" CommandParameter="DeSelect"   IsDefault="True" Canvas.Left="382" Margin="20,0,0,0" Canvas.Top="15" IsEnabled="{Binding IsPermission}"/>
+                        <Button Content="Head of Queue" Height="30"   VerticalAlignment="Center" Width="182"  Command="{Binding ControlJobsCommand}" CommandParameter="Queue"  IsDefault="True" Canvas.Left="382" Margin="20,2,0,3" Canvas.Top="15" IsEnabled="{Binding IsPermission}"/>-->
+                        <!--<TextBox  Height="30" FontSize="20"  VerticalAlignment="Center" Width="272" Margin="20,2,0,3"></TextBox>-->
+                    </StackPanel>
+                </Grid>
+                </TabItem>
+            </TabControl>
+
+        <TabControl Margin="0,10,0,0" Grid.Row="1" Background="Transparent" BorderThickness="0" Padding="0">
+            <TabItem Header="Process Jobs"  >
+                <Grid Margin="0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid Margin="0" Padding="0" Grid.Row="0" AutoGenerateColumns="False"  Name="GridProcessList"   
+                   ItemsSource="{Binding ProcessJobsData,Mode=OneWay}" SelectionUnit="FullRow"
+                  VerticalAlignment="Stretch"  
+                          HorizontalGridLinesBrush="Gray" VerticalGridLinesBrush="#A0808080"
+                          AlternatingRowBackground="#74C7F7FF" BorderThickness="1" SelectionMode="Single" 
+                          CanUserReorderColumns="False" CanUserAddRows="False" BorderBrush="#5C000000" 
+                          ColumnHeaderHeight="25" ClipboardCopyMode="IncludeHeader" CanUserSortColumns="False" 
+                          IsReadOnly="True" RowBackground="#FFAFD5D5" SelectedItem="{Binding SelectedProcessJob}"
+                          >
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Width="200" Binding="{Binding ObjtID,Mode=OneWay}" Header="ID" CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding ObjtID}" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="220" Binding="{Binding State,Mode=OneWay}" Header="State" CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding State}" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="110" Binding="{Binding Auto,Mode=OneWay}" Header="Is Auto Start" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding Auto}" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="220" Binding="{Binding RecID,Mode=OneWay}" Header="Recipe ID" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding RecID}" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="220" Binding="{Binding CreateTime,Mode=OneWay}" Header="Create Time" CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding CreateTime}" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Width="220" Binding="{Binding CompleteTime,Mode=OneWay}" Header="Complete Time" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding CompleteTime}" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="1" VerticalAlignment="Top" Orientation="Horizontal"  Height="55">
+
+                        <!--<Button Content="Resume" Height="30" VerticalAlignment="Center" Width="119" Command="{Binding ProcessJobsCommand}"  CommandParameter="Resume" IsDefault="True" Canvas.Left="382" Margin="20,0,0,0" Canvas.Top="15" IsEnabled="{Binding IsPermission}"/>
+                        <Button Content="Pause"  Height="30" VerticalAlignment="Center" Width="119"   Command="{Binding ProcessJobsCommand}"   CommandParameter="Pause" IsDefault="True" Canvas.Left="382" Margin="20,0,0,0" Canvas.Top="15" IsEnabled="{Binding IsPermission}"/>
+                        <Button Content="Start"  Height="30" VerticalAlignment="Center" Width="119"  Command="{Binding ProcessJobsCommand}"   CommandParameter="Start"  IsDefault="True" Canvas.Left="382" Margin="20,0,0,0" Canvas.Top="15" IsEnabled="{Binding IsPermission}"/>
+                        <Button Content="Stop"   Height="30" VerticalAlignment="Center" Width="119"  Command="{Binding ProcessJobsCommand}"   CommandParameter="Stop"  IsDefault="True" Canvas.Left="382" Margin="20,0,0,0" Canvas.Top="15" IsEnabled="{Binding IsPermission}"/>-->
+                        <Button Content="Abort"  Height="30" VerticalAlignment="Center" Width="119"  Command="{Binding ProcessJobsCommand}"   CommandParameter="Abort"  IsDefault="True" Canvas.Left="382" Margin="20,0,0,0" Canvas.Top="15" IsEnabled="{Binding IsPermission}"/>
+                        <!--<Button Content="Cancel" Height="30" VerticalAlignment="Center" Width="119" Command="{Binding ProcessJobsCommand}"   CommandParameter="Cancel"  IsDefault="True" Canvas.Left="382" Margin="20,0,0,0" Canvas.Top="15" IsEnabled="{Binding IsPermission}"/>-->
+                        <!--<Button Content="Display Turning" Height="30"   FontSize="20"  VerticalAlignment="Center" Width="155" Click="buttonExportProcess_Click" IsDefault="True" Canvas.Left="382" Margin="500,0,0,0" Canvas.Top="15" IsEnabled="{Binding IsPermission}"/>-->
+
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+ 
+
+    </Grid>
+</UserControl>

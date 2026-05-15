@@ -1,0 +1,23 @@
+﻿<Window x:Class="MECF.Framework.UI.Core.Accounts.UserPwdChangeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{DynamicResource GlobalLableAccountViewResetPasswordTitle}" Height="181" Width="324" WindowStartupLocation="CenterOwner" 
+        ResizeMode="NoResize" ShowInTaskbar="False"  >
+ 
+    <Grid>
+        <GroupBox Header="{DynamicResource GlobalLableAccountViewResetPasswordInfo}" Height="113" HorizontalAlignment="Left" Margin="6,0,0,0" Name="groupBox1" VerticalAlignment="Top" Width="292" FontSize="16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="14*" />
+                    <ColumnDefinition Width="174*" />
+                </Grid.ColumnDefinitions>
+                <Label Content="{DynamicResource GlobalLableAccountViewResetPasswordInput}" Height="28" HorizontalAlignment="Left" Margin="10,11,0,0" Name="label1" VerticalAlignment="Top" FontFamily="Arial,SimSun" FontSize="15" Grid.ColumnSpan="2" />
+                <Label Content="{DynamicResource GlobalLableAccountViewResetPasswordReinput}" FontFamily="Arial,SimSun" FontSize="15" Height="28" HorizontalAlignment="Left" Margin="10,49,0,0" Name="label2" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+                <PasswordBox Height="23" HorizontalAlignment="Left" Margin="92,16,0,0" Name="passwordBox1" VerticalAlignment="Top" Width="148" FontSize="16" PasswordChanged="passwordBox1_PasswordChanged" Grid.Column="1" ToolTip="密码长度4~12位数字和字母的组合，其中至少含有一个数字." />
+                <PasswordBox FontSize="16" Height="23" HorizontalAlignment="Left" Margin="92,49,0,0" Name="passwordBox2" VerticalAlignment="Top" Width="148" PasswordChanged="passwordBox2_PasswordChanged" Grid.Column="1" ToolTip="密码长度4~12位数字和字母的组合，其中至少含有一个数字." />
+            </Grid>
+        </GroupBox>
+        <Button Content="{DynamicResource GlobalLableButtonOk}" FontSize="15" Height="25" HorizontalAlignment="Left" Margin="56,115,0,0" Name="btnOK" VerticalAlignment="Top" Width="75" Click="btnOK_Click" />
+        <Button Content="{DynamicResource GlobalLableButtonCancel}" Height="25" HorizontalAlignment="Left" Margin="170,115,0,0" Name="btnClose" VerticalAlignment="Top" Width="75" FontSize="15" Click="btnClose_Click" />
+    </Grid>
+</Window>

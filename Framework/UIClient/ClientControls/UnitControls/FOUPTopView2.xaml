@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.ClientControls.UnitControls.FOUPTopView2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Storyboard x:Key="FOUPDoor_Close">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" >
+                <EasingDoubleKeyFrame KeyTime="0" Value="10"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="43.5"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FOUPDoor_Open">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)">
+                <EasingDoubleKeyFrame KeyTime="0" Value="43.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="10"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="body_up">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" >
+                <EasingThicknessKeyFrame KeyTime="0" Value="2,10,2,0"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="2,0,2,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="body_down">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                <EasingThicknessKeyFrame KeyTime="0" Value="2,0,2,0"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:0.2" Value="2,10,2,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Style TargetType="{x:Type Rectangle}" x:Key="Door_Animation" >
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding DoorState}" Value="Open">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard Storyboard="{StaticResource FOUPDoor_Open}"/>
+                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <BeginStoryboard Storyboard="{StaticResource FOUPDoor_Close}"/>
+                    </DataTrigger.ExitActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="root" Width="85" Height="100">
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="0,0,5,5">
+            <Border BorderThickness="1,0,1,1" Margin="4,-1,4,4" CornerRadius="0,0,4,4" Background="#FFB4B4B4" BorderBrush="#FF7C7C7C">
+                <Grid x:Name="FOUP_Body" >
+                    <Grid.Style>
+                        <Style>
+                            <Setter Property="Grid.Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CassetteState}" Value="Normal">
+                                    <Setter Property="Grid.Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <Grid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Home" Click="MenuItem_Click" Tag="LoadportHome" />
+                            <MenuItem Header="Abort" Click="MenuItem_Click" Tag="LoadportAbort" />
+                            <MenuItem Header="Stop" Click="MenuItem_Click" Tag="LoadportStop" />
+                            <Separator />
+                            <MenuItem Header="Clamp" Click="MenuItem_Click" Tag="LoadportClamp" />
+                            <MenuItem Header="Unlamp" Click="MenuItem_Click" Tag="LoadportUnlamp" />
+                            <MenuItem Header="Load" Click="MenuItem_Click" Tag="LoadportLoad" />
+                            <MenuItem Header="Unload" Click="MenuItem_Click" Tag="LoadportUnload" />
+                            <MenuItem Header="Open Door" Click="MenuItem_Click" Tag="LoadportOpenDoor" />
+                            <MenuItem Header="Close Door" Click="MenuItem_Click" Tag="LoadportCloseDoor" />
+                            <MenuItem Header="Dock" Click="MenuItem_Click" Tag="LoadportDock" />
+                            <MenuItem Header="Undock" Click="MenuItem_Click" Tag="LoadportUndock" />
+                            <MenuItem Header="Map" Click="MenuItem_Click" Tag="LoadportMap" />
+                        </ContextMenu>
+                    </Grid.ContextMenu>
+                    <Rectangle Fill="#FFD8D8D8" Margin="4,0,4,4" Stroke="Black" RadiusY="5" RadiusX="5">
+                        <Rectangle.Effect>
+                            <BlurEffect Radius="25"/>
+                        </Rectangle.Effect>
+                    </Rectangle>
+                    <Grid x:Name="FOUP_Body_Inner" Margin="2,10,2,0" VerticalAlignment="Top">
+                        <Rectangle Fill="#FF3484B6" Height="6" VerticalAlignment="Top"/>
+                        <Path Data="M0,0 L65,0 65,53.6665 65,54 64.98787,54 64.957711,54.30118 C64.087258,60.817829 49.88834,66 32.5,66 15.11166,66 0.91274095,60.817829 0.042288512,54.30118 L0.012133257,54 0,54 0,53.6665 z" Fill="#FF72ADCC" Margin="2,5,2,0" VerticalAlignment="Top" Width="65" Height="66" Stroke="#FF4399C6"/>
+                        <Path Data="M0.5,0.5 L34.5,0.5 34.5,63.642655 33.637119,63.844716 C28.89949,64.896935 23.385284,65.5 17.5,65.5 11.614716,65.5 6.1005077,64.896935 1.3628788,63.844716 L0.5,63.642655 z" Fill="#FF7EB8D6" Margin="17,5,17,0" VerticalAlignment="Top" Stroke="#FF4399C6"/>
+                        <Grid.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding DoorState}" Value="Open">
+                                        <DataTrigger.EnterActions>
+                                            <BeginStoryboard Storyboard="{StaticResource body_up}"/>
+                                        </DataTrigger.EnterActions>
+                                        <DataTrigger.ExitActions>
+                                            <BeginStoryboard Storyboard="{StaticResource body_down}"/>
+                                        </DataTrigger.ExitActions>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                    </Grid>
+                    <Rectangle Fill="#FFABABAB" HorizontalAlignment="Center" Height="10" Stroke="#FF838383" VerticalAlignment="Bottom" Width="45" RadiusX="1" RadiusY="1" Margin="0,0,0,2"/>
+                </Grid>
+            </Border>
+            <Border.Style>
+                <Style>
+                    <Setter Property="Border.Background" Value="Gray"/>
+                </Style>
+            </Border.Style>
+        </Border>
+        <Grid x:Name="FOUP_Door" Height="10" VerticalAlignment="Top" Margin="-1,0">
+            <Rectangle x:Name="FOUPDoor_Left" Fill="Black" Style="{StaticResource Door_Animation}" HorizontalAlignment="Left" Width="43.5" Height="6" VerticalAlignment="Center"/>
+            <Rectangle x:Name="FOUPDoor_Right" Fill="Black" Style="{StaticResource Door_Animation}" HorizontalAlignment="Right" Width="43.5" Height="6" VerticalAlignment="Center"/>
+            <Rectangle HorizontalAlignment="Left" Stroke="#FF434343" Width="10">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                        <GradientStop Color="#FF4D4D4D" Offset="0"/>
+                        <GradientStop Color="#FFCCCCCC" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Right" Stroke="#FF434343" Width="10">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0,0.5" StartPoint="1,0.5">
+                        <GradientStop Color="#FF4D4D4D" Offset="0"/>
+                        <GradientStop Color="#FFCCCCCC" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+    </Grid>
+</UserControl>

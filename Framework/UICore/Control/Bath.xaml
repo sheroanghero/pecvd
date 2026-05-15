@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Aitex.Core.UI.Control.Bath"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Aitex.Core.UI.Control" 
+    x:Name="bathControl"
+    Panel.ZIndex="-1"
+    Height="60" Width="260" BorderThickness="1"    
+    MouseEnter="OnMouseEnter">
+
+    <Canvas x:Name="waterArea" Background="Transparent" >
+        <Polyline  Points="0,0  0,100 280,100 280,0" Width="{Binding ElementName=bathControl,Path=Width}" Stroke="Silver" Height="60" />
+        <Label Name="lblBathTemperature" Panel.ZIndex="99" Canvas.Top="45" Width="{Binding ElementName=bathControl,Path=Width}" HorizontalAlignment="Center" FontSize="18" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">10℃</Label>
+        <Canvas Canvas.Top="10" x:Name="cavBath" Width="{Binding ElementName=bathControl,Path=Width}" Height="{Binding ElementName=bathControl,Path=Height}" Background="SkyBlue" />
+    </Canvas>
+</UserControl>

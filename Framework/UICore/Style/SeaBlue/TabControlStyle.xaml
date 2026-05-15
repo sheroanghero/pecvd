@@ -1,0 +1,308 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    >
+    <!--通用TabControl样式-->
+    <Style TargetType="{x:Type TabControl}" x:Key="LargeTab">
+        <!--<Setter Property="Background" Value="#FFC5D0D8"/>-->
+        <Setter Property="Background" Value="#669ACC"/>
+        <Setter Property="FontFamily" Value="Arial,SimSun"/>
+
+    </Style>
+
+    <!--通用TabItem样式-->
+    <Style TargetType="TabItem">
+        <Setter Property="FrameworkElement.FocusVisualStyle">
+            <Setter.Value>
+                <Style TargetType="Control">
+                    <Style.Resources>
+                        <ResourceDictionary />
+                    </Style.Resources>
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Border>
+                                    <Rectangle   StrokeThickness="0" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--通用TabControl样式-->
+    <Style TargetType="{x:Type TabControl}" >
+        <!--<Setter Property="Background" Value="#FFC5D0D8"/>-->
+        <Setter Property="Background" Value="#669ACC"/>
+        <Setter Property="FontFamily" Value="Arial,SimSun"/>
+
+        <Setter Property="FontSize" Value="17"></Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Height" Value="24"></Setter>
+
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TabItem}">
+
+                                <Grid Margin="0 0 -10 0">
+                                    <Path Data="M190 0 L 0 0 L 10 23 L 170 23 L 190 0" StrokeThickness="1" Fill="{TemplateBinding Background}"  
+										  Stroke="Black">
+                                    </Path>
+                                    <ContentPresenter    Margin="10 3 10 0" ContentSource="Header" Cursor="Hand" />
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Trigger.Setters>
+                                            <Setter Property="Background" Value="#FF4EAEFA"></Setter>
+                                            <Setter Property="Panel.ZIndex" Value="1"></Setter>
+                                        </Trigger.Setters>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Trigger.Setters>
+                                            <Setter Property="Background" Value="#FF8BBDE0"></Setter>
+                                        </Trigger.Setters>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabControl}">
+                    <Grid ClipToBounds="True" KeyboardNavigation.TabNavigation="Local" SnapsToDevicePixels="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Name="ColumnDefinition0" Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Name="RowDefinition0"  />
+                            <RowDefinition Name="RowDefinition1" Height="25"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Name="HeaderPanel" 
+                  Orientation="Horizontal" 
+                  Grid.Row="1"
+                  Background="#FFAECEE4"
+                  Margin="0,0,0,0"
+                  Panel.ZIndex="1"
+                  IsItemsHost="True"
+                  KeyboardNavigation.TabIndex="1"/>
+                        <Border Name="ContentPanel" 
+                  Grid.Row="0"
+                  Background="{TemplateBinding Panel.Background}"
+                  BorderBrush="{TemplateBinding Border.BorderBrush}"
+                  BorderThickness="{TemplateBinding Border.BorderThickness}"
+                  KeyboardNavigation.DirectionalNavigation="Contained"
+                  KeyboardNavigation.TabIndex="2"
+                  KeyboardNavigation.TabNavigation="Local">
+                            <ContentPresenter Name="PART_SelectedContentHost"
+                     Margin="{TemplateBinding Control.Padding}"
+                     Content="{TemplateBinding TabControl.SelectedContent}"
+                     ContentSource="SelectedContent"
+                     ContentStringFormat="{TemplateBinding TabControl.SelectedContentStringFormat}"
+                     ContentTemplate="{TemplateBinding TabControl.SelectedContentTemplate}"
+                     SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!--设置TabControl模版样式-->
+    <ControlTemplate x:Key="TabStackPanelControlTemplate" TargetType="{x:Type TabControl}">
+        <Grid ClipToBounds="True" KeyboardNavigation.TabNavigation="Local" SnapsToDevicePixels="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Name="ColumnDefinition0" Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Name="RowDefinition0"  />
+                <RowDefinition Name="RowDefinition1" Height="25"/>
+            </Grid.RowDefinitions>
+            <StackPanel Name="HeaderPanel" 
+                  Orientation="Horizontal" 
+                  Grid.Row="1"
+                  Background="#2c4746"
+                  Margin="0,0,0,0"
+                  Panel.ZIndex="1"
+                  IsItemsHost="True"
+                  KeyboardNavigation.TabIndex="1"/>
+            <Border Name="ContentPanel" 
+                  Grid.Row="0"
+                 
+                  BorderBrush="{TemplateBinding Border.BorderBrush}"
+                  BorderThickness="{TemplateBinding Border.BorderThickness}"
+                  KeyboardNavigation.DirectionalNavigation="Contained"
+                  KeyboardNavigation.TabIndex="2"
+                  KeyboardNavigation.TabNavigation="Local">
+                <ContentPresenter Name="PART_SelectedContentHost"
+                     Margin="{TemplateBinding Control.Padding}"
+                     Content="{TemplateBinding TabControl.SelectedContent}"
+                     ContentSource="SelectedContent"
+                     ContentStringFormat="{TemplateBinding TabControl.SelectedContentStringFormat}"
+                     ContentTemplate="{TemplateBinding TabControl.SelectedContentTemplate}"
+                     SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"/>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+
+    <!--SmartProcess-->
+    <Style TargetType="{x:Type TabItem}" x:Key="TabItemSmartProcess">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Grid>
+                        <Border 
+              Name="Border"
+              Background="#FFC2E4F6"
+              BorderBrush="Gray" 
+              BorderThickness="1,1,1,1" 
+              CornerRadius="6,6,0,0" >
+                            <ContentPresenter x:Name="ContentSite"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                ContentSource="Header"
+                Margin="12,2,12,2"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="#FFC2E4F6" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="Border" Property="Background" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!--设置选项卡大小-->
+    <Style TargetType="{x:Type TabControl}" x:Key="ChromeLargeTab">
+        <Setter Property="Background" Value="#FFC5D0D8">
+
+        </Setter>
+        <Setter Property="FontSize" Value="17"></Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Height" Value="24"></Setter>
+
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TabItem}">
+                                <!--"M60 0 L 0 0 L 10 23 L 45 23 L 60 0"-->
+                                <Grid Margin="0 0 -10 0">
+                                    <Path Data="M120 0 L 0 0 L 10 23 L 90 23 L 120 0" StrokeThickness="1" Fill="{TemplateBinding Background}"  
+										  Stroke="Black">
+                                    </Path>
+                                    <ContentPresenter    Margin="10 3 10 0" ContentSource="Header" Cursor="Hand" />
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Trigger.Setters>
+                                            <Setter Property="Background" Value="#FFCBD8D8"></Setter>
+                                            <Setter Property="Panel.ZIndex" Value="1"></Setter>
+                                        </Trigger.Setters>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Trigger.Setters>
+                                            <Setter Property="Background" Value="#FFA7ADAD"></Setter>
+                                        </Trigger.Setters>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type TabControl}" x:Key="ChromeTabSmall">
+        <Setter Property="Background" Value="#FFC5D0D8">
+
+        </Setter>
+        <Setter Property="FontSize" Value="17"></Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style>
+                    <Setter Property="Control.Height" Value="24"></Setter>
+
+                    <Setter Property="Control.Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TabItem}">
+
+                                <Grid Margin="0 0 -10 0">
+                                    <Path Data="M190 0 L 0 0 L 10 23 L 170 23 L 190 0" StrokeThickness="1" Fill="{TemplateBinding Background}"  
+										  Stroke="Black">
+                                    </Path>
+                                    <ContentPresenter    Margin="10 3 10 0" ContentSource="Header" Cursor="Hand" />
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Trigger.Setters>
+                                            <Setter Property="Background" Value="#FFCBD8D8"></Setter>
+                                            <Setter Property="Panel.ZIndex" Value="1"></Setter>
+                                        </Trigger.Setters>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Trigger.Setters>
+                                            <Setter Property="Background" Value="#FFA7ADAD"></Setter>
+                                        </Trigger.Setters>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type TabItem}" x:Key="Main_TabItem">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource TabItemFocusVisual}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource SubMenu_FG}"/>
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="MinWidth" Value="100"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Border x:Name="BG" BorderBrush="{DynamicResource SubMenu_BD_Shadow}" BorderThickness="0,0,2,2" CornerRadius="0,0,5,5" Background="{DynamicResource SubMenu_BG}" Cursor="Hand">
+                        <Border x:Name="InnerBD" BorderBrush="{DynamicResource SubMenu_BD_Highlight}" BorderThickness="2,0,0,0" CornerRadius="0,0,4,4">
+                            <ContentPresenter x:Name="Content" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" ContentSource="Header" RecognizesAccessKey="True" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="6,0"/>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true" SourceName="BG">
+                            <Setter Property="Background" TargetName="BG" Value="{DynamicResource SubMenu_BG_MouseOver}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource SubMenu_FG_Select}"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter Property="Background" TargetName="BG" Value="{DynamicResource SubMenu_BG_Select}"/>
+                            <Setter Property="BorderBrush" TargetName="BG" Value="{DynamicResource SubMenu_BD_Shadow_Select}"/>
+                            <Setter Property="BorderBrush" TargetName="InnerBD" Value="{DynamicResource SubMenu_BD_Highlight}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource SubMenu_FG_Select}"/>
+                            <Setter Property="FontSize" Value="16"/>
+                            <Setter Property="Effect" TargetName="Content">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="5" Color="White" ShadowDepth="0"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

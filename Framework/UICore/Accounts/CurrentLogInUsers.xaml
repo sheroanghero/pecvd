@@ -1,0 +1,36 @@
+﻿<Window x:Class="MECF.Framework.UI.Core.Accounts.CurrentLogInUsers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="登陆用户列表" Height="328" Width="681" 
+          WindowStartupLocation="CenterOwner" ShowInTaskbar="False" ResizeMode="NoResize">
+
+    <Canvas>
+        <Button x:Name="btnClose" Content="关闭" Canvas.Left="554" Canvas.Top="254" Click="btnClose_Click" Height="30" Width="88"></Button>
+            <DataGrid  SelectionMode="Single" AutoGenerateColumns="False"  ItemsSource="{Binding Path=LoginUser}" CanUserAddRows="False" IsReadOnly="True" Name="dataGrid1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="242" Width="641" Canvas.Top="8" FontSize="15" Canvas.Left="10" BorderBrush="Black" BorderThickness="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="用户名" Width="80" Binding="{Binding Path=AccountId}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="头衔" Width="50"  Binding="{Binding Path=Touxian}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="登陆时间" Width="160"  Binding="{Binding Path=LastLoginTime}"></DataGridTextColumn>
+                <DataGridTextColumn Header="登陆IP" Width="100"  Binding="{Binding Path=LoginIP}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="电话"  Width="160" Binding="{Binding Path=Telephone}" ></DataGridTextColumn>
+                <DataGridTemplateColumn Header="操作"  Width="80*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="踢出登陆" x:Name="btnDelete" Click="btnDelete_Click"  Tag="{Binding Path=AccountId}">
+                                <!--<Button.IsEnabled>
+                                    <Binding Path="IsLocalEnter">
+                                        <Binding.Converter>
+                                        <cvt:SwitchConverter></cvt:SwitchConverter>
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Button.IsEnabled>-->
+                                
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--<Label Canvas.Left="12" Canvas.Top="251" Content="Label"  Name="labelAuthorizedUser"  />-->
+    </Canvas>
+</Window>

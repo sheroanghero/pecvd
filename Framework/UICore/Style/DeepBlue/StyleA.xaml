@@ -1,0 +1,120 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib" >
+
+ 
+    <Style TargetType="Label" x:Key="MiddleCenterLabel" BasedOn="{StaticResource MiddleLabel}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
+
+    <Style TargetType="Control">
+        <Setter Property="FontSize" Value="11" />
+    </Style>
+
+    <SolidColorBrush x:Key="CellTitle" Color="LightBlue" />
+
+    <SolidColorBrush x:Key="idleWafer" Color="#ADD8E6" />
+    <SolidColorBrush x:Key="busyWafer" Color="Cyan" />
+    <SolidColorBrush x:Key="waitWafer" Color="Blue" />
+    <SolidColorBrush x:Key="completeWafer" Color="Green" />
+    <SolidColorBrush x:Key="errorWafer" Color="Red" />
+
+    <LinearGradientBrush x:Key="greenWafer" StartPoint="-0.00694446,0.500001" EndPoint="1.00694,0.500001">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#FF0EBD01" Offset="0"/>
+            <GradientStop Color="#FF8EFF85" Offset="0.549053"/>
+            <GradientStop Color="#FF0EBD01" Offset="1"/>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush  x:Key="blueWafer" StartPoint="-0.00694446,0.500001" EndPoint="1.00694,0.500001">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#FF0195BD" Offset="0"/>
+            <GradientStop Color="#FF85FFF9" Offset="0.549053"/>
+            <GradientStop Color="#FF0195BD" Offset="1"/>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="redWafer" StartPoint="-0.00694446,0.5" EndPoint="1.00694,0.5">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#FFBD0101" Offset="0"/>
+            <GradientStop Color="#FFFF8585" Offset="0.549053"/>
+            <GradientStop Color="#FFBD0101" Offset="1"/>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="yellowWafer" StartPoint="-0.00694446,0.500001" EndPoint="1.00694,0.500001">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#FFB0BD01" Offset="0"/>
+            <GradientStop Color="#FFF6FF85" Offset="0.549053"/>
+            <GradientStop Color="#FFB0BD01" Offset="1"/>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="purpleWafer" StartPoint="-0.00347225,0.5" EndPoint="1.00347,0.5">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#FFBD01B9" Offset="0"/>
+            <GradientStop Color="#FFFF85F8" Offset="0.549053"/>
+            <GradientStop Color="#FFBD01B9" Offset="1"/>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="blueSlot" Color="#FF0C71A7" />
+
+    <LinearGradientBrush x:Key="greenSlot" StartPoint="-0.00694444,0.5" EndPoint="1.00694,0.5">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#FF19FD1A" Offset="0"/>
+            <GradientStop Color="#FF97FFAA" Offset="0.536178"/>
+            <GradientStop Color="#FF19FD1A" Offset="1"/>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="lightBlueSlot" StartPoint="-0.00694444,0.5" EndPoint="1.00694,0.5">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#FF00ECFF" Offset="0"/>
+            <GradientStop Color="#FF85FAFF" Offset="0.549053"/>
+            <GradientStop Color="#FF00ECFF" Offset="1"/>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <Style x:Key="BlockGroup" TargetType="{x:Type GroupBox}">
+        <Setter Property="Background" Value="#FF4C5FDC" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
+    <LinearGradientBrush x:Key="contentBg" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#d6f1ff" Offset="0" />
+        <GradientStop Color="#7fc7ed" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="buttonNormal" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#9cd7f7" Offset="0" />
+        <GradientStop Color="#56b6e6" Offset="1" />
+    </LinearGradientBrush>
+
+    <Style TargetType="Label" x:Key="label">
+        <Setter Property="Background" Value="{StaticResource buttonNormal}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Height" Value="40" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="labelContent">
+        <Setter Property="Background" Value="{StaticResource contentBg}" />
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Width" Value="280" />
+    </Style>
+
+</ResourceDictionary>
+
+

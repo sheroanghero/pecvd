@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Aitex.Core.UI.Control.ValveBig"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="18" Width="25" MaxHeight="18"  BorderThickness="1"  MaxWidth="25" MinHeight="18" MinWidth="25">
+    <!--BorderBrush="Aqua"-->
+    <UserControl.RenderTransform>
+        <RotateTransform x:Name="rotateTransform" Angle="0" CenterX="7.5" CenterY="7.5"/>
+    </UserControl.RenderTransform>
+
+    <Canvas  Opacity="1" Background="Transparent" MouseRightButtonUp="Canvas_MouseRightButtonUp" MouseEnter="Canvas_MouseEnter" MouseLeave="Canvas_MouseLeave">
+        <!--<Canvas Name="nopass" Visibility="Hidden" Cursor="Hand" MouseLeftButtonDown="nopass_MouseLeftButtonDown"></Canvas>-->
+        <Polygon Name="passtrigle" Opacity="1" Points="0,0 0,16 23,8" Fill="Green" Height="16" Width="23" />
+        <Polygon Name="nopass" Opacity="1" Points="6,0 6,16 14,16 14,0"   Fill="Black" Height="16" Width="23" />
+    </Canvas>
+</UserControl>

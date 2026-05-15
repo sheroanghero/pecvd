@@ -1,0 +1,274 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.Operations.FA.FAView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:MECF.Framework.UI.Client.CenterViews.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1920">
+    <Grid IsEnabled="{Binding IsPermission}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="360"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <StackPanel Orientation="Vertical">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="165" />
+                        <ColumnDefinition Width="165" />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <Label Content="HSMS Configuration" Style="{DynamicResource Table_TitleStyle}" Grid.Row="0" Grid.ColumnSpan="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <controls:ScStringRow  ScName="Local IP Address"
+                                     ScId="Fa.LocalIpAddress" ScFeedback="{Binding ConfigFeedback.Fa_LocalIpAddress}"
+                                     ScSetPoint="{Binding ConfigSetPoint.Fa_LocalIpAddress}"
+                                     Command="{Binding SetConfigCommand}" NameWidth="200" FeedbackWidth="165"
+                                     SetPointWidth="165" CommandWidth="60" />
+                <controls:ScDoubleRow  ScName="Local Port Number"
+                                     ScId="Fa.LocalPortNumber" ScFeedback="{Binding ConfigFeedback.Fa_LocalPortNumber}"
+                                     ScSetPoint="{Binding ConfigSetPoint.Fa_LocalPortNumber}"
+                                     Command="{Binding SetConfigCommand}" NameWidth="200" FeedbackWidth="165"
+                                     SetPointWidth="165" CommandWidth="60" />
+                <controls:ScStringRow  ScName="Remote IP Address"
+                                     ScId="Fa.RemoteIpAddress" ScFeedback="{Binding ConfigFeedback.Fa_RemoteIpAddress}"
+                                     ScSetPoint="{Binding ConfigSetPoint.Fa_RemoteIpAddress}"
+                                     Command="{Binding SetConfigCommand}" NameWidth="200" FeedbackWidth="165"
+                                     SetPointWidth="165" CommandWidth="60" />
+                <controls:ScDoubleRow  ScName="Remote Port Number"
+                                     ScId="Fa.RemotePortNumber" ScFeedback="{Binding ConfigFeedback.Fa_RemotePortNumber}"
+                                     ScSetPoint="{Binding ConfigSetPoint.Fa_RemotePortNumber}"
+                                     Command="{Binding SetConfigCommand}" NameWidth="200" FeedbackWidth="165"
+                                     SetPointWidth="165" CommandWidth="60" />
+
+                <controls:ScDoubleRow  ScName="T3 Timeout(s)"
+                                     ScId="Fa.T3Timeout" ScFeedback="{Binding ConfigFeedback.Fa_T3Timeout}"
+                                     ScSetPoint="{Binding ConfigSetPoint.Fa_T3Timeout}"
+                                     Command="{Binding SetConfigCommand}" NameWidth="200" FeedbackWidth="165"
+                                     SetPointWidth="165" CommandWidth="60" />
+                <controls:ScDoubleRow  ScName="T5 Timeout(s)"
+                                     ScId="Fa.T5Timeout" ScFeedback="{Binding ConfigFeedback.Fa_T5Timeout}"
+                                     ScSetPoint="{Binding ConfigSetPoint.Fa_T5Timeout}"
+                                     Command="{Binding SetConfigCommand}" NameWidth="200" FeedbackWidth="165"
+                                     SetPointWidth="165" CommandWidth="60" />
+                <controls:ScDoubleRow  ScName="T6 Timeout(s)"
+                                     ScId="Fa.T6Timeout" ScFeedback="{Binding ConfigFeedback.Fa_T6Timeout}"
+                                     ScSetPoint="{Binding ConfigSetPoint.Fa_T6Timeout}"
+                                     Command="{Binding SetConfigCommand}" NameWidth="200" FeedbackWidth="165"
+                                     SetPointWidth="165" CommandWidth="60" />
+                <controls:ScDoubleRow  ScName="T7 Timeout(s)"
+                                     ScId="Fa.T7Timeout" ScFeedback="{Binding ConfigFeedback.Fa_T7Timeout}"
+                                     ScSetPoint="{Binding ConfigSetPoint.Fa_T7Timeout}"
+                                     Command="{Binding SetConfigCommand}" NameWidth="200" FeedbackWidth="165"
+                                     SetPointWidth="165" CommandWidth="60" />
+                <controls:ScDoubleRow  ScName="T8 Timeout(s)"
+                                     ScId="Fa.T8Timeout" ScFeedback="{Binding ConfigFeedback.Fa_T8Timeout}"
+                                     ScSetPoint="{Binding ConfigSetPoint.Fa_T8Timeout}"
+                                     Command="{Binding SetConfigCommand}" NameWidth="200" FeedbackWidth="165"
+                                     SetPointWidth="165" CommandWidth="60" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="10,0,10,0" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="165" />
+                        <ColumnDefinition Width="165" />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <Label Content="FA Configuration" Style="{DynamicResource Table_TitleStyle}" Grid.Row="0" Grid.ColumnSpan="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <controls:ScDoubleRow  ScName="S1F1 to Host Interval"
+                                     ScId="Fa.LinkTestInterval" ScFeedback="{Binding ConfigFeedback.Fa_LinkTestInterval}"
+                                     ScSetPoint="{Binding ConfigSetPoint.Fa_LinkTestInterval}"
+                                     Command="{Binding SetConfigCommand}" NameWidth="200" FeedbackWidth="165"
+                                     SetPointWidth="165" CommandWidth="60" />
+
+                <controls:ScDoubleRow  ScName="Device ID"
+                                     ScId="Fa.DeviceId" ScFeedback="{Binding ConfigFeedback.Fa_DeviceId}"
+                                     ScSetPoint="{Binding ConfigSetPoint.Fa_DeviceId}"
+                                     Command="{Binding SetConfigCommand}" NameWidth="200" FeedbackWidth="165"
+                                     SetPointWidth="165" CommandWidth="60" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="165" />
+                        <ColumnDefinition Width="165" />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Row="0" Grid.Column="0" Background="{DynamicResource Table_BG_Title}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1"></Border>
+                    <TextBlock Grid.Row="0" Grid.Column="0" FontSize="13" Text="Default Communication State" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" />
+                    <Border Grid.Row="0" Grid.Column="1" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1"></Border>
+                    <TextBlock Grid.Row="0" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13" Text="{Binding Path=ConfigFeedback.Fa_DefaultCommunicationState}" />
+                    <Border Grid.Row="0" Grid.Column="2" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1"></Border>
+                    <ComboBox  Grid.Row="0"  Grid.Column="2" IsEditable="False"  Text="{Binding Path=ConfigSetPoint.Fa_DefaultCommunicationState }"   >
+                        <ComboBoxItem>Enabled</ComboBoxItem>
+                        <ComboBoxItem>Disabled</ComboBoxItem>
+                    </ComboBox>
+                    <Border Grid.Row="0" Grid.Column="3" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1"></Border>
+                    <Button Content="Set" Grid.Row="0" Grid.Column="3"  Command="{Binding SetConfig2Command}" CommandParameter="Fa.DefaultCommunicationState" FontSize="13" Width="50" Height="22" Margin="2" VerticalAlignment="Center"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="165" />
+                        <ColumnDefinition Width="165" />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Row="0" Grid.Column="0" Background="{DynamicResource Table_BG_Title}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1"></Border>
+                    <TextBlock Grid.Row="0" Grid.Column="0" FontSize="13" Text="Default Control State" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                    <Border Grid.Row="0" Grid.Column="1" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1"></Border>
+                    <TextBlock Grid.Row="0" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Path=ConfigFeedback.Fa_DefaultControlState}" />
+                    <Border Grid.Row="0" Grid.Column="2" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1"></Border>
+                    <ComboBox  Grid.Row="0"  Grid.Column="2" IsEditable="False"  Text="{Binding Path=ConfigSetPoint.Fa_DefaultControlState }"   >
+                        <ComboBoxItem>Online</ComboBoxItem>
+                        <ComboBoxItem>Offline</ComboBoxItem>
+                    </ComboBox>
+                    <Border Grid.Row="0" Grid.Column="3" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1"></Border>
+                    <Button Content="Set" Grid.Row="0" Grid.Column="3"  Command="{Binding SetConfig2Command}" CommandParameter="Fa.DefaultControlState" FontSize="13" Width="50" Height="22" Margin="2" VerticalAlignment="Center"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="165" />
+                        <ColumnDefinition Width="165" />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Row="0" Grid.Column="0" Background="{DynamicResource Table_BG_Title}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1"></Border>
+                    <TextBlock Grid.Row="0" Grid.Column="0" FontSize="13" Text="Default Control SubState" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                    <Border Grid.Row="0" Grid.Column="1" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1"></Border>
+                    <TextBlock Grid.Row="0" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Path=ConfigFeedback.Fa_DefaultControlSubState}" />
+                    <Border Grid.Row="0" Grid.Column="2" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1"></Border>
+                    <ComboBox  Grid.Row="0"  Grid.Column="2" IsEditable="False"  Text="{Binding Path=ConfigSetPoint.Fa_DefaultControlSubState }"   >
+                        <ComboBoxItem>Local</ComboBoxItem>
+                        <ComboBoxItem>Remote</ComboBoxItem>
+                    </ComboBox>
+                    <Border Grid.Row="0" Grid.Column="3" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1"></Border>
+                    <Button Content="Set" Grid.Row="0" Grid.Column="3"  Command="{Binding SetConfig2Command}" CommandParameter="Fa.DefaultControlSubState" FontSize="13" Width="50" Height="22" Margin="2" VerticalAlignment="Center"/>
+
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-220,-80,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="35" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="220" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Spooling Status" Style="{DynamicResource Table_TitleStyle}" Grid.Row="0" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Border Grid.Row="1" Grid.Column="0" Background="{DynamicResource Table_BG_Title}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1"></Border>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="State" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" />
+
+                <Border Grid.Row="1" Grid.Column="1" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1"></Border>
+                <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13" Text="{Binding SpoolingState}" />
+
+                <Border Grid.Row="2" Grid.Column="0" Background="{DynamicResource Table_BG_Title}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1"></Border>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Actual" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" />
+
+                <Border Grid.Row="2" Grid.Column="1" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1"></Border>
+                <TextBlock Grid.Row="2" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13" Text="{Binding SpoolingActual}" />
+
+                <Border Grid.Row="3" Grid.Column="0" Background="{DynamicResource Table_BG_Title}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1"></Border>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Total" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" />
+
+                <Border Grid.Row="3" Grid.Column="1" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1"></Border>
+                <TextBlock Grid.Row="3" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13" Text="{Binding SpoolingTotal}" />
+
+                <Border Grid.Row="4" Grid.Column="0" Background="{DynamicResource Table_BG_Title}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1"></Border>
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Full Time" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+
+                <Border Grid.Row="4" Grid.Column="1" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1"></Border>
+                <TextBlock Grid.Row="4" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13" Text="{Binding SpoolingFullTime}" />
+
+                <Border Grid.Row="5" Grid.Column="0" Background="{DynamicResource Table_BG_Title}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1"></Border>
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="Start Time" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+
+                <Border Grid.Row="5" Grid.Column="1" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1"></Border>
+                <TextBlock Grid.Row="5" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13" Text="{Binding SpoolingStartTime}" />
+
+                <Border Grid.Row="6" Grid.ColumnSpan="2" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1"></Border>
+                <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="2">
+                    <Button Content="Enable" Command="{Binding InvokeCommand}" IsEnabled="{Binding IsEnableSpoolingEnableButton}" CommandParameter="FACommand,FAEnableSpooling" Width="100" Margin="0,0,10,0"/>
+                    <Button Content="Disable" Command="{Binding InvokeCommand}" IsEnabled="{Binding IsEnableSpoolingDisableButton}" CommandParameter="FACommand,FADisableSpooling" Width="100" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="10,0,10,0" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="220" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Host Communication State" Style="{DynamicResource Table_TitleStyle}" Grid.Row="0" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+                <Border Grid.Row="1" Grid.Column="0" Background="{DynamicResource Table_BG_Title}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1"></Border>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Status" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" />
+
+                <Border Grid.Row="1" Grid.Column="1" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1"></Border>
+                <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13" Text="{Binding HostCommunicationStatus}" />
+
+                <Border Grid.Row="2" Grid.ColumnSpan="2" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1"></Border>
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="2">
+                    <Button Content="Enable" Command="{Binding InvokeCommand}" IsEnabled="{Binding IsEnableEnableButton}" CommandParameter="FACommand,FAEnable" Width="100" Margin="0,0,10,0"/>
+                    <Button Content="Disable" Command="{Binding InvokeCommand}" IsEnabled="{Binding IsEnableDisableButton}" CommandParameter="FACommand,FADisable" Width="100" />
+                </StackPanel>
+
+            </Grid>
+
+            <Grid VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="220" />
+                </Grid.ColumnDefinitions>
+                <Label Content="Host Control State" Style="{DynamicResource Table_TitleStyle}" Grid.Row="0" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+                <Border Grid.Row="1" Grid.Column="0" Background="{DynamicResource Table_BG_Title}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1"></Border>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Status" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" />
+
+                <Border Grid.Row="1" Grid.Column="1" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1"></Border>
+                <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="13" Text="{Binding HostControlStatus}" />
+
+                <Border Grid.Row="2" Grid.ColumnSpan="2" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1"></Border>
+                <StackPanel Orientation="Horizontal" Grid.Row="2"  Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="2">
+                    <Button Content="Online" Command="{Binding InvokeCommand}" CommandParameter="FACommand,FAOnline" IsEnabled="{Binding IsEnableOnlineButton}" Width="100" Margin="0,0,10,0"/>
+                    <Button Content="Offline" Command="{Binding InvokeCommand}" CommandParameter="FACommand,FAOffline" IsEnabled="{Binding IsEnableOfflineButton}" Width="100"/>
+                </StackPanel>
+
+                <Border Grid.Row="3" Grid.ColumnSpan="2" Background="{DynamicResource Table_BG_Content}" Margin="0" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1"></Border>
+                <StackPanel Orientation="Horizontal" Grid.Row="3"  Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="2">
+                    <Button Content="Local" Command="{Binding InvokeCommand}" CommandParameter="FACommand,FALocal" IsEnabled="{Binding IsEnableLocalButton}" Width="100" Margin="0,0,10,0"/>
+                    <Button Content="Remote" Command="{Binding InvokeCommand}" CommandParameter="FACommand,FARemote" IsEnabled="{Binding IsEnableRemoteButton}" Width="100"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

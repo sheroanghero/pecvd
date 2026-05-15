@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Aitex.Core.UI.DeviceControl.AITBarcodeTextBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight="35" d:DesignWidth="300" x:Name="self">
+    <Grid HorizontalAlignment="Stretch" Margin="0">
+        <TextBox Foreground="White" FontSize="30"  AcceptsReturn="True" InputMethod.PreferredImeState="Off" 
+InputMethod.IsInputMethodEnabled="False" Text="{Binding ElementName=self, Path=BarcodeText}" TextChanged="TextBoxBase_OnTextChanged"  PreviewTextInput="UIElement_OnPreviewTextInput" TabIndex="0" BorderThickness="1" Margin="0" Padding="0" HorizontalAlignment="Stretch" TextAlignment="Center" VerticalContentAlignment="Center"  >
+            <TextBox.Background>
+                <ImageBrush  Stretch="Fill" x:Name="BarcodeBrushName" Opacity="0.1" AlignmentX="Center" AlignmentY="Center">
+                    <ImageBrush.ImageSource>
+                        <BitmapImage UriSource="/MECF.Framework.Common;component/Resources/barcode.png"/>
+                    </ImageBrush.ImageSource>
+                </ImageBrush>
+            </TextBox.Background>
+
+            <TextBox.Triggers>
+ 
+                <EventTrigger RoutedEvent="TextBox.GotFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation  Storyboard.TargetName="BarcodeBrushName" Storyboard.TargetProperty="Opacity" AutoReverse="True" RepeatBehavior="Forever"
+                  From="0" To="0.3" Duration="0:0:0.5" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="TextBox.LostFocus">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation  Storyboard.TargetName="BarcodeBrushName" Storyboard.TargetProperty="Opacity" AutoReverse="False" From="0.3" To="0.1" Duration="0:0:0.1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </TextBox.Triggers>
+ 
+        </TextBox>
+    </Grid>
+</UserControl>
+

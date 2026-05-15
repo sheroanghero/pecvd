@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="MECF.Framework.Simulator.Core.Commons.CommonSerialPortDeviceSimulatorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MECF.Framework.Simulator.Core.Commons"
+             mc:Ignorable="d" 
+             xmlns:commons="clr-namespace:MECF.Framework.Simulator.Core.Commons"
+             Height="900"  Width="1800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="300"></RowDefinition>
+            <RowDefinition Height="350"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <commons:SocketTitleView Grid.Row="0"></commons:SocketTitleView>
+
+        <Canvas  Grid.Row="1"   Width="750">
+            <CheckBox Content="Auto-Reply" IsChecked="{Binding AutoReply}" Canvas.Left="36" Canvas.Top="15"></CheckBox>
+            <CheckBox Content="Fail" IsChecked="{Binding IsFailed}" Canvas.Left="156" Canvas.Top="15"></CheckBox>
+            <Button Content="Clear Log" Width="80" Height="25"   Command="{Binding ClearLogCommand}" Canvas.Left="600" Canvas.Top="10"></Button>
+        </Canvas>
+
+
+        <DataGrid x:Name="_simaulatorItemGrid" CanUserAddRows="False" ItemsSource="{Binding IOSimulatorItemViewModelConfig.IOSimulatorItemList}" Grid.Row="2" AutoGenerateColumns="False" SelectionMode="Single" >
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="ToolTipService.ToolTip" Value="{Binding RelativeSource={RelativeSource Mode=Self},Path=Content.Text}" />
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Command" Width="250" Binding="{Binding SourceCommandName, Mode=OneWay}"/>
+                <DataGridTextColumn Header="Content" Width="*" Binding="{Binding CommandContent, Mode=OneWay}"/>
+                <DataGridTextColumn Header="Recieved Time" Width="200" Binding="{Binding CommandRecievedTime, Mode=OneWay}"/>
+                <DataGridTextColumn Header="Resonse" Width="500" Binding="{Binding Response, UpdateSourceTrigger=LostFocus, Mode=TwoWay}"/>
+                <DataGridTemplateColumn Header="Manual Reply" Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="BtnReply" Content="Reply" Height="20"
+                                    Width="50" Click="BtnReply_Click" IsEnabled="{Binding IsManualReplyEnable}"
+                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--IsEnabled="{Binding IsManualReplyEnable}"-->
+
+        <DataGrid Grid.Row="3" FontSize="16" AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False" CanUserSortColumns="False" ItemsSource="{Binding TransactionLogItems}" 
+                      ScrollViewer.CanContentScroll="True" 
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      Width="1800" Height="320" VerticalAlignment="Top">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Time" Width="160" IsReadOnly="True" Binding="{Binding OccurTime, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DataGridTextColumn Header="Incoming" Width="810" IsReadOnly="True"  Binding="{Binding Incoming, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                            <Setter Property="Height" Value="auto"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+
+                <DataGridTextColumn Header="Outgoing" Width="810" IsReadOnly="True"  Binding="{Binding Outgoing, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"/>
+                            <Setter Property="Height" Value="auto"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

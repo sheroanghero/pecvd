@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Aitex.Core.UI.Control.Identifier"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             Height="15" Width="25"  BorderThickness="0">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Polygon}" />
+    </UserControl.Resources>
+    <Canvas>
+        <!--<Polygon Stroke="Black" StrokeThickness="1" Fill="Black" Points="1,3,1,6,10,6,10,3"></Polygon>
+        <Polygon Stroke="Black" StrokeThickness="1" Fill="Black" Points="14,3,14,6,23,6,23,3"></Polygon>
+
+        <Polygon Stroke="Black" StrokeThickness="1" Fill="Black" Points="1,9,1,12,10,12,10,9"></Polygon>
+        <Polygon Stroke="Black" StrokeThickness="1" Fill="Black" Points="14,9,14,12,23,12,23,9"></Polygon>-->
+
+        <Polygon Stroke="Black" StrokeThickness="1" Fill="Black" Points="1,3,1,6,9,6,9,3"></Polygon>
+        <Polygon Stroke="Black" StrokeThickness="1" Fill="Black" Points="15,3,15,6,23,6,23,3"></Polygon>
+
+        <Polygon Stroke="Black" StrokeThickness="1" Fill="Black" Points="1,9,1,12,9,12,9,9"></Polygon>
+        <Polygon Stroke="Black" StrokeThickness="1" Fill="Black" Points="15,9,15,12,23,12,23,9"></Polygon>
+    </Canvas>
+</UserControl>

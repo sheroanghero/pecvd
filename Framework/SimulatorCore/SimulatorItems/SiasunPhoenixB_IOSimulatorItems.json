@@ -1,0 +1,114 @@
+{
+    "IOSimulatorItemList": [
+        {
+            "SourceCommandName": "SVON",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7312"
+        },
+        {
+            "SourceCommandName": "SVOFF",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7313"
+        },
+        {
+            "SourceCommandName": "RESET",
+            "SuccessResponse": "",
+            "FailedResponse": ""
+        },
+        {
+            "SourceCommandName": "GOTO",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7307"
+        },
+        {
+            "SourceCommandName": "HALT",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7308"
+        },
+        {
+            "SourceCommandName": "RQ COMM ECHO",
+            "SuccessResponse": "COMM ON",
+            "FailedResponse": "_ERR 7324"
+        },
+        {
+            "SourceCommandName": "SET COMM ECHO",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7324"
+        },
+        {
+            "SourceCommandName": "SET LOAD",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7324"
+        },
+        {
+            "SourceCommandName": "CHECK LOAD",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7324"
+        },
+        {
+            "SourceCommandName": "SET WAF_CEN MODE",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7324"
+        },
+        {
+            "SourceCommandName": "WAF_CEN ENABLE",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7324"
+        },
+        {
+            "SourceCommandName": "WAF_CEN WAF_SIZE",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7324"
+        },
+        {
+            "SourceCommandName": "WAF_CEN AUTO_NOTCH",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7324"
+        },
+        {
+            "SourceCommandName": "RQ LOAD",
+            "SuccessResponse": "LOAD",
+            "FailedResponse": "_ERR 7324"
+        },
+        {
+            "SourceCommandName": "RQ WAF_CEN DATA",
+            "SuccessResponse": "WAF_CEN DATA RT 150708 396233 247475 650484 LFT 172244 452843 225432 592640 OFFSET 000016 000014",
+            "FailedResponse": "_ERR 7324"
+        },
+        {
+            "SourceCommandName": "HOME",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7343"
+        },
+        {
+            "SourceCommandName": "MOVE",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7346"
+        },
+        {
+            "SourceCommandName": "PICK",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7312"
+        },
+        {
+            "SourceCommandName": "PLACE",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7313"
+        },
+        {
+            "SourceCommandName": "XFER",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7314"
+        },
+        {
+            "SourceCommandName": "RETRACT",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7308"
+        },
+        {
+            "SourceCommandName": "LFTST",
+            "SuccessResponse": "_RDY",
+            "FailedResponse": "_ERR 7318"
+        }
+    ]
+}

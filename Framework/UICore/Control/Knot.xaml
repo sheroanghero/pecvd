@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Aitex.Core.UI.Control.Knot"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Name="me"
+    Height="6" Width="6">
+
+    <UserControl.RenderTransform>
+        <RotateTransform x:Name="rotateTransform" Angle="0" CenterX="1.5" CenterY="1.5"/>
+    </UserControl.RenderTransform>
+    <Grid x:Name="LayoutRoot">
+        <Ellipse x:Name="knotElli" Fill="#FF0B0B0C" Stroke="Black" RenderTransformOrigin="0.497,0.49" StrokeThickness="0" Margin="1.209,1.229,1.249,1.229"/>
+        <Canvas x:Name="throughPath" Margin="-2.124,1.326,-1.844,0.378">
+            <Path Data="M208.89601,89.520805 L210.89605,89.521138 C211.02,89.058362 210.89054,89.157186 211.23704,88.925253 211.44935,88.722666 211.72403,88.713333 212.19487,88.631017 212.68574,88.659255 213.2167,88.668464 213.42673,88.925228 213.72111,89.236612 213.68499,89.163993 213.77648,89.489076 L215.44156,89.502343" Stretch="Fill" Stroke="{Binding KnotElliColor , ElementName=me, Mode=Default}" x:Name="pathThrough" RenderTransformOrigin="0.505,0.956"   Height="3.796" Width="9.968"/>
+            <Path Data="M1.25,5.122 L4.34375,5.122" Height="2.688" Stretch="Fill" Stroke="{Binding ThroughInnerColor , ElementName=me, Mode=Default}" Canvas.Left="2.152" Canvas.Top="2.484" Width="6.004" StrokeThickness="3"  />
+ 
+
+        </Canvas>
+
+    </Grid>
+</UserControl>

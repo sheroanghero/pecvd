@@ -1,0 +1,144 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.ClientControls.RobotControls.DualWaferRobot1.DualWaferRobot"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ctrl="http://OpenSEMI.Ctrlib.com/presentation"
+             xmlns:common="clr-namespace:MECF.Framework.UI.Client.ClientControls.Common"
+             xmlns:efemControls="clr-namespace:MECF.Framework.UI.Client.ClientControls.EfemControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="400">
+    <Viewbox Stretch="Uniform">
+        <Canvas Width="189" Height="37"  x:Name="root">
+            <Canvas.ContextMenu>
+                <ContextMenu ItemsSource="{Binding Menu}" />
+            </Canvas.ContextMenu>
+            <common:AxisCanvas  x:Name="canvasRoot"  Width="189" Height="35" >
+                <common:AxisCanvas x:Name="canvas2" Height="15" Width="189" Canvas.Top="10" >
+                    <Image Width="36"  Height="110" Source="/MECF.Framework.UI.Client;component/ClientControls/RobotControls/DualWaferRobot1/arm2.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="46" Canvas.Top="-47" >
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <!--<Label Content="1" Canvas.Left="35" Height="15" FontSize="5"/>-->
+                    <common:AxisCanvas x:Name="canvas21" Height="15" Width="117" Canvas.Left="102"  Canvas.Top="8">
+                        <Image Width="35" Height="117" Source="/MECF.Framework.UI.Client;component/ClientControls/RobotControls/DualWaferRobot1/arm1.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="38" Canvas.Top="-59" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <!--<Label Content="2" Canvas.Left="35" Height="15" FontSize="5"/>-->
+                    </common:AxisCanvas>
+                    <common:AxisCanvas x:Name="canvas22" Height="15" Width="117" Canvas.Left="102"  Canvas.Top="-6">
+                        <Image Width="35" Height="117" Source="/MECF.Framework.UI.Client;component/ClientControls/RobotControls/DualWaferRobot1/arm21.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="37" Canvas.Top="-44"  >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <!--<Label Content="3" Canvas.Left="35" Height="15" FontSize="5"/>-->
+                    </common:AxisCanvas>
+                </common:AxisCanvas>
+                <common:AxisCanvas x:Name="canvas1" Height="37" Width="200" Canvas.Left="4">
+                    <Image Width="36" Height="110" Source="/MECF.Framework.UI.Client;component/ClientControls/RobotControls/DualWaferRobot1/arm2.png" Canvas.Top="-37" RenderTransformOrigin="0.5,0.5" Canvas.Left="43">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="90"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <!--<Label Content="4" Canvas.Left="35" Height="15" Canvas.Top="10" FontSize="5"/>-->
+                    <common:AxisCanvas x:Name="canvas112"  Height="15" Width="111" Canvas.Left="99" Canvas.Top="19">
+                        <Image Width="35" Height="117" Source="/MECF.Framework.UI.Client;component/ClientControls/RobotControls/DualWaferRobot1/arm1.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="38" Canvas.Top="-59" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <!--<Label Content="5" Canvas.Left="35" Height="15" FontSize="5"/>-->
+                        <common:AxisCanvas x:Name="canvas113" Height="68" Width="51" Canvas.Left="69" Canvas.Top="-35">
+                            <Image Width="168" Height="105" Source="/MECF.Framework.UI.Client;component/ClientControls/RobotControls/DualWaferRobot1/hand2.png" Canvas.Left="14" Canvas.Top="-69"  >
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="90"/>
+                                        <TranslateTransform X="81.784" Y="45.376"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+
+                            <Viewbox Canvas.Left="35" Canvas.Top="-26" Width="66">
+                                <efemControls:WaferCtrl WaferData="{Binding Wafer3}"/>
+                            </Viewbox>
+                            <Viewbox Canvas.Left="35" Canvas.Top="79" Width="66">
+                                <efemControls:WaferCtrl WaferData="{Binding Wafer4}"/>
+                            </Viewbox>
+                        </common:AxisCanvas>
+                    </common:AxisCanvas>
+                    <common:AxisCanvas x:Name="canvas122"  Height="15" Width="105" Canvas.Left="99"  Canvas.Top="5">
+                        <Image Width="35" Height="117" Source="/MECF.Framework.UI.Client;component/ClientControls/RobotControls/DualWaferRobot1/arm21.png" RenderTransformOrigin="0.5,0.5" Canvas.Left="37" Canvas.Top="-44" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <!--<Label Content="6" Canvas.Left="35" Height="15" FontSize="5"/>-->
+                        <common:AxisCanvas x:Name="canvas123" Height="61" Width="51" Canvas.Left="75"  Canvas.Top="-14">
+                            <Image Width="168" Height="105" Source="/MECF.Framework.UI.Client;component/ClientControls/RobotControls/DualWaferRobot1/hand1.png"  RenderTransformOrigin="0.5,0.5" Canvas.Left="-38"  Canvas.Top="-41">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="270"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+
+                            <Viewbox Canvas.Left="35" Canvas.Top="-74" Width="66">
+                                <efemControls:WaferCtrl WaferData="{Binding Wafer1}"/>
+                            </Viewbox>
+                            <Viewbox Canvas.Left="35" Canvas.Top="32" Width="66">
+                                <efemControls:WaferCtrl WaferData="{Binding Wafer2}"/>
+                            </Viewbox>
+                        </common:AxisCanvas>
+                    </common:AxisCanvas>
+                </common:AxisCanvas>
+                <Image Width="37" Height="37" Source="/MECF.Framework.UI.Client;component/ClientControls/RobotControls/DualWaferRobot1/dock.png" Canvas.Left="-11" Canvas.Top="-1"  />
+            </common:AxisCanvas>
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform x:Name="rotate" CenterY="20" CenterX="10" Angle="0"></RotateTransform>
+                    <TranslateTransform  x:Name="translate" X="{Binding TranslateX}"/>
+                </TransformGroup>
+            </Canvas.RenderTransform>
+        </Canvas>
+    </Viewbox>
+</UserControl>
+

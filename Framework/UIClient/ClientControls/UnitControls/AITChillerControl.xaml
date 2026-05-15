@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.Ctrlib.UnitControls.AITChillerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"  d:DesignHeight="24" Width="90" BorderThickness="1" x:Name="self">
+    <Grid MouseLeftButtonUp="Grid_MouseLeftButtonUp" Cursor="Hand"  Background="Gray"  Opacity="1" MouseEnter="Grid_MouseEnter">
+
+        <Border Background="Transparent" x:Name="bdRectangle" BorderThickness="1">
+            <Rectangle Style="{x:Null}" RadiusX="2" RadiusY="2" Name="rectBkground" Stroke="#373737" Margin="1" Opacity="1" Fill="Gray" StrokeThickness="1"/>
+        </Border>
+        <Label Content="{Binding ElementName=self, Path=ChillerDeviceData.CH1Temperature}" 
+               VerticalContentAlignment="Center"  
+               ContentStringFormat="F1"  FontFamily="Verdana" 
+               FontSize="{Binding ElementName=self, Path=FontSizeSetting}" 
+               HorizontalContentAlignment="Center" 
+               x:Name="labelValue"  Foreground="{Binding ElementName=self, Path=ForegroundSetting}"  />
+        <!--<deviceControl:AITChillerControl DeviceData="{Binding ChillerData}" Visibility="Collapsed" x:Name="AITChiller" />-->
+
+    </Grid>
+</UserControl>

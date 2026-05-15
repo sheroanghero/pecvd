@@ -1,0 +1,156 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:aero="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero">
+
+    <!--通用文本样式-->
+    <Style TargetType="TextBox">
+        <Setter Property="Margin" Value="0,10" />
+        <Setter Property="Height" Value="35" />
+        <!--<Setter Property="Width" Value="190"></Setter>-->
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Background" Value="#FFDCF7F6"></Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="Green" />
+                <Setter Property="BorderBrush" Value="Green" />
+                <Setter Property="BorderThickness" Value="2" />
+            </Trigger>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="ToolTip"
+                                Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                                Path=(Validation.Errors)[0].ErrorContent}"/>
+            </Trigger>
+
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="SmallTextBox"  BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+    <!--Notch文本框样式-->
+    <Style TargetType="{x:Type TextBox}" x:Key="NotchTextBox">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Width" Value="50"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid x:Name="grid">
+                        <Rectangle x:Name="rectangle1" RadiusX="25" RadiusY="25" Fill="{TemplateBinding Background}" StrokeThickness="1" Stroke="Black"/>
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                    HorizontalScrollBarVisibility="Hidden"
+                                    VerticalScrollBarVisibility="Hidden"
+                                    Padding="{TemplateBinding Padding}"
+                                    Focusable="false">
+                        </ScrollViewer>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!--反应腔盖-->
+    <Style TargetType="TextBox" x:Key="ReactorMiniTextBox">
+        <Setter Property="Width" Value="30" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <!-- TextBox_Top Style -->
+
+    <SolidColorBrush x:Key="TextBox_Top_BG" Color="White"/>
+    <SolidColorBrush x:Key="TextBox_Top_Shadow" Color="#FF1B1B1B"/>
+    <SolidColorBrush x:Key="TextBox_Top_Highlight_Right" Color="#FFB4B4B4"/>
+    <SolidColorBrush x:Key="TextBox_Top_Highlight_Bottom" Color="#FFD2D2D2"/>
+
+    <Style x:Key="TextBox_Top" TargetType="{x:Type TextBox}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="BorderThickness" Value="2,2,0,0"/>
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="Background" Value="{DynamicResource TextBox_Top_BG}" />
+        <Setter Property="Foreground" Value="{DynamicResource Foreground_Black}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBox_Top_Shadow}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid>
+                        <Border x:Name="TextBox_Bg" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+							BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Rectangle Fill="{DynamicResource TextBox_Top_Highlight_Right}" HorizontalAlignment="Right" Width="2"/>
+                                <Rectangle Fill="{DynamicResource TextBox_Top_Highlight_Bottom}" VerticalAlignment="Bottom" Height="2"/>
+                                <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Margin="5,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="TextBox_Bg" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Login TextBox Style -->
+    <LinearGradientBrush x:Key="LoginTextBox_BG" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFC8C8C8" Offset="0"/>
+        <GradientStop Color="#FFE9E9E9" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="LoginTextBox_ShadowBD" Color="#FF787878"/>
+    <SolidColorBrush x:Key="LoginTextBox_HighlightBD" Color="White"/>
+
+    <Style TargetType="TextBox" x:Key="LoginTextBox">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontFamily" Value="Arial,Simsun" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="BorderThickness" Value="2,2,0,0"/>
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="Background" Value="{DynamicResource LoginTextBox_BG}" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="BorderBrush" Value="{DynamicResource LoginTextBox_ShadowBD}"/>
+        <Setter Property="Padding" Value="5,1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBoxBase">
+                    <Grid>
+                        <Border x:Name="Focus_Border" BorderBrush="#FFFFEA00" BorderThickness="2" Opacity="0"/>
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="2">
+                            <Border x:Name="Inner_BG" BorderBrush="{DynamicResource LoginTextBox_HighlightBD}" BorderThickness="0,0,2,2">
+                                <ScrollViewer Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                            </Border>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="UIElement.IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+                            <Setter Property="Control.Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Opacity" TargetName="Focus_Border" Value="1"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

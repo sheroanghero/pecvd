@@ -1,0 +1,80 @@
+﻿<Window x:Class="MECF.Framework.UI.Core.Accounts.GonaMainLogin"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:aero="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+    xmlns:tb="http://www.hardcodet.net/taskbar" 
+    xmlns:validationRules2="clr-namespace:Aitex.Core.UI.ValidationRules"
+    WindowState="Maximized"
+    WindowStyle="SingleBorderWindow"
+    Background="{DynamicResource Login_BG}"
+    ShowInTaskbar="True"
+    WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Arial,SimSun" />
+            <Setter Property="Foreground" Value="Black"></Setter>
+        </Style>
+    </Window.Resources>
+    <Border BorderBrush="DarkBlue" BorderThickness="0,0,1,1">
+        <Border BorderBrush="LightBlue" BorderThickness="1,1,0,0">
+            <Grid Width="450" Height="350">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Grid.Effect>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="0"/>
+                </Grid.Effect>
+                <Path Data="M23.5,0.5 L426.5,0.5 449.5,23.5 449.5,243.2 437.5,257.2 437.5,294.5 406.5,324.5 43.5,324.5 12.5,294.5 12.5,257.2 0.5,243.2 0.5,23.5 z" HorizontalAlignment="Left" Margin="0,22,0,0" Grid.RowSpan="3" Stretch="Fill" Width="450" StrokeThickness="2" Fill="{DynamicResource Login_MainOuter_BG}" Stroke="{DynamicResource Login_MainOuter_BD}"/>
+                <Path Data="M21.44508,0.5 L429.58238,0.5 449.5,21.436306 449.5,243.2 437.5,257.2 437.5,294.5 406.5,324.5 43.5,324.5 12.5,294.5 12.5,257.2 0.5,243.2 0.5,22.468153 z" Margin="6,-21.5,6,6.5" Grid.RowSpan="2" Stretch="Fill" Grid.Row="1" StrokeThickness="2" Fill="{DynamicResource Login_MainInner_BG}" Stroke="{DynamicResource Login_MainInner_BD}"/>
+                <Grid Width="350">
+                    <Path Data="M25.5,0.5 L324.5,0.5 349.5,25 324.5,49.5 25.5,49.5 0.5,25 z" Stretch="Fill" StrokeThickness="2" Fill="{DynamicResource Login_TopOuter_BG}" Stroke="{DynamicResource Login_TopOuter_BD}"/>
+                    <Path Data="M21.5,0.5 L328.5,0.5 349.5,25 328.5,49.5 21.5,49.5 0.5,25 z" Stretch="Fill" Margin="8,5" Fill="{DynamicResource Login_TopInner_BG}" Stroke="{DynamicResource Login_TopInner_BD}"/>
+                    <TextBlock TextWrapping="Wrap" Text="User Login" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontFamily="Arial" FontSize="24" FontWeight="Bold">
+                        <TextBlock.Effect>
+                            <DropShadowEffect BlurRadius="0" ShadowDepth="2"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </Grid>
+                <Grid Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition Width="220"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Name="labelUserName" Content="{DynamicResource GlobalLableUserName}" Foreground="{DynamicResource FG_White}" VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <Label.Effect>
+                            <DropShadowEffect BlurRadius="0" ShadowDepth="2"/>
+                        </Label.Effect>
+                    </Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" Name="textBoxUserName" Style="{DynamicResource LoginTextBox}" VerticalAlignment="Center" Height="40">
+                        <Binding Path="UserName" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <validationRules2:ValidateUserName />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox>
+                    <Label Grid.Row="1" Grid.Column="0" Name="label2" Foreground="{DynamicResource FG_White}" Content="{DynamicResource GlobalLableUserPassword}" VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <Label.Effect>
+                            <DropShadowEffect BlurRadius="0" ShadowDepth="2"/>
+                        </Label.Effect>
+                    </Label>
+                    <PasswordBox Grid.Row="1" Grid.Column="1" Name="passwordBox" Style="{DynamicResource LoginPasswordBox}" VerticalAlignment="Center" Height="40">
+                    </PasswordBox>
+                    <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Content="" Name="LabelResult" Foreground="{DynamicResource FG_White}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                        <Button Style="{DynamicResource LoginButton}" Click="OnLoginClicked" FontSize="18" Height="40" Width="120" FontWeight="Bold" Content="{DynamicResource GlobalLableButtonLogin}" IsDefault="True"/>
+                        <Button Style="{DynamicResource LoginButton}" FontSize="20" Margin="10,0,0,0" Click="OnExitClicked" Height="40" Width="120" FontWeight="Bold" Content="{DynamicResource GlobalLableButtonExit}"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
+    </Border>
+</Window>

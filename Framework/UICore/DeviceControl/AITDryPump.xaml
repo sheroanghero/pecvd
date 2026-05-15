@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="Aitex.Core.UI.DeviceControl.AITDryPump"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:Aitex.Core.UI.Converters"
+             mc:Ignorable="d" x:Name="Self" >
+    <UserControl.Resources>
+        <converters:bool2VisibilityConverter x:Key="Bool2VisibilityConvert"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="55"></ColumnDefinition>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="0,0,10,0" x:Name="StackPanelDryPump" Visibility="{Binding ElementName=Self, Path=IsShowSensor,Converter= {StaticResource Bool2VisibilityConvert}, Mode=OneWay}">
+            <StackPanel Orientation="Horizontal" Height="22.5" HorizontalAlignment="Right" x:Name="StackPanelWaterFlow">
+                <TextBlock Text="Water Flow"  Padding="0,0,5,0"/>
+                <Ellipse  HorizontalAlignment="Left"  Stroke="Gray" StrokeThickness="2"  Width="15" Height="15"    
+                       Fill="{Binding ElementName=Self, Path=WaterFlowStatusColor, Mode=OneWay}"  Style="{x:Null}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="22.5" HorizontalAlignment="Right" x:Name="StackPanelN2Pressure">
+                <TextBlock Text="N2 Purge"  Padding="0,0,5,0"/>
+                <Ellipse  HorizontalAlignment="Left"  Stroke="Gray" StrokeThickness="2"  Width="15" Height="15"    
+                       Fill="{Binding ElementName=Self, Path=N2PressureStatusColor, Mode=OneWay}"  Style="{x:Null}"/>
+            </StackPanel>
+        </StackPanel>
+        <Image Grid.Column="1" Width="50" Height="70" x:Name="imagePicture" Source="/MECF.Framework.Common;component/Resources/Pump/DryPump/pump_off.png" >
+            <!--<Image.ContextMenu>
+                <ContextMenu Visibility="{Binding ElementName=Self, Path=EnableControl,Converter= {StaticResource Bool2VisibilityConvert}, Mode=OneWay}">
+                    <MenuItem Header="Pump On" IsEnabled="{Binding ElementName=Self, Path=EnableControl,Mode=OneWay}" Click="PumpOn"/>
+                    <MenuItem Header="Pump Off" IsEnabled="{Binding ElementName=Self, Path=EnableControl,Mode=OneWay}" Click="PumpOff" />
+                </ContextMenu>
+            </Image.ContextMenu>-->
+        </Image>
+        <Border Height="25" VerticalAlignment="Top"   Grid.Column="1" >
+            <TextBlock x:Name="txtState" Text="OFF" TextAlignment="Center"    HorizontalAlignment="Center" VerticalAlignment="Center"  FontSize="9"  Width="34" FontWeight="Bold"     />
+        </Border>
+        <StackPanel Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Left" Margin="0,5,5,0"  Visibility="{Binding ElementName=Self, Path=IsShowSpeed,Converter= {StaticResource Bool2VisibilityConvert}, Mode=OneWay}">
+
+            <Border  BorderBrush="black" BorderThickness="1,1,1,1"  >
+                <StackPanel Orientation="Horizontal" Height="18" HorizontalAlignment="Right" >
+                    <Border  BorderBrush="black" BorderThickness="0,0,1,0" Background="DarkGray"  >
+                        <TextBlock Text="Speed(rpm):" Width="80" Padding="0,0,5,0" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock x:Name="txtSpeed" Text="{Binding ElementName=Self, Path=DeviceData.Speed, Mode=OneWay}"  VerticalAlignment="Stretch"  Width="60" Padding="0,0,5,0"/>
+                </StackPanel>
+            </Border>
+            <Border  BorderBrush="black" BorderThickness="1,0,1,1"  >
+                <StackPanel Orientation="Horizontal" Height="18" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                    <Border  BorderBrush="black" BorderThickness="0,0,1,0" Background="DarkGray"  >
+                        <TextBlock Text="Temp.(°C):" Width="80"  Padding="0,0,5,0"  HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock x:Name="txtTemp" VerticalAlignment="Center" Text="{Binding ElementName=Self, Path=DeviceData.Temperature, Mode=OneWay}" Width="60"  Padding="0,0,5,0"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

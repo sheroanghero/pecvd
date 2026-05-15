@@ -1,0 +1,237 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- TextBox Style -->
+
+    <SolidColorBrush x:Key="TextBox_BD" Color="#FF1B1B1B"/>
+    <SolidColorBrush x:Key="TextBox_BG" Color="White"/>
+    <SolidColorBrush x:Key="TextBox_InnerBD" Color="#FFD6D6D6"/>
+    <SolidColorBrush x:Key="TextBox_InnerLeft" Color="#FF898989"/>
+    <SolidColorBrush x:Key="TextBox_InnerTop" Color="#FF565656"/>
+    <SolidColorBrush x:Key="TextBox_InnerRight" Color="#FFD8D8D8"/>
+    <SolidColorBrush x:Key="TextBox_InnerBottom" Color="#FFE0E0E0"/>
+    <SolidColorBrush x:Key="TextBox_InnerBD_Unable" Color="#FFBEBDBD"/>
+    <SolidColorBrush x:Key="TextBox_InnerLeft_Unable" Color="#FFABABAB"/>
+    <SolidColorBrush x:Key="TextBox_InnerTop_Unable" Color="#FFB4B4B4"/>
+    <SolidColorBrush x:Key="TextBox_InnerRight_Unable" Color="#FFE7E7E7"/>
+    <SolidColorBrush x:Key="TextBox_InnerBottom_Unable" Color="#FFE7E7E7"/>
+
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="BorderThickness" Value="1,1,0,0"/>
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="Background" Value="{DynamicResource TextBox_BG}" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBox_BD}"/>
+        <Setter Property="Padding" Value="5,1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid>
+                        <Border x:Name="TextBox_Outer" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+							BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <Border x:Name="TextBox_Inner" BorderBrush="{DynamicResource TextBox_InnerBD}" BorderThickness="0,0,1,1" Padding="{TemplateBinding Padding}"/>
+                        </Border>
+                        <Rectangle x:Name="Lfet_Boder" Fill="{DynamicResource TextBox_InnerLeft}" HorizontalAlignment="Left" Width="1" Margin="1"/>
+                        <Rectangle x:Name="Top_Boder" Fill="{DynamicResource TextBox_InnerTop}" VerticalAlignment="Top" Height="1" Margin="1"/>
+                        <Rectangle x:Name="Right_Boder" Fill="{DynamicResource TextBox_InnerRight}" HorizontalAlignment="Right" Width="1" Margin="1,2,1,1"/>
+                        <Rectangle x:Name="Bottom_Boder" Fill="{DynamicResource TextBox_InnerBottom}" VerticalAlignment="Bottom" Height="1" Margin="1,1,2,1"/>
+                        <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="BorderBrush" TargetName="TextBox_Outer" Value="{DynamicResource TextBox_BD_Unable}"/>
+                            <Setter Property="Background" TargetName="TextBox_Outer" Value="{DynamicResource TextBox_BG_Unable}"/>
+                            <Setter Property="BorderBrush" TargetName="TextBox_Inner" Value="{DynamicResource TextBox_InnerBD_Unable}"/>
+                            <Setter Property="Fill" TargetName="Lfet_Boder" Value="{DynamicResource TextBox_InnerLeft_Unable}"/>
+                            <Setter Property="Fill" TargetName="Top_Boder" Value="{DynamicResource TextBox_InnerTop_Unable}"/>
+                            <Setter Property="Fill" TargetName="Right_Boder" Value="{DynamicResource TextBox_InnerRight_Unable}"/>
+                            <Setter Property="Fill" TargetName="Bottom_Boder" Value="{DynamicResource TextBox_InnerBottom_Unable}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type PasswordBox}">
+        <Setter Property="Background" Value="{DynamicResource TextBox_BG}" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBox_BD}"/>
+        <Setter Property="FontFamily" Value="Times New Roman"/>
+        <Setter Property="PasswordChar" Value="●"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type PasswordBox}">
+                    <Grid>
+                        <Border x:Name="TextBox_Outer" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+							BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <Border x:Name="TextBox_Inner" BorderBrush="{DynamicResource TextBox_InnerBD}" BorderThickness="0,0,1,1" Padding="{TemplateBinding Padding}"/>
+                        </Border>
+                        <Rectangle x:Name="Lfet_Boder" Fill="{DynamicResource TextBox_InnerLeft}" HorizontalAlignment="Left" Width="1" Margin="1"/>
+                        <Rectangle x:Name="Top_Boder" Fill="{DynamicResource TextBox_InnerTop}" VerticalAlignment="Top" Height="1" Margin="1"/>
+                        <Rectangle x:Name="Right_Boder" Fill="{DynamicResource TextBox_InnerRight}" HorizontalAlignment="Right" Width="1" Margin="1,2,1,1"/>
+                        <Rectangle x:Name="Bottom_Boder" Fill="{DynamicResource TextBox_InnerBottom}" VerticalAlignment="Bottom" Height="1" Margin="1,1,2,1"/>
+                        <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="BorderBrush" TargetName="TextBox_Outer" Value="{DynamicResource TextBox_BD_Unable}"/>
+                            <Setter Property="Background" TargetName="TextBox_Outer" Value="{DynamicResource TextBox_BG_Unable}"/>
+                            <Setter Property="BorderBrush" TargetName="TextBox_Inner" Value="{DynamicResource TextBox_InnerBD_Unable}"/>
+                            <Setter Property="Fill" TargetName="Lfet_Boder" Value="{DynamicResource TextBox_InnerLeft_Unable}"/>
+                            <Setter Property="Fill" TargetName="Top_Boder" Value="{DynamicResource TextBox_InnerTop_Unable}"/>
+                            <Setter Property="Fill" TargetName="Right_Boder" Value="{DynamicResource TextBox_InnerRight_Unable}"/>
+                            <Setter Property="Fill" TargetName="Bottom_Boder" Value="{DynamicResource TextBox_InnerBottom_Unable}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <ControlTemplate x:Key="ValidationTemplate">
+        <DockPanel>
+            <Border BorderBrush="Red" BorderThickness="1">
+                <AdornedElementPlaceholder/>
+            </Border>
+            <TextBlock Foreground="Red" FontSize="20">*</TextBlock>
+        </DockPanel>
+    </ControlTemplate>
+
+    <!-- TextBox_Top Style -->
+
+    <SolidColorBrush x:Key="TextBox_Top_BG" Color="#FFC8E8FF"/>
+    <SolidColorBrush x:Key="TextBox_Top_Shadow" Color="#FF1B1B1B"/>
+    <SolidColorBrush x:Key="TextBox_Top_Highlight_Right" Color="White"/>
+    <SolidColorBrush x:Key="TextBox_Top_Highlight_Bottom" Color="#FFD2D2D2"/>
+    
+    <Style x:Key="TextBox_Top" TargetType="{x:Type TextBox}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Margin" Value="0,2,2,2"/>
+        <Setter Property="BorderThickness" Value="0,1,1,1"/>
+        <Setter Property="Background" Value="{DynamicResource TextBox_Top_BG}" />
+        <Setter Property="Foreground" Value="{DynamicResource Foreground_Black}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBox_Top_Highlight_Right}"/>
+        <Setter Property="Border.CornerRadius" Value="0,6,6,0"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid>
+                        <Border x:Name="TextBox_Bg" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" CornerRadius="{TemplateBinding Border.CornerRadius}"
+							BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Margin="5,1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="TextBox_Bg" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TextBox_RightTop" TargetType="{x:Type TextBox}" BasedOn="{StaticResource TextBox_Top}"/>
+
+    <!-- Login TextBox -->
+
+    <SolidColorBrush x:Key="TextBox_Login_BG" Color="#FF1E4F8A"/>
+    <SolidColorBrush x:Key="TextBox_Login_BD" Color="#FF0A2B58"/>
+    <SolidColorBrush x:Key="TextBox_BG_Unable" Color="Gainsboro"/>
+    <SolidColorBrush x:Key="TextBox_BD_Unable" Color="#FF747474"/>
+
+    <Style x:Key="Login_TextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="Background" Value="{StaticResource TextBox_Login_BG}"/>
+        <Setter Property="Foreground" Value="{DynamicResource FG_White}" />
+        <Setter Property="BorderBrush" Value="{StaticResource TextBox_Login_BD}"/>
+        <Setter Property="Padding" Value="5,1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="BG" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                        <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="BorderBrush" TargetName="BG" Value="{StaticResource TextBox_BD_Unable}"/>
+                            <Setter Property="Background" TargetName="BG" Value="{StaticResource TextBox_BG_Unable}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Login_PasswordBox" TargetType="{x:Type PasswordBox}">
+        <Setter Property="Background" Value="{StaticResource TextBox_Login_BG}"/>
+        <Setter Property="Foreground" Value="{DynamicResource FG_White}" />
+        <Setter Property="BorderBrush" Value="{StaticResource TextBox_Login_BD}"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="PasswordChar" Value="●"/>
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="5,1"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type PasswordBox}">
+                    <Border x:Name="BG" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                        <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="BorderBrush" TargetName="BG" Value="{StaticResource TextBox_BD_Unable}"/>
+                            <Setter Property="Background" TargetName="BG" Value="{StaticResource TextBox_BG_Unable}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

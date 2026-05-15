@@ -1,0 +1,34 @@
+{
+    "IOSimulatorItemList": [
+        {
+            "SourceCommandName": "EchoOnOff",
+            "SourceCommand": "ECH",
+            "SuccessResponse": "OK",
+            "FailedResponse": "ERR2"
+        },
+        {
+            "SourceCommandName": "PumpOnOff",
+            "SourceCommand": "SYS",
+            "SuccessResponse": "OK",
+            "FailedResponse": "ERR2"
+        },
+        {
+            "SourceCommandName": "SetPumpParameter",
+            "SourceCommand": "SET",
+            "SuccessResponse": "OK",
+            "FailedResponse": "ERR2"
+        },
+        {
+            "SourceCommandName": "ReadPumpStatus",
+            "SourceCommand": "STA",
+            "SuccessResponse": "80,30,30,30,30,30,30,81,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,80,80,80,80,80,80",
+            "FailedResponse": "ERR2"
+        },
+        {
+            "SourceCommandName": "ReadSetState",
+            "SourceCommand": "LEV",
+            "SuccessResponse": "A001,A002,B001,B002,C001,C002,D001,D002,E001,E002,F001,F002,G000,x100h,I0000,J0000,K0000,L0000,M0000,N0000,O001,O002,P001,P002,Q001,Q002",
+            "FailedResponse": "ERR2"
+        }
+    ]
+}

@@ -1,0 +1,258 @@
+{
+    "IOSimulatorItemList": [
+        {
+            "SourceCommandName": "GetControl",
+            "SourceCommand": "05,01,00,00",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "FF"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "02"
+            }
+        },
+        {
+            "SourceCommandName": "SetPiValue",
+            "SourceCommand": "02,09,00,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "FF"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "02"
+            }
+        },
+        {
+            "SourceCommandName": "ReadPiValue",
+            "SourceCommand": "01,0C,00,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "00",
+                "Type": "07",
+                "Data": "00,00,00,00"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "01"
+            }
+        },
+        {
+            "SourceCommandName": "ReadPrValue",
+            "SourceCommand": "01,0D,00,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "00",
+                "Type": "07",
+                "Data": "58,02,00,00"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "01"
+            }
+        },
+        {
+            "SourceCommandName": "ReleaseControl",
+            "SourceCommand": "05,02,00,00",
+            "SuccessResponse": {
+                "GS": "00",
+                "Status": "FF"
+            },
+            "FailedResponse": {
+                "GS": "00",
+                "Status": "02"
+            }
+        },
+        {
+            "SourceCommandName": "ExecuteAnyCommand",
+            "SourceCommand": "05,02,00,00",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "00"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "01"
+            }
+        },
+        {
+            "SourceCommandName": "SetPowerOnOff",
+            "SourceCommand": "02,6F,00,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "FF"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "02"
+            }
+        },
+        {
+            "SourceCommandName": "GetPowerOnOff",
+            "SourceCommand": "01,6F,00,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "00",
+                "Type": "07",
+                "Data": "01,00,00,00"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "02"
+            }
+        },
+        {
+            "SourceCommandName": "SetPulseMode",
+            "SourceCommand": "02,6A,01,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "FF"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "02"
+            }
+        },
+        {
+            "SourceCommandName": "GetPulseMode",
+            "SourceCommand": "01,6A,01,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "00",
+                "Type": "04",
+                "Data": "01,00,00,00"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "02"
+            }
+        },
+        {
+            "SourceCommandName": "SetFrequency",
+            "SourceCommand": "02,34,03,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "FF"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "02"
+            }
+        },
+        {
+            "SourceCommandName": "GetFrequency",
+            "SourceCommand": "01,63,00,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "00",
+                "Type": "07",
+                "Data": "01,00,00,00"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "02"
+            }
+        },
+        {
+            "SourceCommandName": "SetClockMode",
+            "SourceCommand": "02,62,03,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "FF"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "02"
+            }
+        },
+        {
+            "SourceCommandName": "GetClockMode",
+            "SourceCommand": "01,62,03,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "00",
+                "Type": "05",
+                "Data": "00"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "02"
+            }
+        },
+        {
+            "SourceCommandName": "SetGain",
+            "SourceCommand": "02,5C,03,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "FF"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "02"
+            }
+        },
+        {
+            "SourceCommandName": "SetRelativeGain",
+            "SourceCommand": "02,5D,03,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "FF"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "02"
+            }
+        },
+        {
+            "SourceCommandName": "SetModulationDeviation",
+            "SourceCommand": "02,5A,03,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "FF"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "02"
+            }
+        },
+        {
+            "SourceCommandName": "SetRelativeModulationDeviation",
+            "SourceCommand": "02,59,03,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "FF"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "02"
+            }
+        },
+        {
+            "SourceCommandName": "ReadProcessStatus",
+            "SourceCommand": "01,1E,00,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "00",
+                "Type": "04",
+                "Data": "00,00,00,00"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "01"
+            }
+        },
+        {
+            "SourceCommandName": "Reset",
+            "SourceCommand": "02,4D,00,01",
+            "SuccessResponse": {
+                "GS": "08",
+                "Status": "FF"
+            },
+            "FailedResponse": {
+                "GS": "08",
+                "Status": "02"
+            }
+        }
+    ]
+}

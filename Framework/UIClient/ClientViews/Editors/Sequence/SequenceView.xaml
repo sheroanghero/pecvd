@@ -1,0 +1,518 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.Editors.Sequence.SequenceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:editors="clr-namespace:MECF.Framework.UI.Client.CenterViews.Editors"
+             xmlns:controls="clr-namespace:OpenSEMI.Ctrlib.Controls"
+             xmlns:micro="clr-namespace:Caliburn.Micro"
+             xmlns:dgExtension="clr-namespace:RecipeEditorLib.DGExtension"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1900">
+
+    <UserControl.Resources>
+
+        <DataTemplate x:Key="ParamTemplate">
+            <Grid Width="250" Margin="0,5">
+                <Grid.LayoutTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-90"/>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                    </TransformGroup>
+                </Grid.LayoutTransform>
+                <TextBlock Text="{Binding DisplayName}" FontFamily="Arial" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TemplateTextBlock">
+            <Grid>
+                <Grid.LayoutTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-90"/>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                    </TransformGroup>
+                </Grid.LayoutTransform>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Padding="5,1" Width="150" Height="30">
+                    <TextBlock Visibility="{Binding Visible}" Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Width="Auto" />
+                </Border>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TemplateStep">
+            <Grid>
+                <Grid.LayoutTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-90"/>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                    </TransformGroup>
+                </Grid.LayoutTransform>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,1,1,1" Padding="5,1" Width="150" Height="30">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <controls:CheckBoxExt IsChecked="{Binding Checked}" CheckBoxSaved="{Binding IsSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,4"/>
+                        <TextBlock Visibility="{Binding Visible}" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="14"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TemplateText">
+            <Grid>
+                <Grid.LayoutTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-90"/>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                    </TransformGroup>
+                </Grid.LayoutTransform>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Padding="5,1" Width="150" Height="30">
+                    <controls:TextBoxEx Visibility="{Binding Visible}" IsEnabled="{Binding IsEnabled}" TextSaved="{Binding IsSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Width="Auto" />
+                </Border>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TemplateSignInteger">
+            <Grid>
+                <Grid.LayoutTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-90"/>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                    </TransformGroup>
+                </Grid.LayoutTransform>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Padding="5,1" Width="150">
+                    <controls:TextBoxEx Visibility="{Binding Visible}" EditBoxMode="SignInteger" TextSaved="{Binding IsSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsEnabled}" Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Width="Auto" />
+                </Border>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TemplateRecipeSelection">
+            <Grid>
+                <Grid.LayoutTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-90"/>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                    </TransformGroup>
+                </Grid.LayoutTransform>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Padding="5,1" Width="150" Height="30">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <controls:TextBoxEx Visibility="{Binding Visible}" 
+                                        IsReadOnly="True" 
+                                        TextSaved="True" 
+                                        Text="{Binding FileName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="14" Width="Auto" ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Text}"/>
+                        <Button Grid.Column="1" Content="..." Foreground="White" FontSize="20" Visibility="{Binding Visible}" Width="30" Height="20" Margin="5,0,0,0">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <micro:ActionMessage MethodName="SelectRecipe">
+                                        <micro:Parameter Value="{Binding}" />
+                                    </micro:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </Grid>
+                </Border>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TemplateCombox">
+            <Grid>
+                <Grid.LayoutTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-90"/>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                    </TransformGroup>
+                </Grid.LayoutTransform>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Padding="5,1" Width="150">
+                    <controls:ComboBoxExt Style="{StaticResource ResourceKey={x:Type ComboBox}}" 
+                                      Visibility="{Binding Visible}" 
+                                      ComboBoxSaved="{Binding IsSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                      IsEnabled="{Binding IsEnabled}" 
+                                      DisplayMemberPath="DisplayName" 
+                                      SelectedValuePath="ControlName" 
+                                      SelectedValue="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                      ItemsSource="{Binding Options}"/>
+                </Border>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TemplateMultiSelection">
+            <Grid>
+                <Grid.LayoutTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-90"/>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                    </TransformGroup>
+                </Grid.LayoutTransform>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Padding="5,1" MinHeight="30">
+                    <ListBox ItemsSource="{Binding Options}" Visibility="{Binding Visible}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="5,5">
+                                    <CheckBox IsChecked="{Binding IsChecked, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Text="{Binding DisplayName}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Width="139" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </Border>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ParamExpander">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding DisplayName}"/>
+                <Expander Grid.Column="1" HorizontalAlignment="Left"
+                      HorizontalContentAlignment="Left"
+                      VerticalAlignment="Stretch"
+                      IsExpanded="{Binding IsExpanded}"
+                      VerticalContentAlignment="Stretch">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Expanded">
+                            <micro:ActionMessage MethodName="ParamsExpanded">
+                                <micro:Parameter Value="{Binding}" />
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Collapsed">
+                            <micro:ActionMessage MethodName="ParamsCollapsed">
+                                <micro:Parameter Value="{Binding}" />
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Expander>
+                <Grid.LayoutTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-90"/>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                    </TransformGroup>
+                </Grid.LayoutTransform>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="TemplateExpander">
+            <TextBlock HorizontalAlignment="Left" FontFamily="Arial" FontSize="14" VerticalAlignment="Center">
+                <TextBlock.LayoutTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-90"/>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                    </TransformGroup>
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+        </DataTemplate>
+        <HierarchicalDataTemplate x:Key="FolderTemplate" ItemsSource="{Binding Files}">
+            <StackPanel Orientation="Horizontal" Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl}, Path=DataContext}">
+                <Image x:Name="ExpandImage" Source="/MECF.Framework.UI.Client;component/Resources/Images/Folder_Close.png" Width="14" Height="12" Margin="2,0,0,0" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Name}" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <StackPanel.ContextMenu>
+                    <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}">
+                        <MenuItem Header="Create Sequence" Command="{Binding NewSequenceCommand}"></MenuItem>
+                        <Separator/>
+                        <MenuItem Header="Create Folder" Command="{Binding NewFolderCommand}">
+                        </MenuItem>
+                        <MenuItem Header="Delete Folder" Command="{Binding DeleteFolderCommand}">
+                        </MenuItem>
+                    </ContextMenu>
+                </StackPanel.ContextMenu>
+            </StackPanel>
+            <HierarchicalDataTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Image.Source" TargetName="ExpandImage" Value="/MECF.Framework.UI.Client;component/Resources/Images/Folder_Unable.png"/>
+                </Trigger>
+                <!--<DataTrigger Binding="{Binding HasItems}" Value="True">
+                <Setter Property="Image.Source" TargetName="ExpandImage" Value="Folder_Open.png"/>
+            </DataTrigger>-->
+            </HierarchicalDataTemplate.Triggers>
+        </HierarchicalDataTemplate>
+
+        <HierarchicalDataTemplate x:Key="FileTemplate" ItemsSource="{Binding Files}" >
+            <StackPanel Orientation="Horizontal"   Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl}, Path=DataContext}">
+                <Path Data="M0.5,5.125 L5.125,5.125 5.125,0.5 M5.1,0.5 L15.5,0.5 15.5,19.5 0.5,19.5 C0.5,14.7 0.5,10 0.5,5.1 2,3.6 3.6,2 5.1,0.5 z M8.1,8.5 L8.2,8.5 z M8.1,11.5 L8.2,11.5 z M8.1,14.5 L8.2,14.5 z" Fill="#FFF3F3F3" HorizontalAlignment="Left" Stretch="Fill" Stroke="#FF454545" Width="13" Height="16"/>
+                <TextBlock Text="{Binding Name}" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <!--<StackPanel.ContextMenu >
+                    <ContextMenu DataContext="{Binding Path=PlacementTarget.Tag, RelativeSource={RelativeSource Self}}" IsEnabled="{Binding EnableStep}">
+                        <MenuItem Header="Save As..." Command="{Binding SaveAsCommand}">
+                        </MenuItem>
+                        <MenuItem Header="Rename Sequence" Command="{Binding RenameCommand}">
+                        </MenuItem>
+                        <MenuItem Header="Delete Sequence" Command="{Binding DeleteSequenceCommand}">
+                        </MenuItem>
+                    </ContextMenu>
+                </StackPanel.ContextMenu>-->
+            </StackPanel>
+        </HierarchicalDataTemplate>
+        <editors:FolderOrFileTemplateSelector x:Key="FolderFileTemplateSelector" FolderTemplate="{StaticResource FolderTemplate}" FileTemplate="{StaticResource FileTemplate}"/>
+
+    </UserControl.Resources>
+
+
+    <Grid HorizontalAlignment="Left">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="275"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <GridSplitter HorizontalAlignment="Right" Width="5" BorderThickness="0,8" Margin="0,0,-5,0">
+            <GridSplitter.Background>
+                <SolidColorBrush/>
+            </GridSplitter.Background>
+        </GridSplitter>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="740"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" IsEnabled="{Binding IsPermission}">
+                <Button Content="New" Width="85" Height="30" IsEnabled="{Binding EnableNew}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <micro:ActionMessage MethodName="NewSequence">
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <Button Content="Rename" Margin="10,0,0,0" Width="85" Height="30"  IsEnabled="{Binding EnableReName}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <micro:ActionMessage MethodName="RenameSequence">
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <Button Content="Delete" Margin="10,0,0,0" Width="85" Height="30" IsEnabled="{Binding EnableDelete}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <micro:ActionMessage MethodName="DeleteSequence">
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </StackPanel>
+
+            <Border Grid.Row="1" Margin="0,5,0,0" BorderBrush="{DynamicResource Tab_BD}" BorderThickness="1" Background="{DynamicResource Tab_BG}">
+                <TreeView x:Name="PART_TREE" Grid.Row="1" Margin="5" ItemsSource="{Binding Files[0].Files}" ItemTemplateSelector="{StaticResource FolderFileTemplateSelector}"
+                       VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"  
+                       Height="{Binding Path=ActualHeight,ElementName=PART_BORDER, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <!--Height should add for VirtualizingPanel, otherwise the App will be slow-->
+                    <TreeView.ItemContainerStyle>
+                        <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource ResourceKey={x:Type TreeViewItem}}">
+                            <Setter Property="IsExpanded" Value="True"></Setter>
+                        </Style>
+                    </TreeView.ItemContainerStyle>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectedItemChanged">
+                            <micro:ActionMessage MethodName="TreeSelectChanged">
+                                <micro:Parameter Value="{Binding SelectedItem, ElementName=PART_TREE}" />
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonDown">
+                            <micro:ActionMessage MethodName="TreeRightMouseDown">
+                                <micro:Parameter Value="$eventargs" />
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                    <TreeView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="New Sequence" Command="{Binding NewSequenceInParentCommand}" IsEnabled="{Binding EnableStep}"></MenuItem>
+                            <Separator/>
+                            <MenuItem Header="Save As..." Command="{Binding SaveAsCommand}" IsEnabled="{Binding EnableStep}">
+                            </MenuItem>
+                            <MenuItem Header="Rename Sequence" Command="{Binding RenameCommand}" IsEnabled="{Binding EnableStep}">
+                            </MenuItem>
+                            <MenuItem Header="Delete Sequence" Command="{Binding DeleteSequenceCommand}" IsEnabled="{Binding EnableStep}">
+                            </MenuItem>
+                            <!--<MenuItem Header="New Folder" Command="{Binding NewFolderInParentCommand}">
+                            </MenuItem>-->
+                        </ContextMenu>
+                    </TreeView.ContextMenu>
+                </TreeView>
+            </Border>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid Width="1600" HorizontalAlignment="Left" Margin="10,0,0,0" IsEnabled="{Binding IsPermission}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1" Background="{DynamicResource Table_BG_Title}" Padding="5,1">
+                    <TextBlock Text="Name" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="16" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border Grid.Column="1" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,1,1,1" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                    <controls:TextBoxEx AllowBackgroundChange="False" IsEnabled="false"  Text="{Binding CurrentSequence.Name}" TextWrapping="Wrap" VerticalAlignment="Center" MinWidth="100" Width="Auto"/>
+                </Border>
+                <Border Grid.Column="2" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,1,1,1" Background="{DynamicResource Table_BG_Title}" Padding="5,1">
+                    <TextBlock Text="Create" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="16" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border Grid.Column="3" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,1,1,1" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                    <TextBlock Text="{Binding CurrentSequence.Creator}" HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center" MinWidth="100" Width="Auto"/>
+                </Border>
+                <Border Grid.Column="4" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,1,1,1" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                    <TextBlock Text="{Binding CurrentSequence.CreateTime}" HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center" MinWidth="100" Width="Auto"/>
+                </Border>
+                <Border Grid.Row="1" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Title}" Padding="5,1">
+                    <TextBlock Text="Description" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="16" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="1" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                    <controls:TextBoxEx Text="{Binding CurrentSequence.Description}" TextSaved="{Binding IsSavedDesc, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Center" MinWidth="100" Width="Auto"/>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="2" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Title}" Padding="5,1">
+                    <TextBlock Text="Revise" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="16" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="3" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                    <TextBlock Text="{Binding CurrentSequence.Revisor}" HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center" Width="120"/>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="4" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                    <TextBlock Text="{Binding CurrentSequence.ReviseTime}" HorizontalAlignment="Left" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center" MinWidth="140"/>
+                </Border>
+                <Border Grid.Row="2"  BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Title}" Padding="5,1">
+                    <TextBlock Text="Freeze" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="16" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="1" BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,1" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                    <StackPanel  Orientation="Horizontal" >
+                        <TextBlock   IsEnabled="False" Text="{Binding CurrentSequence.Freeze}" Foreground="{DynamicResource FG_Black}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left"   Width="Auto"/>
+                        <Button  Margin="100,0,0,0" Width="90" Height="30" FontFamily="Arial" Content="Freeze" IsEnabled="{Binding CurrentSequence.EnableFreeze}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <micro:ActionMessage MethodName="FreezeClick"/>
+                                    <!--<micro:ActionMessage MethodName="frozen"/>-->
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <Button  Margin="5,0,0,0" Width="90" Height="30" FontFamily="Arial" Content="UnFreeze" IsEnabled="{Binding CurrentSequence.EnableNotFreeze}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <micro:ActionMessage MethodName="UnFreezeClick"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+
+                    </StackPanel>
+                </Border>
+               
+
+            </Grid>
+            <Grid  Name="StepsGrid" Grid.Row="1" Margin="10,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid>
+                    <StackPanel Orientation="Horizontal" IsEnabled="{Binding IsPermission}">
+                        <Button Content="Append" Width="90" Height="30" IsEnabled="{Binding EnableStep}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <micro:ActionMessage MethodName="AddStep">
+                                    </micro:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <Button Content="Insert" Margin="10,0,0,0" Width="90" Height="30" IsEnabled="{Binding EnableStep}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <micro:ActionMessage MethodName="AppendStep">
+                                    </micro:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <Button Content="Copy" Margin="10,0,0,0" Width="90" Height="30" IsEnabled="{Binding EnableStep}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <micro:ActionMessage MethodName="CopyStep">
+                                    </micro:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <Button Content="Paste" Margin="10,0,0,0" Width="90" Height="30" IsEnabled="{Binding EnableStep}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <micro:ActionMessage MethodName="PasteStep">
+                                    </micro:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <Button Content="Delete" Margin="10,0,0,0" Width="90" Height="30" IsEnabled="{Binding EnableStep}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <micro:ActionMessage MethodName="DeleteStep">
+                                    </micro:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <Button Margin="180,0,0,0" Width="90" Height="30" Content="Reload">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <micro:ActionMessage MethodName="ReloadSequence">
+                                    </micro:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <Button Margin="10,0,0,0" Width="90" Height="30" Content="Save" IsEnabled="{Binding EnableSave}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <micro:ActionMessage MethodName="SaveSequence">
+                                    </micro:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+
+                        <Image x:Name="FullScreenButton" Margin="20,-30,0,0"  Source="/MECF.Framework.UI.Client;component/Resources/Images/ArrowExpandAll.png" Width="20" Height="20" Visibility="Visible">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseLeftButtonUp">
+                                    <micro:ActionMessage MethodName="FullScreen"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Image>
+
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <dgExtension:XDataGrid x:Name="dgCustom" AlternationCount="2" 
+                                         HeadersVisibility="Column" AutoGenerateColumns="False" GridLinesVisibility="None" 
+                                         CanUserResizeColumns="False" CanUserResizeRows="False"  CanUserDeleteRows="False"
+                                         Background="#00FFFFFF" CanUserAddRows="False"  UseHorizontalScrolling="True" IsEnabled="{Binding EnableStep}"
+                                 VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
+                            <dgExtension:XDataGrid.LayoutTransform>
+                                <TransformGroup>
+                                    <RotateTransform Angle="-90"/>
+                                    <ScaleTransform ScaleX="1" ScaleY="-1" />
+                                </TransformGroup>
+                            </dgExtension:XDataGrid.LayoutTransform>
+                        </dgExtension:XDataGrid>
+                    </ScrollViewer>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="263"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="{DynamicResource Table_BD}" Height="1" VerticalAlignment="Top"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
+    

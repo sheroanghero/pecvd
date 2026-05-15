@@ -1,0 +1,1087 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:OpenSEMI.Ctrlib.Controls"
+    xmlns:wnd="clr-namespace:OpenSEMI.Ctrlib.Window"
+    xmlns:cvt="clr-namespace:OpenSEMI.Ctrlib.Converter"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:unitControls="clr-namespace:MECF.Framework.UI.Client.Ctrlib.UnitControls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/MECF.Framework.UI.Client;component/DataGridTransform/DataGrid/Themes/Generic.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <LinearGradientBrush x:Key="GrayBlueGradientBrush"  
+                         StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="DarkGray" Offset="0" />
+        <GradientStop Color="#CCCCFF" Offset="0.5" />
+        <GradientStop Color="DarkGray" Offset="1" />
+    </LinearGradientBrush>
+
+    <Style x:Key="PoppingExpanderSholdDelete" TargetType="{x:Type Button}">
+        <Setter Property="Background"  Value="{StaticResource GrayBlueGradientBrush}" />
+        <Setter Property="Width" Value="80" />
+        <Setter Property="Margin" Value="10" />
+    </Style>
+
+    <cvt:SlotBorderConverter x:Key="borderConverter"/>
+
+
+
+    <Style TargetType="{x:Type local:Valve}">
+        <Setter Property="ValveState" Value="UNKNOWN"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="Height" Value="16"/>
+        <Setter Property="Width" Value="16"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Valve}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" Cursor="Hand" SnapsToDevicePixels="True">
+
+                        <Grid>
+                            <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Ellipse.Fill>
+                                    <LinearGradientBrush EndPoint="0.146,0.146" StartPoint="0.854,0.854">
+                                        <GradientStop Color="#FF333333" Offset="0"/>
+                                        <GradientStop Color="#FFCECECE" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+
+                            <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1">
+                                <Ellipse.Fill>
+                                    <LinearGradientBrush EndPoint="0.854,0.854" StartPoint="0.146,0.146">
+                                        <GradientStop Color="#FF333333" Offset="0"/>
+                                        <GradientStop Color="#FFCECECE" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+
+                            <Rectangle x:Name="PART_OPEN" Fill="#FF00BA28" Stroke="#FF104F1D" 
+                                       RadiusX="1" RadiusY="1" Height="4" Margin="2,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                                       RenderTransformOrigin="0.5,0.5" Visibility="Collapsed"/>
+
+                            <Rectangle x:Name="PART_CLOSE" Fill="#FF3B3B3B" Stroke="#FF1F1F1F" 
+                                       RadiusX="1" RadiusY="1" Width="4" Margin="0,2" VerticalAlignment="Stretch" HorizontalAlignment="Center"
+                                       RenderTransformOrigin="0.5,0.5" Visibility="Collapsed"/>
+
+                            <Path x:Name="PART_UNKNOWN" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      Data="M5.5,0.5 L6.5,0.5 C7.0522847,0.5 7.5,0.94771528 7.5,1.5 L7.5,4.4999999 10.5,4.4999999 C11.052285,4.5 11.5,4.9477152 11.5,5.5 L11.5,6.5 C11.5,7.0522847 11.052285,7.5 10.5,7.5 L7.5,7.5 7.5,10.5 C7.5,11.052285 7.0522847,11.5 6.5,11.5 L5.5,11.5 C4.9477153,11.5 4.5,11.052285 4.5,10.5 L4.5,7.5 1.5,7.5 C0.94771522,7.5 0.5,7.0522847 0.5,6.5 L0.5,5.5 C0.5,4.9477152 0.94771522,4.5 1.5,4.4999999 L4.5,4.4999999 4.5,1.5 C4.5,0.94771528 4.9477153,0.5 5.5,0.5 z" 
+                                      Fill="#FFAFAFAF" RenderTransformOrigin="0.5,0.5" Stretch="Fill" Margin="2" 
+                                      Stroke="#FF505050" Visibility="Visible">
+                                <Path.RenderTransform>
+                                    <RotateTransform Angle="45"/>
+                                </Path.RenderTransform>
+                            </Path>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ValveState" Value="ON">
+                            <Setter TargetName="PART_OPEN" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="PART_CLOSE" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_UNKNOWN" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="ValveState" Value="OFF">
+                            <Setter TargetName="PART_OPEN" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_CLOSE" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="PART_UNKNOWN" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:Valve}">
+                            <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" Cursor="Hand" SnapsToDevicePixels="True">
+
+                                <Grid>
+                                    <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                        <Ellipse.Fill>
+                                            <LinearGradientBrush EndPoint="0.146,0.146" StartPoint="0.854,0.854">
+                                                <GradientStop Color="#FF333333" Offset="0"/>
+                                                <GradientStop Color="#FFCECECE" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+
+                                    <Ellipse HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1">
+                                        <Ellipse.Fill>
+                                            <LinearGradientBrush EndPoint="0.854,0.854" StartPoint="0.146,0.146">
+                                                <GradientStop Color="#FF333333" Offset="0"/>
+                                                <GradientStop Color="#FFCECECE" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+
+                                    <Rectangle x:Name="PART_OPEN" Fill="#FF00BA28" Stroke="#FF104F1D" 
+                                       RadiusX="1" RadiusY="1" Width="4" Margin="0,2" VerticalAlignment="Stretch" HorizontalAlignment="Center"
+                                       RenderTransformOrigin="0.5,0.5" Visibility="Collapsed"/>
+
+                                    <Rectangle x:Name="PART_CLOSE" Fill="#FF3B3B3B" Stroke="#FF1F1F1F" 
+                                       RadiusX="1" RadiusY="1" Height="4" Margin="2,0" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                                       RenderTransformOrigin="0.5,0.5" Visibility="Collapsed"/>
+
+                                    <Path x:Name="PART_UNKNOWN" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      Data="M5.5,0.5 L6.5,0.5 C7.0522847,0.5 7.5,0.94771528 7.5,1.5 L7.5,4.4999999 10.5,4.4999999 C11.052285,4.5 11.5,4.9477152 11.5,5.5 L11.5,6.5 C11.5,7.0522847 11.052285,7.5 10.5,7.5 L7.5,7.5 7.5,10.5 C7.5,11.052285 7.0522847,11.5 6.5,11.5 L5.5,11.5 C4.9477153,11.5 4.5,11.052285 4.5,10.5 L4.5,7.5 1.5,7.5 C0.94771522,7.5 0.5,7.0522847 0.5,6.5 L0.5,5.5 C0.5,4.9477152 0.94771522,4.5 1.5,4.4999999 L4.5,4.4999999 4.5,1.5 C4.5,0.94771528 4.9477153,0.5 5.5,0.5 z" 
+                                      Fill="#FFAFAFAF" RenderTransformOrigin="0.5,0.5" Stretch="Fill" Margin="2" 
+                                      Stroke="#FF505050" Visibility="Visible">
+                                        <Path.RenderTransform>
+                                            <RotateTransform Angle="45"/>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </Grid>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="ValveState" Value="ON">
+                                    <Setter TargetName="PART_OPEN" Property="Visibility" Value="Visible"/>
+                                    <Setter TargetName="PART_CLOSE" Property="Visibility" Value="Collapsed"/>
+                                    <Setter TargetName="PART_UNKNOWN" Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                                <Trigger Property="ValveState" Value="OFF">
+                                    <Setter TargetName="PART_OPEN" Property="Visibility" Value="Collapsed"/>
+                                    <Setter TargetName="PART_CLOSE" Property="Visibility" Value="Visible"/>
+                                    <Setter TargetName="PART_UNKNOWN" Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type local:TextBoxEx}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="BorderThickness" Value="1,1,0,0"/>
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="BorderBrush" Value="#FF1B1B1B"/>
+        <Setter Property="Padding" Value="5,1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="AllowDrop" Value="true"/>
+        <Setter Property="ChangedColor" Value="#FFC0F18D"/>
+        <Setter Property="WarningColor" Value="#FFFFE63D"/>
+        <Setter Property="NormalColor" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:TextBoxEx}">
+                    <Grid>
+                        <Border x:Name="TextBox_Outer" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+							BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <Border x:Name="TextBox_Inner" BorderBrush="#FFD6D6D6" BorderThickness="0,0,1,1" Padding="{TemplateBinding Padding}"/>
+                        </Border>
+                        <Rectangle x:Name="Lfet_Boder" Fill="{DynamicResource TextBox_InnerLeft}" HorizontalAlignment="Left" Width="1" Margin="1"/>
+                        <Rectangle x:Name="Top_Boder" Fill="{DynamicResource TextBox_InnerTop}" VerticalAlignment="Top" Height="1" Margin="1"/>
+                        <Rectangle x:Name="Right_Boder" Fill="{DynamicResource TextBox_InnerRight}" HorizontalAlignment="Right" Width="1" Margin="1,2,1,1"/>
+                        <Rectangle x:Name="Bottom_Boder" Fill="{DynamicResource TextBox_InnerBottom}" VerticalAlignment="Bottom" Height="1" Margin="1,1,2,1"/>
+                        <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalAlignment}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="BorderBrush" TargetName="TextBox_Outer" Value="#FF747474"/>
+                            <Setter Property="Background" TargetName="TextBox_Outer" Value="Gainsboro"/>
+                            <Setter Property="BorderBrush" TargetName="TextBox_Inner" Value="#FFBEBDBD"/>
+                            <Setter Property="Fill" TargetName="Lfet_Boder" Value="{DynamicResource TextBox_InnerLeft_Unable}"/>
+                            <Setter Property="Fill" TargetName="Top_Boder" Value="{DynamicResource TextBox_InnerTop_Unable}"/>
+                            <Setter Property="Fill" TargetName="Right_Boder" Value="{DynamicResource TextBox_InnerRight_Unable}"/>
+                            <Setter Property="Fill" TargetName="Bottom_Boder" Value="{DynamicResource TextBox_InnerBottom_Unable}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="ToolTipService.IsEnabled" Value="False"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style> 
+
+    <Style TargetType="{x:Type local:Wafer}">
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Wafer}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Border.ToolTip>
+                            <ToolTip Name="tb_tooltip">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding WaferTooltip,RelativeSource={RelativeSource TemplatedParent}}"></TextBlock>
+                                </StackPanel>
+                            </ToolTip>
+                        </Border.ToolTip>
+                        <Grid>
+                            <Rectangle x:Name="WaferCtrl_FrontView" Width="90" Height="11" Stroke="#FF232200">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                        <GradientStop Color="#FFB88700" Offset="0"/>
+                                        <GradientStop Color="#FFB88700" Offset="1"/>
+                                        <GradientStop Color="#FFF7E0A0" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <Grid x:Name="WaferCtrl_TopView" Width="65" Height="65" Visibility="Collapsed">
+                                <Ellipse x:Name="SSC_WaferBG" Stroke="#FF232200" Fill="#FFFFBB00"/>
+                                <Ellipse x:Name="SSC_Wafer1" RenderTransformOrigin="0.5,0.5" Margin="1">
+                                    <Ellipse.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="75"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </Ellipse.RenderTransform>
+                                    <Ellipse.Fill>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#00E6E4AD" Offset="0"/>
+                                            <GradientStop Color="#00E6E4AD" Offset="1"/>
+                                            <GradientStop Color="White" Offset="0.45"/>
+                                            <GradientStop Color="White" Offset="0.55"/>
+                                        </LinearGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <Ellipse x:Name="SSC_Wafer2" Opacity="0.75" Margin="1" RenderTransformOrigin="0.5,0.5">
+                                    <Ellipse.Fill>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#00E6E4AD" Offset="0"/>
+                                            <GradientStop Color="#00E6E4AD" Offset="1"/>
+                                            <GradientStop Color="#FFAF8100" Offset="0.5"/>
+                                        </LinearGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Grid>
+
+                            <TextBlock x:Name="Border_Txt" TextWrapping="NoWrap" Text="{Binding Path=SourceName, RelativeSource={RelativeSource TemplatedParent}}" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource FG_Black}" FontFamily="Arial">
+                            </TextBlock>
+                            <TextBlock x:Name="Border_question" TextWrapping="NoWrap" Text="?" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" FontWeight="Bold" FontFamily="Arial" Visibility="{Binding Path=DuplicatedVisibility, RelativeSource={RelativeSource TemplatedParent}}">
+                                <TextBlock.Effect>
+                                    <DropShadowEffect ShadowDepth="0" Color="White" BlurRadius="6"/>
+                                </TextBlock.Effect>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="SourceName" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Visibility" TargetName="Border_Txt" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="WaferTooltip" Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Visibility" TargetName="tb_tooltip" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="ViewType" Value="Front">
+                            <Setter Property="Visibility" TargetName="WaferCtrl_FrontView" Value="Visible"/>
+                            <Setter Property="Visibility" TargetName="WaferCtrl_TopView" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="ViewType" Value="Top">
+                            <Setter Property="Visibility" TargetName="WaferCtrl_FrontView" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="WaferCtrl_TopView" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="WaferStatus" Value="0">
+                            <Setter Property="Stroke" TargetName="WaferCtrl_FrontView" Value="#002F4E48"/>
+                            <Setter Property="Fill" TargetName="WaferCtrl_FrontView">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                        <GradientStop Color="#00B88700" Offset="0"/>
+                                        <GradientStop Color="#00B88700" Offset="1"/>
+                                        <GradientStop Color="#00F7E0A0" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Stroke" TargetName="SSC_WaferBG" Value="#002F4E48"/>
+                            <Setter Property="Fill" TargetName="SSC_WaferBG" Value="#00FFBB00"/>
+                            <Setter Property="Fill" TargetName="SSC_Wafer1">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#00E6E4AD" Offset="0"/>
+                                        <GradientStop Color="#00E6E4AD" Offset="1"/>
+                                        <GradientStop Color="#00E6E4AD" Offset="0.45"/>
+                                        <GradientStop Color="#00E6E4AD" Offset="0.55"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Fill" TargetName="SSC_Wafer2">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#00E6E4AD" Offset="0"/>
+                                        <GradientStop Color="#00E6E4AD" Offset="1"/>
+                                        <GradientStop Color="#00AF8100" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Visibility" TargetName="tb_tooltip" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="Border_Txt" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="WaferStatus" Value="1">
+                            <Setter Property="Stroke" TargetName="WaferCtrl_FrontView" Value="#FF232200"/>
+                            <Setter Property="Fill" TargetName="WaferCtrl_FrontView">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                        <GradientStop Color="#FF6398CC" Offset="0"/>
+                                        <GradientStop Color="#FF6398CC" Offset="1"/>
+                                        <GradientStop Color="#FFF0F8FF" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Stroke" TargetName="SSC_WaferBG" Value="#FF232200"/>
+                            <Setter Property="Fill" TargetName="SSC_WaferBG" Value="#FFADD8E6"/>
+                            <Setter Property="Fill" TargetName="SSC_Wafer1">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#00E6E4AD" Offset="0"/>
+                                        <GradientStop Color="#00E6E4AD" Offset="1"/>
+                                        <GradientStop Color="White" Offset="0.45"/>
+                                        <GradientStop Color="White" Offset="0.55"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Fill" TargetName="SSC_Wafer2">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#00ADD8E6" Offset="0"/>
+                                        <GradientStop Color="#00ADD8E6" Offset="1"/>
+                                        <GradientStop Color="#FF6398CC" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Visibility" TargetName="tb_tooltip" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="WaferStatus" Value="2">
+                            <Setter Property="Stroke" TargetName="WaferCtrl_FrontView" Value="#FF000B14"/>
+                            <Setter Property="Fill" TargetName="WaferCtrl_FrontView">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                        <GradientStop Color="#FF3333FF" Offset="0"/>
+                                        <GradientStop Color="#FF3333FF" Offset="1"/>
+                                        <GradientStop Color="#FFE1E1FF" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Stroke" TargetName="SSC_WaferBG" Value="#FF001154"/>
+                            <Setter Property="Fill" TargetName="SSC_WaferBG" Value="#FF6E6EFF"/>
+                            <Setter Property="Fill" TargetName="SSC_Wafer1">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#00E1E1FF" Offset="0"/>
+                                        <GradientStop Color="#00E1E1FF" Offset="1"/>
+                                        <GradientStop Color="#FFE1E1FF" Offset="0.45"/>
+                                        <GradientStop Color="#FFE1E1FF" Offset="0.55"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Fill" TargetName="SSC_Wafer2">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#000000FF" Offset="0"/>
+                                        <GradientStop Color="#000000FF" Offset="1"/>
+                                        <GradientStop Color="#FF3D3DFF" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="WaferStatus" Value="3">
+                            <Setter Property="Stroke" TargetName="WaferCtrl_FrontView" Value="#FF000B14"/>
+                            <Setter Property="Fill" TargetName="WaferCtrl_FrontView">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                        <GradientStop Color="Cyan" Offset="0"/>
+                                        <GradientStop Color="Cyan" Offset="1"/>
+                                        <GradientStop Color="#FFE7F5F9" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Stroke" TargetName="SSC_WaferBG" Value="#FF001154"/>
+                            <Setter Property="Fill" TargetName="SSC_WaferBG" Value="#FF00E4E4"/>
+                            <Setter Property="Fill" TargetName="SSC_Wafer1">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#0000FFFF" Offset="0"/>
+                                        <GradientStop Color="#0000FFFF" Offset="1"/>
+                                        <GradientStop Color="White" Offset="0.45"/>
+                                        <GradientStop Color="White" Offset="0.55"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Fill" TargetName="SSC_Wafer2">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#0000FFFF" Offset="0"/>
+                                        <GradientStop Color="#0000FFFF" Offset="1"/>
+                                        <GradientStop Color="#FF00B2B2" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="WaferStatus" Value="4">
+                            <Setter Property="Stroke" TargetName="WaferCtrl_FrontView" Value="#FF000B14"/>
+                            <Setter Property="Fill" TargetName="WaferCtrl_FrontView">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                        <GradientStop Color="#FF00B400" Offset="0"/>
+                                        <GradientStop Color="#FF00B400" Offset="1"/>
+                                        <GradientStop Color="#FFA9FFA9" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Stroke" TargetName="SSC_WaferBG" Value="#FF002700"/>
+                            <Setter Property="Fill" TargetName="SSC_WaferBG" Value="#FF19FF19"/>
+                            <Setter Property="Fill" TargetName="SSC_Wafer1">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Offset="0" Color="#00B3FFB3"/>
+                                        <GradientStop Offset="1" Color="#00B3FFB3"/>
+                                        <GradientStop Color="White" Offset="0.45"/>
+                                        <GradientStop Color="White" Offset="0.55"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Fill" TargetName="SSC_Wafer2">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#00008000" Offset="0"/>
+                                        <GradientStop Color="#00008000" Offset="1"/>
+                                        <GradientStop Color="#FF00A300" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="WaferStatus" Value="5">
+                            <Setter Property="Stroke" TargetName="WaferCtrl_FrontView" Value="#FF000B14"/>
+                            <Setter Property="Fill" TargetName="WaferCtrl_FrontView">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                        <GradientStop Color="Red" Offset="0"/>
+                                        <GradientStop Color="Red" Offset="1"/>
+                                        <GradientStop Color="#FFFFD7D7" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Stroke" TargetName="SSC_WaferBG" Value="#FF500000"/>
+                            <Setter Property="Fill" TargetName="SSC_WaferBG" Value="#FFFF5D5D"/>
+                            <Setter Property="Fill" TargetName="SSC_Wafer1">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#00FF0000" Offset="1"/>
+                                        <GradientStop Color="White" Offset="0.45"/>
+                                        <GradientStop Color="White" Offset="0.55"/>
+                                        <GradientStop Color="#00FF0000"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Fill" TargetName="SSC_Wafer2">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#00FF0000" Offset="0"/>
+                                        <GradientStop Color="#00FF0000" Offset="1"/>
+                                        <GradientStop Color="Red" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="WaferStatus" Value="6">
+                            <Setter Property="Stroke" TargetName="WaferCtrl_FrontView" Value="#FF232200"/>
+                            <Setter Property="Fill" TargetName="WaferCtrl_FrontView">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                        <GradientStop Color="#FFB88700" Offset="0"/>
+                                        <GradientStop Color="#FFB88700" Offset="1"/>
+                                        <GradientStop Color="#FFF7E0A0" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Stroke" TargetName="SSC_WaferBG" Value="#FF232200"/>
+                            <Setter Property="Fill" TargetName="SSC_WaferBG" Value="#FFFFBB00"/>
+                            <Setter Property="Fill" TargetName="SSC_Wafer1">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#00E6E4AD" Offset="0"/>
+                                        <GradientStop Color="#00E6E4AD" Offset="1"/>
+                                        <GradientStop Color="White" Offset="0.45"/>
+                                        <GradientStop Color="White" Offset="0.55"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Fill" TargetName="SSC_Wafer2">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#00E6E4AD" Offset="0"/>
+                                        <GradientStop Color="#00E6E4AD" Offset="1"/>
+                                        <GradientStop Color="#FFAF8100" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Visibility" TargetName="tb_tooltip" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="WaferStatus" Value="7">
+                            <Setter Property="Stroke" TargetName="WaferCtrl_FrontView" Value="#FF232200"/>
+                            <Setter Property="Fill" TargetName="WaferCtrl_FrontView">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                        <GradientStop Color="#FFFFFF00" Offset="0"/>
+                                        <GradientStop Color="#FFFFFF00" Offset="1"/>
+                                        <GradientStop Color="#FFFFF59D" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Stroke" TargetName="SSC_WaferBG" Value="#FF232200"/>
+                            <Setter Property="Fill" TargetName="SSC_WaferBG" Value="#FFFFFF00"/>
+                            <Setter Property="Fill" TargetName="SSC_Wafer1">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#00E6E4AD" Offset="0"/>
+                                        <GradientStop Color="#00E6E4AD" Offset="1"/>
+                                        <GradientStop Color="White" Offset="0.45"/>
+                                        <GradientStop Color="White" Offset="0.55"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Fill" TargetName="SSC_Wafer2">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#00E6E4AD" Offset="0"/>
+                                        <GradientStop Color="#00E6E4AD" Offset="1"/>
+                                        <GradientStop Color="#FFFFFF00" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Visibility" TargetName="tb_tooltip" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="WaferStatus" Value="8">
+                            <Setter Property="Stroke" TargetName="WaferCtrl_FrontView" Value="#FF232200"/>
+                            <Setter Property="Fill" TargetName="WaferCtrl_FrontView">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                        <GradientStop Color="#FFFF00FF" Offset="0"/>
+                                        <GradientStop Color="#FFFF00FF" Offset="1"/>
+                                        <GradientStop Color="#FFD8BFD8" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Stroke" TargetName="SSC_WaferBG" Value="#FF232200"/>
+                            <Setter Property="Fill" TargetName="SSC_WaferBG" Value="#FFFF00FF"/>
+                            <Setter Property="Fill" TargetName="SSC_Wafer1">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#00E6E4AD" Offset="0"/>
+                                        <GradientStop Color="#00E6E4AD" Offset="1"/>
+                                        <GradientStop Color="White" Offset="0.45"/>
+                                        <GradientStop Color="White" Offset="0.55"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Fill" TargetName="SSC_Wafer2">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#00D8BFD8" Offset="0"/>
+                                        <GradientStop Color="#00D8BFD8" Offset="1"/>
+                                        <GradientStop Color="#FFFF00FF" Offset="0.5"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Visibility" TargetName="tb_tooltip" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:Slot}">
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Slot}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <local:Wafer ViewType="{Binding Path=ViewType, RelativeSource={RelativeSource TemplatedParent}}" ModuleID="{Binding Path=ModuleID, RelativeSource={RelativeSource TemplatedParent}}"
+                                             SlotID="{Binding Path=SlotID, RelativeSource={RelativeSource TemplatedParent}}"                                             
+                                             SourceName="{Binding Path=SourceName, RelativeSource={RelativeSource TemplatedParent}}"
+                                              
+                                             WaferTooltip="{Binding Path=WaferTooltip, RelativeSource={RelativeSource TemplatedParent}}"                                             
+                                             WaferStatus="{Binding Path=WaferStatus, RelativeSource={RelativeSource TemplatedParent}}"
+                                             DuplicatedVisibility="{Binding Path=DuplicatedVisibility, RelativeSource={RelativeSource TemplatedParent}}"></local:Wafer>
+                            <Grid x:Name="BorderView" Visibility="Collapsed">
+                                <Rectangle x:Name="Front_Border" Stroke="#FFFFD200" Margin="-1" Height="13" Width="92" Visibility="Collapsed"/>
+                                <Ellipse x:Name="Top_Border" Stroke="#FFFFD200" Width="67" Height="67" Margin="-1" Visibility="Collapsed"/>
+                                <Ellipse x:Name="Chamber_Border" Stroke="#FFFFD200" Width="80" Height="6" Margin="-6" Visibility="Collapsed"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ViewType" Value="Front">
+                            <Setter Property="Visibility" TargetName="Front_Border" Value="Visible"/>
+                            <Setter Property="Visibility" TargetName="Top_Border" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="Chamber_Border" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="ViewType" Value="Top">
+                            <Setter Property="Visibility" TargetName="Front_Border" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="Top_Border" Value="Visible"/>
+                            <Setter Property="Visibility" TargetName="Chamber_Border" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="ViewType" Value="Chamber">
+                            <Setter Property="Visibility" TargetName="Front_Border" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="Top_Border" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="Chamber_Border" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="ModuleID" Value="">
+                            <Setter Property="Visibility" TargetName="Front_Border" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="Top_Border" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="Chamber_Border" Value="Collapsed"/>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Path=BorderStatus,RelativeSource={RelativeSource Self},Converter={StaticResource borderConverter}}" Value="MouseOver">
+                            <Setter Property="Visibility" TargetName="BorderView" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=BorderStatus,RelativeSource={RelativeSource Self},Converter={StaticResource borderConverter}}" Value="Selected">
+                            <Setter Property="Stroke" TargetName="Front_Border" Value="#FFA55300"/>
+                            <Setter Property="Stroke" TargetName="Top_Border" Value="#FFA55300"/>
+                            <Setter Property="Visibility" TargetName="BorderView" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=BorderStatus,RelativeSource={RelativeSource Self},Converter={StaticResource borderConverter}}" Value="TransferSource">
+                            <Setter Property="Stroke" TargetName="Front_Border" Value="#FF00EFEA"/>
+                            <Setter Property="Stroke" TargetName="Top_Border" Value="#FF00EFEA"/>
+                            <Setter Property="Visibility" TargetName="BorderView" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=BorderStatus,RelativeSource={RelativeSource Self},Converter={StaticResource borderConverter}}" Value="TransferTarget">
+                            <Setter Property="Stroke" TargetName="Front_Border" Value="#FF00E704"/>
+                            <Setter Property="Stroke" TargetName="Top_Border" Value="#FF00E704"/>
+                            <Setter Property="Visibility" TargetName="BorderView" Value="Visible"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type wnd:CustomWnd}" BasedOn="{StaticResource ResourceKey={x:Type Window}}">
+        <Setter Property="WindowStyle" Value="SingleBorderWindow"/>
+        <Setter Property="AllowsTransparency" Value="False"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome CornerRadius="0" GlassFrameThickness="1" UseAeroCaptionButtons="False" NonClientFrameEdges="None" ResizeBorderThickness="5" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type wnd:CustomWnd}">
+                    <Grid x:Name="LayoutRoot" Background="{TemplateBinding Background}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="1" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1"/>
+                        </Grid.ColumnDefinitions>
+                        <AdornerDecorator Grid.Row="1" Grid.Column="1" KeyboardNavigation.IsTabStop="False">
+                            <ContentPresenter x:Name="MainContentPresenter" KeyboardNavigation.TabNavigation="Cycle" />
+                        </AdornerDecorator>
+                        <Border x:Name="OuterBorder_LeftTop" BorderBrush="{DynamicResource OuterBorder_BD_Highlight}" BorderThickness="1,1,0,0" Background="{DynamicResource OuterBorder_BG_TopConner}"/>
+                        <Border x:Name="Top_BG" Grid.Column="1" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource OuterBorder_BD_Highlight}" Background="{DynamicResource OuterBorder_BG_Top}"/>
+                        <Border x:Name="OuterBorder_RightTop" BorderBrush="{DynamicResource OuterBorder_BD_Highlight}" BorderThickness="0,1,0,0" Background="{DynamicResource OuterBorder_BG_TopConner}" Grid.Column="2" RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Border.RenderTransform>
+                            <Border BorderBrush="{DynamicResource OuterBorder_BD_Shadow}" BorderThickness="1,0,0,0"/>
+                        </Border>
+                        <Grid x:Name="PART_WindowTitleGrid" Grid.Row="0" Grid.Column="1" Height="30" Background="LightGray">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,10,0">
+                                <!--<Path Data="M6.1,8.2 L19.7,8.2 18.5,10 13.3,10 10.1,15.9 7,15.9 10.6,10 4.7,10 z M18.8,1.2 C18.8,1.2 25.9,2.1 25.6,6.4 25.2,13.2 12,14.3 12,14.3 L13.1,12.2 C13.1,12.2 22.5,11.5 23.5,6.5 24.1,3.6 18.1,2.5 18.1,2.5 z M14.6,1 L13.8,2.4 C8.7,2.8 2.9,5.2 2.5,8.7 2.4,10.8 7.6,12.1 7.6,12.1 L6.5,14.1 C6.5,14.1 -0.6,12.6 0,8.5 1.1,1.9 14.6,1 14.6,1 z M16.5,0 L18.4,0 15.7,5.3 21.8,5.3 20.5,7 6.8,7 7.9,5.2 13.4,5.2 z" Fill="{DynamicResource Color_BG_SmallLogo}" Height="15.9" Stretch="Fill" Width="25.6"/>-->
+                                <TextBlock Text="{TemplateBinding Title}" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center"  />
+                            </StackPanel>
+
+                            <!--<Grid>
+                                <TextBlock Text="{Binding CurrentViewPathName}" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"> </TextBlock>
+                            </Grid>-->
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,0">
+                                <Button Width="35" Height="22" IsTabStop="False" WindowChrome.IsHitTestVisibleInChrome="True" Style="{DynamicResource SysBtnStyle}" Command="{x:Static SystemCommands.MinimizeWindowCommand}">
+                                    <Button.Content>
+                                        <Rectangle StrokeThickness="3" Width="10" Height="3" Fill="{DynamicResource Color_FG_Button_Window}"/>
+                                    </Button.Content>
+                                </Button>
+                                <Button x:Name="PART_MAX" Width="35" Height="22" IsTabStop="False" WindowChrome.IsHitTestVisibleInChrome="True" Style="{DynamicResource SysBtnStyle}"/>
+                                <Button Width="35" Height="22" IsTabStop="False" WindowChrome.IsHitTestVisibleInChrome="True" Style="{DynamicResource SysCloseBtnStyle}" Command="{x:Static SystemCommands.CloseWindowCommand}">
+                                    <Button.Content>
+                                        <Path Data="M5.5,0 L8.5,0 8.5,5.5 14,5.5 14,8.5 8.5,8.5 8.5,14 5.5,14 5.5,8.5 0,8.5 0,5.5 5.5,5.5 z" Fill="{DynamicResource Color_FG_Button_Window}" Margin="10.5,3" RenderTransformOrigin="0.5,0.5" Stretch="Fill" StrokeThickness="3" Width="10" Height="10" >
+                                            <Path.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform/>
+                                                    <SkewTransform/>
+                                                    <RotateTransform Angle="45"/>
+                                                    <TranslateTransform/>
+                                                </TransformGroup>
+                                            </Path.RenderTransform>
+                                        </Path>
+                                    </Button.Content>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                        <Border x:Name="Left_BG" Grid.Row="1" BorderBrush="{DynamicResource OuterBorder_BD_Highlight}" BorderThickness="1,0,0,0" Background="{DynamicResource OuterBorder_BG_Side}"/>
+                        <Border x:Name="Right_BG" Grid.Row="1" Grid.Column="2" BorderBrush="{DynamicResource OuterBorder_BD_Shadow}" RenderTransformOrigin="0.5,0.5" BorderThickness="1,0,0,0" Background="{DynamicResource OuterBorder_BG_Side}">
+                            <Border.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1" ScaleX="-1"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Border.RenderTransform>
+                        </Border>
+                        <Border x:Name="OuterBorder_LeftBottom" BorderBrush="{DynamicResource OuterBorder_BD_Highlight}" Background="{DynamicResource OuterBorder_BG_BottomConner}" BorderThickness="1,0,0,0" Grid.Row="2" RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="-1" ScaleX="1"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Border.RenderTransform>
+                            <Border BorderBrush="{DynamicResource OuterBorder_BD_Shadow}" BorderThickness="0,1,0,0"/>
+                        </Border>
+                        <Border x:Name="Bottom_BG" BorderBrush="{DynamicResource OuterBorder_BD_Shadow}" BorderThickness="0,0,0,1" Background="{DynamicResource OuterBorder_BG_Bottom}" Grid.Column="1" Grid.Row="2"/>
+                        <Border x:Name="OuterBorder_RightBottom" BorderBrush="{DynamicResource OuterBorder_BD_Shadow}" Background="{DynamicResource OuterBorder_BG_BottomConner}" BorderThickness="1,1,0,0" Grid.Row="2" RenderTransformOrigin="0.5,0.5" Grid.Column="2">
+                            <Border.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="-1" ScaleX="-1"/>
+                                    <SkewTransform AngleY="0" AngleX="0"/>
+                                    <RotateTransform Angle="0"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Border.RenderTransform>
+                        </Border>
+                        <ResizeGrip x:Name="ResizeGrip" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="2"
+                                            IsTabStop="False" Visibility="Hidden" WindowChrome.ResizeGripDirection="BottomRight" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter TargetName="LayoutRoot" Property="Margin" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(WindowChrome.WindowChrome).ResizeBorderThickness}"/>
+                            <Setter TargetName="PART_MAX" Property="Command" Value="{x:Static SystemCommands.RestoreWindowCommand}"/>
+                            <Setter TargetName="PART_MAX" Property="Content">
+                                <Setter.Value>
+                                    <Path Data="M0.8,4 L0.8,8 7.2,8 7.2,4 z M0,3 L8,3 8,11 0,11 z M4,0 L12,0 12,8 8.5,8 8.5,5 11,5 11,1 5,1 5,2.5 4,2.5 z" Fill="{DynamicResource Color_FG_Button_Window}" Height="11" Stretch="Fill" StrokeThickness="3" Width="12"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="WindowState" Value="Normal">
+                            <Setter TargetName="LayoutRoot" Property="Margin" Value="0"/>
+                            <Setter TargetName="PART_MAX" Property="Command" Value="{x:Static SystemCommands.MaximizeWindowCommand}"/>
+                            <Setter TargetName="PART_MAX" Property="Content">
+                                <Setter.Value>
+                                    <Path Data="M1,1 L1,5 9,5 9,1 z M0,0 L10,0 10,8 0,8 z" Fill="{DynamicResource Color_FG_Button_Window}" Stretch="Fill" StrokeThickness="3" Height="10" Width="10"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsActive" Value="False">
+                            <Setter Property="BorderBrush" Value="#FF6F7785" />
+                        </Trigger>
+
+                        <Trigger Property="ResizeMode" Value="NoResize">
+                            <Setter TargetName="PART_MAX" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="ResizeMode" Value="CanResizeWithGrip" />
+                                <Condition Property="WindowState" Value="Normal" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="ResizeGrip" Property="Visibility" Value="Visible" />
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:Gasline}">
+        <Setter Property="Background" Value="{DynamicResource Color_BG_Gasline}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="8"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Gasline}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Rectangle Fill="{DynamicResource Color_BG_GasLine_3DBG02}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                            <Rectangle Fill="{DynamicResource Color_BD_GasLine_Border}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="1"/>
+                            <Rectangle Fill="{DynamicResource Color_BD_GasLine_Border}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="1"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Stretch"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Width" Value="8"/>
+                <Setter Property="Height" Value="Auto"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:Gasline}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <Rectangle Fill="{DynamicResource Color_BG_GasLine_3DBG01}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                    <Rectangle Fill="{DynamicResource Color_BD_GasLine_Border}" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="1"/>
+                                    <Rectangle Fill="{DynamicResource Color_BD_GasLine_Border}" HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="1"/>
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type local:GaslineJoint}">
+        <Setter Property="JointType" Value="CROSS"/>
+        <Setter Property="Width" Value="8"/>
+        <Setter Property="Height" Value="8"/>
+        <Setter Property="Background" Value="{DynamicResource Color_BG_Gasline}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:GaslineJoint}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                        <Viewbox>
+                            <Canvas x:Name="Fourth_Way" Width="8" Height="8">
+                                <Path Data="M4,4 L8,8 0,8 z M0,0 L8,0 4,4 z" Fill="{DynamicResource Color_BG_GasLine_3DBG01}" Height="8" Stretch="Fill" Width="8"/>
+                                <Path Data="M8,0 L8,8 4,4 z M0,0 L4,4 0,8 z" Fill="{DynamicResource Color_BG_GasLine_3DBG02}" Height="8" Stretch="Fill" Width="8"/>
+                                <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="1" Canvas.Top="7"/>
+                                <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="1" Canvas.Top="7" Canvas.Left="7"/>
+                                <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="1" Canvas.Left="7"/>
+                                <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="1"/>
+                            </Canvas>
+                        </Viewbox>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="JointType" Value="LEFT_TOP">
+                <Setter Property="Background" Value="{DynamicResource Color_BG_Gasline}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:GaslineJoint}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                                <Viewbox>
+                                    <Canvas Width="8" Height="8">
+                                        <Path Fill="{DynamicResource Color_BG_GasLine_3DBG02}" Stretch="Fill" Width="8" Height="8" Data="M0,0 L8,0 8,8 z"/>
+                                        <Path Fill="{DynamicResource Color_BG_GasLine_3DBG01}" Stretch="Fill" Width="8" Height="8" Data="M0,0 L8,8 0,8 z"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="8" Height="1"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="1" Canvas.Left="7" Canvas.Top="7"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="7" Canvas.Top="1"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+
+            <Trigger Property="JointType" Value="LEFT_BOTTOM">
+                <Setter Property="Background" Value="{DynamicResource Color_BG_Gasline}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:GaslineJoint}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                                <Viewbox>
+                                    <Canvas Width="8" Height="8">
+                                        <Path Fill="{DynamicResource Color_BG_GasLine_3DBG01}" Stretch="Fill" Width="8" Height="8" Data="M0,0 L8,0 0,8 z"/>
+                                        <Path Fill="{DynamicResource Color_BG_GasLine_3DBG02}" Stretch="Fill" Width="8" Height="8" Data="M8,0 L8,8 0,8 z"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="1" Canvas.Left="7"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="8"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="7" Height="1" Canvas.Left="1" Canvas.Top="7"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+
+            <Trigger Property="JointType" Value="RIGHT_TOP">
+                <Setter Property="Background" Value="{DynamicResource Color_BG_Gasline}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:GaslineJoint}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                                <Viewbox>
+                                    <Canvas Width="8" Height="8">
+                                        <Path Fill="{DynamicResource Color_BG_GasLine_3DBG02}" Stretch="Fill" Width="8" Height="8" Data="M0,0 L8,0 0,8 z"/>
+                                        <Path Fill="{DynamicResource Color_BG_GasLine_3DBG01}" Stretch="Fill" Width="8" Height="8" Data="M8,0 L8,8 0,8 z"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="1" Canvas.Top="7"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="8" Height="1"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="7" Canvas.Left="7" Canvas.Top="1"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+
+            <Trigger Property="JointType" Value="RIGHT_BOTTOM">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:GaslineJoint}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                                <Viewbox>
+                                    <Canvas Width="8" Height="8">
+                                        <Path Fill="{DynamicResource Color_BG_GasLine_3DBG01}" Stretch="Fill" Width="8" Height="8" Data="M0,0 L8,0 8,8 z"/>
+                                        <Path Fill="{DynamicResource Color_BG_GasLine_3DBG02}" Stretch="Fill" Width="8" Height="8" Data="M0,0 L8,8 0,8 z"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="1"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="7" Height="1" Canvas.Top="7"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="8" Canvas.Left="7"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+
+            <Trigger Property="JointType" Value="LEFT">
+                <Setter Property="Background" Value="{DynamicResource Color_BG_Gasline}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:GaslineJoint}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                                <Viewbox>
+                                    <Canvas Width="8" Height="8">
+                                        <Path Fill="{DynamicResource Color_BG_GasLine_3DBG01}" Stretch="Fill" Width="8" Height="8" Data="M0,0 L8,0 8,8 0,8 4,4 z"/>
+                                        <Path Fill="{DynamicResource Color_BG_GasLine_3DBG02}" Stretch="Fill" Width="4" Height="8" Data="M0,0 L4,4 0,8 z"/>
+                                        <Rectangle Fill="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="8" Canvas.Left="7"/>
+                                        <Rectangle Fill="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="1"/>
+                                        <Rectangle Fill="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="1" Canvas.Top="7"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+
+            <Trigger Property="JointType" Value="UP">
+                <Setter Property="Background" Value="{DynamicResource Color_BG_Gasline}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:GaslineJoint}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                                <Viewbox>
+                                    <Canvas Width="8" Height="8">
+                                        <Path Fill="{DynamicResource Color_BG_GasLine_3DBG01}" Stretch="Fill" Width="8" Height="4" Data="M0,0 L8,0 4,4 z"/>
+                                        <Path Fill="{DynamicResource Color_BG_GasLine_3DBG02}" Stretch="Fill" Width="8" Height="8" Data="M0,0 L4,4 8,0 8,8 0,8 z"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="8" Height="1" Canvas.Top="7"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="1"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="1" Canvas.Left="7"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+
+            <Trigger Property="JointType" Value="RIGHT">
+                <Setter Property="Background" Value="{DynamicResource Color_BG_Gasline}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:GaslineJoint}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                                <Viewbox>
+                                    <Canvas Width="8" Height="8">
+                                        <Path Fill="{DynamicResource Color_BG_GasLine_3DBG01}" Stretch="Fill" Width="8" Height="8" Data="M0,0 L8,0 4,4 8,8 0,8 z"/>
+                                        <Path Fill="{DynamicResource Color_BG_GasLine_3DBG02}" Stretch="Fill" Width="4" Height="8" Data="M4,0 L4,8 0,4 z" Canvas.Left="4"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="8"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="1" Canvas.Left="7"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="1" Canvas.Left="7" Canvas.Top="7"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                        </ControlTemplate>
+
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+
+            <Trigger Property="JointType" Value="DOWN">
+                <Setter Property="Background" Value="{DynamicResource Color_BG_Gasline}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:GaslineJoint}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                                <Viewbox>
+                                    <Canvas Width="8" Height="8">
+                                        <Path Fill="{DynamicResource Color_BG_GasLine_3DBG02}" Stretch="Fill" Width="8" Height="8" Data="M0,0 L8,0 8,8 4,4 0,8 z"/>
+                                        <Path Fill="{DynamicResource Color_BG_GasLine_3DBG01}" Stretch="Fill" Width="8" Height="4" Data="M4,0 L8,4 0,4 z" Canvas.Top="4"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="8" Height="1"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="1" Canvas.Top="7"/>
+                                        <Rectangle Stroke="{DynamicResource Color_BD_GasLine_Border}" Width="1" Height="1" Canvas.Left="7" Canvas.Top="7"/>
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+
+    <Style TargetType="{x:Type local:CarrierContentControl}">
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:CarrierContentControl}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <!--<unitControls:CarrierView  ></unitControls:CarrierView>-->
+ 
+                        </Grid>
+                    </Border>
+                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

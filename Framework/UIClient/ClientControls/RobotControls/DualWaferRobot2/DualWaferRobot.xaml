@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.ClientControls.RobotControls.DualWaferRobot2.DualWaferRobot"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:common1="clr-namespace:MECF.Framework.UI.Client.ClientControls.Common"
+             xmlns:efemControls="clr-namespace:MECF.Framework.UI.Client.ClientControls.EfemControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Viewbox Stretch="Uniform">
+        <common1:AxisCanvas AxisLeft="11" x:Name="root" Width="240" Height="23">
+            <common1:AxisCanvas.ContextMenu>
+                <ContextMenu ItemsSource="{Binding Menu}" />
+            </common1:AxisCanvas.ContextMenu>
+            <common1:AxisCanvas AxisLeft="11" x:Name="canvas1" Height="23" Width="86" >
+                <Image Width="86" Height="23" Source="/MECF.Framework.UI.Client;component/ClientControls/RobotControls/DualWaferRobot2/armRoot.png"  />
+                <common1:AxisCanvas x:Name="canvas2" AxisLeft="12" Height="23" Width="86" Canvas.Left="64" >
+                    <Image Width="86" Height="23" Source="/MECF.Framework.UI.Client;component/ClientControls/RobotControls/DualWaferRobot2/arm.png" />
+                    <common1:AxisCanvas AxisLeft="94" x:Name="canvas3" Height="160" Width="188" Canvas.Left="-18"  Canvas.Top="-67">
+                        <Canvas >
+                            <Image Width="188" Height="160" Source="/MECF.Framework.UI.Client;component/ClientControls/RobotControls/DualWaferRobot2/hand.png"/>
+                            <!--<local:Wafer Visibility="{Binding WaferPresentA,Converter={StaticResource BoolVisibilityConverter}}" Width="50" Height="50" WaferItem="{Binding Wafer1}" Station="{Binding Station}" CreateDeleteWaferCommand="{Binding CreateDeleteWaferCommand}" MoveWaferCommand="{Binding MoveWaferCommand}" Canvas.Left="130" Canvas.Top="4" />
+                            <local:Wafer Visibility="{Binding WaferPresentA,Converter={StaticResource BoolVisibilityConverter}}" Width="50" Height="50" WaferItem="{Binding Wafer2}" Station="{Binding Station}" CreateDeleteWaferCommand="{Binding CreateDeleteWaferCommand}" MoveWaferCommand="{Binding MoveWaferCommand}" Canvas.Left="130" Canvas.Top="108" />
+                            <local:Wafer Visibility="{Binding WaferPresentB,Converter={StaticResource BoolVisibilityConverter}}" Width="50" Height="50" WaferItem="{Binding Wafer3}" Station="{Binding Station}" CreateDeleteWaferCommand="{Binding CreateDeleteWaferCommand}" MoveWaferCommand="{Binding MoveWaferCommand}" Canvas.Top="4" />
+                            <local:Wafer Visibility="{Binding WaferPresentB,Converter={StaticResource BoolVisibilityConverter}}" Width="50" Height="50" WaferItem="{Binding Wafer4}" Station="{Binding Station}" CreateDeleteWaferCommand="{Binding CreateDeleteWaferCommand}" MoveWaferCommand="{Binding MoveWaferCommand}" Canvas.Top="108" />-->
+                            <efemControls:WaferCtrl Width="66" Height="66" Canvas.Left="124" Canvas.Top="-5" WaferData="{Binding Wafer1}"/>
+                            <efemControls:WaferCtrl Width="66" Height="66" Canvas.Left="124" Canvas.Top="100" WaferData="{Binding Wafer2}"/>
+                            <efemControls:WaferCtrl Width="66" Height="66" Canvas.Top="-5" WaferData="{Binding Wafer4}" />
+                            <efemControls:WaferCtrl Width="66" Height="66" Canvas.Top="100" WaferData="{Binding Wafer3}"/>
+                            <Label Content="Pri." Canvas.Left="100" Canvas.Top="15" RenderTransformOrigin="0.5,0.5" FontSize="15" FontWeight="Bold">
+                                <Label.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="-90"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Label.RenderTransform>
+                            </Label>
+                            <Label Content="Pri." Canvas.Left="100" Canvas.Top="120" RenderTransformOrigin="0.5,0.5" FontSize="15" FontWeight="Bold">
+                                <Label.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="-90"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Label.RenderTransform>
+                            </Label>
+                            <Label Content="Sec." Canvas.Top="15" RenderTransformOrigin="0.5,0.5" Canvas.Left="50" FontSize="15" FontWeight="Bold">
+                                <Label.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="90"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Label.RenderTransform>
+                            </Label>
+                            <Label Content="Sec." Canvas.Top="120" RenderTransformOrigin="0.5,0.5" Canvas.Left="50" FontSize="15" FontWeight="Bold">
+                                <Label.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="90"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Label.RenderTransform>
+                            </Label>
+                        </Canvas>
+                    </common1:AxisCanvas>
+                </common1:AxisCanvas>
+            </common1:AxisCanvas>
+            <common1:AxisCanvas.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform CenterY="23" Angle="{Binding RotateAngle}"></RotateTransform>
+                    <TranslateTransform  x:Name="translate" X="{Binding TranslateX}"/>
+                </TransformGroup>
+            </common1:AxisCanvas.RenderTransform>
+        </common1:AxisCanvas>
+    </Viewbox>
+</UserControl>
+

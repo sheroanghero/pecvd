@@ -1,0 +1,207 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.Editors.Recipe.PopSettingDialogView"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:micro="clr-namespace:Caliburn.Micro"
+             xmlns:editors="clr-namespace:MECF.Framework.UI.Client.CenterViews.Editors"
+             xmlns:controls="clr-namespace:OpenSEMI.Ctrlib.Controls"
+             xmlns:local="clr-namespace:MECF.Framework.UI.Client.CenterViews.Editors.Recipe"
+             mc:Ignorable="d"
+             Width="600"
+             Height="800">
+    <UserControl.Resources>
+        <HierarchicalDataTemplate x:Key="FolderTemplate" ItemsSource="{Binding Files}" >
+            <StackPanel Orientation="Horizontal"   Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl}, Path=DataContext}">
+                <Image x:Name="ExpandImage"  Source="/MECF.Framework.UI.Client;component/Resources/Images/Folder_Close.png" Width="14" Height="12" Margin="2,0,0,0" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Name}" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            </StackPanel>
+            <HierarchicalDataTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Image.Source" TargetName="ExpandImage" Value="/MECF.Framework.UI.Client;component/Resources/Images/Folder_Unable.png"/>
+                </Trigger>
+            </HierarchicalDataTemplate.Triggers>
+        </HierarchicalDataTemplate>
+        <HierarchicalDataTemplate x:Key="FileTemplate" ItemsSource="{Binding Files}">
+            <StackPanel Orientation="Horizontal" Tag="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl}, Path=DataContext}">
+                <Path Data="M0.5,5.125 L5.125,5.125 5.125,0.5 M5.1,0.5 L15.5,0.5 15.5,19.5 0.5,19.5 C0.5,14.7 0.5,10 0.5,5.1 2,3.6 3.6,2 5.1,0.5 z M8.1,8.5 L8.2,8.5 z M8.1,11.5 L8.2,11.5 z M8.1,14.5 L8.2,14.5 z" Fill="#FFF3F3F3" HorizontalAlignment="Left" Stretch="Fill" Stroke="#FF454545" Width="13" Height="16"/>
+                <TextBlock Text="{Binding Name}" Margin="5,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            </StackPanel>
+        </HierarchicalDataTemplate>
+        <editors:FolderOrFileTemplateSelector x:Key="FolderFileTemplateSelector"  FolderTemplate="{StaticResource FolderTemplate}" FileTemplate="{StaticResource FileTemplate}"/>
+
+        <DataTemplate x:Key="template_TextBox">
+            <controls:TextBoxEx Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                                                    Validation.ErrorTemplate="{x:Null}" 
+                                                    EditBoxMode="Decimal"  
+                                                    TextSaved="{Binding IsSaved, 
+                                                    Mode=TwoWay, 
+                                                    UpdateSourceTrigger=PropertyChanged}"  
+                                                    TextWrapping="Wrap" 
+                                                    FontSize="14"
+                                                    FontFamily="Arial" 
+                                                    Width="300" 
+                                                    IsEnabled="{Binding EnableDefaultValue}"/>
+        </DataTemplate >
+        <DataTemplate x:Key="template_TextBoxString">
+            <controls:TextBoxEx Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                                                    Validation.ErrorTemplate="{x:Null}" 
+                                                    EditBoxMode="Default"  
+                                                    TextSaved="{Binding IsSaved, 
+                                                    Mode=TwoWay, 
+                                                    UpdateSourceTrigger=PropertyChanged}"  
+                                                    TextWrapping="Wrap" 
+                                                    FontSize="14"
+                                                    FontFamily="Arial" 
+                                                    Width="300" 
+                                                    IsEnabled="{Binding EnableDefaultValue}"/>
+        </DataTemplate >
+
+        <DataTemplate x:Key="template_ComboBox">
+            <controls:ComboBoxExt Style="{StaticResource ResourceKey={x:Type ComboBox}}" 
+                                      Visibility="{Binding Visible}" 
+                                      ComboBoxSaved="{Binding IsSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      IsEnabled="{Binding IsEnabled}" 
+                                      DisplayMemberPath="DisplayName" 
+                                      SelectedValuePath="ControlName" 
+                                      SelectedValue="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                      ItemsSource="{Binding Options}"/>
+        </DataTemplate>
+
+        <local:TemplateSelector x:Key="Template"
+                                         TextBoxTemplate="{StaticResource template_TextBox}"
+                                         TextBoxTemplateString="{StaticResource template_TextBoxString}"
+                                         ComboBoxTemplate="{StaticResource template_ComboBox}"
+                                         />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="Auto" ></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto" ></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" ></ColumnDefinition>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  Background="CadetBlue" >
+            <TextBlock Text="Endpoint Control Parameters"    HorizontalAlignment="Center"  Height="18"  Width="210"></TextBlock>
+        </StackPanel>
+
+
+        <Border Grid.Row="1" Grid.ColumnSpan="2">
+            <DataGrid ItemsSource="{Binding Path=ControlParameters}" 
+                          CanUserAddRows="False" 
+                          AutoGenerateColumns="False" 
+                          RowHeaderWidth="0"
+                          VirtualizingPanel.IsVirtualizing="True" 
+                          VirtualizingPanel.VirtualizationMode="Recycling"
+                          Width="591" 
+                          HorizontalAlignment="Center"  
+                          VerticalAlignment="Top" Grid.Column="0"  Grid.Row="1" Grid.ColumnSpan="2"  >
+                <DataGrid.Columns>
+
+                    <DataGridTemplateColumn Width="289"  Header="Parameters" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DisplayName}" 
+                                           FontFamily="Arial" FontSize="14" 
+                                           Foreground="{DynamicResource FG_Black}" 
+                                           HorizontalAlignment="Right" 
+                                           VerticalAlignment="Center" 
+                                           ToolTip="{Binding RelativeSource={RelativeSource Self}, 
+                                           Path=Text}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="setting" CellTemplateSelector="{StaticResource Template}" Width="300"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+        <Border Grid.Row="2" Grid.ColumnSpan="2" Margin="0,5" Visibility="{Binding BandVisibility}">
+            <DataGrid ItemsSource="{Binding Path=BandParameters}" 
+                          CanUserAddRows="False" 
+                          AutoGenerateColumns="False" 
+                          RowHeaderWidth="0"
+                          VirtualizingPanel.IsVirtualizing="True" 
+                          VirtualizingPanel.VirtualizationMode="Recycling"
+                          Width="590" 
+                          HorizontalAlignment="Center"  
+                          VerticalAlignment="Top" Grid.Column="0"  Grid.Row="2" Grid.ColumnSpan="2" >
+                <DataGrid.Columns>
+
+                    <DataGridTemplateColumn Width="228"  Header="Parameters" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DisplayName}" 
+                                           FontFamily="Arial" FontSize="14" 
+                                           Foreground="{DynamicResource FG_Black}" 
+                                           HorizontalAlignment="Right" 
+                                           VerticalAlignment="Center" 
+                                           ToolTip="{Binding RelativeSource={RelativeSource Self}, 
+                                           Path=Text}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="180"  Header="Wavelength (nm)">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <controls:TextBoxEx Text="{Binding WavelengthDoubleParam.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                                                    Validation.ErrorTemplate="{x:Null}" 
+                                                    EditBoxMode="Decimal"  
+                                                    TextSaved="{Binding IsSaved, 
+                                                    Mode=TwoWay, 
+                                                    UpdateSourceTrigger=PropertyChanged}"  
+                                                    TextWrapping="Wrap" 
+                                                    FontSize="14"
+                                                    FontFamily="Arial" 
+                                                    Width="300" 
+                                                    IsEnabled="{Binding EnableDefaultValue}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="180"  Header="Bandwidth (nm)">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <controls:TextBoxEx Text="{Binding BandwidthDoubleParam.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                                                    Validation.ErrorTemplate="{x:Null}" 
+                                                    EditBoxMode="Decimal"  
+                                                    TextSaved="{Binding IsSaved, 
+                                                    Mode=TwoWay, 
+                                                    UpdateSourceTrigger=PropertyChanged}"  
+                                                    TextWrapping="Wrap" 
+                                                    FontSize="14"
+                                                    FontFamily="Arial" 
+                                                    Width="300" 
+                                                    IsEnabled="{Binding EnableDefaultValue}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+        <StackPanel Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="-4,10,10,10" Width="190">
+            <Button Content="OK" Width="90" Height="30">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <micro:ActionMessage MethodName="OK">
+                        </micro:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+            <Button Content="Cancel" Margin="10,0,0,0" Width="90" Height="30">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <micro:ActionMessage MethodName="Cancel">
+                        </micro:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </StackPanel>
+    </Grid>
+
+</UserControl>
+

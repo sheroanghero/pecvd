@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="Aitex.Core.UI.DeviceControl.AITThermalCouple"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"  Height="24" Width="45" BorderThickness="1" x:Name="self">
+    <Grid  Height="24"  Cursor="Hand"  Opacity="1" MouseEnter="Grid_MouseEnter">
+        <Border Background="Transparent" x:Name="bdRectangle" BorderThickness="1">
+            <Rectangle  RadiusX="2" RadiusY="2" Name="rectBkground" Stroke="#373737" Margin="1" Opacity="1" Fill="DarkMagenta" StrokeThickness="1"/>
+        </Border>
+        <Label Content="{Binding ElementName=self, Path=DeviceData.FeedBack}" VerticalContentAlignment="Center"  ContentStringFormat="F1"  FontFamily="Verdana" FontSize="9" HorizontalContentAlignment="Center" x:Name="labelValue" Margin="0,-2,-2,-2" Foreground="LightYellow" />
+    </Grid>
+</UserControl>

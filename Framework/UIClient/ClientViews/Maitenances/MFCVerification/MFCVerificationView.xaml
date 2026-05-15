@@ -1,0 +1,1707 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.Maitenances.MFCVerification.MFCVerificationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MECF.Framework.UI.Client.CenterViews.Maitenances.MFCVerification"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:wf ="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+             xmlns:cal="clr-namespace:Caliburn.Micro"
+             xmlns:wfi ="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+             xmlns:sciChart="http://schemas.abtsoftware.co.uk/scichart"
+             mc:Ignorable="d" >
+    <Grid>
+        <Grid HorizontalAlignment="Left" Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="395"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TabControl>
+                <TabItem Header="MFC1" x:Name="tabMFC1" Visibility="{Binding MFC1Visibility}">
+                    <StackPanel Height="478" Width="1500" HorizontalAlignment="Left" IsEnabled="{Binding MFC1IsEnable}">
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,1,1,1" Background="{DynamicResource Table_BG_Content}" Width="1350" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" Height="30">
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Gas Name" Width="85" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" Background="{Binding MFC1Background}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{Binding MFC1BackGround}" Padding="5,1">
+                                    <TextBlock Text="{Binding MFC1DeviceData.DisplayName}" Width="200" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Setpoint(sccm)" Width="100" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <ComboBox x:Name="cbMFC1Setpoint" IsEditable="True" Height="25" Width="150" ItemsSource="{Binding MFC1VerificationPoints}"  SelectedIndex="0" VerticalAlignment="Center" >
+                                        <ComboBox.Resources>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="Width" Value="150" />
+                                            </Style>
+                                        </ComboBox.Resources>
+                                    </ComboBox>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Start One Point" Width="150" Height="25" FontSize="14" Margin="20,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC1, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC1Setpoint, Path=Text}" />
+                                                        <cal:Parameter Value="1" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                        <Button Content="Start Ten Points" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC1, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC1Setpoint, Path=SelectedItem}" />
+                                                        <cal:Parameter Value="10" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                        <Button Content="Abort" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="Abort">
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <Label Content="Verification Data:" Foreground="Black" Height="25" VerticalAlignment="Center"/>
+                        <DataGrid Grid.Row="3" AlternationCount="2" HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" HorizontalContentAlignment="Center"
+                                  ItemsSource="{Binding MFC1VerificationData}" x:Name="verificationDataGridMFC1" Height="308">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Setpoint (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Setpoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Calculate Flow (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CalculateValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="MFC2" x:Name="tabMFC2" Visibility="{Binding MFC2Visibility}">
+                    <StackPanel Height="478" Width="1500" HorizontalAlignment="Left" IsEnabled="{Binding MFC2IsEnable}">
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,1,1,1" Background="{DynamicResource Table_BG_Content}" Width="1200" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" Height="30">
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Gas Name" Width="85" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" Background="{Binding MFC2Background}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{Binding MFC2BackGround}" Padding="5,1">
+                                    <TextBlock Text="{Binding MFC2DeviceData.DisplayName}" Width="200" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Setpoint(sccm)" Width="100" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <ComboBox x:Name="cbMFC2Setpoint" IsEditable="True" Height="25" Width="150" ItemsSource="{Binding MFC2VerificationPoints}"  SelectedIndex="0" VerticalAlignment="Center" >
+                                        <ComboBox.Resources>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="Width" Value="150" />
+                                            </Style>
+                                        </ComboBox.Resources>
+                                    </ComboBox>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Start One Point" Width="150" Height="25" FontSize="14" Margin="20,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC2, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC2Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="1" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                        <Button Content="Start Ten Points" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC2, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC2Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="10" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                        <Button Content="Abort" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="Abort">
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <Label Content="Verification Data:" Foreground="Black" Height="25" VerticalAlignment="Center"/>
+                        <DataGrid Grid.Row="3" AlternationCount="2" HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" HorizontalContentAlignment="Center"
+                                  ItemsSource="{Binding MFC2VerificationData}" x:Name="verificationDataGridMFC2" Height="308">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Setpoint (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Setpoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Calculate Flow (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CalculateValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="MFC3" x:Name="tabMFC3" Visibility="{Binding MFC3Visibility}">
+                    <StackPanel Height="478" Width="1500" HorizontalAlignment="Left" IsEnabled="{Binding MFC3IsEnable}">
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,1,1,1" Background="{DynamicResource Table_BG_Content}" Width="1200" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" Height="30">
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Gas Name" Width="85" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" Background="{Binding MFC3Background}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{Binding MFC3BackGround}" Padding="5,1">
+                                    <TextBlock Text="{Binding MFC3DeviceData.DisplayName}" Width="200" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Setpoint(sccm)" Width="100" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <ComboBox x:Name="cbMFC3Setpoint" IsEditable="True" Height="25" Width="150" ItemsSource="{Binding MFC3VerificationPoints}"  SelectedIndex="0" VerticalAlignment="Center" >
+                                        <ComboBox.Resources>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="Width" Value="150" />
+                                            </Style>
+                                        </ComboBox.Resources>
+                                    </ComboBox>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Start One Point" Width="150" Height="25" FontSize="14" Margin="20,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC3, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC3Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="1" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                        <Button Content="Start Ten Points" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC3, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC3Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="10" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                        <Button Content="Abort" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="Abort">
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <Label Content="Verification Data:" Foreground="Black" Height="25" VerticalAlignment="Center"/>
+                        <DataGrid Grid.Row="3" AlternationCount="2" HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" HorizontalContentAlignment="Center"
+                                  ItemsSource="{Binding MFC3VerificationData}" x:Name="verificationDataGridMFC3" Height="308">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Setpoint (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Setpoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Calculate Flow (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CalculateValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="MFC4" x:Name="tabMFC4" Visibility="{Binding MFC4Visibility}">
+                    <StackPanel Height="478" Width="1500" HorizontalAlignment="Left" IsEnabled="{Binding MFC4IsEnable}">
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,1,1,1" Background="{DynamicResource Table_BG_Content}" Width="1200" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" Height="30">
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Gas Name" Width="85" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" Background="{Binding MFC4Background}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{Binding MFC4BackGround}" Padding="5,1">
+                                    <TextBlock Text="{Binding MFC4DeviceData.DisplayName}" Width="200" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Setpoint(sccm)" Width="100" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <ComboBox x:Name="cbMFC4Setpoint" IsEditable="True" Height="25" Width="150" ItemsSource="{Binding MFC4VerificationPoints}"  SelectedIndex="0" VerticalAlignment="Center" >
+                                        <ComboBox.Resources>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="Width" Value="150" />
+                                            </Style>
+                                        </ComboBox.Resources>
+                                    </ComboBox>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Start One Point" Width="150" Height="25" FontSize="14" Margin="20,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC4, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC4Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="1" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                        <Button Content="Start Ten Points" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC4, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC4Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="10" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                        <Button Content="Abort" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="Abort">
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <Label Content="Verification Data:" Foreground="Black" Height="25" VerticalAlignment="Center"/>
+                        <DataGrid Grid.Row="3" AlternationCount="2" HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" HorizontalContentAlignment="Center"
+                                  ItemsSource="{Binding MFC4VerificationData}" x:Name="verificationDataGridMFC4" Height="308">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Setpoint (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Setpoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Calculate Flow (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CalculateValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="MFC5" x:Name="tabMFC5" Visibility="{Binding MFC5Visibility}">
+                    <StackPanel Height="478" Width="1500" HorizontalAlignment="Left" IsEnabled="{Binding MFC5IsEnable}">
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,1,1,1" Background="{DynamicResource Table_BG_Content}" Width="1200" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" Height="30">
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Gas Name" Width="85" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" Background="{Binding MFC5Background}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{Binding MFC5BackGround}" Padding="5,1">
+                                    <TextBlock Text="{Binding MFC5DeviceData.DisplayName}" Width="200" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Setpoint(sccm)" Width="100" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <ComboBox x:Name="cbMFC5Setpoint" IsEditable="True" Height="25" Width="150" ItemsSource="{Binding MFC5VerificationPoints}"  SelectedIndex="0" VerticalAlignment="Center" >
+                                        <ComboBox.Resources>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="Width" Value="150" />
+                                            </Style>
+                                        </ComboBox.Resources>
+                                    </ComboBox>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Start One Point" Width="150" Height="25" FontSize="14" Margin="20,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC5, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC5Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="1" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                        <Button Content="Start Ten Points" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC5, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC5Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="10" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                        <Button Content="Abort" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="Abort">
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <Label Content="Verification Data:" Foreground="Black" Height="25" VerticalAlignment="Center"/>
+                        <DataGrid Grid.Row="3" AlternationCount="2" HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" HorizontalContentAlignment="Center"
+                                  ItemsSource="{Binding MFC5VerificationData}" x:Name="verificationDataGridMFC5" Height="308">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Setpoint (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Setpoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Calculate Flow (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CalculateValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="MFC6" x:Name="tabMFC6" Visibility="{Binding MFC6Visibility}">
+                    <StackPanel Height="478" Width="1500" HorizontalAlignment="Left" IsEnabled="{Binding MFC6IsEnable}">
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,1,1,1" Background="{DynamicResource Table_BG_Content}" Width="1200" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" Height="30">
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Gas Name" Width="85" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" Background="{Binding MFC6Background}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{Binding MFC6BackGround}" Padding="5,1">
+                                    <TextBlock Text="{Binding MFC6DeviceData.DisplayName}" Width="200" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Setpoint(sccm)" Width="100" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <ComboBox x:Name="cbMFC6Setpoint" IsEditable="True" Height="25" Width="150" ItemsSource="{Binding MFC6VerificationPoints}"  SelectedIndex="0" VerticalAlignment="Center" >
+                                        <ComboBox.Resources>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="Width" Value="150" />
+                                            </Style>
+                                        </ComboBox.Resources>
+                                    </ComboBox>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Start One Point" Width="150" Height="25" FontSize="14" Margin="20,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC6, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC6Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="1" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                        <Button Content="Start Ten Points" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC6, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC6Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="10" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                        <Button Content="Abort" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="Abort">
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <Label Content="Verification Data:" Foreground="Black" Height="25" VerticalAlignment="Center"/>
+                        <DataGrid Grid.Row="3" AlternationCount="2" HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" HorizontalContentAlignment="Center"
+                                  ItemsSource="{Binding MFC6VerificationData}" x:Name="verificationDataGridMFC6" Height="308">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Setpoint (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Setpoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Calculate Flow (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CalculateValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="MFC7" x:Name="tabMFC7" Visibility="{Binding MFC7Visibility}">
+                    <StackPanel Height="478" Width="1500" HorizontalAlignment="Left" IsEnabled="{Binding MFC7IsEnable}">
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,1,1,1" Background="{DynamicResource Table_BG_Content}" Width="1200" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" Height="30">
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Gas Name" Width="85" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" Background="{Binding MFC7Background}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{Binding MFC7BackGround}" Padding="5,1">
+                                    <TextBlock Text="{Binding MFC7DeviceData.DisplayName}" Width="200" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Setpoint(sccm)" Width="100" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <ComboBox x:Name="cbMFC7Setpoint" IsEditable="True" Height="25" Width="150" ItemsSource="{Binding MFC7VerificationPoints}"  SelectedIndex="0" VerticalAlignment="Center" >
+                                        <ComboBox.Resources>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="Width" Value="150" />
+                                            </Style>
+                                        </ComboBox.Resources>
+                                    </ComboBox>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Start One Point" Width="150" Height="25" FontSize="14" Margin="20,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC7, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC7Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="1" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                        <Button Content="Start Ten Points" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC7, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC7Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="10" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                        <Button Content="Abort" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="Abort">
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <Label Content="Verification Data:" Foreground="Black" Height="25" VerticalAlignment="Center"/>
+                        <DataGrid Grid.Row="3" AlternationCount="2" HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" HorizontalContentAlignment="Center"
+                                  ItemsSource="{Binding MFC7VerificationData}" x:Name="verificationDataGridMFC7" Height="308">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Setpoint (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Setpoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Calculate Flow (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CalculateValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="MFC8" x:Name="tabMFC8" Visibility="{Binding MFC8Visibility}">
+                    <StackPanel Height="478" Width="1500" HorizontalAlignment="Left" IsEnabled="{Binding MFC8IsEnable}">
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,1,1,1" Background="{DynamicResource Table_BG_Content}" Width="1200" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" Height="30">
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Gas Name" Width="85" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" Background="{Binding MFC8Background}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{Binding MFC8BackGround}" Padding="5,1">
+                                    <TextBlock Text="{Binding MFC8DeviceData.DisplayName}" Width="200" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Setpoint(sccm)" Width="100" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <ComboBox x:Name="cbMFC8Setpoint" IsEditable="True" Height="25" Width="150" ItemsSource="{Binding MFC8VerificationPoints}"  SelectedIndex="0" VerticalAlignment="Center" >
+                                        <ComboBox.Resources>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="Width" Value="150" />
+                                            </Style>
+                                        </ComboBox.Resources>
+                                    </ComboBox>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Start One Point" Width="150" Height="25" FontSize="14" Margin="20,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC8, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC8Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="1" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                        <Button Content="Start Ten Points" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC8, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC8Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="10" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                        <Button Content="Abort" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="Abort">
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <Label Content="Verification Data:" Foreground="Black" Height="25" VerticalAlignment="Center"/>
+                        <DataGrid Grid.Row="3" AlternationCount="2" HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" HorizontalContentAlignment="Center"
+                                  ItemsSource="{Binding MFC8VerificationData}" x:Name="verificationDataGridMFC8" Height="308">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Setpoint (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Setpoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Calculate Flow (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CalculateValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="MFC9" x:Name="tabMFC9" Visibility="{Binding MFC9Visibility}">
+                    <StackPanel Height="478" Width="1500" HorizontalAlignment="Left" IsEnabled="{Binding MFC9IsEnable}">
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,1,1,1" Background="{DynamicResource Table_BG_Content}" Width="1200" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" Height="30">
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Gas Name" Width="85" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" Background="{Binding MFC9Background}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{Binding MFC9BackGround}" Padding="5,1">
+                                    <TextBlock Text="{Binding MFC9DeviceData.DisplayName}" Width="200" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Setpoint(sccm)" Width="100" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <ComboBox x:Name="cbMFC9Setpoint" IsEditable="True" Height="25" Width="150" ItemsSource="{Binding MFC9VerificationPoints}"  SelectedIndex="0" VerticalAlignment="Center" >
+                                        <ComboBox.Resources>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="Width" Value="150" />
+                                            </Style>
+                                        </ComboBox.Resources>
+                                    </ComboBox>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Start One Point" Width="150" Height="25" FontSize="14" Margin="20,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC9, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC9Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="1" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                        <Button Content="Start Ten Points" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC9, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC9Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="10" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                        <Button Content="Abort" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="Abort">
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <Label Content="Verification Data:" Foreground="Black" Height="25" VerticalAlignment="Center"/>
+                        <DataGrid Grid.Row="3" AlternationCount="2" HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" HorizontalContentAlignment="Center"
+                                  ItemsSource="{Binding MFC9VerificationData}" x:Name="verificationDataGridMFC9" Height="308">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Setpoint (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Setpoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Calculate Flow (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CalculateValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="MFC10" x:Name="tabMFC10" Visibility="{Binding MFC10Visibility}">
+                    <StackPanel Height="478" Width="1500" HorizontalAlignment="Left" IsEnabled="{Binding MFC10IsEnable}">
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,1,1,1" Background="{DynamicResource Table_BG_Content}" Width="1200" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" Height="30">
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Gas Name" Width="85" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" Background="{Binding MFC10Background}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{Binding MFC10BackGround}" Padding="5,1">
+                                    <TextBlock Text="{Binding MFC10DeviceData.DisplayName}" Width="200" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Setpoint(sccm)" Width="100" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <ComboBox x:Name="cbMFC10Setpoint" IsEditable="True" Height="25" Width="150" ItemsSource="{Binding MFC10VerificationPoints}"  SelectedIndex="0" VerticalAlignment="Center" >
+                                        <ComboBox.Resources>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="Width" Value="150" />
+                                            </Style>
+                                        </ComboBox.Resources>
+                                    </ComboBox>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Start One Point" Width="150" Height="25" FontSize="14" Margin="20,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC10, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC10Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="1" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                        <Button Content="Start Ten Points" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC10, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC10Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="10" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                        <Button Content="Abort" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="Abort">
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <Label Content="Verification Data:" Foreground="Black" Height="25" VerticalAlignment="Center"/>
+                        <DataGrid Grid.Row="3" AlternationCount="2" HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" HorizontalContentAlignment="Center"
+                                  ItemsSource="{Binding MFC10VerificationData}" x:Name="verificationDataGridMFC10" Height="308">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Setpoint (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Setpoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Calculate Flow (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CalculateValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="MFC11" x:Name="tabMFC11" Visibility="{Binding MFC11Visibility}">
+                    <StackPanel Height="478" Width="1500" HorizontalAlignment="Left" IsEnabled="{Binding MFC11IsEnable}">
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,1,1,1" Background="{DynamicResource Table_BG_Content}" Width="1200" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" Height="30">
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Gas Name" Width="85" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" Background="{Binding MFC11Background}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{Binding MFC11BackGround}" Padding="5,1">
+                                    <TextBlock Text="{Binding MFC11DeviceData.DisplayName}" Width="200" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Setpoint(sccm)" Width="100" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <ComboBox x:Name="cbMFC11Setpoint" IsEditable="True" Height="25" Width="150" ItemsSource="{Binding MFC11VerificationPoints}"  SelectedIndex="0" VerticalAlignment="Center" >
+                                        <ComboBox.Resources>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="Width" Value="150" />
+                                            </Style>
+                                        </ComboBox.Resources>
+                                    </ComboBox>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Start One Point" Width="150" Height="25" FontSize="14" Margin="20,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC11, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC11Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="1" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                        <Button Content="Start Ten Points" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC11, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC11Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="10" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                        <Button Content="Abort" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="Abort">
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <Label Content="Verification Data:" Foreground="Black" Height="25" VerticalAlignment="Center"/>
+                        <DataGrid Grid.Row="3" AlternationCount="2" HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" HorizontalContentAlignment="Center"
+                                  ItemsSource="{Binding MFC11VerificationData}" x:Name="verificationDataGridMFC11" Height="308">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Setpoint (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Setpoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Calculate Flow (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CalculateValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="MFC12" x:Name="tabMFC12" Visibility="{Binding MFC12Visibility}">
+                    <StackPanel Height="478" Width="1500" HorizontalAlignment="Left" IsEnabled="{Binding MFC12IsEnable}">
+                        <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,1,1,1" Background="{DynamicResource Table_BG_Content}" Width="1200" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" Height="30">
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Gas Name" Width="85" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" Background="{Binding MFC12Background}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{Binding MFC12BackGround}" Padding="5,1">
+                                    <TextBlock Text="{Binding MFC12DeviceData.DisplayName}" Width="200" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                                    <TextBlock Text="Setpoint(sccm)" Width="100" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="14" FontFamily="Arial" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <ComboBox x:Name="cbMFC12Setpoint" IsEditable="True" Height="25" Width="150" ItemsSource="{Binding MFC12VerificationPoints}"  SelectedIndex="0" VerticalAlignment="Center" >
+                                        <ComboBox.Resources>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="Width" Value="150" />
+                                            </Style>
+                                        </ComboBox.Resources>
+                                    </ComboBox>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource Table_BD}" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Start One Point" Width="150" Height="25" FontSize="14" Margin="20,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC12, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC12Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="1" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                        <Button Content="Start Ten Points" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" IsEnabled="{Binding IsVerificationButtonEnable}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="StartVerification">
+                                                        <cal:Parameter Value="{Binding ElementName=tabMFC12, Path=Header}" />
+                                                        <cal:Parameter Value="{Binding ElementName=cbMFC12Setpoint, Path=SelectedValue}" />
+                                                        <cal:Parameter Value="10" />
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                        <Button Content="Abort" Width="150" Height="25" FontSize="14" Margin="30,0,0,0" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <cal:ActionMessage MethodName="Abort">
+                                                    </cal:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+                        <Label Content="Verification Data:" Foreground="Black" Height="25" VerticalAlignment="Center"/>
+                        <DataGrid Grid.Row="3" AlternationCount="2" HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" HorizontalContentAlignment="Center"
+                                  ItemsSource="{Binding MFC12VerificationData}" x:Name="verificationDataGridMFC12" Height="308">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Setpoint (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Setpoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn Header="Calculate Flow (sccm)" Width="400">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CalculateValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Height="25" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+            <!--<Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,1,1,1" Background="{DynamicResource Table_BG_Content}" Width="800" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" Height="30">
+                    <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                        <ComboBox x:Name="cbMFC"  Height="25" Width="100" ItemsSource="{Binding MFCs}"  SelectedItem="{Binding SelectedMFC}" VerticalAlignment="Center" />
+                    </Border>
+                    <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                        <TextBlock Text="{Binding SelectedGasName}" Width="80" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}"  Padding="5,1">
+                        <TextBlock Text="Setpoint(sccm)" Width="85" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                        <ComboBox x:Name="cbSetpoint"  Height="25" Width="100" ItemsSource="{Binding CalibrationPoints}"  SelectedItem="{Binding Setpoint}" VerticalAlignment="Center" />
+                    </Border>
+                    <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}" Padding="5,1">
+                        <TextBlock Text="Flow Time(S)" Width="85" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                        <TextBox x:Name="tbTime"   Width="80" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                        <Button Content="Start" Width="80" Height="25" FontSize="12">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <cal:ActionMessage MethodName="StartVerification">
+                                        <cal:Parameter Value="{Binding ElementName=cbMFC, Path=SelectedValue}" />
+                                        <cal:Parameter Value="{Binding ElementName=cbSetpoint, Path=SelectedValue}" />
+                                        <cal:Parameter Value="{Binding ElementName=tbTime, Path=Text}" />
+                                    </cal:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </Border>
+                </StackPanel>
+            </Border>
+            
+            <Border Grid.Row="1" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,0,1,1" Background="{DynamicResource Table_BG_Content}" Width="800" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" Height="30">
+                    <Button Content="Reset" Width="120" Height="25" FontSize="12">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="Reset">
+                                    <cal:Parameter Value="{Binding ElementName=calibrationDataGrid, Path=SelectedIndex}" />
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Content="Reset All" Width="120" Height="25" FontSize="12" Margin="10,0,0,0">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="ResetAll"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Content="Save All" Width="120" Height="25" FontSize="12" Margin="10,0,0,0" IsEnabled="{Binding IsAcceptButtonEnable}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="AcceptAll"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="Calibration Data:" Grid.Row="2"/>
+            <DataGrid Grid.Row="3" AlternationCount="2" HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
+                  ItemsSource="{Binding CalibrationData}" x:Name="calibrationDataGrid" Height="220">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Setpoint(W)" Width="267">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ctrl:TextBoxEx Text="{Binding Path=Setpoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Width="200" Height="25"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Monitor Power(W)" Width="267">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ctrl:TextBoxEx Text="{Binding Path=MonitorValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Width="200" Height="25"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Meter Power(W)" Width="266">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ctrl:TextBoxEx Text="{Binding Path=MeterValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F1}}" Width="200" Height="25"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>-->
+            <Border Grid.Row="1" BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,1,1,1" Background="{DynamicResource Table_BG_Content}" Width="800" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}" Padding="5,1">
+                        <TextBlock Text="Start Time" Width="70" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                        <wfi:WindowsFormsHost Margin="5,0,0,0" FontSize="14" FontFamily="Arial" Width="170" Height="22" VerticalAlignment="Center">
+                            <wf:DateTimePicker x:Name="wfTimeFrom" Value="2011-8-1" CustomFormat="yyyy/MM/dd HH:mm:ss" Format="Custom"></wf:DateTimePicker>
+                        </wfi:WindowsFormsHost>
+                        <!--<xctk:DateTimePicker x:Name="wfTimeFrom" Format="Custom" FontSize="13"
+                                                     FormatString="yyyy/MM/dd HH:mm:ss"
+                                                     TimeFormat="Custom"
+                                                     AutoCloseCalendar="True"
+                                                     TimeFormatString="HH:mm:ss"
+                                                     Grid.Row="0" VerticalAlignment="Top" 
+                                                     Value="2011-8-1" Height="22" Width="170" Margin="2,2,0,0" />-->
+                    </Border>
+                    <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Title}" Padding="5,1">
+                        <TextBlock Text="End Time" Width="70" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,0,1,0" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                        <wfi:WindowsFormsHost Margin="5,0,0,0" FontSize="14" FontFamily="Arial" Width="170" Height="22" VerticalAlignment="Center">
+                            <wf:DateTimePicker x:Name="wfTimeTo" Value="2013-8-1" CustomFormat="yyyy/MM/dd HH:mm:ss" Format="Custom"></wf:DateTimePicker>
+                        </wfi:WindowsFormsHost>
+                        <!--<xctk:DateTimePicker x:Name="wfTimeTo" Format="Custom" FontSize="13"
+                                                     FormatString="yyyy/MM/dd HH:mm:ss"
+                                                     TimeFormat="Custom"
+                                                     AutoCloseCalendar="True"
+                                                     TimeFormatString="HH:mm:ss"
+                                                     Grid.Row="0" VerticalAlignment="Top" 
+                                                     Value="2013-8-1" Height="22" Width="170" Margin="2,2,0,0" />-->
+                    </Border>
+                    <Border BorderBrush="{DynamicResource Table_BD}" Background="{DynamicResource Table_BG_Content}" Padding="5,1">
+                        <StackPanel Orientation="Horizontal" IsEnabled="{Binding IsPermission}">
+                            <Button Content="Query" Width="120" Height="25" FontSize="14" Margin="5,0,0,0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="Query"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                            <!--<Button Content="Set As Current" Width="120" Height="25" FontSize="14" Margin="10,0,0,0" IsEnabled="{Binding IsSetAsCurrentButtonEnable}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="SetAsCurrent">
+                                            <cal:Parameter Value="{Binding ElementName=dataGrid_CalibrationHistory, Path=SelectedIndex}" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>-->
+                        </StackPanel>
+
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <Label Content="Verification History:" Grid.Row="2" Height="25"/>
+            <ScrollViewer Grid.Row="3" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto">
+                <DataGrid AutoGenerateColumns="False" Name="dataGrid_VerificationHistory" CanUserAddRows="False" IsEnabled="{Binding IsPermission}"
+                  ItemsSource="{Binding VerificationDataRecords}" SelectedItem="{Binding SelectedCalibrationData,Mode=TwoWay}" HorizontalScrollBarVisibility="Auto"
+                  FontFamily="Arial" FontSize="14" Height="305" MouseDoubleClick="VerificationHistoryDataGrid_MouseDoubleClick" LostFocus="VerificationHistoryDataGrid_LoseFocus">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="60" Binding="{Binding Module,Mode=OneWay}"   CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="Module" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Module}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="80" Binding="{Binding Name,Mode=OneWay}"   CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="Name" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Name}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="155" Binding="{Binding Time,Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True" CanUserResize="False" >
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="StartTime" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Time}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Setpoint,Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="Setpoint" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Setpoint}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Calculate,Mode=OneWay, StringFormat={}{0:F1}}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="Calculate" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Calculate, StringFormat={}{0:F1}}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent10Setpoint,Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="10%Setpoint" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent10Setpoint}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent10Calculate,Mode=OneWay, StringFormat={}{0:F1}}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="10%Calculate" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent10Calculate, StringFormat={}{0:F1}}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent20Setpoint,Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="20%Setpoint" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent20Setpoint}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent20Calculate,Mode=OneWay, StringFormat={}{0:F1}}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="20%Calculate" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent20Calculate, StringFormat={}{0:F1}}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent30Setpoint,Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="30%Setpoint" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent30Setpoint}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent30Calculate,Mode=OneWay, StringFormat={}{0:F1}}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="30%Calculate" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent30Calculate, StringFormat={}{0:F1}}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent40Setpoint,Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="40%Setpoint" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent40Setpoint}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent40Calculate,Mode=OneWay, StringFormat={}{0:F1}}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="40%Calculate" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent40Calculate, StringFormat={}{0:F1}}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent50Setpoint,Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="50%Setpoint" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent50Setpoint}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent50Calculate,Mode=OneWay, StringFormat={}{0:F1}}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="50%Calculate" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent50Calculate, StringFormat={}{0:F1}}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent60Setpoint,Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="60%Setpoint" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent60Setpoint}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent60Calculate,Mode=OneWay, StringFormat={}{0:F1}}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="60%Calculate" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent60Calculate, StringFormat={}{0:F1}}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent70Setpoint,Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="70%Setpoint" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent70Setpoint}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent70Calculate,Mode=OneWay, StringFormat={}{0:F1}}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="70%Calculate" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent70Calculate, StringFormat={}{0:F1}}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent80Setpoint,Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="80%Setpoint" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent80Setpoint}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent80Calculate,Mode=OneWay, StringFormat={}{0:F1}}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="80%Calculate" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent80Calculate, StringFormat={}{0:F1}}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent90Setpoint,Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="90%Setpoint" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent90Setpoint}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent90Calculate,Mode=OneWay, StringFormat={}{0:F1}}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="90%Calculate" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent90Calculate, StringFormat={}{0:F1}}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent100Setpoint,Mode=OneWay}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="100%Setpoint" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent100Setpoint}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="100" Binding="{Binding Percent100Calculate,Mode=OneWay, StringFormat={}{0:F1}}" CanUserSort="True" CanUserReorder="False" IsReadOnly="True"  CanUserResize="False">
+                            <DataGridTextColumn.HeaderTemplate >
+                                <DataTemplate>
+                                    <TextBlock Text="100%Calculate" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="ToolTip" Value="{Binding Percent100Calculate, StringFormat={}{0:F1}}" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid Visibility="{Binding MFCQueryVisibility}" Margin="0,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="364"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Width="1545" Grid.Column="0">
+                <sciChart:SciChartSurface Name="sciChart" RenderableSeries="{Binding SelectedData}" 
+                                      sciChart:ThemeManager.Theme="ExpressionLight"
+                                      Padding="0,0,0,0" 
+                                      DebugWhyDoesntSciChartRender="False" BorderBrush="Gray" Focusable="False" IsTabStop="False" Margin="5,0,0,0" Visibility="Hidden">
+                    <sciChart:SciChartSurface.Resources>
+                        <!-- This is the style for the control that hosts the Axis Label -->
+                        <Style x:Key="CursorModAxisLabelStyle" TargetType="sciChart:AxisLabelControl">
+                            <Setter Property="Background" Value="#AAFF6600" />
+                            <Setter Property="BorderBrush" Value="#FFFF6600" />
+                            <Setter Property="BorderThickness" Value="1" />
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontSize" Value="25" />
+                        </Style>
+
+                        <Style x:Key="CursorTooltipStyle" TargetType="sciChart:CursorLabelControl">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="sciChart:CursorLabelControl">
+                                        <Border Background="#AAFF6600"
+                                            BorderBrush="#FFFF6600"
+                                            BorderThickness="2"
+                                            Opacity="0.7"
+                                            Padding="2.5">
+                                            <!--<ItemsControl ItemsSource="{Binding DataContext.SeriesData.SeriesInfo, RelativeSource={RelativeSource TemplatedParent}}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate DataType="s:SeriesInfo">
+                                                    <ContentControl Content="{Binding}" ContentTemplate="{Binding Path=RenderableSeries.(s:CursorModifier.TooltipTemplate)}" />
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>-->
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </sciChart:SciChartSurface.Resources>
+
+                    <sciChart:SciChartSurface.XAxis>
+                        <sciChart:NumericAxis DrawMinorTicks="True" 
+                                          DrawMinorGridLines="True"
+                                          sciChart:CursorModifier.AxisLabelContainerStyle="{StaticResource CursorModAxisLabelStyle}" 
+                                          AxisAlignment="Bottom"
+                                              AutoRange="{Binding AutoRangeX}"
+                                              VisibleRange="{Binding XValueRange, Mode=TwoWay}"
+                                          Id="DefaultAxisId">
+                            <sciChart:NumericAxis.GrowBy>
+                                <sciChart:DoubleRange Min="0.1" Max="0.1"/>
+                            </sciChart:NumericAxis.GrowBy>
+                        </sciChart:NumericAxis>
+                    </sciChart:SciChartSurface.XAxis>
+
+                    <!-- Create a Y Axis -->
+                    <sciChart:SciChartSurface.YAxis>
+                        <sciChart:NumericAxis DrawMinorTicks="True" 
+                                          DrawMinorGridLines="True" 
+                                          AxisAlignment="Left"
+                                              AutoRange="{Binding AutoRangeY}"
+                                              VisibleRange="{Binding YValueRange, Mode=TwoWay}"
+                                          Id="DefaultAxisId">
+                            <sciChart:NumericAxis.GrowBy>
+                                <sciChart:DoubleRange Min="0.1" Max="0.1"/>
+                            </sciChart:NumericAxis.GrowBy>
+                        </sciChart:NumericAxis>
+                    </sciChart:SciChartSurface.YAxis>
+
+                    <sciChart:SciChartSurface.ChartModifier>
+                        <sciChart:ModifierGroup ExecuteOn="MouseDoubleClick">
+                            <sciChart:RubberBandXyZoomModifier x:Name="rubberBandZoomModifier" IsEnabled="True" 
+                                                           IsXAxisOnly="False" 
+                                                           ZoomExtentsY="False" 
+                                                           IsAnimated="True" ExecuteOn="MouseLeftButton" ReceiveHandledEvents="True" />
+                            <sciChart:SeriesSelectionModifier ExecuteOn="MouseLeftButton" ReceiveHandledEvents="True">
+                                <sciChart:SeriesSelectionModifier.SelectedSeriesStyle>
+                                    <Style TargetType="sciChart:BaseRenderableSeries">
+                                        <Setter Property="Stroke" Value="Red"/>
+                                        <Setter Property="StrokeThickness" Value="3"/>
+                                        <Setter Property="PointMarkerTemplate">
+                                            <Setter.Value>
+                                                <ControlTemplate>
+                                                    <sciChart:EllipsePointMarker Width="7" Height="7" Fill="#FF00DC" Stroke="White"/>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+
+                                </sciChart:SeriesSelectionModifier.SelectedSeriesStyle>
+                            </sciChart:SeriesSelectionModifier>
+
+                            <sciChart:ZoomExtentsModifier x:Name="zoomExtentsModifier"  XyDirection="XYDirection" ReceiveHandledEvents="True" ExecuteOn="MouseDoubleClick"/>
+
+                            <sciChart:CursorModifier IsEnabled="True"  ShowTooltipOn="MouseOver"  
+                                                 ShowAxisLabels="True"  SourceMode="AllSeries"
+                                                 ShowTooltip="False" />
+
+                            <!--自由平移-->
+                            <sciChart:ZoomPanModifier x:Name="zoomPanModifier" ReceiveHandledEvents="True" IsEnabled="True"  ClipModeX="None" XyDirection="XYDirection" ExecuteOn="MouseRightButton" ZoomExtentsY="False" />
+
+                            <sciChart:LegendModifier ShowLegend="False" Orientation="Horizontal" Margin="10" HorizontalAlignment="Right" 
+                                      LegendPlacement="Inside"  GetLegendDataFor="AllSeries"
+                                      ShowVisibilityCheckboxes="False"/>
+
+                            <sciChart:RolloverModifier x:Name="rolloverModifier" 
+                                                   UseInterpolation="False" FontSize="9" IsEnabled="True" 
+                                                   DrawVerticalLine="False" FontFamily="Arial,SimSun" 
+                                                   SnapsToDevicePixels="False"                                             
+                                                  ShowAxisLabels="False" />
+
+                            <sciChart:MouseWheelZoomModifier x:Name="mouseWheelZoomModifier" XyDirection="XDirection"/>
+
+                        </sciChart:ModifierGroup>
+
+                    </sciChart:SciChartSurface.ChartModifier>
+                </sciChart:SciChartSurface>
+            </Grid>
+
+            <DataGrid  Grid.Column="1" Margin="1,0,0,0"
+                  AlternationCount="2" ColumnHeaderHeight="30" 
+                  ItemsSource="{Binding CalibrationErrorRate}" AutoGenerateColumns="False" 
+                  CanUserAddRows="False" CanUserResizeRows="False" CanUserResizeColumns="True" FontFamily="Arial" FontSize="12">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Setpoint(sccm)" MinWidth="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Setpoint}" Margin="5,0" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Calc Flow(sccm)" MinWidth="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding CalculateValue}" Margin="5,0" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Error Rate(%)" MinWidth="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ErrorRate}" Margin="5,0" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button Content="Back" Grid.Row="1" Width="50" Margin="477,5,214,3" Visibility="Hidden">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <cal:ActionMessage MethodName="Back"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

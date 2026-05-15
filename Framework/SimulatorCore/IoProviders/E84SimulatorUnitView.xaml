@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="MECF.Framework.Simulator.Core.IoProviders.E84SimulatorUnitView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="500">
+    <Grid>
+        <GroupBox Header="E84" HorizontalAlignment="Left" Height="auto" VerticalAlignment="Top" Width="auto">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <CheckBox Content="IsFloorMode" IsChecked="{Binding IsFloorMode,Mode=OneWay}" IsEnabled="True"/>
+                    <CheckBox Content="IsLoading" IsChecked="{Binding IsLoading,Mode=OneWay}" />
+                    <CheckBox Content="IsUnloadingON" IsChecked="{Binding IsUnloading,Mode=OneWay}" />
+                    <Button Content="Pick From Lp" Click="ButtonBase_OnClick"
+                            CommandParameter="Pick"/>
+                    <Button Content="Place To Lp" Command="{Binding E84Command}"
+                            CommandParameter="Place"/>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Header="DI" Grid.Column="0">
+                        <StackPanel>
+                            <CheckBox Content="ON" IsChecked="{Binding ON,Mode=OneWay}" />
+                            <CheckBox Content="VALID" IsChecked="{Binding VALID,Mode=OneWay}" />
+                            <CheckBox Content="CS_0" IsChecked="{Binding CS_0,Mode=OneWay}" />
+                            <CheckBox Content="TR_REQ" IsChecked="{Binding TR_REQ,Mode=OneWay}" />
+                            <CheckBox Content="BUSY" IsChecked="{Binding BUSY,Mode=OneWay}" />
+                            <CheckBox Content="COMPT" IsChecked="{Binding COMPT,Mode=OneWay}" />
+                            <CheckBox Content="CONT" IsChecked="{Binding CONT,Mode=OneWay}" />
+                            <CheckBox Content="AM_AVBL" IsChecked="{Binding AM_AVBL,Mode=OneWay}" />
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="DO" Grid.Column="1">
+                        <StackPanel>
+                            <CheckBox Content="L_REQ" IsChecked="{Binding LReq,Mode=OneWay}" />
+                            <CheckBox Content="U_REQ" IsChecked="{Binding UReq,Mode=OneWay}" />
+                            <CheckBox Content="READY" IsChecked="{Binding Ready,Mode=OneWay}" />
+                            <CheckBox Content="HO_AVBL" IsChecked="{Binding HoAvbl,Mode=OneWay}" />
+                            <CheckBox Content="ES" IsChecked="{Binding ES,Mode=OneWay}" />
+                            <CheckBox Content="VA" IsChecked="{Binding VA,Mode=OneWay}" />
+                            <CheckBox Content="VS_O" IsChecked="{Binding VS0,Mode=OneWay}" />
+                            <CheckBox Content="VS_1" IsChecked="{Binding VS1,Mode=OneWay}" />
+                        </StackPanel>
+                    </GroupBox>
+                </Grid>
+            </Grid>
+           
+        </GroupBox>
+    </Grid>
+</UserControl>

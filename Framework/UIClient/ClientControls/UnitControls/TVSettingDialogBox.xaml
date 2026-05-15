@@ -1,0 +1,107 @@
+﻿<Window x:Class="MECF.Framework.UI.Client.Ctrlib.UnitControls.TVSettingDialogBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:unitControls="clr-namespace:MECF.Framework.UI.Client.Ctrlib.UnitControls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:micro="clr-namespace:Caliburn.Micro"
+             xmlns:controls="clr-namespace:OpenSEMI.Ctrlib.Controls"
+             xmlns:converters="clr-namespace:Aitex.Core.UI.Converters;assembly=MECF.Framework.UI.Core"
+             mc:Ignorable="d"  WindowStyle="ToolWindow"
+             KeyDown="OnEnterKeyIsHit"
+             Height="420" Width="360"
+            Title="{Binding Path=DeviceId, StringFormat={}{0} SetPoint}">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Height" Value="23" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="50" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Height" Value="25" />
+        </Style>
+        <Style x:Key="textBoxInError" TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <unitControls:DoubleConverter x:Key="doubleConverter"/>
+        <converters:BoolToValueConverter x:Key="BoolToValueConverter"/>
+    </Window.Resources>
+    <Grid Width="355" Height="380" Background="{DynamicResource Color_BG_Dialog_Inner}" >
+        <Grid.Resources>
+            <Style TargetType="RadioButton"/>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="170"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="1" Content="Device Name: " HorizontalAlignment="Right"/>
+        <Label Grid.Row="1" Grid.Column="1" Content="Work Mode: " HorizontalAlignment="Right"/>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Label  Content="Pressure Max(" />
+            <Label  Content="{Binding UnitPressure}" />
+            <Label  Content="):" />
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Label  Content="Position Max(" />
+            <Label  Content="{Binding UnitPosition}" />
+            <Label  Content="):" />
+        </StackPanel>
+
+        <Label Grid.Row="4" Grid.Column="1" Content="Pressure Feedback: " HorizontalAlignment="Right"/>
+        <Label Grid.Row="5" Grid.Column="1" Content="Pressure SetPoint: " HorizontalAlignment="Right"/>
+        <Label Grid.Row="6" Grid.Column="1" Content="Position Feedback: " HorizontalAlignment="Right"/>
+        <Label Grid.Row="7" Grid.Column="1" Content="Position SetPoint: " HorizontalAlignment="Right"/>
+
+        <Label Grid.Row="0" Grid.Column="2" Content="{Binding Path=DeviceName}" Width="150" Height="28" HorizontalAlignment="Left" BorderThickness="0,0,0,1" BorderBrush="Black" FontSize="13" FontFamily="Arial,SimSun" VerticalContentAlignment="Center" />
+        <Label Grid.Row="1" Grid.Column="2" Content="{Binding TextMode}" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="150" BorderThickness="0,0,0,1" BorderBrush="Black" FontSize="12" FontFamily="Arial,SimSun" Height="28" VerticalContentAlignment="Center" />
+
+        <Label Grid.Row="2" Grid.Column="2" Content="{Binding Path=MaxValuePosition}" Width="150" BorderThickness="0,0,0,1" BorderBrush="Black" FontSize="13" FontFamily="Arial,SimSun" Height="28" VerticalContentAlignment="Center" HorizontalAlignment="Left"/>
+        <Label Grid.Row="3" Grid.Column="2" Content="{Binding Path=MaxValuePressure}" Width="150" BorderThickness="0,0,0,1" BorderBrush="Black" FontSize="13" FontFamily="Arial,SimSun" Height="28" VerticalContentAlignment="Center"  HorizontalAlignment="Left"/>
+
+        <Label Grid.Row="4" Grid.Column="2" Content="{Binding Path=FeedbackPressure}"  ContentStringFormat="F1" Width="150" BorderThickness="0,0,0,1" BorderBrush="Black" FontSize="13" FontFamily="Arial,SimSun" Height="28" VerticalContentAlignment="Center"  HorizontalAlignment="Left"/>
+        <Label Grid.Row="6" Grid.Column="2" Content="{Binding Path=FeedbackPosition}" ContentStringFormat="F1"  Width="150" BorderThickness="0,0,0,1" BorderBrush="Black" FontSize="13" FontFamily="Arial,SimSun" Height="28" VerticalContentAlignment="Center" HorizontalAlignment="Left"/>
+        <StackPanel Grid.Row="5" Grid.Column="2" Orientation="Horizontal">
+            <TextBox x:Name="inputBoxPressure" BorderBrush="Green" BorderThickness="0,0,0,1" Style="{StaticResource textBoxInError}" Padding="3,0,0,0"
+                     Width="75" HorizontalAlignment="Left" FontSize="13" FontFamily="Arial,SimSun" Height="30" VerticalContentAlignment="Center"/>
+            <Button  Content="Set Pressure" x:Name="buttonPressureSet" Click="ButtonPressureSet_Click" Width="75" Height="26" VerticalAlignment="Top" Grid.Column="1" Margin="5,3,0,0" />
+        </StackPanel>
+        <StackPanel Grid.Row="7" Grid.Column="2" Orientation="Horizontal">
+            <TextBox x:Name="inputBoxPosition" BorderBrush="Green" BorderThickness="0,0,0,1" Style="{StaticResource textBoxInError}" Padding="3,0,0,0"
+                     Width="75" HorizontalAlignment="Left" FontSize="13" FontFamily="Arial,SimSun" Height="30" VerticalContentAlignment="Center"/>
+            <Button  Content="Set Position" x:Name="buttonPositionSet" Click="ButtonPositionSet_Click" Width="75" Height="26" VerticalAlignment="Top" Grid.Column="1" Margin="5,3,0,0" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.ColumnSpan="4" >
+            <Button  Content="Valve Open" Click="ButtonOpen_Click" Width="75" Height="26" VerticalAlignment="Top" Margin="5,3,0,0" />
+            <Button  Content="Valve Close" Click="ButtonClose_Click" Width="75" Height="26" VerticalAlignment="Top" Margin="7,3,0,0" />
+            <Button  Content="Learn" x:Name="buttonLearn" Click="ButtonLearn_Click" Width="80" Height="26" VerticalAlignment="Top" Grid.Column="1" Margin="7,3,0,0" Visibility="{Binding LearnButtonVisibilityProperty}"/>
+            <Button  Content="Cancel" Click="ButtonCancel_Click" Width="80" Height="26" VerticalAlignment="Top" Margin="7,3,0,0" />
+        </StackPanel>
+
+    </Grid>
+    </Window>

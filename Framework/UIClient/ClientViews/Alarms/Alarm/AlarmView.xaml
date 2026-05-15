@@ -1,0 +1,140 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.Alarms.Alarm.AlarmView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:cal="clr-namespace:Caliburn.Micro"
+             xmlns:converter="clr-namespace:MECF.Framework.UI.Client.Ctrlib.Converter"
+             mc:Ignorable="d" 
+            d:DesignHeight="325" d:DesignWidth="1200">
+    <UserControl.Resources>
+
+        <converter:BoolVisibilityConverter x:Key="boolVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*" />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Alarm List" Margin="5,0,12,5">
+            <DataGrid AutoGenerateColumns="False" Margin="5" Name="eventList" 
+                      Background="White" ItemsSource="{Binding AlarmEvents, Mode=OneWay}" 
+                      SelectionMode="Single" SelectionUnit="FullRow"
+                      FontFamily="Arial,SimSun" FontSize="13"                     
+                        BorderThickness="0.1" 
+                          CanUserDeleteRows="True" CanUserAddRows="True" IsReadOnly="True" RowHeight="30">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <cal:ActionMessage MethodName="DGOnSelectionChanged">
+                            <cal:Parameter Value="$eventargs"/>
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <!--<i:Interaction.Triggers>
+                    <i:EventTrigger EventName="DataGrid.SelectionChanged">
+                        <cal:ActionMessage  MethodName="DGOnSelectionChanged">
+                            <cal:Parameter Value="{Binding ElementName=eventList,Path=SelectedItem}"></cal:Parameter>
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>-->
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Type" Width="90" CanUserSort="True" SortMemberPath="Type">
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Type" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Type}" Background="{Binding TextColor}" FontSize="12" Margin="0,-1,0,0"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="Time" Width="150" CanUserSort="True" IsReadOnly="True" Binding="{Binding OccuringTime,Mode=OneWay}">
+                        <DataGridTextColumn.HeaderTemplate >
+                            <DataTemplate>
+                                <TextBlock Text="Time" />
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Description" Width="*" CanUserSort="True" IsReadOnly="True" Binding="{Binding Description,Mode=OneWay}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                <Setter Property="Height" Value="auto"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                        <DataGridTextColumn.HeaderTemplate >
+                            <DataTemplate>
+                                <TextBlock Text="Description" />
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Header="Detail" Margin="0,0,5,5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0"  x:Name="AnalysisText" Text="{Binding TxtAnalysisText}" FontSize="14" Margin="5" Background="White" TextWrapping="Wrap" Style="{x:Null}"/>
+                <WrapPanel Grid.Row="1">
+                    <Button Content="Clear" IsEnabled="{Binding ClearIsEnabled}" Width="90" Height="35" Margin="15,0,0,0" Visibility="{Binding ClearIsEnabled, Converter={StaticResource boolVisibilityConverter}}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="AlarmAction">
+                                    <cal:Parameter Value="{Binding TargetModule}"/>
+                                    <cal:Parameter Value="Clear"/>
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Content="Abort" IsEnabled="{Binding AbortIsEnabled}" Width="90" Height="35" Margin="5,0,5,0" Visibility="{Binding AbortIsEnabled, Converter={StaticResource boolVisibilityConverter}}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="AlarmAction">
+                                    <cal:Parameter Value="{Binding TargetModule}"/>
+                                    <cal:Parameter Value="Abort"/>
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Content="Retry" IsEnabled="{Binding RetryIsEnabled}" Width="90" Height="35" Margin="0,0,5,0" Visibility="{Binding RetryIsEnabled, Converter={StaticResource boolVisibilityConverter}}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="AlarmAction">
+                                    <cal:Parameter Value="{Binding TargetModule}"/>
+                                    <cal:Parameter Value="Retry"/>
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Content="Continue" IsEnabled="{Binding ContinueIsEnabled}" Width="90" Height="35" Visibility="{Binding ContinueIsEnabled, Converter={StaticResource boolVisibilityConverter}}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="AlarmAction">
+                                    <cal:Parameter Value="{Binding TargetModule}"/>
+                                    <cal:Parameter Value="Continue"/>
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Content="AGV RETRY"  IsEnabled="{Binding AGVRetryIsEnabled}" Visibility="Collapsed">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="AlarmAction">
+                                    <cal:Parameter Value="{Binding TargetModule}"/>
+                                    <cal:Parameter Value="AgvRetry"/>
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </WrapPanel>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

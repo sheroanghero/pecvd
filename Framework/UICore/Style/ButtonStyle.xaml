@@ -1,0 +1,357 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--按钮通用样式（原MiddleButton）-->
+    <LinearGradientBrush x:Key="buttonNormal" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#0086cd" Offset="0" />
+        <GradientStop Color="#389cd0" Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="buttonForground" Color="White"></SolidColorBrush>
+    <SolidColorBrush x:Key="buttonBorder" Color="#62b8e5"></SolidColorBrush>
+    <LinearGradientBrush x:Key="buttonHover" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#668fa5" Offset="0" />
+        <GradientStop Color="#3c6982" Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="buttonPressed" Color="#ffffff"></SolidColorBrush>
+    <Style TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource buttonNormal}"></Setter>
+        <Setter Property="Foreground" Value="{StaticResource buttonForground}"></Setter>
+        <Setter Property="BorderBrush" Value="{StaticResource buttonBorder}"></Setter>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="FontFamily" Value="Arial,SimSun" />
+        <Setter Property="FontSize" Value="17"/>
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="Width" Value="100"></Setter>
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" 
+                                SnapsToDevicePixels="true" CornerRadius="3,3,3,3">
+                        <ContentPresenter x:Name="contentPresenter" 
+                                              Focusable="False" 
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              Margin="{TemplateBinding Padding}" 
+                                              RecognizesAccessKey="True" 
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"  />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource buttonHover}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource buttonPressed}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.5" TargetName="border"/>
+							<Setter Property="Background" TargetName="border" Value="Gray" />
+						</Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--<Style TargetType="Button">
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Foreground" Value="#FF181C1F" />
+        <Setter Property="Background" Value="CadetBlue" />
+        <Setter Property="BorderBrush" Value="Blue" />
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="FontFamily" Value="Arial,SimSun" />
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="Width" Value="100"></Setter>
+        <Setter Property="BitmapEffect" >
+            <Setter.Value>
+                <BevelBitmapEffect BevelWidth="2" />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="Green" />
+            </Trigger>
+            --><!-- When the mouse is pressed, apply a bevel with a narrower BevelWidth to make the button appear to get pressed. --><!--
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Background" Value="#FFEEFDFC" />
+                <Setter Property="BitmapEffect" >
+                    <Setter.Value>
+                        <BevelBitmapEffect BevelWidth="3" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>-->
+
+    <!--主窗口样式-->
+   
+    <!--右下角-->
+    <Style TargetType="Button" x:Key="NavUpButton">
+        <Setter Property="Height" Value="37"></Setter>
+        <Setter Property="Width" Value="34"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ButtonBase">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" Margin="{TemplateBinding Control.Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background"  >
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/MECF.Framework.Common;component/Resources/Main/上一个.png">
+                </ImageBrush>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" >
+                    <Setter.Value>
+                        <ImageBrush ImageSource="pack://application:,,,/MECF.Framework.Common;component/Resources/Main/上一个_悬停.png">
+                        </ImageBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <ImageBrush ImageSource="pack://application:,,,/MECF.Framework.Common;component/Resources/Main/上一个_点击.png">
+                        </ImageBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style TargetType="Button" x:Key="NavBackButton">
+        <Setter Property="Height" Value="37"></Setter>
+        <Setter Property="Width" Value="34"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ButtonBase">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" Margin="{TemplateBinding Control.Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" >
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/MECF.Framework.Common;component/Resources/Main/下一个.png">
+                </ImageBrush>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" >
+                    <Setter.Value>
+                        <ImageBrush ImageSource="pack://application:,,,/MECF.Framework.Common;component/Resources/Main/下一个_悬停.png">
+                        </ImageBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Background" >
+                    <Setter.Value>
+                        <ImageBrush ImageSource="pack://application:,,,/MECF.Framework.Common;component/Resources/Main/下一个_点击.png">
+                        </ImageBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="Button" x:Key="MainButton">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Foreground" Value="#FF004294" />
+        <Setter Property="BorderBrush" Value="Blue" />
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="FontFamily" Value="Arial,SimSun" />
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="Height" Value="45"></Setter>
+        <Setter Property="Width" Value="160"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="VerticalAlignment" Value="Top"></Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ButtonBase">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" Margin="{TemplateBinding Control.Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" >
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/MECF.Framework.Common;component/Resources/Main/主菜单按钮.png">
+                </ImageBrush>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" >
+                    <Setter.Value>
+                        <ImageBrush ImageSource="pack://application:,,,/MECF.Framework.Common;component/Resources/Main/主菜单按钮_悬停.png">
+                        </ImageBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Background" >
+                    <Setter.Value>
+                        <ImageBrush ImageSource="pack://application:,,,/MECF.Framework.Common;component/Resources/Main/主菜单按钮_点击.png">
+                        </ImageBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <!--右上角-->
+    <Style TargetType="Button" x:Key="MainMiddleButton">
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Foreground" Value="#FF004294" />
+        <Setter Property="BorderBrush" Value="Blue" />
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="FontFamily" Value="Arial,SimSun" />
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Height" Value="28"></Setter>
+        <Setter Property="Width" Value="83"></Setter>
+        <Setter Property="Background" >
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/MECF.Framework.Common;component/Resources/Main/事件按钮.png">
+                </ImageBrush>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" >
+                    <Setter.Value>
+                        <ImageBrush ImageSource="pack://application:,,,/MECF.Framework.Common;component/Resources/Main/事件按钮_悬停.png">
+                        </ImageBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Background" >
+                    <Setter.Value>
+                        <ImageBrush ImageSource="pack://application:,,,/MECF.Framework.Common;component/Resources/Main/事件按钮_点击.png">
+                        </ImageBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+    
+    <!--登录窗口样式-->
+    <Style TargetType="Button" x:Key="LoginButton">
+        <Setter Property="Cursor" Value="Hand"/>
+
+        <Setter Property="BorderBrush" Value="Blue" />
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="FontFamily" Value="Arial,SimSun" />
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Height" Value="40"></Setter>
+        <Setter Property="Width" Value="116"></Setter>
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="pack://application:,,,/MECF.Framework.Common;component/Resources/Login/按钮.png" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ButtonBase">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}" ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}" ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}" Margin="{TemplateBinding Control.Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" >
+                    <Setter.Value>
+                        <ImageBrush ImageSource="pack://application:,,,/MECF.Framework.Common;component/Resources/Login/按钮_悬停.png">
+
+                        </ImageBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <!-- When the mouse is pressed, apply a bevel with a narrower BevelWidth to make the button appear to get pressed. -->
+            <Trigger Property="IsFocused" Value="true">
+                <Setter Property="Background" >
+                    <Setter.Value>
+                        <ImageBrush ImageSource="pack://application:,,,/MECF.Framework.Common;component/Resources/Login/按钮_点击.png">
+
+                        </ImageBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <!--按钮缩放，多用于PM气流图等界面-->
+    <Style TargetType="Button" x:Key="SmallButton">
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Foreground" Value="#FF181C1F" />
+        <Setter Property="Background" Value="CadetBlue" />
+        <Setter Property="BorderBrush" Value="Blue" />
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="FontFamily" Value="Arial,SimSun" />
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Height" Value="23"></Setter>
+        <Setter Property="Width" Value="65"></Setter>
+        <Setter Property="BitmapEffect" >
+            <Setter.Value>
+                <BevelBitmapEffect BevelWidth="2" />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="Green" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="BitmapEffect" >
+                    <Setter.Value>
+                        <BevelBitmapEffect BevelWidth="3" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Main Menu Button-->
+    <SolidColorBrush x:Key="Menu_Main_BD" Color="#FF043963"/>
+    <SolidColorBrush x:Key="Menu_Main_BG" Color="#94bcd7"/>
+    <SolidColorBrush x:Key="Menu_Main_BG_Highlight" Color="#FF6ad7ff"/>
+    <SolidColorBrush x:Key="Menu_Main_BG_Outer" Color="#FF989798"/>
+    <SolidColorBrush x:Key="Menu_Main_BG_Inner" Color="#6ad7ff"/>
+    <SolidColorBrush x:Key="Menu_Main_FG" Color="#FF00429c"/>
+    <SolidColorBrush x:Key="Menu_Main_Selected_FG" Color="White"/>
+    <!--反应腔盖-->
+    <Style TargetType="Button" x:Key="ReactorMiniButtonStyle">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+</ResourceDictionary>

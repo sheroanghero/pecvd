@@ -1,0 +1,154 @@
+{
+  "IOSimulatorItemList": [
+    {
+      "SourceCommandName": "SendError",
+      "SourceCommand": "",
+      "SuccessResponse": "16",
+      "FailedResponse": "16"
+    },
+    {
+      "SourceCommandName": "ResetCPU",
+      "SourceCommand": "CPI",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "InitialzeRobot",
+      "SourceCommand": "RST",
+      "SuccessResponse": "CompleteEvent",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "HomeRobot",
+      "SourceCommand": "HOM",
+      "SuccessResponse": "CompleteEvent",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "Hold",
+      "SourceCommand": "HLD",
+      "SuccessResponse": "CompleteEvent",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "Relase",
+      "SourceCommand": "REL",
+      "SuccessResponse": "CompleteEvent",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "MoveToSpecifiedPosition",
+      "SourceCommand": "MTP",
+      "SuccessResponse": "CompleteEvent",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "MoveToMappingPosition",
+      "SourceCommand": "MAT",
+      "SuccessResponse": "CompleteEvent",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "ExchangeWork",
+      "SourceCommand": "EXG",
+      "SuccessResponse": "CompleteEvent",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "PickUpWork",
+      "SourceCommand": "GET",
+      "SuccessResponse": "CompleteEvent",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "PutDownWork",
+      "SourceCommand": "PUT",
+      "SuccessResponse": "CompleteEvent",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "ExtendArm",
+      "SourceCommand": "AEX",
+      "SuccessResponse": "CompleteEvent",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "RetractArm",
+      "SourceCommand": "ART",
+      "SuccessResponse": "CompleteEvent",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "MoveZAxisUp",
+      "SourceCommand": "ZUP",
+      "SuccessResponse": "CompleteEvent",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "MoveZAxisMid",
+      "SourceCommand": "ZSP",
+      "SuccessResponse": "CompleteEvent",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "MoveZAxisDown",
+      "SourceCommand": "ZDN",
+      "SuccessResponse": "CompleteEvent",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "MoveZAxisToPosition",
+      "SourceCommand": "ZMV",
+      "SuccessResponse": "CompleteEvent",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "InitMapping",
+      "SourceCommand": "CMP",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "Mapping",
+      "SourceCommand": "MAP",
+      "SuccessResponse": "CompleteEvent",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "Jog",
+      "SourceCommand": "JOG",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "StopJog",
+      "SourceCommand": "JSP",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "ReadStatus",
+      "SourceCommand": "STS",
+      "SuccessResponse": "Busy",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "ReadMultipleStatus",
+      "SourceCommand": "STA",
+      "SuccessResponse": "Busy,01,1,1,1.1,10,0,1,",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "ReadMappingResult",
+      "SourceCommand": "RMP",
+      "SuccessResponse": "1,01,1",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "ReadErrorLog",
+      "SourceCommand": "RER",
+      "SuccessResponse": "32,001",
+      "FailedResponse": ""
+    }
+  ]
+}

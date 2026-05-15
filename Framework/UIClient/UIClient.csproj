@@ -1,0 +1,2556 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A40B734C-F2EC-453C-A5FB-70CD46452BF1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MECF.Framework.UI.Client</RootNamespace>
+    <AssemblyName>MECF.Framework.UI.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\output\MECF.Framework\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.10.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\ThirdParty\dlls\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.DwayneNeed">
+      <HintPath>..\..\ThirdParty\dlls\Microsoft.DwayneNeed.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="SciChart.Charting, Version=5.4.0.12119, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\SciCart\SciChart.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Core, Version=5.4.0.12119, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\SciCart\SciChart.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Data, Version=5.4.0.12119, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\SciCart\SciChart.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Drawing, Version=5.4.0.12119, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\SciCart\SciChart.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Caliburn.Micro\Action.cs" />
+    <Compile Include="Caliburn.Micro\ActionExecutionContext.cs" />
+    <Compile Include="Caliburn.Micro\ActionMessage.cs" />
+    <Compile Include="Caliburn.Micro\AssemblySource.cs" />
+    <Compile Include="Caliburn.Micro\Bind.cs" />
+    <Compile Include="Caliburn.Micro\BindingScope.cs" />
+    <Compile Include="Caliburn.Micro\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Caliburn.Micro\Bootstrapper.cs" />
+    <Compile Include="Caliburn.Micro\ChildResolver.cs" />
+    <Compile Include="Caliburn.Micro\ConventionManager.cs" />
+    <Compile Include="Caliburn.Micro\Core\ActivationEventArgs.cs" />
+    <Compile Include="Caliburn.Micro\Core\ActivationProcessedEventArgs.cs" />
+    <Compile Include="Caliburn.Micro\Core\BindableCollection.cs" />
+    <Compile Include="Caliburn.Micro\Core\Conductor.cs" />
+    <Compile Include="Caliburn.Micro\Core\ConductorBase.cs" />
+    <Compile Include="Caliburn.Micro\Core\ConductorBaseWithActiveItem.cs" />
+    <Compile Include="Caliburn.Micro\Core\ConductorWithCollectionAllActive.cs" />
+    <Compile Include="Caliburn.Micro\Core\ConductorWithCollectionOneActive.cs" />
+    <Compile Include="Caliburn.Micro\Core\ContainerExtensions.cs" />
+    <Compile Include="Caliburn.Micro\Core\ContinueResultDecorator.cs" />
+    <Compile Include="Caliburn.Micro\Core\Coroutine.cs" />
+    <Compile Include="Caliburn.Micro\Core\CoroutineExecutionContext.cs" />
+    <Compile Include="Caliburn.Micro\Core\DeactivationEventArgs.cs" />
+    <Compile Include="Caliburn.Micro\Core\DebugLog.cs" />
+    <Compile Include="Caliburn.Micro\Core\DefaultCloseStrategy.cs" />
+    <Compile Include="Caliburn.Micro\Core\DefaultPlatformProvider.cs" />
+    <Compile Include="Caliburn.Micro\Core\DelegateResult.cs" />
+    <Compile Include="Caliburn.Micro\Core\EnumerableExtensions.cs" />
+    <Compile Include="Caliburn.Micro\Core\EventAggregator.cs" />
+    <Compile Include="Caliburn.Micro\Core\EventAggregatorExtensions.cs" />
+    <Compile Include="Caliburn.Micro\Core\Execute.cs" />
+    <Compile Include="Caliburn.Micro\Core\ExpressionExtensions.cs" />
+    <Compile Include="Caliburn.Micro\Core\ExtensionMethods.cs" />
+    <Compile Include="Caliburn.Micro\Core\IActivate.cs" />
+    <Compile Include="Caliburn.Micro\Core\IChild.cs" />
+    <Compile Include="Caliburn.Micro\Core\IClose.cs" />
+    <Compile Include="Caliburn.Micro\Core\ICloseStrategy.cs" />
+    <Compile Include="Caliburn.Micro\Core\IConductor.cs" />
+    <Compile Include="Caliburn.Micro\Core\IDeactivate.cs" />
+    <Compile Include="Caliburn.Micro\Core\IEventAggregator.cs" />
+    <Compile Include="Caliburn.Micro\Core\IGuardClose.cs" />
+    <Compile Include="Caliburn.Micro\Core\IHandle.cs" />
+    <Compile Include="Caliburn.Micro\Core\IHandleWithCoroutine.cs" />
+    <Compile Include="Caliburn.Micro\Core\IHandleWithTask.cs" />
+    <Compile Include="Caliburn.Micro\Core\IHaveActiveItem.cs" />
+    <Compile Include="Caliburn.Micro\Core\IHaveDisplayName.cs" />
+    <Compile Include="Caliburn.Micro\Core\ILog.cs" />
+    <Compile Include="Caliburn.Micro\Core\INotifyPropertyChangedEx.cs" />
+    <Compile Include="Caliburn.Micro\Core\IObservableCollection.cs" />
+    <Compile Include="Caliburn.Micro\Core\IoC.cs" />
+    <Compile Include="Caliburn.Micro\Core\IParent.cs" />
+    <Compile Include="Caliburn.Micro\Core\IPlatformProvider.cs" />
+    <Compile Include="Caliburn.Micro\Core\IResult.cs" />
+    <Compile Include="Caliburn.Micro\Core\IScreen.cs" />
+    <Compile Include="Caliburn.Micro\Core\IViewAware.cs" />
+    <Compile Include="Caliburn.Micro\Core\LogManager.cs" />
+    <Compile Include="Caliburn.Micro\Core\NameTransformer.cs" />
+    <Compile Include="Caliburn.Micro\Core\OverrideCancelResultDecorator.cs" />
+    <Compile Include="Caliburn.Micro\Core\PlatformProvider.cs" />
+    <Compile Include="Caliburn.Micro\Core\PortableReflectionExtensions.cs" />
+    <Compile Include="Caliburn.Micro\Core\PropertyChangedBase.cs" />
+    <Compile Include="Caliburn.Micro\Core\RegExHelper.cs" />
+    <Compile Include="Caliburn.Micro\Core\RescueResultDecorator.cs" />
+    <Compile Include="Caliburn.Micro\Core\ResultCompletionEventArgs.cs" />
+    <Compile Include="Caliburn.Micro\Core\ResultDecoratorBase.cs" />
+    <Compile Include="Caliburn.Micro\Core\ResultExtensions.cs" />
+    <Compile Include="Caliburn.Micro\Core\Screen.cs" />
+    <Compile Include="Caliburn.Micro\Core\ScreenExtensions.cs" />
+    <Compile Include="Caliburn.Micro\Core\SequentialResult.cs" />
+    <Compile Include="Caliburn.Micro\Core\SimpleContainer.cs" />
+    <Compile Include="Caliburn.Micro\Core\SimpleResult.cs" />
+    <Compile Include="Caliburn.Micro\Core\StringSplitter.cs" />
+    <Compile Include="Caliburn.Micro\Core\TaskExtensions.cs" />
+    <Compile Include="Caliburn.Micro\Core\TaskResult.cs" />
+    <Compile Include="Caliburn.Micro\Core\TypeMappingConfiguration.cs" />
+    <Compile Include="Caliburn.Micro\Core\ViewAttachedEventArgs.cs" />
+    <Compile Include="Caliburn.Micro\Core\ViewAware.cs" />
+    <Compile Include="Caliburn.Micro\Core\WeakValueDictionary.cs" />
+    <Compile Include="Caliburn.Micro\DependencyPropertyHelper.cs" />
+    <Compile Include="Caliburn.Micro\ElementConvention.cs" />
+    <Compile Include="Caliburn.Micro\IHaveParameters.cs" />
+    <Compile Include="Caliburn.Micro\Message.cs" />
+    <Compile Include="Caliburn.Micro\MessageBinder.cs" />
+    <Compile Include="Caliburn.Micro\net40\AttachedCollection.cs" />
+    <Compile Include="Caliburn.Micro\net40\Parameter.cs" />
+    <Compile Include="Caliburn.Micro\net40\WindowManager.cs" />
+    <Compile Include="Caliburn.Micro\Parser.cs" />
+    <Compile Include="ClientBase\WaferMoveManagerDual.cs" />
+    <Compile Include="ClientBase\WaferUIMoveCondition.cs" />
+    <Compile Include="ClientBase\WaferUIMoveDialogView.xaml.cs">
+      <DependentUpon>WaferUIMoveDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientBase\WaferUIMoveDialogViewModel.cs" />
+    <Compile Include="ClientBase\WaferTransferDualDialogView.xaml.cs">
+      <DependentUpon>WaferTransferDualDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientBase\WaferTransferDualDialogViewModel.cs" />
+    <Compile Include="ClientControls\AlignerControls\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\BufferControls\BufferT3Control.xaml.cs">
+      <DependentUpon>BufferT3Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\Common\AnimationHelper.cs" />
+    <Compile Include="ClientControls\Common\AnimationQueue.cs" />
+    <Compile Include="ClientControls\Common\AxisCanvas.cs" />
+    <Compile Include="ClientControls\Common\RelayCommand.cs" />
+    <Compile Include="ClientControls\Common\RobotAction.cs" />
+    <Compile Include="ClientControls\Common\RobotArm.cs" />
+    <Compile Include="ClientControls\Common\RobotMoveInfo.cs" />
+    <Compile Include="ClientControls\Common\RobotPosition.cs" />
+    <Compile Include="ClientControls\Common\ViewModelControl.cs" />
+    <Compile Include="ClientControls\Common\WaferData.cs" />
+    <Compile Include="ClientControls\EfemControls\AtmRobot.xaml.cs">
+      <DependentUpon>AtmRobot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\EfemControls\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\EfemControls\VceClusterControlEFEM.xaml.cs">
+      <DependentUpon>VceClusterControlEFEM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\EfemControls\WaferCtrl.xaml.cs">
+      <DependentUpon>WaferCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\EfemControls\WaferCtrlFlyoutMenuItem.cs" />
+    <Compile Include="ClientControls\LoadLockControls\LoadLock.xaml.cs">
+      <DependentUpon>LoadLock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\LoadLockControls\LoadLockTopView.xaml.cs">
+      <DependentUpon>LoadLockTopView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\LoadPortControls\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\MainframeControls\MainframeT1Control.xaml.cs">
+      <DependentUpon>MainframeT1Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\MainframeControls\MainframeT2Control.xaml.cs">
+      <DependentUpon>MainframeT2Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\MainframeControls\MainframeT3Control.xaml.cs">
+      <DependentUpon>MainframeT3Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\PMControls\PMT2Control.xaml.cs">
+      <DependentUpon>PMT2Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\PMControls\PMT3Control.xaml.cs">
+      <DependentUpon>PMT3Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\RobotControls\DualArmRobot1\DualArmRobot.xaml.cs">
+      <DependentUpon>DualArmRobot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\RobotControls\DualArmRobot2\DualArmRobot.xaml.cs">
+      <DependentUpon>DualArmRobot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\RobotControls\DualArmRobot3\DualArmRobot.xaml.cs">
+      <DependentUpon>DualArmRobot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\RobotControls\DualArmRobot4\DualArmRobot.xaml.cs">
+      <DependentUpon>DualArmRobot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\RobotControls\DualWaferRobot1\DualWaferRobot.xaml.cs">
+      <DependentUpon>DualWaferRobot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\RobotControls\DualWaferRobot2\DualWaferRobot.xaml.cs">
+      <DependentUpon>DualWaferRobot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\RobotControls\SingleArmRobot1\SingleArmRobot.xaml.cs">
+      <DependentUpon>SingleArmRobot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\RobotControls\VTMDualArmRobot.xaml.cs">
+      <DependentUpon>VTMDualArmRobot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITChillerControl.xaml.cs">
+      <DependentUpon>AITChillerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITChillerInputDialogBox.xaml.cs">
+      <DependentUpon>AITChillerInputDialogBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITMksRfPlasmaGenerator.xaml.cs">
+      <DependentUpon>AITMksRfPlasmaGenerator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITMksRfPlasmaGeneratorSettingDialogView.xaml.cs">
+      <DependentUpon>AITMksRfPlasmaGeneratorSettingDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITDxkdpDcPowerSettingDialogView.xaml.cs">
+      <DependentUpon>AITDxkdpDcPowerSettingDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITMksRfPlasmaGeneratorSettingDialogViewModel.cs" />
+    <Compile Include="ClientControls\UnitControls\AITDxkdpDcPowerSettingDialogViewModel.cs" />
+    <Compile Include="ClientControls\UnitControls\AITDxkdpDcPower.xaml.cs">
+      <DependentUpon>AITDxkdpDcPower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITDcPower.xaml.cs">
+      <DependentUpon>AITDcPower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITDcPowerSettingDialogView.xaml.cs">
+      <DependentUpon>AITDcPowerSettingDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITDcPowerSettingDialogViewModel.cs" />
+    <Compile Include="ClientControls\UnitControls\AITRf1.xaml.cs">
+      <DependentUpon>AITRf1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITRf1SettingDialogViewModel.cs" />
+    <Compile Include="ClientControls\UnitControls\AITRf1SettingDialogView.xaml.cs">
+      <DependentUpon>AITRf1SettingDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITRfPower.xaml.cs">
+      <DependentUpon>AITRfPower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITRfPowerSettingDialogView.xaml.cs">
+      <DependentUpon>AITRfPowerSettingDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITRfPowerSettingDialogViewModel.cs" />
+    <Compile Include="ClientControls\UnitControls\FOUPFrontViewBig.xaml.cs">
+      <DependentUpon>FOUPFrontViewBig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\TVControl1.xaml.cs">
+      <DependentUpon>TVControl1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\TVSettingDialogBox.xaml.cs">
+      <DependentUpon>TVSettingDialogBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\UPCControl.xaml.cs">
+      <DependentUpon>UPCControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\UpcSettingDialogView.xaml.cs">
+      <DependentUpon>UpcSettingDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\UpcSettingDialogViewModel.cs" />
+    <Compile Include="ClientControls\VceControls\VceT1Control.xaml.cs">
+      <DependentUpon>VceT1Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\PMControls\PMT1Control.xaml.cs">
+      <DependentUpon>PMT1Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\SmifControls\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\VceControls\VceT2Control.xaml.cs">
+      <DependentUpon>VceT2Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\WfControls\WfT2Control.xaml.cs">
+      <DependentUpon>WfT2Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Alarms\Alarm\AlarmtableParameterView.xaml.cs">
+      <DependentUpon>AlarmtableParameterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Alarms\Alarm\AlarmParameterOperation.cs" />
+    <Compile Include="ClientViews\Alarms\Alarm\AlarmtableParameterViewModel.cs" />
+    <Compile Include="ClientViews\Alarms\Alarm\AlarmParameterEditView.xaml.cs">
+      <DependentUpon>AlarmParameterEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Alarms\Alarm\AlarmParameterEditViewModel.cs" />
+    <Compile Include="ClientViews\Alarms\ModuleAlarm\ModuleAlarmView.xaml.cs">
+      <DependentUpon>ModuleAlarmView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Alarms\ModuleAlarm\ModuleAlarmViewModel.cs" />
+    <Compile Include="ClientViews\Alarms\Alarm\AlarmView.xaml.cs">
+      <DependentUpon>AlarmView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Alarms\Alarm\AlarmViewModel.cs" />
+    <Compile Include="ClientViews\Configs\SignalTowerConfig\RadioCheckBox.xaml.cs">
+      <DependentUpon>RadioCheckBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Configs\SignalTowerConfig\SignalTowerConfigView.xaml.cs">
+      <DependentUpon>SignalTowerConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Configs\SignalTowerConfig\SignalTowerConfigViewModel.cs" />
+    <Compile Include="ClientViews\Configs\DataConfig\DataConfigView.xaml.cs">
+      <DependentUpon>DataConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Configs\DataConfig\DataConfigViewModel.cs" />
+    <Compile Include="ClientViews\DataLogs\DataHistory\SelectUserDefineView.xaml.cs">
+      <DependentUpon>SelectUserDefineView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\DataLogs\DataHistory\SelectUserDefineViewModel.cs" />
+    <Compile Include="ClientViews\DataLogs\WaferHistory\ToChartHistoryView.xaml.cs">
+      <DependentUpon>ToChartHistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\DataLogs\WaferHistory\ToChartHistoryViewModel.cs" />
+    <Compile Include="ClientViews\DataLogs\WaferHistory\WaferHistory2View.xaml.cs">
+      <DependentUpon>WaferHistory2View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\DataLogs\WaferHistory\WaferHistory2ViewModel.cs" />
+    <Compile Include="ClientViews\DataLogs\WaferHistory\WaferHistoryDBView.xaml.cs">
+      <DependentUpon>WaferHistoryDBView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\DataLogs\WaferHistory\WaferHistoryDBViewModel.cs" />
+    <Compile Include="ClientViews\Dialogs\ContinueSelectDialogView.xaml.cs">
+      <DependentUpon>ContinueSelectDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Dialogs\NumberKeyboard.xaml.cs">
+      <DependentUpon>NumberKeyboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Dialogs\FullKeyboard.xaml.cs">
+      <DependentUpon>FullKeyboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Dialogs\PurgeDialogView.xaml.cs">
+      <DependentUpon>PurgeDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Dialogs\PurgeDialogViewModel.cs" />
+    <Compile Include="ClientViews\Editors\RecipeConfig\RecipeConfigView.xaml.cs">
+      <DependentUpon>RecipeConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Editors\RecipeConfig\RecipeConfigViewModel.cs" />
+    <Compile Include="ClientViews\Editors\RecipeFullScreenEditor.xaml.cs">
+      <DependentUpon>RecipeFullScreenEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Editors\Recipe\ConfigCompareView.xaml.cs">
+      <DependentUpon>ConfigCompareView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Editors\Recipe\ConfigCompareViewModel.cs" />
+    <Compile Include="ClientViews\Editors\Recipe\PopSettingDialogView.xaml.cs">
+      <DependentUpon>PopSettingDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Editors\Recipe\RecipeCompareSelectDialogView.xaml.cs">
+      <DependentUpon>RecipeCompareSelectDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Editors\Recipe\RecipeCompareSelectDialogViewModel.cs" />
+    <Compile Include="ClientViews\Editors\Recipe\RecipeCompareView.xaml.cs">
+      <DependentUpon>RecipeCompareView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Editors\Recipe\RecipeCompareViewModel.cs" />
+    <Compile Include="ClientViews\Editors\Recipe\RecipeSelectDialogView.xaml.cs">
+      <DependentUpon>RecipeSelectDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Editors\Recipe\PopSettingDialogViewModel.cs" />
+    <Compile Include="ClientViews\Editors\Recipe\RecipeSelectDialogViewModel.cs" />
+    <Compile Include="ClientViews\Editors\Recipe\SaveToDialogView.xaml.cs">
+      <DependentUpon>SaveToDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Editors\Recipe\SaveToDialogViewModel.cs" />
+    <Compile Include="ClientViews\Maitenances\CalibrationTable\CalibrationTableView.xaml.cs">
+      <DependentUpon>CalibrationTableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Maitenances\CalibrationTable\CalibrationTableViewModel.cs" />
+    <Compile Include="ClientViews\Maitenances\Connections\ConnectionView.xaml.cs">
+      <DependentUpon>ConnectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Maitenances\Connections\ConnectionViewModel.cs" />
+    <Compile Include="ClientViews\Maitenances\IO3\IO3View.xaml.cs">
+      <DependentUpon>IO3View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Maitenances\IO3\IO3ViewModel.cs" />
+    <Compile Include="ClientViews\Maitenances\MFCVerification\MFCVerificationView.xaml.cs">
+      <DependentUpon>MFCVerificationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Maitenances\MFCVerification\MFCVerificationViewModel.cs" />
+    <Compile Include="ClientBase\ContextMenuManager.cs" />
+    <Compile Include="ClientBase\ModuleManager.cs" />
+    <Compile Include="ClientBase\RoleAccountProvider.cs" />
+    <Compile Include="ClientBase\UIViewModelBase.cs" />
+    <Compile Include="ClientBase\CarrierInfoData.cs" />
+    <Compile Include="ClientBase\WaferMoveManager.cs" />
+    <Compile Include="ClientBase\ModuleDataMonitor.cs" />
+    <Compile Include="ClientBase\WaferTransferCondition.cs" />
+    <Compile Include="ClientBase\WaferTransferDialogView.xaml.cs">
+      <DependentUpon>WaferTransferDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientBase\WaferTransferDialogViewModel.cs" />
+    <Compile Include="ClientViews\Configs\Accounts\AccountItem.cs" />
+    <Compile Include="ClientViews\Configs\Accounts\AccountManager.cs" />
+    <Compile Include="ClientViews\Configs\Accounts\AccountView.xaml.cs">
+      <DependentUpon>AccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Configs\Accounts\AccountViewModel.cs" />
+    <Compile Include="ClientViews\Configs\Accounts\RoleSatusItem.cs" />
+    <Compile Include="ClientViews\Configs\Roles\RoleItem.cs" />
+    <Compile Include="ClientViews\Configs\Roles\RoleManager.cs" />
+    <Compile Include="ClientViews\Configs\Roles\RolePermissionMapper.cs" />
+    <Compile Include="ClientViews\Configs\Roles\RoleView.xaml.cs">
+      <DependentUpon>RoleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Configs\Roles\RoleViewModel.cs" />
+    <Compile Include="ClientViews\Configs\SystemConfig\ConfigValueTemplateSelector.cs" />
+    <Compile Include="ClientViews\Configs\SystemConfig\SystemConfigItem.cs" />
+    <Compile Include="ClientViews\Configs\SystemConfig\SystemConfigProvider.cs" />
+    <Compile Include="ClientViews\Configs\SystemConfig\SystemConfigView.xaml.cs">
+      <DependentUpon>SystemConfigView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Configs\SystemConfig\SystemConfigViewModel.cs" />
+    <Compile Include="ClientViews\LayoutControls\E84Info.xaml.cs">
+      <DependentUpon>E84Info.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\LayoutControls\LED.xaml.cs">
+      <DependentUpon>LED.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\LayoutControls\ScDoubleRow.xaml.cs">
+      <DependentUpon>ScDoubleRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\LayoutControls\ScStringRow.xaml.cs">
+      <DependentUpon>ScStringRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\DataLogs\DataHistory\DataView.xaml.cs">
+      <DependentUpon>DataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\DataLogs\DataHistory\DataViewModel.cs" />
+    <Compile Include="ClientViews\DataLogs\Event\EventView.xaml.cs">
+      <DependentUpon>EventView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\DataLogs\Event\EventViewModel.cs" />
+    <Compile Include="ClientViews\DataLogs\ProcessHistory\ChartParameter.cs" />
+    <Compile Include="ClientViews\DataLogs\ProcessHistory\ProcessHistoryProvider.cs" />
+    <Compile Include="ClientViews\DataLogs\ProcessHistory\ProcessHistoryView.xaml.cs">
+      <DependentUpon>ProcessHistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\DataLogs\ProcessHistory\ProcessHistoryViewModel.cs" />
+    <Compile Include="ClientViews\DataLogs\ProcessHistory\SelectDataView.xaml.cs">
+      <DependentUpon>SelectDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\DataLogs\ProcessHistory\SelectDataViewModel.cs" />
+    <Compile Include="ClientViews\DataLogs\Statistics\StatisticsView.xaml.cs">
+      <DependentUpon>StatisticsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\DataLogs\Statistics\StatisticsViewModel.cs" />
+    <Compile Include="ClientViews\DataLogs\WaferHistory\WaferHistoryView.xaml.cs">
+      <DependentUpon>WaferHistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\DataLogs\WaferHistory\WaferHistoryViewModel.cs" />
+    <Compile Include="ClientViews\DataLogs\WaferHistory\YAxisLabelProvider.cs" />
+    <Compile Include="ClientViews\Editors\EditMode.cs" />
+    <Compile Include="ClientViews\Editors\FolderOrFileTemplateSelector.cs" />
+    <Compile Include="ClientViews\Editors\InputFileNameDialogView.xaml.cs">
+      <DependentUpon>InputFileNameDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Editors\InputFileNameDialogViewModel.cs" />
+    <Compile Include="ClientViews\Editors\RecipeSequenceSelectDialogView.xaml.cs">
+      <DependentUpon>RecipeSequenceSelectDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Editors\RecipeSequenceSelectDialogViewModel.cs" />
+    <Compile Include="ClientViews\Editors\RecipeSequenceTreeBuilder.cs" />
+    <Compile Include="ClientViews\Editors\Sequence\SequenceColumnBuilder.cs" />
+    <Compile Include="ClientViews\Editors\Sequence\SequenceData.cs" />
+    <Compile Include="ClientViews\Editors\Sequence\SequenceDataProvider.cs" />
+    <Compile Include="ClientViews\Editors\Sequence\SequenceView.xaml.cs">
+      <DependentUpon>SequenceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Editors\Sequence\SequenceViewModel.cs" />
+    <Compile Include="ClientViews\LogOnOff\LogoffView.xaml.cs">
+      <DependentUpon>LogoffView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\LogOnOff\LogoffViewModel.cs" />
+    <Compile Include="ClientViews\LogOnOff\ShutdownView.xaml.cs">
+      <DependentUpon>ShutdownView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\LogOnOff\ShutdownViewModel.cs" />
+    <Compile Include="ClientViews\Maitenances\IO1\IO1View.xaml.cs">
+      <DependentUpon>IO1View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Maitenances\IO1\IO1ViewModel.cs" />
+    <Compile Include="ClientViews\Maitenances\IO2\IO2View.xaml.cs">
+      <DependentUpon>IO2View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Maitenances\IO2\IO2ViewModel.cs" />
+    <Compile Include="ClientViews\Operations\E84\E84View.xaml.cs">
+      <DependentUpon>E84View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Operations\E84\E84ViewModel.cs" />
+    <Compile Include="ClientViews\Operations\FA\FAView.xaml.cs">
+      <DependentUpon>FAView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Operations\FA\FAViewModel.cs" />
+    <Compile Include="ClientViews\Operations\LotHistory\LotHistoryView.xaml.cs">
+      <DependentUpon>LotHistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Operations\LotHistory\LotHistoryViewModel.cs" />
+    <Compile Include="ClientViews\Operations\MonitorJob\MonitorJobView.xaml.cs">
+      <DependentUpon>MonitorJobView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Operations\MonitorJob\MonitorJobViewModel.cs" />
+    <Compile Include="ClientViews\Operations\Overviews\VceClusterControl.xaml.cs">
+      <DependentUpon>VceClusterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Operations\Overviews\VceClusterControlThree.xaml.cs">
+      <DependentUpon>VceClusterControlThree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Operations\Overviews\VceClusterControlTwo.xaml.cs">
+      <DependentUpon>VceClusterControlTwo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Operations\Overviews\VceClusterView.xaml.cs">
+      <DependentUpon>VceClusterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Operations\Overviews\VceClusterViewModel.cs" />
+    <Compile Include="ClientViews\Operations\RealTime\RealtimeProvider.cs" />
+    <Compile Include="ClientViews\Operations\RealTime\HasVOxControlView.xaml.cs">
+      <DependentUpon>HasVOxControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Operations\RealTime\RealTimeView.xaml.cs">
+      <DependentUpon>RealTimeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Operations\RealTime\HasVOxControlViewModel.cs" />
+    <Compile Include="ClientViews\Operations\RealTime\RealTimeViewModel.cs" />
+    <Compile Include="ClientViews\Operations\WaferAssociation\SequenceDialogView.xaml.cs">
+      <DependentUpon>SequenceDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Operations\WaferAssociation\SequenceDialogViewModel.cs" />
+    <Compile Include="ClientViews\Operations\WaferAssociation\WaferAssociationInfo.cs" />
+    <Compile Include="ClientViews\Operations\WaferAssociation\WaferAssociationProvider.cs" />
+    <Compile Include="ClientViews\Operations\WaferAssociation\WaferAssociationUnit.xaml.cs">
+      <DependentUpon>WaferAssociationUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Operations\WaferAssociation\WaferAssociationView.xaml.cs">
+      <DependentUpon>WaferAssociationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Operations\WaferAssociation\WaferAssociationViewModel.cs" />
+    <Compile Include="ClientBase\BaseApp.cs" />
+    <Compile Include="ClientBase\BaseModel.cs" />
+    <Compile Include="ClientBase\Command\BaseCommand.cs" />
+    <Compile Include="ClientBase\Command\CommandParameter.cs" />
+    <Compile Include="ClientBase\Command\CommandSource.cs" />
+    <Compile Include="ClientBase\Command\CommandTrigger.cs" />
+    <Compile Include="ClientBase\Command\CommandTriggerGroup.cs" />
+    <Compile Include="ClientBase\Command\EventCommandTrigger.cs" />
+    <Compile Include="ClientBase\Command\PropertyCommandTrigger.cs" />
+    <Compile Include="ClientBase\CommonEnum.cs" />
+    <Compile Include="ClientBase\DataErrorInfo.cs" />
+    <Compile Include="ClientBase\Dialog\Dialogbox.cs" />
+    <Compile Include="ClientBase\Dialog\DialogViewModel.cs" />
+    <Compile Include="ClientBase\Dialog\MessageDialog.cs" />
+    <Compile Include="ClientBase\Dialog\MessageDialogView.xaml.cs">
+      <DependentUpon>MessageDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientBase\Dialog\MessageDialogViewModel.cs" />
+    <Compile Include="ClientBase\IHandler.cs" />
+    <Compile Include="ClientBase\IO\IOItem.cs" />
+    <Compile Include="ClientBase\ISupportMultipleSystem.cs" />
+    <Compile Include="ClientBase\MenuManager.cs" />
+    <Compile Include="ClientBase\ModuleInfo.cs" />
+    <Compile Include="ClientBase\ModuleWaferManager.cs" />
+    <Compile Include="ClientBase\ServiceProvider\IProvider.cs" />
+    <Compile Include="ClientBase\Utility\AssemblyUtil.cs" />
+    <Compile Include="ClientBase\ValidatorBase.cs" />
+    <Compile Include="ClientBase\WaferInfo.cs" />
+    <Compile Include="ClientBase\_MESSAGE.cs" />
+    <Compile Include="ClientBase\Container\CachedTypeInfo.cs" />
+    <Compile Include="ClientBase\Container\ConstructorCache.cs" />
+    <Compile Include="ClientBase\Container\IContainer.cs" />
+    <Compile Include="ClientBase\Container\ParameterCache.cs" />
+    <Compile Include="ClientBase\Container\SimpleContainer.cs" />
+    <Compile Include="ClientBase\Container\TypeResolver.cs" />
+    <Compile Include="ExtendedControls\CheckBoxExt.cs" />
+    <Compile Include="ExtendedControls\ComboBoxExt.cs" />
+    <Compile Include="ExtendedControls\ComboTextBlock.cs" />
+    <Compile Include="ClientControls\UnitControls\CarrierContentControl.cs" />
+    <Compile Include="Converter\WaferStatusConverter.cs" />
+    <Compile Include="ClientControls\UnitControls\AITMicrowaveSettingDialogView.xaml.cs">
+      <DependentUpon>AITMicrowaveSettingDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITMicrowaveSettingDialogViewModel.cs" />
+    <Compile Include="ClientControls\UnitControls\CassetteTopView.xaml.cs">
+      <DependentUpon>CassetteTopView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\FOUPFrontViewPro.xaml.cs">
+      <DependentUpon>FOUPFrontViewPro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\RFSimpleControl.xaml.cs">
+      <DependentUpon>RFSimpleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\ChillerControl.xaml.cs">
+      <DependentUpon>ChillerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\FoupTopView3.xaml.cs">
+      <DependentUpon>FoupTopView3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\MultipleSelectionsCombox.xaml.cs">
+      <DependentUpon>MultipleSelectionsCombox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converter\DisplayNameConverter.cs" />
+    <Compile Include="Converter\UnitStatusBackgroundColorConverter.cs" />
+    <Compile Include="Converter\UnitOnlineBorderColorConverter.cs" />
+    <Compile Include="Converter\BoolReverseConverter.cs" />
+    <Compile Include="ClientControls\UnitControls\AITHeaterControl.xaml.cs">
+      <DependentUpon>AITHeaterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITPressureMeter.xaml.cs">
+      <DependentUpon>AITPressureMeter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITRf.xaml.cs">
+      <DependentUpon>AITRf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\TVSettingDialogView.xaml.cs">
+      <DependentUpon>TVSettingDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\TVSettingDialogViewModel.cs" />
+    <Compile Include="ClientControls\UnitControls\TVControl.xaml.cs">
+      <DependentUpon>TVControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITThrottleValveInputDialogBox.xaml.cs">
+      <DependentUpon>AITThrottleValveInputDialogBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\Door.xaml.cs">
+      <DependentUpon>Door.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\FoupTopView.xaml.cs">
+      <DependentUpon>FoupTopView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedControls\EditTextBlock.cs" />
+    <Compile Include="ExtendedControls\ComboTextBlockAdorner.cs" />
+    <Compile Include="ExtendedControls\EditTextBlockAdorner.cs" />
+    <Compile Include="ClientControls\UnitControls\Gasline.cs" />
+    <Compile Include="ClientControls\UnitControls\GaslineJoint.cs" />
+    <Compile Include="ClientControls\UnitControls\Slot.cs" />
+    <Compile Include="ExtendedControls\SwitchButton.cs" />
+    <Compile Include="ExtendedControls\TextBoxEx.cs" />
+    <Compile Include="ClientControls\UnitControls\Valve.cs" />
+    <Compile Include="ClientControls\UnitControls\Wafer.cs" />
+    <Compile Include="ExtendedControls\XDataGrid.cs" />
+    <Compile Include="Converter\BoolVisibilityConverter.cs" />
+    <Compile Include="Converter\FOUPStatusConverter.cs" />
+    <Compile Include="Converter\DataConverter.cs" />
+    <Compile Include="Converter\HideNullConverter.cs" />
+    <Compile Include="Converter\SlotBorderConverter.cs" />
+    <Compile Include="Converter\VisibilityConverter.cs" />
+    <Compile Include="ClientBase\JointType.cs" />
+    <Compile Include="ClientBase\ValveState.cs" />
+    <Compile Include="ClientControls\UnitControls\FOUPFrontView.xaml.cs">
+      <DependentUpon>FOUPFrontView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\FOUPTopView2.xaml.cs">
+      <DependentUpon>FOUPTopView2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\InputDialogBox.xaml.cs">
+      <DependentUpon>InputDialogBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITRfSettingDialogView.xaml.cs">
+      <DependentUpon>AITRfSettingDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\MfcSettingDialogView.xaml.cs">
+      <DependentUpon>MfcSettingDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientControls\UnitControls\AITRfSettingDialogViewModel.cs" />
+    <Compile Include="ClientControls\UnitControls\MfcSettingDialogViewModel.cs" />
+    <Compile Include="ClientControls\UnitControls\MfcControl.xaml.cs">
+      <DependentUpon>MfcControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedControls\Window\CustomWnd.cs" />
+    <Compile Include="IndustrialControl\Converters\Double2StringConverter.cs" />
+    <Compile Include="IndustrialControl\Converters\MultiplesValueConverter.cs" />
+    <Compile Include="IndustrialControl\Converters\VisibilityConverter.cs" />
+    <Compile Include="IndustrialControl\Pipe\PipeLine.xaml.cs">
+      <DependentUpon>PipeLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IndustrialControl\Pipe\PipeLineKnot.xaml.cs">
+      <DependentUpon>PipeLineKnot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IndustrialControl\Pipe\PipeLineThree.xaml.cs">
+      <DependentUpon>PipeLineThree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Caliburn.Micro\TypeDescriptor.cs" />
+    <Compile Include="Caliburn.Micro\View.cs" />
+    <Compile Include="Caliburn.Micro\ViewLocator.cs" />
+    <Compile Include="Caliburn.Micro\ViewModelBinder.cs" />
+    <Compile Include="Caliburn.Micro\ViewModelLocator.cs" />
+    <Compile Include="Caliburn.Micro\XamlPlatformProvider.cs" />
+    <Compile Include="DataGridTransform\AssemblyAttrs.cs" />
+    <Compile Include="DataGridTransform\DataGridExtern\DataGridColumnExpander.cs" />
+    <Compile Include="DataGridTransform\DataGridExtern\DataGridDynamicColumn.cs" />
+    <Compile Include="DataGridTransform\DataGridExtern\DataGridDynamicColumns.cs" />
+    <Compile Include="DataGridTransform\DataGridExtern\DataGridExpanderProperty.cs" />
+    <Compile Include="DataGridTransform\DataGridExtern\DataGridTransform.cs" />
+    <Compile Include="DataGridTransform\DataGridExtern\ListBoxItemSelector.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Automation\Peers\DataGridAutomationPeer.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Automation\Peers\DataGridCellAutomationPeer.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Automation\Peers\DataGridCellItemAutomationPeer.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Automation\Peers\DataGridColumnHeaderAutomationPeer.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Automation\Peers\DataGridColumnHeadersPresenterAutomationPeer.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Automation\Peers\DataGridDetailsPresenterAutomationPeer.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Automation\Peers\DataGridItemAutomationPeer.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Automation\Peers\DataGridRowAutomationPeer.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Automation\Peers\DataGridRowHeaderAutomationPeer.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Automation\Peers\DataGridRowsPresenterAutomationPeer.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\BooleanToSelectiveScrollingOrientationConverter.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\ClipboardHelper.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\ColumnHeaderCollection.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\ComboBoxBindingTarget.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\ContainerTracking.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGrid.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridAutoGeneratingColumnEventArgs.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridBeginningEditEventArgs.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridBoundColumn.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridCell.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridCellClipboardEventArgs.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridCellEditEndingEventArgs.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridCellInfo.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridCellsPanel.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridCheckBoxColumn.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridClipboardCellContent.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridClipboardCopyMode.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridColumn.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridColumnCollection.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridColumnDropSeparator.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridColumnEventArgs.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridColumnFloatingHeader.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridColumnReorderingEventArgs.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridComboBoxColumn.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridEditAction.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridEditingUnit.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridGridLinesVisibility.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridHeaderBorder.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridHeadersVisibility.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridHeadersVisibilityToVisibilityConverter.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridHelper.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridHyperlinkColumn.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridItemAttachedStorage.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridLength.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridLengthConverter.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridLengthUnitType.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridPreparingCellForEditEventArgs.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridRow.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridRowClipboardEventArgs.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridRowDetailsEventArgs.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridRowDetailsVisibilityMode.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridRowEditEndingEventArgs.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridRowEventArgs.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridSelectionMode.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridSelectionUnit.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridSortingEventArgs.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridSortingEventHandler.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridTemplateColumn.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DataGridTextColumn.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\DoubleUtil.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\InitializingNewItemEventArgs.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\InitializingNewItemEventHandler.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\IProvideDataGridColumn.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\MultipleCopiesCollection.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\NotificationTarget.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\Primitives\DataGridCellsPresenter.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\Primitives\DataGridColumnHeader.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\Primitives\DataGridColumnHeadersPresenter.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\Primitives\DataGridDetailsPresenter.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\Primitives\DataGridRowHeader.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\Primitives\DataGridRowsPresenter.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\Primitives\SelectiveScrollingGrid.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\RealizedColumnsBlock.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\SelectedCellsChangedEventArgs.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\SelectedCellsChangedEventHandler.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\SelectedCellsCollection.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\SelectiveScrollingOrientation.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\VirtualizedCellInfoCollection.cs" />
+    <Compile Include="DataGridTransform\DataGrid\Microsoft\Windows\Controls\WeakHashtable.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Base\CopyDataGrid.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Base\CustomDataGrid.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\AutoFilterHelper.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\ClipboardHelper.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\ColumnInformation.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\CustomDataGridRowsPresenter.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\DataGridBehavior.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\DoubleUtil.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\EportToExcelService.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\FindControls.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\GroupByEventArgs.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\GroupData.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\Helper.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\Helpers.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\RowSummariesHelper.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\ScrollingPreviewData.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\ScrollingPreviewService.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\SummaryColumnSettings.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Classes\SummaryOperands.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Converter\FrozenRowSplitterMarginConverter.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Converter\GroupByButtonVisibilityConverter.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Converter\GroupByPathConverter.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Converter\RowSummariesClearButtonIsEnabledConverter.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Converter\RowSummariesValueConverter.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Converter\RowSummaryVisibiltyConverter.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\ExtendedColumn\ExtendedDataGridCheckBoxColumn.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\ExtendedColumn\ExtendedDataGridColumn.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\ExtendedColumn\ExtendedDataGridTextColumn.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\ExtendedGridControl\ExtendedDataGrid.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Interface\IExtendedColumn.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\Styles\DataGridGeneric.cs" />
+    <Compile Include="DataGridTransform\ExtendedGrid\UserControls\ColumnChooserControl.xaml.cs">
+      <DependentUpon>ColumnChooserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataGridTransform\GlobalSuppressions.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="DataGridTransform\Resources\SR.cs" />
+    <Compile Include="DataGridTransform\Resources\SRID.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\TuneColumn.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\PopSettingColumn.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\VatColumn.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\CheckBoxColumn.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\EditorDataGridTemplateColumnBase.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\LoopComboxColumn.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\ComboxColumn.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\DoubleColumn.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\ExpanderColumn.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\IntColumn.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\MultipleSelectColumn.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\NumColumn.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\PositionColumn.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\RecipeSelectColumn.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\StepColumn.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\TextBlockColumn.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\CustomColumn\TextBoxColumn.cs" />
+    <Compile Include="RecipeEditorLib\DGExtension\XDataGrid.cs" />
+    <Compile Include="RecipeEditorLib\RecipeModel\Params\BoolParam.cs" />
+    <Compile Include="RecipeEditorLib\RecipeModel\Params\LoopComboxParam.cs" />
+    <Compile Include="RecipeEditorLib\RecipeModel\Params\ComboxParam.cs" />
+    <Compile Include="RecipeEditorLib\RecipeModel\Params\DoubleParam.cs" />
+    <Compile Include="RecipeEditorLib\RecipeModel\Params\ExpanderParam.cs" />
+    <Compile Include="RecipeEditorLib\RecipeModel\Params\IntParam.cs" />
+    <Compile Include="RecipeEditorLib\RecipeModel\Params\MultipleSelectParam.cs" />
+    <Compile Include="RecipeEditorLib\RecipeModel\Params\NumParam.cs" />
+    <Compile Include="RecipeEditorLib\RecipeModel\Params\PopSettingParam.cs" />
+    <Compile Include="RecipeEditorLib\RecipeModel\Params\Param.cs" />
+    <Compile Include="RecipeEditorLib\RecipeModel\Params\PathFileParam.cs" />
+    <Compile Include="RecipeEditorLib\RecipeModel\Params\PositionParam.cs" />
+    <Compile Include="RecipeEditorLib\RecipeModel\Params\StepParam.cs" />
+    <Compile Include="RecipeEditorLib\RecipeModel\Params\StringParam.cs" />
+    <Compile Include="ClientViews\Editors\Recipe\RecipeFormatBuilder.cs" />
+    <Compile Include="ClientViews\Editors\Recipe\RecipeData.cs" />
+    <Compile Include="ClientViews\Editors\Recipe\RecipeEditorView.xaml.cs">
+      <DependentUpon>RecipeEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClientViews\Editors\Recipe\RecipeEditorViewModel.cs" />
+    <Compile Include="ClientViews\Editors\Recipe\RecipeProvider.cs" />
+    <Compile Include="Themes\CenterBorderGapMaskConverter.cs" />
+    <Compile Include="Themes\Cyan\TextBoxEx.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Caliburn.Micro\Caliburn.snk" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ClientControls\RobotControls\SingleArmRobot1\arm.png" />
+    <Resource Include="ClientControls\RobotControls\SingleArmRobot1\armroot.png" />
+    <Resource Include="ClientControls\RobotControls\SingleArmRobot1\dock.png" />
+    <Resource Include="ClientControls\RobotControls\SingleArmRobot1\hand.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot1\rbo1.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot1\rbo2.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot1\rbo3.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot1\rbo4.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot2\arm1.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot2\arm2.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot2\dock.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot2\hand.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot2\image02.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot3\robotArm.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot3\robotArm2.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot3\robotDock.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot3\robotHand.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot4\robotArm.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot4\robotArm4.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot4\robotDock.png" />
+    <Resource Include="ClientControls\RobotControls\DualArmRobot4\robotHand.png" />
+    <Resource Include="ClientControls\RobotControls\DualWaferRobot1\arm1.png" />
+    <Resource Include="ClientControls\RobotControls\DualWaferRobot1\arm2.png" />
+    <Resource Include="ClientControls\RobotControls\DualWaferRobot1\arm21.png" />
+    <Resource Include="ClientControls\RobotControls\DualWaferRobot1\arm3.png" />
+    <Resource Include="ClientControls\RobotControls\DualWaferRobot1\dock.png" />
+    <Resource Include="ClientControls\RobotControls\DualWaferRobot1\dock2.png" />
+    <Resource Include="ClientControls\RobotControls\DualWaferRobot1\hand1.png" />
+    <Resource Include="ClientControls\RobotControls\DualWaferRobot1\hand2.png" />
+    <Resource Include="ClientControls\RobotControls\DualWaferRobot2\arm.png" />
+    <Resource Include="ClientControls\RobotControls\DualWaferRobot2\armroot.png" />
+    <Resource Include="ClientControls\RobotControls\DualWaferRobot2\hand.png" />
+    <Content Include="DataGridTransform\DataGrid.Icon.bmp" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\add32.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\addAll.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\Browse.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\btn_donateCC_LG.gif" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\button_delete_blue.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\clear32.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\close.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\codeplex.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\columnChooser.ico" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\Converter-32.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\delete32.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\greek_letter_sigma.gif" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\greek_letter_sigma_white.gif" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\info.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\Merge-48.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\ok.jpg" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\OK.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\pen.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\pen_white_write.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\pen_write.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\plus.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\save.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\search.jpg" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\sigma.svg.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\snippet.ico" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\Splash-Utopia.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\Splash-Utopia1.gif" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\Splash-Utopia1.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\sweep_broom_brush_clear.png" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\visualstudio.ico" />
+    <Content Include="DataGridTransform\ExtendedGrid\Images\vsi.ico" />
+    <Resource Include="Resources\Images\Folder_Close.png" />
+    <Resource Include="Resources\Images\Folder_Open.png" />
+    <Resource Include="Resources\Images\Folder_Unable.png" />
+    <Resource Include="Resources\Images\foupTopView.png" />
+    <Resource Include="Resources\Images\units\chillerleft.png" />
+    <Resource Include="Resources\Images\units\rfback.png" />
+    <Resource Include="Resources\Images\units\rfOff.png" />
+    <Resource Include="Resources\Images\units\rfOn.png" />
+    <Resource Include="Resources\Aligners\AlignerT2\alignerbg-1.png" />
+    <Resource Include="Resources\Aligners\AlignerT2\alignerbg-2.png" />
+    <Resource Include="Resources\Aligners\AlignerT2\alignerbg.png" />
+    <Resource Include="Resources\Aligners\AlignerT2\alignerbg2.png" />
+    <Resource Include="Resources\Aligners\AlignerT1\AlignerLeft.png" />
+    <Resource Include="Resources\Aligners\AlignerT1\AlignerRight.png" />
+    <Resource Include="Resources\Images\ArrowAll.png" />
+    <Resource Include="Resources\Images\ArrowExpandAll.png" />
+    <Resource Include="Resources\Buffer\Buffer3\bf.png" />
+    <Resource Include="Resources\Buffer\Buffer3\bff.png" />
+    <Resource Include="Resources\EFEM\aligner.png" />
+    <Resource Include="Resources\EFEM\aligner1.png" />
+    <Resource Include="Resources\EFEM\aligner2.png" />
+    <Resource Include="Resources\EFEM\alignerback.png" />
+    <Resource Include="Resources\EFEM\arm1.png" />
+    <Resource Include="Resources\EFEM\arm2.png" />
+    <Resource Include="Resources\EFEM\dock.png" />
+    <Resource Include="Resources\EFEM\doorclose.png" />
+    <Resource Include="Resources\EFEM\dooropen.png" />
+    <Resource Include="Resources\EFEM\efem.png" />
+    <Resource Include="Resources\EFEM\efembg.png" />
+    <Resource Include="Resources\EFEM\efembg2.png" />
+    <Resource Include="Resources\EFEM\efembg3.png" />
+    <Resource Include="Resources\EFEM\efembg4.png" />
+    <Resource Include="Resources\EFEM\foup.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\EFEM\hand.png" />
+    <Resource Include="Resources\EFEM\lp.png" />
+    <Resource Include="Resources\EFEM\lpback.png" />
+    <Resource Include="Resources\EFEM\lpbackError.png" />
+    <Resource Include="Resources\EFEM\lpbg.png" />
+    <Content Include="Resources\Images\foupTopView3.png" />
+    <Resource Include="Resources\Images\units\chiller_right_error.png" />
+    <Resource Include="Resources\Images\units\chiller_right_off.png" />
+    <Resource Include="Resources\Images\units\chiller_right_on.png" />
+    <Resource Include="Resources\Images\units\carrier.png" />
+    <Resource Include="Resources\Images\units\CassetteTopViewNoWafer.png" />
+    <Resource Include="Resources\Images\units\CassetteTopviewWithWafer.png" />
+    <Resource Include="Resources\Mainframes\MainframeT1\AlignerLeft.png" />
+    <Resource Include="Resources\Mainframes\MainframeT1\AlignerRight.png" />
+    <Resource Include="Resources\Mainframes\MainframeT1\bg01.png" />
+    <Resource Include="Resources\Mainframes\MainframeT1\bg02top.png" />
+    <Resource Include="Resources\PMs\PMT1\pmbottom.png" />
+    <Resource Include="Resources\PMs\PMT1\pmtop.png" />
+    <Resource Include="Resources\Robots\RobotT1\rbo1.png" />
+    <Resource Include="Resources\Robots\RobotT1\rbo2.png" />
+    <Resource Include="Resources\Robots\RobotT1\rbo3.png" />
+    <Resource Include="Resources\Robots\RobotT1\rbo4.png" />
+    <Resource Include="Resources\Robots\RobotT2\arm1.png" />
+    <Resource Include="Resources\Robots\RobotT2\arm2.png" />
+    <Resource Include="Resources\Robots\RobotT2\dock.png" />
+    <Resource Include="Resources\Robots\RobotT2\hand.png" />
+    <Resource Include="Resources\Robots\RobotT2\image02.png" />
+    <Resource Include="Resources\Robots\RobotT3\arm1.png" />
+    <Resource Include="Resources\Robots\RobotT3\arm2.png" />
+    <Resource Include="Resources\Robots\RobotT3\arm3.png" />
+    <Resource Include="Resources\Robots\RobotT3\dock.png" />
+    <Resource Include="Resources\Robots\RobotT3\dock2.png" />
+    <Resource Include="Resources\Robots\RobotT3\hand.png" />
+    <Resource Include="Resources\Robots\RobotT3\hand1.png" />
+    <Resource Include="Resources\Robots\RobotT3\hand2.png" />
+    <Resource Include="Resources\Smifs\SmifT1\smif.png" />
+    <Resource Include="Resources\Vces\VceT1\VceLeft.png" />
+    <Resource Include="Resources\Vces\VceT1\VceRight.png" />
+    <Resource Include="Resources\Vces\VceT2\VceLeft.png" />
+    <Resource Include="Resources\Vces\VceT2\VceRight.png" />
+    <Resource Include="Resources\Mainframes\MainframeT2\left.png" />
+    <Resource Include="Resources\Mainframes\MainframeT2\right.png" />
+    <Resource Include="Resources\Mainframes\MainframeT2\tm1.png" />
+    <Resource Include="Resources\PMs\PMT2\pmbottom.png" />
+    <Resource Include="Resources\PMs\PMT2\pmtop.png" />
+    <Resource Include="Resources\Wf\wf.png" />
+    <Resource Include="Resources\Wf\wf2.png" />
+    <Resource Include="Resources\Mainframes\MainframeT3\tm.png" />
+    <Resource Include="Resources\Mainframes\MainframeT3\tmf.png" />
+    <Resource Include="Resources\Mainframes\MainframeT3\wf.png" />
+    <Resource Include="Resources\PMs\PMT3\pm1.png" />
+    <Resource Include="Resources\PMs\PMT3\pm1f.png" />
+    <Resource Include="Resources\LoadLocks\LoadLock1.png" />
+    <Resource Include="Resources\LoadLocks\LoadLock2.png" />
+    <Content Include="Themes\DeepBlueBackUp\Folder_Close.png" />
+    <Content Include="Themes\DeepBlueBackUp\Folder_Open.png" />
+    <Content Include="Themes\DeepBlueBackUp\Folder_Unable.png" />
+    <Content Include="Themes\LightBlue\Folder_Close.png" />
+    <Content Include="Themes\LightBlue\Folder_Open.png" />
+    <Content Include="Themes\LightBlue\Folder_Unable.png" />
+    <EmbeddedResource Include="DataGridTransform\Resources\ExceptionStringTable.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ClientBase\WaferUIMoveDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientBase\WaferTransferDualDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\AlignerControls\UserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\BufferControls\BufferT3Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\EfemControls\AtmRobot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\EfemControls\UserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\EfemControls\VceClusterControlEFEM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\EfemControls\WaferCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\LoadLockControls\LoadLock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\LoadLockControls\LoadLockTopView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\LoadPortControls\UserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\MainframeControls\MainframeT1Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\MainframeControls\MainframeT2Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\MainframeControls\MainframeT3Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\PMControls\PMT2Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\PMControls\PMT3Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\RobotControls\DualArmRobot1\DualArmRobot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\RobotControls\DualArmRobot2\DualArmRobot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\RobotControls\DualArmRobot3\DualArmRobot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\RobotControls\DualArmRobot4\DualArmRobot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\RobotControls\DualWaferRobot1\DualWaferRobot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\RobotControls\DualWaferRobot2\DualWaferRobot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\RobotControls\SingleArmRobot1\SingleArmRobot.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\RobotControls\VTMDualArmRobot.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITChillerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITChillerInputDialogBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITMksRfPlasmaGenerator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITMksRfPlasmaGeneratorSettingDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITDxkdpDcPowerSettingDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITDxkdpDcPower.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITDcPower.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITDcPowerSettingDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITRf1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITRf1SettingDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITRfPower.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITRfPowerSettingDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\FOUPFrontViewBig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\UnitControls\TVControl1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\TVSettingDialogBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\UPCControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\UnitControls\UpcSettingDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\VceControls\VceT1Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\PMControls\PMT1Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\SmifControls\UserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\VceControls\VceT2Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\WfControls\WfT2Control.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Alarms\Alarm\AlarmtableParameterView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Alarms\Alarm\AlarmParameterEditView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Alarms\ModuleAlarm\ModuleAlarmView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Alarms\Alarm\AlarmView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Configs\SignalTowerConfig\RadioCheckBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientViews\Configs\SignalTowerConfig\SignalTowerConfigView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Configs\DataConfig\DataConfigView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\DataLogs\DataHistory\SelectUserDefineView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientViews\DataLogs\WaferHistory\ToChartHistoryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\DataLogs\WaferHistory\WaferHistory2View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\DataLogs\WaferHistory\WaferHistoryDBView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientViews\Dialogs\ContinueSelectDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="ClientViews\Dialogs\NumberKeyboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Dialogs\FullKeyboard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Dialogs\PurgeDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Editors\RecipeConfig\RecipeConfigView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Editors\RecipeFullScreenEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientViews\Editors\Recipe\ConfigCompareView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Editors\Recipe\PopSettingDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Editors\Recipe\RecipeCompareSelectDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Editors\Recipe\RecipeCompareView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientViews\Editors\Recipe\RecipeSelectDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Editors\Recipe\SaveToDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Maitenances\CalibrationTable\CalibrationTableView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Maitenances\Connections\ConnectionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Maitenances\IO3\IO3View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Maitenances\MFCVerification\MFCVerificationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientBase\WaferTransferDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Configs\Accounts\AccountView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Configs\Roles\RoleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Configs\SystemConfig\SystemConfigView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\LayoutControls\E84Info.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\LayoutControls\LED.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\LayoutControls\ScDoubleRow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\LayoutControls\ScStringRow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\DataLogs\DataHistory\DataView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\DataLogs\Event\EventView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\DataLogs\ProcessHistory\ProcessHistoryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\DataLogs\ProcessHistory\SelectDataView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\DataLogs\Statistics\StatisticsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\DataLogs\WaferHistory\WaferHistoryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Editors\InputFileNameDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Editors\RecipeSequenceSelectDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Editors\Sequence\SequenceView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\LogOnOff\LogoffView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\LogOnOff\ShutdownView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Maitenances\IO1\IO1View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Maitenances\IO2\IO2View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Operations\E84\E84View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Operations\FA\FAView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Operations\LotHistory\LotHistoryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Operations\MonitorJob\MonitorJobView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Operations\Overviews\VceClusterControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Operations\Overviews\VceClusterControlThree.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Operations\Overviews\VceClusterControlTwo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Operations\Overviews\VceClusterView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Operations\RealTime\HasVOxControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Operations\RealTime\RealTimeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Operations\WaferAssociation\SequenceDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Operations\WaferAssociation\WaferAssociationUnit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Operations\WaferAssociation\WaferAssociationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientBase\Dialog\MessageDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientViews\Editors\Recipe\RecipeEditorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITMicrowaveSettingDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\CassetteTopView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\FOUPFrontViewPro.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\RFSimpleControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\ChillerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\UnitControls\FoupTopView3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\MultipleSelectionsCombox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITHeaterControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITPressureMeter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITRf.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\TVSettingDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\TVControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITThrottleValveInputDialogBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\Door.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\FoupTopView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\FOUPFrontView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\FOUPTopView2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\InputDialogBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\AITRfSettingDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\MfcSettingDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ClientControls\UnitControls\MfcControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="IndustrialControl\Pipe\PipeLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IndustrialControl\Pipe\PipeLineKnot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IndustrialControl\Pipe\PipeLineThree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Cyan\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Cyan\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Cyan\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Cyan\Expander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Cyan\GroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Cyan\Label.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Cyan\ListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Cyan\Listview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Cyan\MenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Cyan\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Cyan\Scrollbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Cyan\Skin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Cyan\SkinType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Cyan\Tab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Cyan\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Cyan\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Cyan\TreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlueBackUp\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlueBackUp\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlueBackUp\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlueBackUp\Expander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlueBackUp\GroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlueBackUp\ListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlueBackUp\Listview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlueBackUp\MenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlueBackUp\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlueBackUp\Scrollbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlueBackUp\Skin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlueBackUp\SkinType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlueBackUp\Tab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlueBackUp\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlueBackUp\TreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\Expander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\SkinType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\DataGridExtern\Themes\controls.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\DataGridExtern\Themes\generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\DataGrid\Themes\Aero.NormalColor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\DataGrid\Themes\Classic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\DataGrid\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\DataGrid\Themes\Luna.HomeStead.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\DataGrid\Themes\Luna.Metallic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\DataGrid\Themes\Luna.NormalColor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\DataGrid\Themes\Royale.NormalColor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\DataGridThemes\ControlsTheme\ControlLiveExplorer.xaml">
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\DataGridThemes\ControlsTheme\ControlMedia.xaml">
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\DataGridThemes\ControlsTheme\ControlOffice2007Black.xaml">
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\DataGridThemes\ControlsTheme\ControlOffice2007Blue.xaml">
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\DataGridThemes\ControlsTheme\ControlOffice2007Silver.xaml">
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\DataGridThemes\ControlsTheme\ControlWindows7.xaml">
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\DataGridThemes\Default.xaml">
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\DataGridThemes\ElectronicMedia.xaml">
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\DataGridThemes\Office2007Black.xaml">
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\DataGridThemes\Office2007Blue.xaml">
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\DataGridThemes\Office2007Silver.xaml">
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\DataGridThemes\OrangeDarkExplorer.xaml">
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\DataGridThemes\System.xaml">
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\DataGridThemes\Windows7.xaml">
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\Styles\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\Styles\DataGrid.Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\ExtendedGrid\UserControls\ColumnChooserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Aero.NormalColor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Classic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DataGridTransform\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GrayBlue\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GrayBlue\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GrayBlue\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GrayBlue\Expander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GrayBlue\GroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GrayBlue\ListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GrayBlue\Listview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GrayBlue\MenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GrayBlue\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GrayBlue\Scrollbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GrayBlue\Skin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GrayBlue\SkinType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GrayBlue\Tab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GrayBlue\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GrayBlue\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GrayBlue\TreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBlue\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBlue\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBlue\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBlue\Expander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBlue\GroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBlue\ListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBlue\Listview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBlue\MenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBlue\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBlue\Scrollbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBlue\Skin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBlue\SkinType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBlue\Tab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBlue\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBlue\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightBlue\TreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\lightgreen\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\lightgreen\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\lightgreen\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\lightgreen\Expander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\lightgreen\GroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\lightgreen\ListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\lightgreen\Listview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\lightgreen\MenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\lightgreen\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\lightgreen\Scrollbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\lightgreen\Skin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\lightgreen\SkinType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\lightgreen\Tab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\lightgreen\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\lightgreen\TreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Luna.HomeStead.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Luna.Metallic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Luna.NormalColor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MoonWhiteBlue\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MoonWhiteBlue\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MoonWhiteBlue\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MoonWhiteBlue\Expander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MoonWhiteBlue\GroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MoonWhiteBlue\ListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MoonWhiteBlue\Listview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MoonWhiteBlue\MenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MoonWhiteBlue\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MoonWhiteBlue\Scrollbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MoonWhiteBlue\Skin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MoonWhiteBlue\SkinType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MoonWhiteBlue\Tab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MoonWhiteBlue\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MoonWhiteBlue\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MoonWhiteBlue\TreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\OceanBlue\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\OceanBlue\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\OceanBlue\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\OceanBlue\Expander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\OceanBlue\GroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\OceanBlue\ListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\OceanBlue\Listview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\OceanBlue\MenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\OceanBlue\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\OceanBlue\Scrollbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\OceanBlue\Skin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\OceanBlue\SkinType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\OceanBlue\Tab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\OceanBlue\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\OceanBlue\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\OceanBlue\TreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PaleBlue\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PaleBlue\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PaleBlue\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PaleBlue\Expander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PaleBlue\GroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PaleBlue\ListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PaleBlue\Listview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PaleBlue\MenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PaleBlue\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PaleBlue\Scrollbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PaleBlue\Skin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PaleBlue\SkinType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PaleBlue\Tab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PaleBlue\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PaleBlue\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PaleBlue\TreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Royale.NormalColor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\GroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\ListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\Listview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\MenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\Scrollbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\Skin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\Tab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DeepBlue\TreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SeaBlue\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SeaBlue\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SeaBlue\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SeaBlue\Expander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SeaBlue\GroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SeaBlue\ListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SeaBlue\Listview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SeaBlue\MenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SeaBlue\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SeaBlue\Scrollbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SeaBlue\Skin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SeaBlue\SkinType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SeaBlue\Tab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SeaBlue\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SeaBlue\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SeaBlue\TreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SkyBlue\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SkyBlue\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SkyBlue\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SkyBlue\Expander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SkyBlue\GroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SkyBlue\ListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SkyBlue\Listview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SkyBlue\MenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SkyBlue\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SkyBlue\Scrollbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SkyBlue\Skin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SkyBlue\SkinType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SkyBlue\Tab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SkyBlue\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SkyBlue\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\SkyBlue\TreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Standard\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Standard\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Standard\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Standard\Expander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Standard\GroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Standard\ListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Standard\Listview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Standard\MenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Standard\RadioButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Standard\Scrollbar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Standard\Skin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Standard\SkinType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Standard\Tab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Standard\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Standard\TreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{9cd2a6be-1971-4e74-b49e-547982f64034}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UICore\UICore.csproj">
+      <Project>{2C9E1DF3-1ABA-4972-BE60-41DD9B3C47A7}</Project>
+      <Name>UICore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\LoadPorts\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

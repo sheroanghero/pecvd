@@ -1,0 +1,46 @@
+{
+    "IOSimulatorItemList": [
+        {
+            "SourceCommandName": "ControlOnOff",
+            "SourceCommand": "CTRL",
+            "SuccessResponse": "OK",
+            "FailedResponse": "ERR2"
+        },
+        {
+            "SourceCommandName": "EchoOnOff",
+            "SourceCommand": "ECH",
+            "SuccessResponse": "OK",
+            "FailedResponse": "ERR2"
+        },
+        {
+            "SourceCommandName": "RootsOnOff",
+            "SourceCommand": "ROO",
+            "SuccessResponse": "OK",
+            "FailedResponse": "ERR2"
+        },
+        {
+            "SourceCommandName": "PumpOnOff",
+            "SourceCommand": "SYS",
+            "SuccessResponse": "OK",
+            "FailedResponse": "ERR2"
+        },
+        {
+            "SourceCommandName": "DisplayAlarmOrAlert",
+            "SourceCommand": "DEF",
+            "SuccessResponse": "OK",
+            "FailedResponse": "ERR2"
+        },
+        {
+            "SourceCommandName": "SetPumpParameter",
+            "SourceCommand": "SET",
+            "SuccessResponse": "OK",
+            "FailedResponse": "ERR2"
+        },
+        {
+            "SourceCommandName": "ReadPumpStatus",
+            "SourceCommand": "STA",
+            "SuccessResponse": "0100100002 1041 0855 089 108 076 0282 00 000000000000000000000 0005",
+            "FailedResponse": "ERR2"
+        }
+    ]
+}

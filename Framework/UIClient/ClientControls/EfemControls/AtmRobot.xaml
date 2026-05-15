@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.ClientControls.EfemControls.AtmRobot"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Common="clr-namespace:MECF.Framework.UI.Client.ClientControls.Common"
+             xmlns:controls="clr-namespace:MECF.Framework.UI.Client.ClientControls.EfemControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="99" d:DesignWidth="416">
+    <Viewbox>
+        <Common:AxisCanvas Width="416" Height="99"  x:Name="root">
+            <Common:AxisCanvas.ContextMenu>
+                <ContextMenu ItemsSource="{Binding Menu}" />
+            </Common:AxisCanvas.ContextMenu>
+            <Common:AxisCanvas x:Name="container" Width="416" Height="99">
+                <Image Width="59" Height="59" Canvas.Top="16" Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/Dock.png" />
+                <Common:AxisCanvas x:Name="canvasRoot" Height="70" AxisLeft="35" Width="70" Canvas.Top="30" Canvas.Left="0">
+                    <Common:AxisCanvas x:Name="canvas1" Height="25" Width="70" Canvas.Top="2" Canvas.Left="20" >
+                        <Image Width="62" Height="23" Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/arm1.png" RenderTransformOrigin="0.5,0.5" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="180"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Common:AxisCanvas x:Name="canvas2" Height="19" Width="54" Canvas.Top="2" Canvas.Left="40">
+                            <Image Width="54" Height="19" Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/arm2.png" RenderTransformOrigin="0.5,0.5" >
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="180"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <Common:AxisCanvas x:Name="canvas3" Height="42" Width="83" Canvas.Left="38" Canvas.Top="-10">
+                                <Image Width="83" Height="59" Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/hand.png" />
+                                <controls:WaferCtrl WaferData="{Binding Wafer1}" Canvas.Left="42" Canvas.Top="-12"/>
+                            </Common:AxisCanvas>
+                        </Common:AxisCanvas>
+                    </Common:AxisCanvas>
+                    <Common:AxisCanvas x:Name="canvas21" Height="25" Width="70" Canvas.Top="2" Canvas.Left="20">
+                        <Image Width="62" Height="23" Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/arm1.png" RenderTransformOrigin="0.5,0.5" >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="180"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Common:AxisCanvas x:Name="canvas22" Height="19" Width="54" Canvas.Top="2" Canvas.Left="40">
+                            <Image Width="54" Height="19" Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/arm2.png" RenderTransformOrigin="0.5,0.5" >
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="180"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <Common:AxisCanvas x:Name="canvas23" Height="42" Width="83" Canvas.Left="38" Canvas.Top="-10">
+                                <Image Width="83" Height="59" Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/EFEM/hand.png" />
+                                <controls:WaferCtrl WaferData="{Binding Wafer2}" Canvas.Left="42" Canvas.Top="-12"/>
+                            </Common:AxisCanvas>
+                        </Common:AxisCanvas>
+                    </Common:AxisCanvas>
+                </Common:AxisCanvas>
+            </Common:AxisCanvas>
+        </Common:AxisCanvas>
+    </Viewbox>
+</UserControl>

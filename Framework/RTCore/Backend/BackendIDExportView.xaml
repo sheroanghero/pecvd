@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="MECF.Framework.RT.Core.Backend.BackendIDExportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MECF.Framework.RT.Core.Backend"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <Canvas>
+        <Button x:Name="btExportEcid" Content="Export ECID" Command="{Binding ExportEcidCommand}" Width="150" Height="30" Canvas.Left="100" Canvas.Top="100"/>
+
+        <Button x:Name="btExportSvid" Content="Export Chamber SVID" Command="{Binding ExportSvidCommand}" Width="150" Height="30" Canvas.Left="100" Canvas.Top="150"/>
+
+        <Button x:Name="btExportTMSvid" Content="Export TM SVID" Command="{Binding ExportTMSvidCommand}" Width="150" Height="30" Canvas.Left="100" Canvas.Top="200"/>
+
+        <Button x:Name="btExportAlid" Content="Export ALID" Command="{Binding ExportAlidCommand}" Width="150" Height="30" Canvas.Left="100" Canvas.Top="250" Visibility="Hidden"/>
+    </Canvas>
+</UserControl>

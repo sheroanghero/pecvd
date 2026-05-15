@@ -1,0 +1,160 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.DataLogs.DataHistory.SelectUserDefineView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:cal="clr-namespace:Caliburn.Micro"
+             xmlns:wfi ="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration" 
+             xmlns:wf ="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:ctrl="http://OpenSEMI.Ctrlib.com/presentation"
+             xmlns:local="clr-namespace:MECF.Framework.UI.Client.CenterViews.DataLogs.DataHistory"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type ListBox}">
+            <Setter Property="Foreground" Value="{DynamicResource FG_Black}"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
+            <Setter Property="VerticalContentAlignment" Value="top"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <Border x:Name="Bd" SnapsToDevicePixels="true">
+                            <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}">
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </ScrollViewer>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false"/>
+                            <Trigger Property="IsGrouping" Value="true">
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Margin" Value="10,5,0,0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Rectangle.StrokeThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="Bd" SnapsToDevicePixels="true">
+                            <Grid>
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Cursor="Hand" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                <Rectangle x:Name="Highlight" StrokeThickness="{TemplateBinding Rectangle.StrokeThickness}" Opacity="0"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Stroke" TargetName="Highlight" Value="Blue"/>
+                                <Setter Property="Opacity" TargetName="Highlight" Value="1"/>
+                                <Setter Property="Foreground" Value="{DynamicResource FG_Black}"/>
+                                <Setter Property="Background"  Value="Blue"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Width="1200" Height="600">
+        <Border BorderBrush="Gray" BorderThickness="1" Background="White" Padding="10">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="5" Color="#3F000000" ShadowDepth="5"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" ></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*" ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Margin="10,5,0,0" BorderBrush="Gray" BorderThickness="1" Padding="5">
+                    <TreeView x:Name="ParameterTreeView" ItemsSource="{Binding ParameterNodes}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TreeView.SelectedItemChanged">
+                                <cal:ActionMessage MethodName="OnTreeSelectedChanged">
+                                    <cal:Parameter Value="{Binding ElementName=ParameterTreeView,Path=SelectedItem}"></cal:Parameter>
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate  ItemsSource="{Binding ChildNodes}">
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox IsChecked="{Binding Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <cal:ActionMessage MethodName="ParameterCheck">
+                                                    <cal:Parameter Value="{Binding }"/>
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </CheckBox>
+                                    <TextBlock Text="{Binding Name}"  />
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+                    </TreeView>
+                </Border>
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="10,5,0,5" Text="Selected Parameter" FontFamily="Arial" FontSize="14" ></TextBlock>
+                <Border Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" BorderBrush="Gray" BorderThickness="1" Padding="5" >
+                    <ListBox ItemsSource="{Binding SelectedParameters}" x:Name="_selectListBox" FontFamily="Arial" FontSize="14" SelectionMode="Multiple" SelectedItem="{Binding SelectedItem}">
+                    </ListBox>
+                </Border>
+
+                <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Delete" Width="100" Height="30">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="Delete">
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Content="Delete All" Width="100" Height="30" Margin="20,0,20,0">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="DeleteAll">
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Content="OK" Width="100" Height="30">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="OK">
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Content="Cancel" Width="100" Height="30" Margin="20,0,0,0">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="Cancel">
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
+

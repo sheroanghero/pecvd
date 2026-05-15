@@ -1,0 +1,1326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2C9E1DF3-1ABA-4972-BE60-41DD9B3C47A7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MECF.Framework.UI.Core</RootNamespace>
+    <AssemblyName>MECF.Framework.UI.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Output\MECF.Framework\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\ThirdParty\dlls\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="SciChart.Charting, Version=6.0.1.12982, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\SciCart\SciChart.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Core, Version=6.0.1.12982, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\SciCart\SciChart.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Data, Version=6.0.1.12982, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\SciCart\SciChart.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="SciChart.Drawing, Version=6.0.1.12982, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ThirdParty\dlls\SciCart\SciChart.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.Core.Presentation" />
+    <Reference Include="System.Activities.Presentation" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\..\ThirdParty\dlls\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WPFToolkit">
+      <HintPath>..\..\ThirdParty\dlls\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid">
+      <HintPath>..\..\ThirdParty\dlls\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\..\ThirdParty\dlls\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accounts\AccountCreation.xaml.cs">
+      <DependentUpon>AccountCreation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\AccountManagerView.xaml.cs">
+      <DependentUpon>AccountManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\AccountViewModel.cs" />
+    <Compile Include="Accounts\CurrentLogInUsers.xaml.cs">
+      <DependentUpon>CurrentLogInUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\GonaMainLogin.xaml.cs">
+      <DependentUpon>GonaMainLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\LoginViewModel.cs" />
+    <Compile Include="Accounts\PasswordMsgBox.xaml.cs">
+      <DependentUpon>PasswordMsgBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\MainLogin.xaml.cs">
+      <DependentUpon>MainLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\MyAccount.xaml.cs">
+      <DependentUpon>MyAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\PasswordMsgBoxModel.cs" />
+    <Compile Include="Accounts\RoleEditView.xaml.cs">
+      <DependentUpon>RoleEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\RolePermissionEdit.xaml.cs">
+      <DependentUpon>RolePermissionEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\UserAccountEdit.xaml.cs">
+      <DependentUpon>UserAccountEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\UserControlBase.cs" />
+    <Compile Include="Accounts\UserPwdChangeView.xaml.cs">
+      <DependentUpon>UserPwdChangeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\IUiInstance.cs" />
+    <Compile Include="Applications\UiApplication.cs" />
+    <Compile Include="CommonControl\AITInterlockSensor.xaml.cs">
+      <DependentUpon>AITInterlockSensor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonControl\AITScBoolRow.xaml.cs">
+      <DependentUpon>AITScBoolRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonControl\AITScDoubleRow.xaml.cs">
+      <DependentUpon>AITScDoubleRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonControl\AITScReadOnlyDoubleRow.xaml.cs">
+      <DependentUpon>AITScReadOnlyDoubleRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonControl\AITScStringRow.xaml.cs">
+      <DependentUpon>AITScStringRow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\CheckValue2.xaml.cs">
+      <DependentUpon>CheckValue2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\GasSplitterControl.xaml.cs">
+      <DependentUpon>GasSplitterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\AnalogControl.xaml.cs">
+      <DependentUpon>AnalogControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\AnalogControl2.xaml.cs">
+      <DependentUpon>AnalogControl2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Arrow.xaml.cs">
+      <DependentUpon>Arrow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Bath.xaml.cs">
+      <DependentUpon>Bath.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\CheckValve.xaml.cs">
+      <DependentUpon>CheckValve.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Common.cs" />
+    <Compile Include="Control\AiItemEditor.xaml.cs">
+      <DependentUpon>AiItemEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\AoItemEditor.xaml.cs">
+      <DependentUpon>AoItemEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\DiItemEditor.xaml.cs">
+      <DependentUpon>DiItemEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\DoItemEditor.xaml.cs">
+      <DependentUpon>DoItemEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Filter.xaml.cs">
+      <DependentUpon>Filter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\FlowPipe.xaml.cs">
+      <DependentUpon>FlowPipe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\FlowPipeV2.xaml.cs">
+      <DependentUpon>FlowPipeV2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\GasFlowButton.xaml.cs">
+      <DependentUpon>GasFlowButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\GasFlowChart.xaml.cs">
+      <DependentUpon>GasFlowChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\GasValve.xaml.cs">
+      <DependentUpon>GasValve.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\GasValveBig.xaml.cs">
+      <DependentUpon>GasValveBig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\GasValveV2.xaml.cs">
+      <DependentUpon>GasValveV2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\GasValveV3.xaml.cs">
+      <DependentUpon>GasValveV3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\GasValveV6.xaml.cs">
+      <DependentUpon>GasValveV6.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\GateValve.xaml.cs">
+      <DependentUpon>GateValve.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\GaugeControl.xaml.cs">
+      <DependentUpon>GaugeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\HandValve.xaml.cs">
+      <DependentUpon>HandValve.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Identifier.xaml.cs">
+      <DependentUpon>Identifier.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\InputDialogBox.xaml.cs">
+      <DependentUpon>InputDialogBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Knot.xaml.cs">
+      <DependentUpon>Knot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\MessageControl.xaml.cs">
+      <DependentUpon>MessageControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\MfcControl.xaml.cs">
+      <DependentUpon>MfcControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\PC.xaml.cs">
+      <DependentUpon>PC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\PcControl.xaml.cs">
+      <DependentUpon>PcControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\PipeControl.xaml.cs">
+      <DependentUpon>PipeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\LineDataChart.xaml.cs">
+      <DependentUpon>LineDataChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\PolygonAngle90.xaml.cs">
+      <DependentUpon>PolygonAngle90.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\PressureSwitch.xaml.cs">
+      <DependentUpon>PressureSwitch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\PressureSwitchBig.xaml.cs">
+      <DependentUpon>PressureSwitchBig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\PressureTransducer.xaml.cs">
+      <DependentUpon>PressureTransducer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Pump.xaml.cs">
+      <DependentUpon>Pump.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\RawDataChart.xaml.cs">
+      <DependentUpon>RawDataChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ReadonlyGauge.xaml.cs">
+      <DependentUpon>ReadonlyGauge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\RFGenerator.xaml.cs">
+      <DependentUpon>RFGenerator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\SCItemEditor.xaml.cs">
+      <DependentUpon>SCItemEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\SignalTower.xaml.cs">
+      <DependentUpon>SignalTower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\SimulatorAiItemEditor.xaml.cs">
+      <DependentUpon>SimulatorAiItemEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\SimulatorDoItemEditor.xaml.cs">
+      <DependentUpon>SimulatorDoItemEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\SimulatorDiItemEditor.xaml.cs">
+      <DependentUpon>SimulatorDiItemEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TcControl.xaml.cs">
+      <DependentUpon>TcControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ThrottleValveBig.xaml.cs">
+      <DependentUpon>ThrottleValveBig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ThrottleValveControl.xaml.cs">
+      <DependentUpon>ThrottleValveControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\VacuumPump.xaml.cs">
+      <DependentUpon>VacuumPump.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ValveBig.xaml.cs">
+      <DependentUpon>ValveBig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\Valve.xaml.cs">
+      <DependentUpon>Valve.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ValveRound.xaml.cs">
+      <DependentUpon>ValveRound.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\BoolMutiConverter.cs" />
+    <Compile Include="Converters\InverseBoolConverter.cs" />
+    <Compile Include="Converters\MultiValueConverters.cs" />
+    <Compile Include="Converters\RotateTransformConverter.cs" />
+    <Compile Include="Converters\BoolSensorConverter.cs" />
+    <Compile Include="Converters\CenterBorderGapMaskConverter.cs" />
+    <Compile Include="Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Converters\GeneralConverter.cs" />
+    <Compile Include="Converters\RolloverDataPointerInfoConverter.cs" />
+    <Compile Include="Converters\ServiceModeConvert.cs" />
+    <Compile Include="Converters\TabSizeConverter.cs" />
+    <Compile Include="Converters\TimeSpanConverter.cs" />
+    <Compile Include="Converters\ValveVisibleConvert.cs" />
+    <Compile Include="Converters\VisibilityConverter.cs" />
+    <Compile Include="Converters\WidthMoreConvertor.cs" />
+    <Compile Include="DeviceControl\AITBarcodeTextBox.xaml.cs">
+      <DependentUpon>AITBarcodeTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITBoostPumpInputDialogBox.xaml.cs">
+      <DependentUpon>AITBoostPumpInputDialogBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITColdPump.xaml.cs">
+      <DependentUpon>AITColdPump.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITDryPump.xaml.cs">
+      <DependentUpon>AITDryPump.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITFlowMeter.xaml.cs">
+      <DependentUpon>AITFlowMeter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITGasValve2.xaml.cs">
+      <DependentUpon>AITGasValve2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITIsoGasValve.xaml.cs">
+      <DependentUpon>AITIsoGasValve.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITGasValve.xaml.cs">
+      <DependentUpon>AITGasValve.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITHeaterControl.xaml.cs">
+      <DependentUpon>AITHeaterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITHeaterInputDialogBox.xaml.cs">
+      <DependentUpon>AITHeaterInputDialogBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITParameterCheckBox.xaml.cs">
+      <DependentUpon>AITParameterCheckBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITPressureMeter.xaml.cs">
+      <DependentUpon>AITPressureMeter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITPressureSensor.xaml.cs">
+      <DependentUpon>AITPressureSensor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITPump.xaml.cs">
+      <DependentUpon>AITPump.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITPump25.xaml.cs">
+      <DependentUpon>AITPump25.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITRf.xaml.cs">
+      <DependentUpon>AITRf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITRfGenerator.xaml.cs">
+      <DependentUpon>AITRfGenerator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITRfInputDialogBox.xaml.cs">
+      <DependentUpon>AITRfInputDialogBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITSensor.xaml.cs">
+      <DependentUpon>AITSensor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITSignalTower.xaml.cs">
+      <DependentUpon>AITSignalTower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITThermalCouple.xaml.cs">
+      <DependentUpon>AITThermalCouple.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITThrottleValve.xaml.cs">
+      <DependentUpon>AITThrottleValve.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITThrottleValve2.xaml.cs">
+      <DependentUpon>AITThrottleValve2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITThrottleValveInputDialogBox.xaml.cs">
+      <DependentUpon>AITThrottleValveInputDialogBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITTurboPump2.xaml.cs">
+      <DependentUpon>AITTurboPump2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITTurboPump.xaml.cs">
+      <DependentUpon>AITTurboPump.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITValve.xaml.cs">
+      <DependentUpon>AITValve.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\AITWaterFlowSensor.xaml.cs">
+      <DependentUpon>AITWaterFlowSensor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\EventLogComboView.xaml.cs">
+      <DependentUpon>EventLogComboView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceControl\ModuleControl.xaml.cs">
+      <DependentUpon>ModuleControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\MessageBoxEx.cs" />
+    <Compile Include="Dialog\TerminalDialog.xaml.cs">
+      <DependentUpon>TerminalDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\NotificationDialog.xaml.cs">
+      <DependentUpon>NotificationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\RecipeAlarmedDialog.xaml.cs">
+      <DependentUpon>RecipeAlarmedDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\RecipeSelectDialog.xaml.cs">
+      <DependentUpon>RecipeSelectDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="E95Template\DefaultTopView.xaml.cs">
+      <DependentUpon>DefaultTopView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedControls\BindingProxy.cs" />
+    <Compile Include="ExtendedControls\ObjectInTreeView.xaml.cs">
+      <DependentUpon>ObjectInTreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedControls\ObjectTreeNode.cs" />
+    <Compile Include="ExtendedControls\TreeViewHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedControls\WpfPropertyGrid.cs" />
+    <Compile Include="Style\GridHelper.cs" />
+    <Compile Include="Style\HeaderPanel.cs" />
+    <Compile Include="ValidationRules\ValidateEmailAddress.cs" />
+    <Compile Include="ValidationRules\ValidatePhoneNumber.cs" />
+    <Compile Include="ValidationRules\ValidateUserName.cs" />
+    <Compile Include="View\Common\EventView.xaml.cs">
+      <DependentUpon>EventView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\EventViewModel.cs" />
+    <Compile Include="View\Common\FolderTreeViewItem.cs" />
+    <Compile Include="View\Common\MonitorView.xaml.cs">
+      <DependentUpon>MonitorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\MonitorViewModel.cs" />
+    <Compile Include="View\Common\PageSCValue.cs" />
+    <Compile Include="View\Common\ParameterView.xaml.cs">
+      <DependentUpon>ParameterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Common\ParameterViewModel.cs" />
+    <Compile Include="E95Template\BottomView.xaml.cs">
+      <DependentUpon>BottomView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="E95Template\CenterTabView.xaml.cs">
+      <DependentUpon>CenterTabView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="E95Template\CenterView.xaml.cs">
+      <DependentUpon>CenterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="E95Template\ITopView.cs" />
+    <Compile Include="E95Template\StandardFrameWindow.xaml.cs">
+      <DependentUpon>StandardFrameWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="E95Template\UILayoutParser.cs" />
+    <Compile Include="E95Template\ViewManager.cs" />
+    <Compile Include="View\IBaseModel.cs" />
+    <Compile Include="View\IBaseView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Accounts\AccountCreation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Accounts\AccountManagerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Accounts\CurrentLogInUsers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Accounts\GonaMainLogin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Accounts\PasswordMsgBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Accounts\MainLogin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Accounts\MyAccount.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Accounts\RoleEditView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Accounts\RolePermissionEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Accounts\UserAccountEdit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Accounts\UserPwdChangeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CommonControl\AITInterlockSensor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CommonControl\AITScBoolRow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CommonControl\AITScDoubleRow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CommonControl\AITScReadOnlyDoubleRow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CommonControl\AITScStringRow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\CheckValue2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\GasSplitterControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\AnalogControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\AnalogControl2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\Arrow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\Bath.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\CheckValve.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\AiItemEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\AoItemEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\DiItemEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\DoItemEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\Filter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\FlowPipe.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\FlowPipeV2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\GasFlowButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\GasFlowChart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\GasValve.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\GasValveBig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\GasValveV2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\GasValveV3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\GasValveV6.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\GateValve.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\GaugeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\HandValve.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\Identifier.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\InputDialogBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\Knot.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\MessageControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\MfcControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\PC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\PcControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\PipeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\LineDataChart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\PolygonAngle90.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\PressureSwitch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\PressureSwitchBig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\PressureTransducer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\Pump.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\RawDataChart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\ReadonlyGauge.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\RFGenerator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\SCItemEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\SignalTower.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\SimulatorAiItemEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\SimulatorDoItemEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\SimulatorDiItemEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\TcControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\ThrottleValveBig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\ThrottleValveControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\VacuumPump.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\ValveBig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\Valve.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\ValveRound.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITBarcodeTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITBoostPumpInputDialogBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITColdPump.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITDryPump.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITFlowMeter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITGasValve2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITIsoGasValve.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITGasValve.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITHeaterControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITHeaterInputDialogBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITParameterCheckBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITPressureMeter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITPressureSensor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITPump.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITPump25.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeviceControl\AITRf.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITRfGenerator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITRfInputDialogBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITSensor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITSignalTower.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITThermalCouple.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITThrottleValve.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITThrottleValve2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITThrottleValveInputDialogBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITTurboPump2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITTurboPump.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITValve.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\AITWaterFlowSensor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DeviceControl\EventLogComboView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeviceControl\ModuleControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\TerminalDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\NotificationDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\RecipeAlarmedDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\RecipeSelectDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="E95Template\DefaultTopView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExtendedControls\ObjectInTreeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Language\StringResources.en-US.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Language\StringResources.zh-CN.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\ComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\CommonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\CadetBlue\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\CadetBlue\ComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\CadetBlue\CommonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\CadetBlue\GroupBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\CadetBlue\LabelStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\CadetBlue\ListBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\CadetBlue\ListViewStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\CadetBlue\PasswordBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\CadetBlue\StyleA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\CadetBlue\TabControlStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\CadetBlue\TextBlockStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\CadetBlue\TextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\CadetBlue\TreeViewStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\CadetBlue\WindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\NavyBlue\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\NavyBlue\ComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\NavyBlue\CommonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\NavyBlue\DataGridStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\NavyBlue\GroupBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\NavyBlue\LabelStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\NavyBlue\ListBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\NavyBlue\ListViewStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\NavyBlue\PasswordBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\NavyBlue\ScrollbarStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\NavyBlue\StyleA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\NavyBlue\TabControlStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\NavyBlue\TextBlockStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\NavyBlue\TextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\NavyBlue\TreeViewStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\NavyBlue\WindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\SeaBlue\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\SeaBlue\ComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\SeaBlue\CommonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\SeaBlue\GroupBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\SeaBlue\LabelStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\SeaBlue\ListBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\SeaBlue\ListViewStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\SeaBlue\PasswordBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\SeaBlue\StyleA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\SeaBlue\TabControlStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\SeaBlue\TextBlockStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\SeaBlue\TextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\SeaBlue\TreeViewStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\SeaBlue\WindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\DeepBlue\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\DeepBlue\ComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\DeepBlue\CommonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\DeepBlue\GroupBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\DeepBlue\LabelStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\DeepBlue\ListBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\DeepBlue\ListViewStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\DeepBlue\PasswordBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\DeepBlue\StyleA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\DeepBlue\TabControlStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\DeepBlue\TextBlockStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\DeepBlue\TextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\DeepBlue\TreeViewStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\DeepBlue\WindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\GroupBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\LabelStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\ListBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\ListViewStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\PasswordBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\TabControlStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\TextBlockStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\TextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\TreeViewStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\StyleA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\WindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Common\EventView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Common\MonitorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Common\ParameterView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="E95Template\BottomView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="E95Template\CenterTabView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="E95Template\CenterView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="E95Template\StandardFrameWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\barcode.png" />
+    <Resource Include="Resources\Blue.png" />
+    <Resource Include="Resources\cb.png" />
+    <Resource Include="Resources\closed.png" />
+    <Resource Include="Resources\CustomDialogInformation.png" />
+    <Resource Include="Resources\Exit.png" />
+    <Resource Include="Resources\Gasbox.png" />
+    <Resource Include="Resources\Heater.png" />
+    <Resource Include="Resources\HeaterShining.png" />
+    <Resource Include="Resources\lights.png" />
+    <Resource Include="Resources\Lime.png" />
+    <Content Include="Resources\default_ui.ico" />
+    <Resource Include="Resources\Loading1.gif" />
+    <Resource Include="Resources\Login\按钮.png" />
+    <Resource Include="Resources\Login\按钮_悬停.png" />
+    <Resource Include="Resources\Login\按钮_点击.png" />
+    <Resource Include="Resources\Login\输入框.png" />
+    <Resource Include="Resources\Login\输入框_选择.png" />
+    <Resource Include="Resources\Main\login.png" />
+    <Resource Include="Resources\Main\LogoEmpty.png" />
+    <Resource Include="Resources\Main\tab.png" />
+    <Resource Include="Resources\Main\tab_悬停.png" />
+    <Resource Include="Resources\Main\tab次级.png" />
+    <Resource Include="Resources\Main\tab次级_悬停.png" />
+    <Resource Include="Resources\Main\上一个.png" />
+    <Resource Include="Resources\Main\上一个_悬停.png" />
+    <Resource Include="Resources\Main\上一个_点击.png" />
+    <Resource Include="Resources\Main\下一个.png" />
+    <Resource Include="Resources\Main\下一个_悬停.png" />
+    <Resource Include="Resources\Main\下一个_点击.png" />
+    <Resource Include="Resources\Main\下拉框_底板.png" />
+    <Resource Include="Resources\Main\下拉框_底板150.png" />
+    <Resource Include="Resources\Main\下拉框_底板JETP.png" />
+    <Resource Include="Resources\Main\主界面_切片.png" />
+    <Resource Include="Resources\Main\主界面_切片SORTER.png" />
+    <Resource Include="Resources\Main\主菜单按钮.png" />
+    <Resource Include="Resources\Main\主菜单按钮150.png" />
+    <Resource Include="Resources\Main\主菜单按钮_悬停.png" />
+    <Resource Include="Resources\Main\主菜单按钮_悬停150.png" />
+    <Resource Include="Resources\Main\主菜单按钮_点击.png" />
+    <Resource Include="Resources\Main\主菜单按钮_点击150.png" />
+    <Resource Include="Resources\Main\主菜单按钮_选中.png" />
+    <Resource Include="Resources\Main\主菜单按钮_选中150.png" />
+    <Resource Include="Resources\Main\事件按钮.png" />
+    <Resource Include="Resources\Main\事件按钮_悬停.png" />
+    <Resource Include="Resources\Main\事件按钮_点击.png" />
+    <Resource Include="Resources\Main\拖动组件.png" />
+    <Resource Include="Resources\opened.png" />
+    <Resource Include="Resources\Pump\boost_pump_enabled.png" />
+    <Resource Include="Resources\Pump\boost_pump_error.png" />
+    <Resource Include="Resources\Pump\boost_pump_off.png" />
+    <Resource Include="Resources\Pump\boost_pump_on.png" />
+    <Resource Include="Resources\Pump\boost_pump_warning.png" />
+    <Resource Include="Resources\Pump\pump_error.png" />
+    <Resource Include="Resources\Pump\pump_off.png" />
+    <Resource Include="Resources\Pump\pump_on.png" />
+    <Resource Include="Resources\Pump\pump_warning.png" />
+    <Resource Include="Resources\RecipeFile.png" />
+    <Resource Include="Resources\RecipeFolder.png" />
+    <Resource Include="Resources\red.png" />
+    <Resource Include="Resources\SystemLog\Alarm.png" />
+    <Resource Include="Resources\SystemLog\EquipLog.png" />
+    <Resource Include="Resources\SystemLog\Information.png" />
+    <Resource Include="Resources\SystemLog\UserOperation.png" />
+    <Resource Include="Resources\SystemLog\Warning.png" />
+    <Content Include="Resources\Valve\FastPumpValve.png" />
+    <Content Include="Resources\Valve\PumpBlack.png" />
+    <Content Include="Resources\Valve\PumpGray.png" />
+    <Content Include="Resources\Valve\PumpGreen.png" />
+    <Content Include="Resources\Valve\PumpRed.png" />
+    <Content Include="Resources\Valve\SlowPumpValve.png" />
+    <Content Include="Resources\Valve\ValveClosed.png" />
+    <Content Include="Resources\Valve\valveCloseHorizontal.png" />
+    <Content Include="Resources\Valve\valveCloseVertical.png" />
+    <Content Include="Resources\Valve\valveOpenHorizontal.png" />
+    <Content Include="Resources\Valve\valveOpenVertical.png" />
+    <Resource Include="Resources\Yellow.png" />
+    <Resource Include="Resources\zoom_all.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{9cd2a6be-1971-4e74-b49e-547982f64034}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.IndustrialControl.PipeLine"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MECF.Framework.UI.Client.IndustrialControl" xmlns:converters="clr-namespace:MECF.Framework.UI.Client.IndustrialControl.Converters"
+             mc:Ignorable="d" Height="95" Width="489">
+    <UserControl.Resources>
+        <converters:MultiplesValueConverter x:Key="multiConverter"></converters:MultiplesValueConverter>
+        <converters:VisibilityConverter x:Key="visibilityConverter"></converters:VisibilityConverter>
+    </UserControl.Resources>
+    <Grid>
+        <Grid x:Name="grid1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Canvas x:Name="canvas1" Grid.Column="0" Width="{Binding ElementName=grid1,Path=ActualHeight}" Height="{Binding ElementName=grid1,Path=ActualHeight}"  ClipToBounds="True">
+                <Ellipse x:Name="ellipe1" Grid.Column="0" Width="{Binding ElementName=grid1,Path=ActualHeight,Converter={StaticResource multiConverter},ConverterParameter=2}" 
+                         Height="{Binding ElementName=grid1,Path=ActualHeight,Converter={StaticResource multiConverter},ConverterParameter=2}" Margin="0,0,0,0"
+                         Canvas.Left="{Binding ElementName=grid1,Path=ActualHeight,Converter={StaticResource multiConverter},ConverterParameter=0}"
+                         Canvas.Top="{Binding ElementName=grid1,Path=ActualHeight,Converter={StaticResource multiConverter},ConverterParameter=0}">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush RadiusX="0.5" RadiusY="0.5" GradientOrigin="0.5,0.5">
+                            <GradientStop Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLine}},Path=EdgeColor}" Offset="0"></GradientStop>
+                            <GradientStop Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLine}},Path=CenterColor}" Offset="0.5"></GradientStop>
+                            <GradientStop Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLine}},Path=EdgeColor}" Offset="1"></GradientStop>
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Canvas>
+            <Canvas x:Name="canvas2" Grid.Column="2" Width="{Binding ElementName=grid1,Path=ActualHeight}" Height="{Binding ElementName=grid1,Path=ActualHeight}" ClipToBounds="True">
+                <Ellipse x:Name="ellipe2" Width="{Binding ElementName=grid1,Path=ActualHeight,Converter={StaticResource multiConverter},ConverterParameter=2}" 
+                         Height="{Binding ElementName=grid1,Path=ActualHeight,Converter={StaticResource multiConverter},ConverterParameter=2}" 
+                         Canvas.Left="{Binding ElementName=grid1,Path=ActualHeight,Converter={StaticResource multiConverter},ConverterParameter=-1}"
+                         Canvas.Top="{Binding ElementName=grid1,Path=ActualHeight,Converter={StaticResource multiConverter},ConverterParameter=-1}">
+                    <Ellipse.Fill>
+                        <RadialGradientBrush RadiusX="0.5" RadiusY="0.5" GradientOrigin="0.5,0.5">
+                            <GradientStop Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLine}},Path=EdgeColor}" Offset="0"></GradientStop>
+                            <GradientStop Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLine}},Path=CenterColor}" Offset="0.5"></GradientStop>
+                            <GradientStop Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLine}},Path=EdgeColor}" Offset="1"></GradientStop>
+                        </RadialGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Canvas>
+            <Rectangle Grid.Column="1" Stretch="Fill">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLine}},Path=EdgeColor}" Offset="0"></GradientStop>
+                        <GradientStop Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLine}},Path=CenterColor}" Offset="0.5"></GradientStop>
+                        <GradientStop Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLine}},Path=EdgeColor}" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+        <Path x:Name="path1" 
+              Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLine}},Path=PipeLineActive,Converter={StaticResource visibilityConverter}}"
+              StrokeThickness="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLine}},Path=PipeLineWidth}" 
+              StrokeDashOffset="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLine}},Path=LineOffect}" StrokeDashArray="5,5">
+            <Path.Stroke>
+                <SolidColorBrush Color="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type local:PipeLine}},Path=ActiveLineCenterColor}"></SolidColorBrush>
+            </Path.Stroke>
+        </Path>
+    </Grid>
+</UserControl>

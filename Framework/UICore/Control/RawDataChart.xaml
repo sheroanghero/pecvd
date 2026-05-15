@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="Aitex.Core.UI.Control.RawDataChart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sciChart="http://schemas.abtsoftware.co.uk/scichart"   
+             xmlns:cv="clr-namespace:Aitex.Core.UI.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <cv:bool2VisibilityConverter x:Key="bool2VisibilityConvert"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <sciChart:SciChartSurface x:Name="sciChart" sciChart:ThemeManager.Theme="ExpressionLight" ClipToBounds="False" DebugWhyDoesntSciChartRender="True" Padding="0">
+
+            <sciChart:SciChartSurface.RenderableSeries>
+                <sciChart:FastLineRenderableSeries IsVisible="{Binding TemperatureVisible}" YAxisId="TemperatureYAxis" DataSeries="{Binding TemperatureData}" Stroke="Red"/>
+                <sciChart:FastLineRenderableSeries IsVisible="{Binding ReflectVisible}" YAxisId="ReflectYAxis" DataSeries="{Binding ReflectData}" Stroke="Blue"/>
+                <sciChart:FastLineRenderableSeries IsVisible="{Binding CurvatureVisible}" YAxisId="CurvatureYAxis" DataSeries="{Binding CurvatureData}" Stroke="Green"/>
+            </sciChart:SciChartSurface.RenderableSeries>
+
+            <sciChart:SciChartSurface.YAxes>
+                <sciChart:NumericAxis Visibility="{Binding TemperatureVisible,Converter= {StaticResource bool2VisibilityConvert}}"  
+                                      AutoRange="{Binding AutoRange,Mode=TwoWay}" 
+                                      VisibleRange="{Binding VisibleRange,Mode=OneWay}"                                        
+                                       DrawMinorGridLines="False" 
+                                      TickTextBrush="Red" 
+                                      Id="TemperatureYAxis" 
+                                      AxisAlignment="Left"
+                                  DrawMinorTicks="False" 
+                                      MaxWidth="35" 
+                                      MinWidth="35" 
+                                      FontSize="11" 
+                                      Foreground="Blue" 
+                                      DrawLabels="True"
+                                      DrawMajorBands="False" 
+                                      DrawMajorGridLines="True" 
+                                      DrawMajorTicks="True" 
+                                      AxisTitle=" ">
+                    <sciChart:NumericAxis.GrowBy>
+                        <sciChart:DoubleRange Min="0.1" Max="0.1"/>
+                    </sciChart:NumericAxis.GrowBy>
+                </sciChart:NumericAxis>
+                <sciChart:NumericAxis  Visibility="{Binding ReflectVisible,Converter= {StaticResource bool2VisibilityConvert}}"  
+                                       AutoRange="{Binding AutoRange,Mode=TwoWay}" 
+                                       VisibleRange="{Binding VisibleRange,Mode=OneWay}" 
+                                       DrawMinorGridLines="False" 
+                                       TickTextBrush="Blue" 
+                                       Id="ReflectYAxis" 
+                                       AxisAlignment="Right"
+                                  DrawMinorTicks="False" 
+                                       MaxWidth="35" 
+                                       MinWidth="35" 
+                                       FontSize="11" 
+                                       Foreground="Blue" 
+                                       DrawLabels="True" 
+                                       DrawMajorBands="False" 
+                                       DrawMajorGridLines="True" 
+                                       DrawMajorTicks="True" 
+                                       AxisTitle="">
+                    <sciChart:NumericAxis.GrowBy>
+                        <sciChart:DoubleRange Min="0.1" Max="0.1"/>
+                    </sciChart:NumericAxis.GrowBy>
+                </sciChart:NumericAxis>
+                <sciChart:NumericAxis  Visibility="{Binding CurvatureVisible,Converter= {StaticResource bool2VisibilityConvert}}"   
+                                       AutoRange="{Binding AutoRange,Mode=TwoWay}" 
+                                       VisibleRange="{Binding VisibleRange,Mode=OneWay}" 
+                                       DrawMinorGridLines="False" 
+                                       TickTextBrush="Green" 
+                                       Id="CurvatureYAxis" 
+                                       AxisAlignment="Right"
+                                  DrawMinorTicks="False" 
+                                       MaxWidth="35" 
+                                       MinWidth="35" 
+                                       FontSize="11" 
+                                       Foreground="Green" 
+                                       DrawLabels="True" 
+                                       DrawMajorBands="False" 
+                                       DrawMajorGridLines="True" 
+                                       DrawMajorTicks="True" AxisTitle="">
+                    <sciChart:NumericAxis.GrowBy>
+                        <sciChart:DoubleRange Min="0.1" Max="0.1"/>
+                    </sciChart:NumericAxis.GrowBy>
+                </sciChart:NumericAxis>
+            </sciChart:SciChartSurface.YAxes>
+
+            <sciChart:SciChartSurface.XAxis>
+                <sciChart:NumericAxis x:Name="numAxis" AutoRange="Always" 
+                                  DrawMinorGridLines="False" MajorDelta="1.0"
+                                  DrawMinorTicks="False" DrawMajorBands="False" DrawMajorGridLines="False" DrawMajorTicks="False" 
+                                  MaxAutoTicks="1500" MinorsPerMajor="1" FlipCoordinates="False" Focusable="False" 
+                                      Background="LightGray" FontSize="11" DrawLabels="False" AxisTitle="  " AutoTicks="True">
+                </sciChart:NumericAxis>
+            </sciChart:SciChartSurface.XAxis>
+
+        </sciChart:SciChartSurface>
+    </Grid>
+</UserControl>

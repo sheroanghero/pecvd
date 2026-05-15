@@ -1,0 +1,147 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.Maitenances.CalibrationTable.CalibrationTableView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converter="clr-namespace:MECF.Framework.UI.Client.Ctrlib.Converter"
+             xmlns:controls="clr-namespace:OpenSEMI.Ctrlib.Controls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:micro="clr-namespace:Caliburn.Micro"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converter:Bool2Not x:Key="Bool2Not"/>
+        <converter:BoolCollapsedConverter x:Key="BoolVisibility"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid Grid.Column="0"   HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
+                  SelectedItem="{Binding CurrentSelection}"
+                  ItemsSource="{Binding CalibrationItems}" Margin="0,5,0,0" >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Name" Width="280">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DisplayName}" Margin="5,0" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Canvas Grid.Row="0">
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="1,1,1,1" Background="{DynamicResource Table_BG_Title}" Grid.Row="1" Padding="5,1" Height="40" Width="120">
+                    <TextBlock Text="Calibration Item" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+
+                <Border BorderBrush="{DynamicResource Table_BD}" BorderThickness="0,1,1,1" Background="{DynamicResource Table_BG_Content}" Grid.Row="1" Grid.Column="1" Padding="5,1" Canvas.Left="120" Height="40" Width="250">
+                    <TextBlock Text="{Binding CurrentSelection.DisplayName}" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center"/>
+                </Border>
+
+
+                <Button Content="Save" Grid.Column="1" Width="70" Height="30"  Margin="0" Padding="0" Canvas.Left="385" Canvas.Top="4" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <micro:ActionMessage MethodName="Save">
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+
+                <Button Content="Cancel" Grid.Column="1" Width="70" Height="30"  Margin="0" Padding="0" Canvas.Left="473" Canvas.Top="4" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <micro:ActionMessage MethodName="Cancel">
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Canvas>
+
+            <Canvas Grid.Row="1" VerticalAlignment="Bottom">
+                <TextBlock Text="Feedback Value:" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center" Canvas.Left="1" Canvas.Top="-21"  />
+
+                <TextBlock Text="Calibration Value:" TextWrapping="Wrap" Foreground="{DynamicResource FG_Black}" FontSize="12" FontFamily="Arial" VerticalAlignment="Center" Canvas.Left="210" Canvas.Top="-21"  />
+
+            </Canvas>
+
+
+            <Canvas Grid.Row="2">
+                <controls:TextBoxEx AllowBackgroundChange="False"  Text="{Binding Path=FeedbackValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" RenderTransformOrigin="3.857,1.5" Height="40" Width="160" Canvas.Left="1" />
+
+                <controls:TextBoxEx AllowBackgroundChange="False"  Text="{Binding Path=CalibrationValue, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" RenderTransformOrigin="3.857,1.5" Canvas.Left="208" Height="40" Width="160" />
+
+                <Button Content="Add" Grid.Column="1" Width="70" Height="30"  Margin="0" Padding="0" Canvas.Left="389" Canvas.Top="5" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <micro:ActionMessage MethodName="Add">
+                            </micro:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Canvas>
+
+
+            <DataGrid Grid.Row="3"   HorizontalAlignment="Left" CanUserAddRows="False" AutoGenerateColumns="False" RowHeaderWidth="0"
+                      VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
+                      ItemsSource="{Binding TableData}" Margin="0,5,0,0" >
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Feedback Value" Width="280">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding FeedbackValue}" Margin="5,0" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Calibration Value" Width="280">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding CalibrationValue}" Margin="5,0" FontFamily="Arial" FontSize="14" Foreground="{DynamicResource FG_Black}" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+ 
+                    <DataGridTemplateColumn Header=" " Width="280">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete"  Width="100" Height="25" FontSize="14">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <micro:ActionMessage MethodName="DeleteItem">
+                                                <micro:Parameter Value="{Binding }" />
+                                            </micro:ActionMessage>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+        </Grid>
+
+ 
+
+    </Grid>
+
+</UserControl>

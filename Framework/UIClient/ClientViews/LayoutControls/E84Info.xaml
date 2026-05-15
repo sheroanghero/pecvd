@@ -1,0 +1,585 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.Controls.E84Info"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:commonControl="clr-namespace:MECF.Framework.UI.Core.CommonControl;assembly=MECF.Framework.UI.Core"
+             xmlns:controls="clr-namespace:MECF.Framework.UI.Client.CenterViews.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="800" d:DesignWidth="1200" Background="#91b0cd">
+    <Grid x:Name="root">
+        <Border HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="1" BorderBrush="Transparent">
+            <DockPanel Background="#d6f1ff">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="4*" />
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderThickness="1"
+                            BorderBrush="#84a567" Height="310" Width="1120" Margin="0">
+                        <DockPanel Background="#d6f1ff">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.9*" />
+                                    <ColumnDefinition Width="1.35*" />
+                                    <ColumnDefinition Width="1.21*" />
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="LpBorder" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom" BorderThickness="1" BorderBrush="#84a567"
+                                        Height="310" Width="290" Margin="0">
+                                    <DockPanel Background="#d6f1ff">
+                                        <Label Content="Pod Loader Status" HorizontalContentAlignment="Center"
+                                               DockPanel.Dock="Top" Background="#7fc7ed" Height="30" FontSize="14"/>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="4*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+
+                                            <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="1">
+                                                <Grid >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="35" />
+                                                        <RowDefinition Height="30" />
+                                                    </Grid.RowDefinitions>
+                                                    <Label Grid.Row="0" Content="Pod Present:" FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="0" Grid.Column="1"
+                                                               On="{Binding E84Data.PodPresent}" />
+                                                    <Label Grid.Row="1" Grid.Column="0" Content="Pod Placed:"
+                                                           FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="1" Grid.Column="1"
+                                                               On="{Binding E84Data.PodPlaced}" />
+                                                    <Label Grid.Row="2" Grid.Column="0" Content="Pod Latched:"
+                                                           FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="2" Grid.Column="1"
+                                                               On="{Binding E84Data.PodLatched}" />
+                                                    <Label Grid.Row="3" Grid.Column="0" Content="Pod Docked:"
+                                                           FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="3" Grid.Column="1"
+                                                               On="{Binding E84Data.PodDocked}" />
+                                                    <Label Grid.Row="4" Grid.Column="0" Content="Pod Open:"
+                                                           FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="4" Grid.Column="1"
+                                                               On="{Binding E84Data.PodDocked}" />
+                                                    <Label Content="{Binding E84Data.LoadPortState}" Grid.Row="5"
+                                                           Grid.ColumnSpan="2"
+                                                           Grid.Column="0"
+                                                           BorderThickness="2" BorderBrush="White" Width="160"
+                                                           Height="30" FontSize="14"
+                                                           HorizontalContentAlignment="Center"
+                                                           VerticalAlignment="Center" />
+                                                    <Label Grid.Row="6" Grid.Column="0" Content="Virtual Mode:"
+                                                           FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="6" Grid.Column="1"
+                                                               On="{Binding E84Data.VirtualMode}" />
+                                                </Grid>
+                                            </Border>
+                                            <WrapPanel Grid.Row="1">
+                                                <Button Content="Place" x:Name="btnPlace" FontSize="14"
+                                                        Command="{Binding E84Command}"
+                                                        CommandParameter="E84Place"
+                                                        Width="80" Height="30" VerticalAlignment="Center"
+                                                        IsEnabled="False" />
+                                                <Button Content="Pick" x:Name="btnPick" FontSize="14"
+                                                        Command="{Binding E84Command}"
+                                                        CommandParameter="E84Pick"
+                                                        Width="80" Height="30" VerticalAlignment="Center"
+                                                        IsEnabled="False" />
+                                                <Button Content="Clamp" x:Name="btnClamp" FontSize="14"
+                                                        Command="{Binding E84Command}"
+                                                        CommandParameter="Clamp"
+                                                        Width="80" Height="30" VerticalAlignment="Center"
+                                                        IsEnabled="False" />
+                                            </WrapPanel>
+                                        </Grid>
+                                    </DockPanel>
+                                </Border>
+
+                                <Border Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                        BorderThickness="1" BorderBrush="#84a567" Height="310" Width="434" Margin="0">
+                                    <DockPanel Background="#d6f1ff">
+                                        <Label Content="Load Port Status" HorizontalContentAlignment="Center"
+                                               DockPanel.Dock="Top" Background="#7fc7ed" Height="30" FontSize="14"/>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="205*" />
+                                                <RowDefinition Height="143*" />
+                                            </Grid.RowDefinitions>
+
+                                            <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="1"
+                                                    Margin="0,0,0,38" Grid.RowSpan="2">
+                                                <Grid Margin="0,0,0,-31">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="1.7*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                    </Grid.RowDefinitions>
+                                                    <Label Grid.Row="0" Content="Port Reserved:" FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="0" Grid.Column="1"
+                                                               On="{Binding E84Data.PodReserved}" Margin="5,0,10,0"
+                                                               Height="36" VerticalAlignment="Top" />
+                                                    <Label Grid.Row="1" Content="Port State:" FontSize="14"
+                                                           HorizontalContentAlignment="Right"
+                                                           VerticalAlignment="Center" />
+                                                    <Label Content="{Binding E84Data.PortState}" Grid.Row="1"
+                                                           Grid.Column="1"
+                                                           BorderThickness="2" BorderBrush="White"
+                                                           FontSize="18" HorizontalContentAlignment="Center"
+                                                           VerticalAlignment="Center" Margin="5,4,0,4" Height="31" />
+                                                    <Label Grid.Row="2" Content="Carrier ID:"
+                                                           HorizontalContentAlignment="Right" FontSize="14"
+                                                           VerticalAlignment="Center" />
+                                                    <Label Content="{Binding E84Data.CarrierID}" Grid.Row="2"
+                                                           Grid.Column="1" BorderThickness="2"
+                                                           BorderBrush="White" FontSize="18" Height="31"
+                                                           HorizontalContentAlignment="Center"
+                                                           VerticalAlignment="Center" Margin="5,4,0,4" />
+                                                    <Label Grid.Row="3" Content="Slot Map:"
+                                                           HorizontalContentAlignment="Right" FontSize="14"
+                                                           VerticalAlignment="Center" />
+                                                    <Label Content="{Binding E84Data.SlotMap}" Grid.Row="3"
+                                                           Grid.Column="1" BorderThickness="2"
+                                                           BorderBrush="White" FontSize="14"
+                                                           HorizontalContentAlignment="Center"
+                                                           VerticalAlignment="Bottom" Height="32" Margin="5,0,0,2" />
+                                                    <Label Grid.Row="4" Content="Access Mode:"
+                                                           HorizontalContentAlignment="Right" FontSize="14"
+                                                           VerticalAlignment="Center" />
+                                                    <Label Content="{Binding E84Data.AccessMode}" Grid.Row="4"
+                                                           Grid.Column="1" BorderThickness="2"
+                                                           BorderBrush="White" FontSize="14" Height="32"
+                                                           HorizontalContentAlignment="Center"
+                                                           VerticalAlignment="Center" Margin="5,4,0,3" />
+                                                    <Label Grid.Row="5" Content="Access Status:"
+                                                           HorizontalContentAlignment="Right" FontSize="14"
+                                                           VerticalAlignment="Center" />
+                                                    <Label Content="{Binding E84Data.AccessStatus}" Grid.Row="5"
+                                                           Grid.Column="1" BorderThickness="2"
+                                                           BorderBrush="White" FontSize="14" Height="33"
+                                                           HorizontalContentAlignment="Center"
+                                                           VerticalAlignment="Center" Margin="5,4,0,2" />
+                                                    <Label Grid.Row="6" Grid.Column=" 0" Content="ID Status:"
+                                                           HorizontalContentAlignment="Right" FontSize="14"
+                                                           VerticalAlignment="Center" Grid.ColumnSpan="1"
+                                                           Margin="0,8,0,0" Height="30" />
+                                                    <Label Content="{Binding E84Data.CarrierIDStatus}" Grid.Row="6"
+                                                           Grid.Column="1" BorderThickness="2"
+                                                           BorderBrush="White" FontSize="14" Height="33"
+                                                           HorizontalContentAlignment="Center"
+                                                           VerticalAlignment="Center" Margin="5,3,0,3"
+                                                           Grid.ColumnSpan="1" />
+                                                    <Label Grid.Row="7" Content="Slot Map Status:"
+                                                           HorizontalContentAlignment="Right" FontSize="14"
+                                                           VerticalAlignment="Center" Grid.Column="0" Margin="0,8,0,0"
+                                                           Height="30" />
+                                                    <Label Content="{Binding E84Data.SlotMapStatus}" Grid.Row="7"
+                                                           Grid.Column="1" BorderThickness="2"
+                                                           BorderBrush="White" FontSize="14" Height="37"
+                                                           HorizontalContentAlignment="Center"
+                                                           VerticalAlignment="Center" Margin="5,2,0,0" />
+                                                    <CheckBox Grid.Row="8" Content="Automatic Mode" IsChecked="false"
+                                                              VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                              FontSize="16" Margin="0,4,0,0" Height="26" Width="180" Grid.ColumnSpan="2">
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger EventName="Checked">
+                                                                <i:InvokeCommandAction Command="{Binding E84Command}"
+                                                                                       CommandParameter="SetAMHS" />
+                                                            </i:EventTrigger>
+                                                            <i:EventTrigger EventName="Unchecked">
+                                                                <i:InvokeCommandAction Command="{Binding E84Command}"
+                                                                                       CommandParameter="SetManual" />
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
+                                                    </CheckBox>
+                                                    <CheckBox Grid.Row="8" Content="In Service" IsChecked="false"
+                                                              VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                              FontSize="16" Margin="86,4,0,0" Height="26" Width="175" Grid.Column="1">
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger EventName="Checked">
+                                                                <i:InvokeCommandAction Command="{Binding E84Command}"
+                                                                                       CommandParameter="SetInService" />
+                                                            </i:EventTrigger>
+                                                            <i:EventTrigger EventName="Unchecked">
+                                                                <i:InvokeCommandAction Command="{Binding E84Command}"
+                                                                                       CommandParameter="SetOutService" />
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
+                                                    </CheckBox>
+
+                                                </Grid>
+                                            </Border>
+
+
+                                        </Grid>
+                                    </DockPanel>
+                                </Border>
+
+                                <Border x:Name="ConfigBorder1" Grid.Column="1" HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        BorderThickness="1" BorderBrush="#84a567" Height="310" Width="394"
+                                        Margin="434,0,-1,0" Grid.ColumnSpan="2">
+                                    <DockPanel Background="#d6f1ff">
+                                        <Label Content="Carrier ID Reader" HorizontalContentAlignment="Center"
+                                               DockPanel.Dock="Top" Background="#7fc7ed" Height="30" FontSize="14"/>
+                                        <Grid>
+                                            <Border BorderBrush="Gray" BorderThickness="1">
+                                                <Grid  Margin="0,-1,-1,0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="169*" />
+                                                        <ColumnDefinition Width="210*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                    </Grid.RowDefinitions>
+                                                    <commonControl:AITScBoolRow ScName="In Service" Grid.Row="0"
+                                                                                Grid.ColumnSpan="3"
+                                                                                ScId="LoadPort.CarrierIdReaderInUse"
+                                                                                ScFeedback="True"
+                                                                                ScSetPoint="True"
+                                                                                NameWidth="185" FeedbackWidth="70"
+                                                                                SetPointWidth="70" CommandWidth="60"
+                                                                                IsEnabled="False" />
+                                                    <commonControl:AITScDoubleRow ScName="Data Read Size" Grid.Row="1"
+                                                                                  Grid.ColumnSpan="2" Grid.Column="0"
+                                                                                  ScId="LoadPort.DataReadSize"
+                                                                                  ScFeedback="{Binding ConfigFeedback.LoadPort_DataReadSize}"
+                                                                                  ScSetPoint="{Binding ConfigSetPoint.LoadPort_DataReadSize}"
+                                                                                  Command="{Binding SetConfigCommand}"
+                                                                                  NameWidth="185" FeedbackWidth="70"
+                                                                                  SetPointWidth="70" CommandWidth="60" />
+                                                    <commonControl:AITScDoubleRow ScName="Start Page" Grid.Row="2"
+                                                                                  Grid.ColumnSpan="2" Grid.Column="0"
+                                                                                  ScId="LoadPort.StartPage"
+                                                                                  ScFeedback="{Binding ConfigFeedback.LoadPort_StartPage}"
+                                                                                  ScSetPoint="{Binding ConfigSetPoint.LoadPort_StartPage}"
+                                                                                  Command="{Binding SetConfigCommand}"
+                                                                                  NameWidth="185" FeedbackWidth="70"
+                                                                                  SetPointWidth="70" CommandWidth="60" />
+                                                    <commonControl:AITScBoolRow ScName="Auto Read" Grid.Row="3"
+                                                                                Grid.ColumnSpan="2" Grid.Column="0"
+                                                                                ScId="LoadPort.EnableAutoCarrierIdRead"
+                                                                                ScFeedback="{Binding ConfigFeedback.LoadPort.EnableAutoCarrierIdRead}"
+                                                                                ScSetPoint="{Binding ConfigSetPoint.LoadPort.EnableAutoCarrierIdRead}"
+                                                                                Command="{Binding SetConfigCommand}"
+                                                                                NameWidth="185" FeedbackWidth="70"
+                                                                                SetPointWidth="70" CommandWidth="60" />
+                                                    <commonControl:AITScDoubleRow ScName="Default Page" Grid.Row="4"
+                                                                                  Grid.ColumnSpan="2" Grid.Column="0"
+                                                                                  ScId="LoadPort.DefaultPage"
+                                                                                  ScFeedback="{Binding ConfigFeedback.LoadPort_DefaultPage}"
+                                                                                  ScSetPoint="{Binding ConfigSetPoint.LoadPort_DefaultPage}"
+                                                                                  Command="{Binding SetConfigCommand}"
+                                                                                  NameWidth="185" FeedbackWidth="70"
+                                                                                  SetPointWidth="70" CommandWidth="60" />
+
+                                                </Grid>
+                                            </Border>
+
+                                        </Grid>
+                                    </DockPanel>
+                                </Border>
+                            </Grid>
+                        </DockPanel>
+                    </Border>
+
+                    <Border Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderThickness="1"
+                            BorderBrush="#84a567" Height="80" Width="1120" Margin="0">
+                        <DockPanel Background="#d6f1ff">
+                            <Label Content="E84 Status Monitor" HorizontalContentAlignment="Center"
+                                   DockPanel.Dock="Top" Background="#7fc7ed" Height="30" FontSize="14"/>
+                            <Grid>
+                                <Border BorderBrush="Gray" BorderThickness="1">
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="3*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Row="1" Content="Status :" FontSize="14"
+                                               HorizontalContentAlignment="Right" VerticalAlignment="Center" />
+                                        <Label Content="{Binding E84Data.E84State}" Grid.Column="1"
+                                               BorderThickness="2"
+                                               BorderBrush="White" Width="400" FontSize="14"
+                                               HorizontalContentAlignment="Center" VerticalAlignment="Center"
+                                               Height="30" Margin="219,8,218,10" />
+                                    </Grid>
+                                </Border>
+
+                            </Grid>
+                        </DockPanel>
+                    </Border>
+
+                    <Border Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderThickness="1"
+                            BorderBrush="#84a567" Height="250" Width="1120" Margin="0">
+                        <DockPanel Background="#d6f1ff">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.32*" />
+                                    <ColumnDefinition Width="1.32*" />
+                                    <ColumnDefinition Width="1.32*" />
+                                    <ColumnDefinition Width="1.26*" />
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="Inputs" Grid.Column="0" HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        BorderThickness="1" BorderBrush="#84a567" Height="250" Width="280" Margin="0">
+                                    <DockPanel Background="#d6f1ff">
+                                        <Label Content="E84 Factory Inputs" HorizontalContentAlignment="Center"
+                                               DockPanel.Dock="Top" Background="#7fc7ed" Height="30" FontSize="14"/>
+                                        <Grid>
+                                            <Border BorderBrush="Gray" BorderThickness="1">
+                                                <Grid >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1.9*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                    </Grid.RowDefinitions>
+                                                    <Label Grid.Row="0" Content="Vaild:" FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="0" Grid.Column="1"
+                                                                    On="{Binding E84Data.Valid}" />
+                                                    <Label Grid.Row="1" Content="Transfer Request:" FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="1" Grid.Column="1"
+                                                               On="{Binding E84Data.TransferRequest}" />
+                                                    <Label Grid.Row="2" Content="Busy:" FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="2" Grid.Column="1"
+                                                               On="{Binding E84Data.Busy}" />
+                                                    <Label Grid.Row="3" Content="Transfer Complete :" FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="3" Grid.Column="1"
+                                                               On="{Binding E84Data.TransferComplete}" />
+                                                    <Label Grid.Row="4" Content="CS_0:" FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="4" Grid.Column="1"
+                                                               On="{Binding E84Data.CS0}" />
+                                                    <Label Grid.Row="5" Content="CS_1:" FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="5" Grid.Column="1"
+                                                               On="False" />
+                                                    <Label Grid.Row="6" Content="Continuous Transfer:" FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="6" Grid.Column="1"
+                                                               On="{Binding E84Data.ContinuousTransfer}" />
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+                                    </DockPanel>
+                                </Border>
+
+                                <Border x:Name="Outputs" Grid.Column="1" HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        BorderThickness="1" BorderBrush="#84a567" Height="250" Width="280" Margin="0">
+                                    <DockPanel Background="#d6f1ff">
+                                        <Label Content="E84 Factory Outputs" HorizontalContentAlignment="Center"
+                                               DockPanel.Dock="Top" Background="#7fc7ed" Height="30" FontSize="14"/>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="3*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+
+                                            <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="1">
+                                                <Grid >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1.9*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                    </Grid.RowDefinitions>
+                                                    <Label Grid.Row="0" Content="Load Request:" FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="0" Grid.Column="1"
+                                                                    On="{Binding E84Data.LoadRequest}" />
+                                                    <Label Grid.Row="1" Content="Unload Request:" FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="1" Grid.Column="1"
+                                                                    On="{Binding E84Data.UnloadRequest}" />
+                                                    <Label Grid.Row="2" Content="Ready to Transfer:" FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="2" Grid.Column="1"
+                                                                    On="{Binding E84Data.ReadyToTransfer}" />
+                                                    <Label Grid.Row="3" Content="Handoff Available:" FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="3" Grid.Column="1"
+                                                                    On="{Binding E84Data.HandoffAvailable}" />
+                                                    <Label Grid.Row="4" Content="Emergency Stop OK:" FontSize="14"
+                                                           HorizontalContentAlignment="Right" />
+                                                    <controls:LED Grid.Row="4" Grid.Column="1"
+                                                                    On="{Binding E84Data.EmergencyOk}" />
+                                                </Grid>
+                                            </Border>
+
+                                            <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1">
+                                                <Grid >
+                                                    <CheckBox Content="Error on Placement Timeout" IsChecked="True"
+                                                              IsEnabled="False"
+                                                              VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                              FontSize="14" />
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+                                    </DockPanel>
+                                </Border>
+
+                                <Border x:Name="ConfigBorder" Grid.Column="2" HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        BorderThickness="1" BorderBrush="#84a567" Height="250" Width="280" Margin="0">
+                                    <DockPanel Background="#d6f1ff">
+                                        <Label Content="TimeOut Settings" HorizontalContentAlignment="Center"
+                                               DockPanel.Dock="Top" Background="#7fc7ed" Height="30" FontSize="14"/>
+                                        <Grid>
+                                            <Border BorderBrush="Gray" BorderThickness="1">
+                                                <Grid >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="95*" />
+                                                        <ColumnDefinition Width="181*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                        <RowDefinition Height="30" />
+                                                    </Grid.RowDefinitions>
+                                                    <commonControl:AITScDoubleRow ScName="TP1 (sec)" Grid.Row="0"
+                                                                             ScId="Fa.E84.TP1"
+                                                                             ScFeedback="{Binding ConfigFeedback.Fa_E84_TP1}"
+                                                                             ScSetPoint="{Binding ConfigSetPoint.Fa_E84_TP1}"
+                                                                             Command="{Binding SetConfigCommand}"
+                                                                             NameWidth="75" FeedbackWidth="70"
+                                                                             SetPointWidth="70" CommandWidth="60"
+                                                                             Grid.ColumnSpan="2" />
+                                                    <commonControl:AITScDoubleRow ScName="TP2 (sec)" Grid.Row="1"
+                                                                             ScId="Fa.E84.TP2"
+                                                                             ScFeedback="{Binding ConfigFeedback.Fa_E84_TP2}"
+                                                                             ScSetPoint="{Binding ConfigSetPoint.Fa_E84_TP2}"
+                                                                             Command="{Binding SetConfigCommand}"
+                                                                             NameWidth="75" FeedbackWidth="70"
+                                                                             SetPointWidth="70" CommandWidth="60"
+                                                                             Grid.ColumnSpan="2" />
+                                                    <commonControl:AITScDoubleRow ScName="TP3 (sec)" Grid.Row="2"
+                                                                             ScId="Fa.E84.TP3"
+                                                                             ScFeedback="{Binding ConfigFeedback.Fa_E84_TP3}"
+                                                                             ScSetPoint="{Binding ConfigSetPoint.Fa_E84_TP3}"
+                                                                             Command="{Binding SetConfigCommand}"
+                                                                             NameWidth="75" FeedbackWidth="70"
+                                                                             SetPointWidth="70" CommandWidth="60"
+                                                                             Grid.ColumnSpan="2" />
+                                                    <commonControl:AITScDoubleRow ScName="TP4(sec)" Grid.Row="3"
+                                                                             ScId="Fa.E84.TP4"
+                                                                             ScFeedback="{Binding ConfigFeedback.Fa_E84_TP4}"
+                                                                             ScSetPoint="{Binding ConfigSetPoint.Fa_E84_TP4}"
+                                                                             Command="{Binding SetConfigCommand}"
+                                                                             NameWidth="75" FeedbackWidth="70"
+                                                                             SetPointWidth="70" CommandWidth="60"
+                                                                             Grid.ColumnSpan="2" />
+                                                    <commonControl:AITScDoubleRow ScName="TP5(sec)" Grid.Row="4"
+                                                                             ScId="Fa.E84.TP5"
+                                                                             ScFeedback="{Binding ConfigFeedback.Fa_E84_TP5}"
+                                                                             ScSetPoint="{Binding ConfigSetPoint.Fa_E84_TP5}"
+                                                                             Command="{Binding SetConfigCommand}"
+                                                                             NameWidth="75" FeedbackWidth="70"
+                                                                             SetPointWidth="70" CommandWidth="60"
+                                                                             Grid.ColumnSpan="2" />
+                                                    <commonControl:AITScDoubleRow ScName="TP6(sec)" Grid.Row="5"
+                                                                             ScId="Fa.E84.TP6"
+                                                                             ScFeedback="{Binding ConfigFeedback.Fa_E84_TP6}"
+                                                                             ScSetPoint="{Binding ConfigSetPoint.Fa_E84_TP6}"
+                                                                             Command="{Binding SetConfigCommand}"
+                                                                             NameWidth="75" FeedbackWidth="70"
+                                                                             SetPointWidth="70" CommandWidth="60"
+                                                                             Grid.ColumnSpan="2" />
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+                                    </DockPanel>
+                                </Border>
+
+                                <Border Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                        BorderThickness="1" BorderBrush="#84a567" Height="250" Width="272" Margin="0">
+                                    <DockPanel Background="#d6f1ff">
+                                        <Label Content="Error Recovery" HorizontalContentAlignment="Center"
+                                               DockPanel.Dock="Top" Background="#7fc7ed" Height="30" FontSize="14"/>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="2*" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Button Content="Retry" x:Name="btnRetry" Grid.Row="1" FontSize="14"
+                                                    Width="100" Height="30" VerticalAlignment="Center"
+                                                    Command="{Binding E84Command}"
+                                                    CommandParameter="E84Retry" />
+                                            <Button Content="Complete" x:Name="btnComplete" Grid.Row="2" FontSize="14"
+                                                    Width="100" Height="30" VerticalAlignment="Center"
+                                                    Command="{Binding E84Command}"
+                                                    CommandParameter="E84Complete" />
+                                            <Border Grid.Row="3" BorderBrush="Gray" BorderThickness="1">
+                                                <Grid >
+                                                    <CheckBox Content="Error on access mode violation"
+                                                              IsChecked="False" VerticalAlignment="Center"
+                                                              HorizontalAlignment="Center" FontSize="14"
+                                                              IsEnabled="False" />
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+                                    </DockPanel>
+                                </Border>
+                            </Grid>
+                        </DockPanel>
+                    </Border>
+                </Grid>
+            </DockPanel>
+        </Border>
+    </Grid>
+</UserControl>

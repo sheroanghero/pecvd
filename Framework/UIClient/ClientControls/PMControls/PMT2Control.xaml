@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.ClientControls.PMControls.PMT2Control"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MECF.Framework.UI.Client.ClientControls.PMControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="200">
+    <Canvas Width="200" Height="200">
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/PMs/PMT2/pmbottom.png" Canvas.Left="11" Canvas.Top="11"   >
+
+        </Image>
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/PMs/PMT2/pmtop.png" Canvas.Left="74" Canvas.Top="40" />
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/PMs/PMT2/pmtop.png" Canvas.Left="74" Canvas.Top="40" />
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/PMs/PMT2/pmtop.png" Canvas.Left="74" Canvas.Top="122" RenderTransformOrigin="0.506,0.536" />
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/PMs/PMT2/pmtop.png" Canvas.Left="105" Canvas.Top="100" />
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/PMs/PMT2/pmtop.png" Canvas.Left="40" Canvas.Top="104" />
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/PMs/PMT2/pmtop.png" Canvas.Left="37" Canvas.Top="64" />
+        <Image Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/PMs/PMT2/pmtop.png" Canvas.Left="109" Canvas.Top="61" />
+
+
+
+    </Canvas>
+</UserControl>

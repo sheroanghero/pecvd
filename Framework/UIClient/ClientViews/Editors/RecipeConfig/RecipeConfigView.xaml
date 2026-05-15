@@ -1,0 +1,252 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.CenterViews.Editors.RecipeConfig.RecipeConfigView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:OpenSEMI.Ctrlib.Controls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:micro="clr-namespace:Caliburn.Micro"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1500">
+    <Grid  >
+        <TabControl>
+            <TabItem Header="Step Parameter">
+                <ListView ItemsSource="{Binding Path=StepParameters}" ItemContainerStyle="{DynamicResource NoSelection-ListViewItem}"
+                           Width="960" HorizontalAlignment="Left"
+                          VerticalAlignment="Top" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="200"
+                                        Header="Parameter"
+                                        DisplayMemberBinding="{Binding Path=DisplayName}"  />
+                            <GridViewColumn Width="120" Header="Default">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <controls:TextBoxEx Text="{Binding DefaultValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Validation.ErrorTemplate="{x:Null}"  EditBoxMode="Decimal"  
+                                                            TextSaved="{Binding ValueSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" FontSize="14" FontFamily="Arial" Width="110" IsEnabled="{Binding EnableDefaultValue}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="100" Header="Min">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <controls:TextBoxEx Text="{Binding MinValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   Validation.ErrorTemplate="{x:Null}"  EditBoxMode="Decimal"  
+                                                            TextSaved="{Binding ValueSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" FontSize="14" FontFamily="Arial" Width="110" IsEnabled="{Binding EnableMinValue}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="120" Header="Max">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <controls:TextBoxEx Text="{Binding MaxValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Validation.ErrorTemplate="{x:Null}"  EditBoxMode="Decimal"  
+                                                            TextSaved="{Binding ValueSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" FontSize="14" FontFamily="Arial" Width="110" IsEnabled="{Binding EnableMaxValue}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="120" Header="Warn(%)">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <controls:TextBoxEx Text="{Binding WarnValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   Validation.ErrorTemplate="{x:Null}"  EditBoxMode="Decimal"  
+                                                            TextSaved="{Binding ValueSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" FontSize="14" FontFamily="Arial" Width="110" IsEnabled="{Binding EnableWarnValue}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="120" Header="Alarm(%)">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <controls:TextBoxEx Text="{Binding AlarmValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   Validation.ErrorTemplate="{x:Null}"  EditBoxMode="Decimal"  
+                                                            TextSaved="{Binding ValueSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" FontSize="14" FontFamily="Arial" Width="110" IsEnabled="{Binding EnableAlarmValue}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="90" Header="">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <Button Content="Set" FontSize="12" Height="25" Margin="1" Width="65" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <micro:ActionMessage MethodName="SetStepParameter">
+                                                        <micro:Parameter Value="{Binding }" />
+                                                    </micro:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+            <TabItem Header="OES" Visibility="{Binding OesVisibility}">
+                <ListView ItemsSource="{Binding Path=OesParameters}" 
+                          ItemContainerStyle="{DynamicResource NoSelection-ListViewItem}"
+                          Width="960" HorizontalAlignment="Left"
+                          VerticalAlignment="Top" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="200"
+                                        Header="Parameter"
+                                        DisplayMemberBinding="{Binding Path=DisplayName}"  />
+                            <GridViewColumn Width="120" Header="Default">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <controls:TextBoxEx Text="{Binding DefaultValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Validation.ErrorTemplate="{x:Null}"  EditBoxMode="Decimal"  
+                                                            TextSaved="{Binding ValueSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" FontSize="14" FontFamily="Arial" Width="110" IsEnabled="{Binding EnableDefaultValue}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="100" Header="Min">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <controls:TextBoxEx Text="{Binding MinValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   Validation.ErrorTemplate="{x:Null}"  EditBoxMode="Decimal"  
+                                                            TextSaved="{Binding ValueSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" FontSize="14" FontFamily="Arial" Width="110" IsEnabled="{Binding EnableMinValue}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="120" Header="Max">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <controls:TextBoxEx Text="{Binding MaxValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Validation.ErrorTemplate="{x:Null}"  EditBoxMode="Decimal"  
+                                                            TextSaved="{Binding ValueSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" FontSize="14" FontFamily="Arial" Width="110" IsEnabled="{Binding EnableMaxValue}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="90" Header="">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <Button Content="Set" FontSize="12" Height="25" Margin="1" Width="65" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <micro:ActionMessage MethodName="SetOesParameter">
+                                                        <micro:Parameter Value="{Binding }" />
+                                                    </micro:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+            <TabItem Header="VAT" Visibility="{Binding VatVisibility}">
+                <ListView ItemsSource="{Binding Path=VatParameters}" 
+                          ItemContainerStyle="{DynamicResource NoSelection-ListViewItem}"
+                          Width="960" HorizontalAlignment="Left"
+                          VerticalAlignment="Top" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="200"
+                                        Header="Parameter"
+                                        DisplayMemberBinding="{Binding Path=DisplayName}"  />
+                            <GridViewColumn Width="120" Header="Default">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <controls:TextBoxEx Text="{Binding DefaultValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Validation.ErrorTemplate="{x:Null}"  EditBoxMode="Decimal"  
+                                                            TextSaved="{Binding ValueSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" FontSize="14" FontFamily="Arial" Width="110" IsEnabled="{Binding EnableDefaultValue}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="100" Header="Min">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <controls:TextBoxEx Text="{Binding MinValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   Validation.ErrorTemplate="{x:Null}"  EditBoxMode="Decimal"  
+                                                            TextSaved="{Binding ValueSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" FontSize="14" FontFamily="Arial" Width="110" IsEnabled="{Binding EnableMinValue}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="120" Header="Max">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <controls:TextBoxEx Text="{Binding MaxValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Validation.ErrorTemplate="{x:Null}"  EditBoxMode="Decimal"  
+                                                            TextSaved="{Binding ValueSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" FontSize="14" FontFamily="Arial" Width="110" IsEnabled="{Binding EnableMaxValue}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="90" Header="">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <Button Content="Set" FontSize="12" Height="25" Margin="1" Width="65" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <micro:ActionMessage MethodName="SetVatParameter">
+                                                        <micro:Parameter Value="{Binding }" />
+                                                    </micro:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+            <TabItem Header="Fine Tuning" Visibility="{Binding FineTuningVisibility}">
+                <ListView ItemsSource="{Binding Path=FineTuningParameters}" 
+                          ItemContainerStyle="{DynamicResource NoSelection-ListViewItem}"
+                          Width="960" HorizontalAlignment="Left"
+                          VerticalAlignment="Top" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="200"
+                                        Header="Parameter"
+                                        DisplayMemberBinding="{Binding Path=DisplayName}"  />
+                            <GridViewColumn Width="120" Header="Default">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <controls:TextBoxEx Text="{Binding DefaultValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Validation.ErrorTemplate="{x:Null}"  EditBoxMode="Decimal"  
+                                                            TextSaved="{Binding ValueSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" FontSize="14" FontFamily="Arial" Width="110" IsEnabled="{Binding EnableDefaultValue}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="100" Header="Min">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <controls:TextBoxEx Text="{Binding MinValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"   Validation.ErrorTemplate="{x:Null}"  EditBoxMode="Decimal"  
+                                                            TextSaved="{Binding ValueSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" FontSize="14" FontFamily="Arial" Width="110" IsEnabled="{Binding EnableMinValue}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="120" Header="Max">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <controls:TextBoxEx Text="{Binding MaxValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Validation.ErrorTemplate="{x:Null}"  EditBoxMode="Decimal"  
+                                                            TextSaved="{Binding ValueSaved, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  TextWrapping="Wrap" FontSize="14" FontFamily="Arial" Width="110" IsEnabled="{Binding EnableMaxValue}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="90" Header="">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate >
+                                        <Button Content="Set" FontSize="12" Height="25" Margin="1" Width="65" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="Click">
+                                                    <micro:ActionMessage MethodName="SetVatParameter">
+                                                        <micro:Parameter Value="{Binding }" />
+                                                    </micro:ActionMessage>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </Button>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

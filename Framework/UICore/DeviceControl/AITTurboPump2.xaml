@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="Aitex.Core.UI.DeviceControl.AITTurboPump2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:Aitex.Core.UI.Converters"
+             mc:Ignorable="d" x:Name="Self" >
+    <UserControl.Resources>
+        <converters:bool2VisibilityConverter x:Key="Bool2VisibilityConvert"/>
+    </UserControl.Resources>
+    <Grid MouseEnter="Grid_MouseEnter">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="110"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Column="0" Width="50" Height="70" x:Name="imagePicture" Source="/MECF.Framework.Common;component/Resources/Pump/TurboPump/pump_off.png" >
+            <Image.ContextMenu>
+                <ContextMenu Visibility="{Binding ElementName=Self, Path=EnableControl,Converter= {StaticResource Bool2VisibilityConvert}, Mode=OneWay}">
+                    <MenuItem Header="ON" IsEnabled="{Binding ElementName=Self, Path=EnableControl,Mode=OneWay}" Click="PumpOn"/>
+                    <MenuItem Header="OFF" IsEnabled="{Binding ElementName=Self, Path=EnableControl,Mode=OneWay}" Click="PumpOff" />
+                </ContextMenu>
+            </Image.ContextMenu>
+        </Image>
+        <Border Grid.Row="0"  Width="50" Height="60"   >
+            <TextBlock x:Name="txtState" Text="OFF" TextAlignment="Center"    HorizontalAlignment="Center" VerticalAlignment="Bottom"  FontSize="9" FontWeight="Bold" Margin="9,0,10,37" Width="31"    />
+        </Border>
+        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+                    Visibility="{Binding ElementName=Self, Path=IsShowSpeed,Converter= {StaticResource Bool2VisibilityConvert}, Mode=OneWay}">
+            <Border  BorderBrush="black" Height="19" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Border  BorderBrush="black" BorderThickness="0,0,0,0" Background="SteelBlue"  >
+                        <TextBlock Text="Speed:" Width="40" Padding="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White"/>
+                    </Border>
+                    <TextBlock x:Name="txtSpeed" Text="{Binding ElementName=Self, Path=DeviceData.Velocity, Mode=OneWay}"
+                               FontWeight="Bold" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="50" Padding="0,0,5,0" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                    Visibility="{Binding ElementName=Self, Path=DeviceData.IsError,Converter= {StaticResource Bool2VisibilityConvert}, Mode=OneWay}">
+            <Border  BorderBrush="black" Height="19" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Border  BorderBrush="black" BorderThickness="0,0,0,0" Background="SteelBlue"  >
+                        <TextBlock Text="AlarmCode:" Width="70" Padding="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="Red"/>
+                    </Border>
+                    <TextBlock x:Name="txtAlarm" Text="{Binding ElementName=Self, Path=DeviceData.AlarmCode, Mode=OneWay}"
+                               FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Padding="0,0,5,0"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

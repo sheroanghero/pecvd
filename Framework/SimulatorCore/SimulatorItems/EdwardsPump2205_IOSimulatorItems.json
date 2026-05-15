@@ -1,0 +1,34 @@
+{
+  "IOSimulatorItemList": [
+    {
+      "SourceCommandName": "SetStart",
+      "SourceCommand": "02,30,30,31,20,45,30,31,03,AB",
+      "SuccessResponse": "02,30,30,31,20,45,30,31,03,AB",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "SetStop",
+      "SourceCommand": "02,30,30,31,20,45,30,32,03,A8",
+      "SuccessResponse": "02,30,30,31,20,45,30,32,03,A8",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "SetReset",
+      "SourceCommand": "02,30,30,31,20,45,30,34,03,AE",
+      "SuccessResponse": "02,30,30,31,20,45,30,34,03,AE",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "ReadMeasValue",
+      "SourceCommand": "02,30,30,31,3F,5B,03,AB",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "ReadModFonct",
+      "SourceCommand": "02,30,30,31,3F,4D,03,BD",
+      "SuccessResponse": "",
+      "FailedResponse": ""
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "IOSimulatorItemList": [
+    {
+      "SourceCommandName": "GetStatus",
+      "SourceCommand": "01,03,00,00",
+      "SuccessResponse": "01,03,0C,08,00,08,00,00,00",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "SetPresetAbsoluteMode",
+      "SourceCommand": "01,10,00,05",
+      "SuccessResponse": "01,10,00,05,00,03",
+      "FailedResponse": ""
+    },
+    {
+        "SourceCommandName": "SetCurrentValue",
+        "SourceCommand": "01,10,00,08",
+        "SuccessResponse": "01,10,00,08,00,02",
+        "FailedResponse": ""
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+﻿<UserControl x:Class="Aitex.Core.UI.Control.LineDataChart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sciChart="http://schemas.abtsoftware.co.uk/scichart" 
+             xmlns:cv="clr-namespace:Aitex.Core.UI.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+
+    <UserControl.Resources>
+        <Style TargetType="ToggleButton">
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Height" Value="22" />
+            <Setter Property="Width" Value="80" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0.5" />
+        </Style>
+
+        <cv:LineColorConverter x:Key="colorConverter"/>
+        <cv:bool2VisibilityConverter x:Key="bool2VisibilityConverter"/>
+        <cv:Visibility2boolConverter x:Key="vis2bool" />
+        <cv:RolloverDataTimeConverter x:Key="rolloverDataTimeConverter"/>
+        <cv:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
+        <cv:RolloverDataPointerInfoConverter x:Key="rolloverDataPointerInfoConverter"/>
+
+        <!--  Template for the RolloverModifier tooltip to display AxisInfo collection (result of hit test)  -->
+        <ControlTemplate x:Key="RolloverLabelTemplate" TargetType="sciChart:TemplatableControl">
+            <Border Background="#AAFFFFFF" BorderBrush="{Binding SeriesColor, Converter={StaticResource ColorToBrushConverter}}" BorderThickness="2" CornerRadius="5">
+                <StackPanel Margin="5">
+                    <TextBlock FontSize="12" FontWeight="Bold" Foreground="{Binding SeriesColor, Converter={StaticResource ColorToBrushConverter}}" Text="{Binding SeriesName}"/>
+                    <TextBlock FontSize="11" Foreground="{Binding SeriesColor, Converter={StaticResource ColorToBrushConverter}}">
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource rolloverDataPointerInfoConverter}">
+                                <Binding Path="XValue"/>
+                                <Binding Path="Value"/>
+                                <Binding Path="RenderableSeries"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+        </ControlTemplate>
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="dataConfigPanelColumn" MinWidth="0" Width="0"/>
+            <ColumnDefinition Width="0" />
+            <ColumnDefinition Width="400*" />
+        </Grid.ColumnDefinitions>
+ 
+        <Grid Grid.Column="2">
+            <!-- Create the chart surface -->
+            <sciChart:SciChartSurface Name="sciChart" RenderableSeries="{Binding RenderableSeries}" 
+                                      sciChart:ThemeManager.Theme="ExpressionLight"
+                                      Padding="0,0,0,0" 
+                                      
+                                      MouseDoubleClick="sciChart_MouseDoubleClick" 
+                                      DebugWhyDoesntSciChartRender="False" BorderBrush="Gray" Focusable="False" IsTabStop="False">
+
+                <!-- Create an X Axis -->
+                <sciChart:SciChartSurface.XAxis>
+                    <sciChart:DateTimeAxis DrawMinorTicks="False" 
+                                           DrawMinorGridLines="False" 
+                                           DrawMajorBands="False"
+                                           DrawMajorGridLines="False"
+                                           Margin="0,0,0,0" 
+                                           SubDayTextFormatting="HH:mm:ss" 
+                                           TitleFontSize="15"
+                                           FontSize="20"
+                                           TextFormatting="HH:mm:ss" 
+                                           Id="DefaultAxisId" TitleFontWeight="Normal" />
+                </sciChart:SciChartSurface.XAxis>
+
+                <!-- Create a Y Axis -->
+                <sciChart:SciChartSurface.YAxis>
+                    <sciChart:NumericAxis DrawMinorTicks="False" Visibility="Visible"
+                                          DrawMinorGridLines="False" 
+                                          AxisAlignment="Right"
+                                          Id="DefaultAxisId" 
+                                          MajorDelta="0.1" 
+                                          MinorDelta="0.1" 
+                                          DrawMajorBands="False" 
+                                          Focusable="False" BorderThickness="0" 
+                                          AutoRange="Always" DrawLabels="False" 
+                                          Width="0"
+                                          DrawMajorGridLines="True" DrawMajorTicks="False">
+                        <sciChart:NumericAxis.GrowBy>
+                            <sciChart:DoubleRange Min="0.1" Max="0.1"/>
+                        </sciChart:NumericAxis.GrowBy>
+                    </sciChart:NumericAxis>
+                </sciChart:SciChartSurface.YAxis>
+
+
+                <!-- Create Y Axes on the Left and Right -->
+                <sciChart:SciChartSurface.YAxes>
+                    <sciChart:NumericAxis TickTextBrush="Black" Id="PressureYAxisId" AxisAlignment="Left" MinWidth="75" MaxWidth="75" MouseEnter="NumericAxis_Pyro_MouseEnter" MouseLeave="NumericAxis_Pyro_MouseLeave" FontSize="20">
+                        <sciChart:NumericAxis.GrowBy>
+                            <sciChart:DoubleRange Min="0.1" Max="0.1"/>
+                        </sciChart:NumericAxis.GrowBy>
+                        </sciChart:NumericAxis>
+                    <sciChart:NumericAxis TickTextBrush="Black" Id="GeneralYAxisId" AxisAlignment="Right" MinWidth="75" MaxWidth="75" MouseLeave="NumericAxis_Reflect_MouseLeave" MouseEnter="NumericAxis_Reflect_MouseEnter" FontSize="20">
+                        <sciChart:NumericAxis.GrowBy>
+                            <sciChart:DoubleRange Min="0.1" Max="0.1"/>
+                        </sciChart:NumericAxis.GrowBy>
+                    </sciChart:NumericAxis>
+                    <!--<sciChart:NumericAxis TickTextBrush="Green" Id="CurvatureAxisId" AxisAlignment="Right" MinWidth="35" MaxWidth="35" MouseEnter="NumericAxis_Wrap_MouseEnter" MouseLeave="NumericAxis_Wrap_MouseLeave" FontSize="10">
+                        <sciChart:NumericAxis.GrowBy>
+                            <sciChart:DoubleRange Min="0.1" Max="0.1"/>
+                        </sciChart:NumericAxis.GrowBy>
+                    </sciChart:NumericAxis>-->
+                </sciChart:SciChartSurface.YAxes>
+
+                <!--  Vertical Lines Annotations>
+                <sciChart:SciChartSurface.Annotations>
+                    <sciChart:VerticalLineAnnotation x:Name="vertical_Line1" X1="{Binding Time1,Mode=TwoWay}" X2="{Binding Time1,Mode=TwoWay}" Stroke="Red" VerticalAlignment="Stretch" ShowLabel="True" StrokeThickness="1.5" IsEditable="True" LabelTextFormatting="yyyy/MM/dd HH:mm:ss" IsHidden="True" LabelPlacement="Bottom" FontSize="10" Padding="0,0,0,20" />
+                    <sciChart:VerticalLineAnnotation x:Name="vertical_Line2" X1="{Binding Time2,Mode=TwoWay}" X2="{Binding Time2,Mode=TwoWay}" Stroke="Purple" VerticalAlignment="Stretch" ShowLabel="True" StrokeThickness="1.5" IsEditable="True" LabelTextFormatting="yyyy/MM/dd HH:mm:ss" IsHidden="True" LabelPlacement="Bottom" FontSize="10" />
+                </sciChart:SciChartSurface.Annotations-->
+
+                <!-- Specify interactivity modifiers -->
+                <sciChart:SciChartSurface.ChartModifier>
+
+                    <sciChart:ModifierGroup ExecuteOn="MouseDoubleClick">
+ 
+                        <!-- Provides selection of series and custom styling to the selected series -->
+                        <!--<sciChart:SeriesSelectionModifier ExecuteOn="MouseLeftButton" ReceiveHandledEvents="True">
+                            <sciChart:SeriesSelectionModifier.SelectedSeriesStyle>
+                                <Style TargetType="sciChart:BaseRenderableSeries">
+                                    <Setter Property="Width" Value="3"/>
+                                    <Setter Property="PointMarkerTemplate">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <Ellipse Fill="#FFAA00AA" Stroke="Red" Width="8" Height="8"/>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </sciChart:SeriesSelectionModifier.SelectedSeriesStyle>
+                        </sciChart:SeriesSelectionModifier>-->
+
+                        <sciChart:RubberBandXyZoomModifier x:Name="rubberBandZoomModifier" IsEnabled="True" 
+                                                           IsXAxisOnly="False" 
+                                                           ZoomExtentsY="False" 
+                                                           IsAnimated="True" ExecuteOn="MouseLeftButton" ReceiveHandledEvents="True" />
+                        <!--<sciChart:ZoomExtentsModifier x:Name="zoomExtentsModifier" ExecuteOn="MouseDoubleClick"/>-->
+
+                        <sciChart:CursorModifier IsEnabled="True"  ShowTooltipOn="MouseOver"  ShowAxisLabels="True"  SourceMode="AllSeries" ShowTooltip="False" />
+
+                        <!-- Provides a data source for the legend control -->
+                        <sciChart:LegendModifier ShowLegend="False" GetLegendDataFor="AllSeries" x:Name="legendModifier"/>
+                        <!--<sciChart:RubberBandXyZoomModifier IsEnabled="True" IsXAxisOnly="True"/>-->
+                        <!--<sciChart:CursorModifier IsEnabled="True"
+                                                 ShowAxisLabels="True"
+                                                 ShowTooltip="True" />-->
+
+                        <!--自由平移-->
+                        <sciChart:ZoomPanModifier x:Name="zoomPanModifier" IsEnabled="True" ExecuteOn="MouseRightButton" ClipModeX="None" />
+
+                        <!--移动鼠标时动态显示当前数据值-->
+                        <sciChart:RolloverModifier x:Name="rolloverModifier" 
+                                                   UseInterpolation="False" FontSize="9" IsEnabled="True" 
+                                                   DrawVerticalLine="False" FontFamily="Arial,SimSun" 
+                                                   SnapsToDevicePixels="False"                                             
+                                                  ShowAxisLabels="False" />
+                        <!--2020.3.1  upgrade to sciChart 6.0 this property is invalid =>TooltipLabelTemplate="{StaticResource RolloverLabelTemplate}" -->
+
+                        <!--<sciChart:LegendModifier x:Name="legendModifier" GetLegendDataFor="AllSeries"/>-->
+                        <!--<sciChart:RubberBandXyZoomModifier IsXAxisOnly="True"/>-->
+                        <!--<sciChart:XAxisDragModifier/>-->
+                        <!--<sciChart:YAxisDragModifier/>-->
+
+                        <!--<sciChart:ZoomExtentsModifier ExecuteOn="MouseDoubleClick"/>-->
+                        <!--双击自动显示全部视图-->
+                        <!--<sciChart:ZoomPanModifier ExecuteOn="MouseLeftButton"/>-->
+
+                        <!--
+                        <sciChart:XAxisDragModifier x:Name="xAxisDragModifier" IsEnabled="True" ClipModeX="None"/>
+                        <sciChart:YAxisDragModifier x:Name="yAxisRightDragmodifier" IsEnabled="True" YAxisId="DefaultAxisId"/>
+                        -->
+                        <sciChart:MouseWheelZoomModifier x:Name="mouseWheelZoomModifier" XyDirection="XDirection"/>
+                        <!--滚轮滚动进行缩放操作-->
+                        <!--
+                        <sciChart:ZoomPanModifier ReceiveHandledEvents="True"></sciChart:ZoomPanModifier>
+                        <sciChart:ZoomExtentsModifier ExecuteOn="MouseDoubleClick"/>
+                        -->
+                    </sciChart:ModifierGroup>
+                </sciChart:SciChartSurface.ChartModifier>
+
+            </sciChart:SciChartSurface>
+
+            <sciChart:SciChartLegend x:Name="legendControl" Visibility="Hidden"
+                                     Grid.Row="0" Margin="5,5" ShowVisibilityCheckboxes="True" 
+                                     LegendData="{Binding LegendData, ElementName=legendModifier, Mode=OneWay}" 
+                                     FontSize="10" FontWeight="Light" />
+
+            <!--<sciChart:SciChartOverview Grid.Row="1"  
+                                       ParentSurface="{Binding ElementName=sciChart}"
+                                       SelectedRange="{Binding ElementName=sciChart, Path=XAxis.VisibleRange, Mode=TwoWay}" 
+                                       sciChart:ThemeManager.Theme="BlackSteel" BorderThickness="0,1,0,0" />-->
+
+            <!-- Define a panel to display rollover results -->
+            <!--
+            <Border BorderBrush="#55000000" BorderThickness="2" Background="#77FFFFFF" 
+                    VerticalAlignment="Top" CornerRadius="5"
+                    Margin="3,25,0,0" Padding="2" HorizontalAlignment="Left" 
+                    Visibility="{Binding IsRolloverInfoDisplayEnabled,Converter={StaticResource bool2VisibilityConverter}}">
+                <ItemsControl DataContext="{Binding ElementName=rolloverModifier}" 
+                              ItemsSource="{Binding SeriesData.SeriesInfo}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Height="13" Opacity="0.9">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="126"/>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Background="{Binding SeriesColor, Converter={StaticResource ColorToBrushConverter}}" Text="  " Margin="0" Height="8" />
+                                <TextBlock Grid.Column="1" Text="{Binding XValue,Converter={StaticResource rolloverDataTimeConverter}}" Margin="0" FontSize="9" FontFamily="Arial,SimSun" />
+                                <TextBlock Grid.Column="2" Margin="0" FontSize="9" FontFamily="Arial,SimSun">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource rolloverDataValueConverter}">
+                                            <Binding Path="Value"/>
+                                            <Binding Path="RenderableSeries"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <TextBlock Grid.Column="3" Text="{Binding SeriesName}" Margin="0" FontSize="9" FontFamily="Arial,SimSun"  HorizontalAlignment="Left"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Border>
+            -->
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="82,0,0,0">
+                <!--<CheckBox Content="Display DataItems Panel" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black"  IsChecked="True"  Checked="checkConfigPanel_Checked" Unchecked="checkConfigPanel_Checked"/>-->
+                <CheckBox Content="Auto Zoom" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" IsChecked="True" x:Name="ckAutoZoom"   Checked="checkAutoRange_Checked" Unchecked="checkAutoRange_Checked"/>
+                <!--
+                <CheckBox Content="X轴滚动缩放" HorizontalAlignment="Left" IsChecked="{Binding IsXZoomEnabled}"/>
+                <CheckBox Content="Y轴滚动缩放" HorizontalAlignment="Left" IsChecked="{Binding IsYZoomEnabled}" />
+                -->
+                <!--CheckBox Content="时间标尺   " HorizontalAlignment="Left" Name="checkTimeLine" Foreground="Black" VerticalAlignment="Center" Checked="checkTimeLine_Checked" Unchecked="checkTimeLine_Checked"/-->
+                <Label Content="{Binding ProcessInfo}" VerticalAlignment="Center" Height="25" Margin="28,0,0,0" HorizontalAlignment="Left" BorderThickness="0" Width="auto" FontSize="12" FontFamily="Arial,SimSun" />
+            </StackPanel>
+            <Label Content="▲" HorizontalAlignment="Right" Margin="0,0,2,0" Name="warpAxisTopUp" BorderThickness="1" BorderBrush="Green" Width="34" HorizontalContentAlignment="Center" Padding="0.5" FontSize="13" FontWeight="ExtraBold" Background="White" Foreground="Green" Height="20" VerticalAlignment="Top" MouseLeave="NumericAxis_Wrap_MouseLeave" MouseLeftButtonDown="YAxisTopUp_Click" Tag="2" Visibility="Collapsed" />
+            <Label BorderBrush="Red" BorderThickness="1" Content="▲" FontSize="13" FontWeight="ExtraBold" Height="20" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Name="pyroAxisTopUp" Padding="0.5" VerticalAlignment="Top" Width="34" Background="White" Foreground="Red" ForceCursor="False" MouseLeave="NumericAxis_Pyro_MouseLeave" MouseLeftButtonDown="YAxisTopUp_Click" Tag="0" Visibility="Collapsed" Margin="1,0,0,0" />
+            <Label BorderBrush="Red" BorderThickness="1" Content="▼" FontSize="13" FontWeight="ExtraBold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="1,19,0,0" Name="pyroAxisTopDown" Padding="0.5" Width="34" Background="White" Foreground="Red" Height="20" VerticalAlignment="Top" ForceCursor="False" ClipToBounds="True" MouseLeave="NumericAxis_Pyro_MouseLeave" MouseLeftButtonDown="YAxisTopDown_Click" Tag="0" Visibility="Collapsed" />
+            <Label BorderBrush="Green" BorderThickness="1" Content="▼" FontSize="13" FontWeight="ExtraBold" Height="20" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Margin="0,19,2,0" Name="warpAxisTopDown" Padding="0.5" VerticalAlignment="Top" Width="34" Background="White" Foreground="Green" MouseLeave="NumericAxis_Wrap_MouseLeave" MouseLeftButtonDown="YAxisTopDown_Click" Tag="2" Visibility="Collapsed" />
+            <Label Background="White" BorderBrush="Green" BorderThickness="1" Content="▲" FontSize="13" FontWeight="ExtraBold" Foreground="Green" Height="20" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Margin="0,0,2,42" Name="warpAxisBottomUp" Padding="0.5" VerticalAlignment="Bottom" Width="34" MouseLeave="NumericAxis_Wrap_MouseLeave" Tag="2" MouseLeftButtonDown="YAxisBottomUp_Click" Visibility="Collapsed" />
+            <Label Background="White" BorderBrush="Red" BorderThickness="1" Content="▲" FontSize="13" FontWeight="ExtraBold" Foreground="Red" Height="20" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="1,0,0,42" Name="pyroAxisBottomUp" Padding="0.5" VerticalAlignment="Bottom" Width="34" ForceCursor="False" MouseLeave="NumericAxis_Pyro_MouseLeave" Tag="0" MouseLeftButtonDown="YAxisBottomUp_Click" Visibility="Collapsed" />
+            <Label Background="White" BorderBrush="Red" BorderThickness="1" Content="▼" FontSize="13" FontWeight="ExtraBold" Foreground="Red" Height="20" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="1,0,0,23" Name="pyroAxisBottomDown" Padding="0.5" VerticalAlignment="Bottom" Width="34" ForceCursor="False" MouseLeave="NumericAxis_Pyro_MouseLeave" Tag="0" MouseLeftButtonDown="YAxisBottomDown_Click" Visibility="Collapsed" />
+            <Label Background="White" BorderBrush="Green" BorderThickness="1" Content="▼" FontSize="13" FontWeight="ExtraBold" Foreground="Green" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Margin="0,0,2,23" Name="warpAxisBottomDown" Padding="0.5" Width="34" Height="20" VerticalAlignment="Bottom" MouseLeave="NumericAxis_Wrap_MouseLeave" Tag="2" MouseLeftButtonDown="YAxisBottomDown_Click" Visibility="Collapsed" />
+            <Label Background="White" BorderBrush="Blue" BorderThickness="1" Content="▲" FontSize="13" FontWeight="ExtraBold" Foreground="Blue" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Margin="0,0,36,0" Name="ReflectAxisTopUp" Padding="0.5" Width="34" MouseLeave="NumericAxis_Reflect_MouseLeave" MouseLeftButtonDown="YAxisTopUp_Click" Tag="1" Visibility="Collapsed" Height="20" VerticalAlignment="Top" />
+            <Label Background="White" BorderBrush="Blue" BorderThickness="1" Content="▼" FontSize="13" FontWeight="ExtraBold" Foreground="Blue" Height="20" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Margin="0,19,36,0" Name="ReflectAxisTopDown" Padding="0.5" VerticalAlignment="Top" Width="34" MouseLeave="NumericAxis_Reflect_MouseLeave" MouseLeftButtonDown="YAxisTopDown_Click" Tag="1" Visibility="Collapsed" />
+            <Label Background="White" BorderBrush="Blue" BorderThickness="1" Content="▲" FontSize="13" FontWeight="ExtraBold" Foreground="Blue" Height="20" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Margin="0,0,36,42" Name="ReflectAxisBottomUp" Padding="0.5" VerticalAlignment="Bottom" Width="34" MouseLeave="NumericAxis_Reflect_MouseLeave" Tag="1" MouseLeftButtonDown="YAxisBottomUp_Click" Visibility="Collapsed" />
+            <Label Background="White" BorderBrush="Blue" BorderThickness="1" Content="▼" FontSize="13" FontWeight="ExtraBold" Foreground="Blue" Height="20" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Margin="0,0,36,23" Name="ReflectAxisBottomDown" Padding="0.5" VerticalAlignment="Bottom" Width="34" MouseLeave="NumericAxis_Reflect_MouseLeave" Tag="1" MouseLeftButtonDown="YAxisBottomDown_Click" Visibility="Collapsed" />
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Aitex.Core.UI.Control.Arrow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Height="20" Width="20" MinHeight="20" MinWidth="20" MaxHeight="20" MaxWidth="20" BorderThickness="1 1 1 1">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Polygon}" />
+    </UserControl.Resources>
+    
+    <UserControl.RenderTransform>
+        <RotateTransform x:Name="rotateTransform" Angle="0" CenterX="10" CenterY="10"/>
+    </UserControl.RenderTransform>
+    <Grid>
+        <Polygon Name="arrow1" Points="0,5 10,10 0,15" Stroke="Black" StrokeThickness="0"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,22 @@
+{
+  "IOSimulatorItemList": [
+    {
+      "SourceCommandName": "Start",
+      "SourceCommand": "CON_FDP_ON",
+      "SuccessResponse": "FDP_ONOK",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "Stop",
+      "SourceCommand": "CON_FDP_OFF",
+      "SuccessResponse": "FDP_OFFOK",
+      "FailedResponse": ""
+    },
+    {
+      "SourceCommandName": "ReadRunParameters",
+      "SourceCommand": "READ_RUN_PARA",
+      "SuccessResponse": "RUN_PARA%02ld%02ld%03ld%03ld%02ld%04ld%0",
+      "FailedResponse": ""
+    }
+  ]
+}

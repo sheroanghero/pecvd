@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Aitex.Core.UI.View.Frame.CenterTabView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            Width="auto" Height="800">
+    <Grid Background="#FF2CA1DE">
+        <TabControl Background="{StaticResource mainCenterBackgroundColor}" 
+            Padding="0,0,0,0"
+                    x:Name="TabContainer" 
+                    Grid.Column="1"
+                    BorderThickness="0">
+        </TabControl>
+    </Grid>
+</UserControl>

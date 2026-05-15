@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Core.ExtendedControls.ObjectInTreeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:extendedControls="clr-namespace:MECF.Framework.UI.Core.ExtendedControls"
+             mc:Ignorable="d" 
+             x:Name="self"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <TreeView ItemsSource="{Binding TreeNodes, ElementName=self}">
+        <TreeView.Resources>
+            <Style TargetType="{x:Type TreeViewItem}">
+                <Setter Property="IsExpanded" Value="True">
+                </Setter>
+            </Style>
+            <HierarchicalDataTemplate DataType="{x:Type extendedControls:ObjectTreeNode}" ItemsSource="{Binding Path=Children}">
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=Name}"/>
+                            <TextBlock Text=" : "/>
+                            <TextBlock Text="{Binding Path=Value}"/>
+                        </StackPanel>
+                    </TreeViewItem.Header>
+                </TreeViewItem>
+            </HierarchicalDataTemplate>
+        </TreeView.Resources>
+    </TreeView>
+</UserControl>

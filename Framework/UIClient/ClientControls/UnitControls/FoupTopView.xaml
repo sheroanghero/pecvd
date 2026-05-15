@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Client.Ctrlib.UnitControls.FoupTopView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:myCtrl="clr-namespace:MECF.Framework.UI.Client.Ctrlib.UnitControls"
+             mc:Ignorable="d"  Width="73" Height="66"
+             d:DesignHeight="120" d:DesignWidth="100">
+    <UserControl.Resources>
+        <Storyboard x:Key="FoupLoaded">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Top)" >
+                <EasingDoubleKeyFrame KeyTime="0" Value="20"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FoupUnloaded">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Top)" >
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="20"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Style TargetType="{x:Type Image}" x:Key="LP_Animation" >
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsFoupLoaded, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" Value="true">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard Storyboard="{StaticResource FoupLoaded}"/>
+                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <BeginStoryboard Storyboard="{StaticResource FoupUnloaded}"/>
+                    </DataTrigger.ExitActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
+    <Canvas x:Name="canvas" Width="75" Height="100" >
+        <Canvas.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Home"  Click="Home"/>
+                <MenuItem Header="Reset"  Click="Reset" />
+                <MenuItem Header="Abort"  Click="Abort" />
+                <MenuItem Header="Load"  Click="Load"/>
+                <MenuItem Header="Unload"  Click="Unload"/>
+                <MenuItem Header="Read Carrier ID"  Click="ReadCarrierID"/>
+                <MenuItem Header="Clamp"  Click="Clamp" />
+                <MenuItem Header="Unclamp"  Click="Unclamp"/>
+                <MenuItem Header="Dock"  Click="Dock" />
+                <MenuItem Header="Undock"  Click="Undock"/>
+                <MenuItem Header="Open Door"  Click="OpenDoor"/>
+                <MenuItem Header="Close Door"  Click="CloseDoor" />
+                <MenuItem Header="Map"  Click="Map"/>
+            </ContextMenu>
+        </Canvas.ContextMenu>
+
+        <Image Canvas.Top="20" Style="{StaticResource LP_Animation}" Source="pack://application:,,,/MECF.Framework.UI.Client;component/Resources/Images/foupTopView.png"    Width="73" Height="66"  />
+        <Canvas.RenderTransform>
+            <TranslateTransform Y="{Binding CanvasYPosition}">
+            </TranslateTransform>
+        </Canvas.RenderTransform>
+    </Canvas>
+</UserControl>

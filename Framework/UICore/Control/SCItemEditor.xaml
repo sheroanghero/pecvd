@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="MECF.Framework.UI.Core.Control.SCItemEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MECF.Framework.UI.Core.Control"
+             xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="900">
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" Margin="5"  
+                      Background="White" ItemsSource="{Binding ScItemList, Mode=OneWay}" 
+                      SelectionMode="Single" SelectionUnit="FullRow"
+                      FontFamily="Arial,SimSun" FontSize="13"                     
+                         BorderThickness="0.1" 
+                          CanUserDeleteRows="False" CanUserAddRows="False" IsReadOnly="True" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Width="250" CanUserSort="True" IsReadOnly="True" Binding="{Binding PathName,Mode=OneWay}">
+
+                </DataGridTextColumn>
+ 
+
+                <DataGridTemplateColumn Header="Description" Width="200"  >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Description, Mode=OneWay }" TextWrapping="Wrap"  FontSize="12"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTextColumn Header="Type" Width="50" CanUserSort="True" IsReadOnly="True" Binding="{Binding Type,Mode=OneWay}">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Min" Width="90" CanUserSort="True" IsReadOnly="True" Binding="{Binding Min,Mode=OneWay}">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Max" Width="90" CanUserSort="True" IsReadOnly="True" Binding="{Binding Max,Mode=OneWay}">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Value" Width="100" CanUserSort="True" IsReadOnly="True" Binding="{Binding Value,Mode=OneWay}">
+ 
+                </DataGridTextColumn>
+
+                <DataGridTemplateColumn Header="SetPoint" Width="90" CanUserSort="True" SortMemberPath="Type">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding SetPoint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  FontSize="12"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Command"  Width="90" CanUserSort="False" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Set"  FontSize="12" Command="{Binding RelativeSource={RelativeSource FindAncestor, 
+AncestorType={x:Type DataGrid}}, Path=DataContext.SetScCommand}" CommandParameter="{Binding PathName}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</UserControl>

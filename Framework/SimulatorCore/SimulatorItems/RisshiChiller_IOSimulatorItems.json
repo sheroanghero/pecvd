@@ -1,0 +1,55 @@
+{
+  "IOSimulatorItemList": [
+    {
+      "SourceCommandName": "SetTemperature",
+      "SourceCommand": "SWAA",
+      "Argument": "60",
+      "SuccessResponse": "_RDY",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "SetRemoteMode",
+      "SourceCommand": "SWS",
+      "Argument": "200",
+      "SuccessResponse": "_RDY",
+      "FailedResponse": "_ERR 9"
+    },
+
+    {
+      "SourceCommandName": "RequestTemprature",
+      "SourceCommand": "RWAA",
+      "SuccessResponse": "RWAA 90.000",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "RequestCoolFlowRate",
+      "SourceCommand": "RWS",
+      "SuccessResponse": "RWS 300",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "RequestResistivity",
+      "SourceCommand": "RBIASXY",
+      "SuccessResponse": "RBIASXY 6.018 1.285",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "RequestOperationStatus",
+      "SourceCommand": "RBIASRT",
+      "SuccessResponse": " RBIASRT 1.285 0.105",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "RequestAlarmStatus",
+      "SourceCommand": "RNOTCH",
+      "SuccessResponse": "RNOTCH 90.105",
+      "FailedResponse": "_ERR 9"
+    },
+    {
+      "SourceCommandName": "RequestWarningStatus",
+      "SourceCommand": "REER",
+      "SuccessResponse": "_ERR 15",
+      "FailedResponse": "_ERR 15"
+    }
+  ]
+}
